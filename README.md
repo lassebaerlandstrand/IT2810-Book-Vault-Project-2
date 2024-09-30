@@ -1,31 +1,19 @@
-# Mantine Vite template
+# Book Vault
 
-## Features
+Website with a catalog of books.
 
-This template comes with the following features:
+## Folder structure
 
-- [PostCSS](https://postcss.org/) with [mantine-postcss-preset](https://mantine.dev/styles/postcss-preset)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Vitest](https://vitest.dev/) setup with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
-- ESLint setup with [eslint-config-mantine](https://github.com/mantinedev/eslint-config-mantine)
+We are using a monorepo structure with both frontend and backend in the same repository.
 
-## npm scripts
+## How to run
 
-## Build and dev scripts
+### Frontend
 
-- `dev` – start development server
-- `build` – build production version of the app
-- `preview` – locally preview production build
+To start with the frontend, you need to run the following commands:
 
-### Testing scripts
-
-- `typecheck` – checks TypeScript types
-- `lint` – runs ESLint
-- `prettier:check` – checks files with Prettier
-- `vitest` – runs vitest tests
-- `vitest:watch` – starts vitest watch
-- `test` – runs `vitest`, `prettier:check`, `lint` and `typecheck` scripts
-
-### Other scripts
-
-- `prettier:write` – formats all files with Prettier
+```
+cd frontend
+npm install
+npm run dev
+```
