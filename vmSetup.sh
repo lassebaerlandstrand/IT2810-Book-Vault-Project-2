@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/krisose/T05-Project-2
+cd /home/krisose/T05-Project-2/frontend
 git pull
 npm install
 npm run build
