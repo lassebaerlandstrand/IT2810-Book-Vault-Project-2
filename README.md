@@ -17,3 +17,7 @@ cd frontend
 npm install
 npm run dev
 ```
+
+## How to contribute
+
+Please read the [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) to learn how you can contribute to the project.
