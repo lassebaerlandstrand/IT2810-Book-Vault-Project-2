@@ -9,14 +9,13 @@ const fetchBooks = () => {
 };
 
 const fetchAuthors = () => {
-  let authors = (data as Book[]).map((book: Book) => book.authors).flat();
-
-  console.log(authors);
-
-  authors = authors.filter(
-    (author: String, index: number, self: String[]) =>
-      self.findIndex((a) => a === author) === index
-  );
+  const authors = (data as Book[])
+    .map((book: Book) => book.authors)
+    .flat()
+    .filter(
+      (author: String, index: number, self: String[]) =>
+        self.findIndex((a) => a === author) === index
+    );
   return authors;
 };
 
