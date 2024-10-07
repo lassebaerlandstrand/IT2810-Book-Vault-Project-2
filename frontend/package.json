@@ -16,7 +16,8 @@
     "vitest": "vitest run",
     "vitest:watch": "vitest",
     "test": "npm run typecheck && npm run prettier && npm run lint && npm run vitest",
-    "generate": "graphql-codegen"
+    "generate": "graphql-codegen",
+    "update-test": "vitest -u"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
