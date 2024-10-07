@@ -1,0 +1,12 @@
+type Book {
+  id: ID!
+  title: String!
+  authors: [String!]!
+  publisher: String!
+  genres: [String!]!
+  coverImg: String!
+}
+
+type Query {
+  books(limit: Int, offset: Int): [Book!]!
+}
