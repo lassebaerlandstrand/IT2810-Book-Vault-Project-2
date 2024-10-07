@@ -1,7 +1,7 @@
 import { Author, Book, Genre, Publisher } from '@/generated/graphql';
 import booksData from './books.json';
 
-const data = (booksData as Book[]).slice(0, 20);
+const data = (booksData as Book[]).slice(0, 1000);
 
 const fetchBooks = () => {
   const books = data as Book[];
