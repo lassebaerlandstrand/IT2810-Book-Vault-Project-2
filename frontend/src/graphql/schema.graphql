@@ -1,27 +1,12 @@
-type Author {
-  name: String!
-}
-
-type Publisher {
-  name: String!
-}
-
-type Genre {
-  name: String!
-}
-
 type Book {
   id: ID!
   title: String!
-  authors: [Author!]!
-  publisher: Publisher!
-  genres: [Genre!]!
+  authors: [String!]!
+  publisher: String!
+  genres: [String!]!
   coverImg: String!
 }
 
 type Query {
-  authors(limit: Int, offset: Int): [Author!]!
-  publishers(limit: Int, offset: Int): [Publisher!]!
-  genres(limit: Int, offset: Int): [Genre!]!
   books(limit: Int, offset: Int): [Book!]!
 }

@@ -39,7 +39,7 @@ export function Welcome() {
       <ul>
         {books.map((book: Book) => (
           <li key={book.id}>
-            {book.title} by {book.authors.map((author) => author.name).join(', ')}
+            {book.title} by {book.authors.map((author) => author).join(', ')}
             <Image src={book.coverImg} alt={`Cover of ${book.title}`} h={100} w={100} />
           </li>
         ))}

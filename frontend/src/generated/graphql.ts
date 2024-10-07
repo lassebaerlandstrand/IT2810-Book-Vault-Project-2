@@ -15,59 +15,23 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type Author = {
-  __typename?: 'Author';
-  name: Scalars['String']['output'];
-};
-
 export type Book = {
   __typename?: 'Book';
-  authors: Array<Author>;
+  authors: Array<Scalars['String']['output']>;
   coverImg: Scalars['String']['output'];
-  genres: Array<Genre>;
+  genres: Array<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  publisher: Publisher;
+  publisher: Scalars['String']['output'];
   title: Scalars['String']['output'];
-};
-
-export type Genre = {
-  __typename?: 'Genre';
-  name: Scalars['String']['output'];
-};
-
-export type Publisher = {
-  __typename?: 'Publisher';
-  name: Scalars['String']['output'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  authors: Array<Author>;
   books: Array<Book>;
-  genres: Array<Genre>;
-  publishers: Array<Publisher>;
-};
-
-
-export type QueryAuthorsArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryBooksArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type QueryGenresArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type QueryPublishersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
@@ -143,67 +107,40 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Author: ResolverTypeWrapper<Author>;
   Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Genre: ResolverTypeWrapper<Genre>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
-  Publisher: ResolverTypeWrapper<Publisher>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Author: Author;
   Book: Book;
   Boolean: Scalars['Boolean']['output'];
-  Genre: Genre;
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
-  Publisher: Publisher;
   Query: {};
   String: Scalars['String']['output'];
 };
 
-export type AuthorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = {
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
 export type BookResolvers<ContextType = any, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = {
-  authors?: Resolver<Array<ResolversTypes['Author']>, ParentType, ContextType>;
+  authors?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   coverImg?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  genres?: Resolver<Array<ResolversTypes['Genre']>, ParentType, ContextType>;
+  genres?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  publisher?: Resolver<ResolversTypes['Publisher'], ParentType, ContextType>;
+  publisher?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type GenreResolvers<ContextType = any, ParentType extends ResolversParentTypes['Genre'] = ResolversParentTypes['Genre']> = {
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type PublisherResolvers<ContextType = any, ParentType extends ResolversParentTypes['Publisher'] = ResolversParentTypes['Publisher']> = {
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  authors?: Resolver<Array<ResolversTypes['Author']>, ParentType, ContextType, Partial<QueryAuthorsArgs>>;
   books?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType, Partial<QueryBooksArgs>>;
-  genres?: Resolver<Array<ResolversTypes['Genre']>, ParentType, ContextType, Partial<QueryGenresArgs>>;
-  publishers?: Resolver<Array<ResolversTypes['Publisher']>, ParentType, ContextType, Partial<QueryPublishersArgs>>;
 };
 
 export type Resolvers<ContextType = any> = {
-  Author?: AuthorResolvers<ContextType>;
   Book?: BookResolvers<ContextType>;
-  Genre?: GenreResolvers<ContextType>;
-  Publisher?: PublisherResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 };
 

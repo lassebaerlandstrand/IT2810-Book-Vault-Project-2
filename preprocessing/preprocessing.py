@@ -20,18 +20,22 @@ df['publishDate'] = df['publishDate'].dt.strftime('%m/%d/%Y')
 # isbn and pages had some standard values that didnt make sense
 df['isbn'] = df['isbn'].replace('9999999999999', np.nan)
 df['pages'] = df['pages'].replace('0', np.nan)
+df['genres'] = df['genres'].replace('[]', np.nan)
 
 # Remove duplicate bookIds
 df = df.drop_duplicates(subset='bookId', keep='first')
 
 # Drop rows with NaN values
 df.dropna(subset=['description', 'language', 'bookFormat', 'pages',
-          'publisher', 'publishDate', 'coverImg', 'isbn', 'author'], inplace=True)
+          'publisher', 'publishDate', 'coverImg', 'isbn', 'author', 'genres'], inplace=True)
 
 # rename author into authors and split at comma and trim
 df.rename(columns={'author': 'authors'}, inplace=True)
 df['authors'] = df['authors'].str.split(',')
 df['authors'] = df['authors'].apply(lambda x: [i.strip() for i in x])
+
+# interpret the json string of genres
+df['genres'] = df['genres'].apply(lambda x: eval(x))
 
 # Set bookId as the index
 df.set_index('bookId', inplace=True)
