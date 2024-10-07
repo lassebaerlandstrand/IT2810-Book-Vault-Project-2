@@ -7,7 +7,7 @@
 
     &:hover {
       transform: translateY(-5px);
-      background-color: color-mix(in srgb, var(--mantine-color-dark-0) 15%, transparent);
+      background-color: color-mix(in srgb, var(--mantine-color-dark-0) 25%, transparent);
     }
   }
 }

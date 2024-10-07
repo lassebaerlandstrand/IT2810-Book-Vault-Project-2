@@ -1,0 +1,7 @@
+.card {
+  height: 100%;
+}
+
+:where([data-mantine-color-scheme='light']) .card {
+  background-color: var(--mantine-color-gray-0);
+}
