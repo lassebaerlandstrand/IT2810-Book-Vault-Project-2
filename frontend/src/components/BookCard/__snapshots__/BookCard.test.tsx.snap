@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Bookcard component > matches snapshot 1`] = `
+<DocumentFragment>
+  <style
+    data-mantine-styles="true"
+  >
+    :root{--mantine-font-family: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-font-family-headings: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-breakpoint-xs: 30em;--mantine-breakpoint-md: 64em;--mantine-breakpoint-xl: 90em;--mantine-breakpoint-xxs: 24em;}
+  </style>
+  <style
+    data-mantine-styles="classes"
+  >
+    @media (max-width: 29.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 30em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 63.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 64em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 89.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 90em) {.mantine-hidden-from-xl {display: none !important;}}@media (max-width: 23.99375em) {.mantine-visible-from-xxs {display: none !important;}}@media (min-width: 24em) {.mantine-hidden-from-xxs {display: none !important;}}
+  </style>
+  <div
+    class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
+    style="--paper-radius: var(--mantine-radius-lg);"
+  >
+    <div
+      class="m_599a2148 mantine-Card-section"
+      data-first-section="true"
+    >
+      <img
+        alt="Cover image for Title"
+        class="m_9e117634 mantine-Image-root"
+        src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
+        style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain;"
+      />
+    </div>
+    <div
+      class="m_599a2148 mantine-Card-section"
+      data-last-section="true"
+    >
+      <h4
+        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+        style="font-weight: 600;"
+      >
+        Title
+      </h4>
+      <p
+        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+        data-size="xs"
+        style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs);"
+      >
+        Author 
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
