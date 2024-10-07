@@ -1,14 +1,8 @@
 import { Anchor, Flex, Image, Text, Title } from '@mantine/core';
 import BookVaultLogo from '../../assets/BookVaultLogo.png';
 import classes from './Welcome.module.css';
-import { fetchBooks } from '@/api/dummyApi';
-import { Book } from '@/generated/graphql';
 
 export function Welcome() {
-  
-  // TODO: This is an example of how to fetch data
-  const books = fetchBooks().slice(0, 10);
-
   return (
     <>
       <Flex mt={100} justify="center" align="center" gap="md">
@@ -34,16 +28,6 @@ export function Welcome() {
         </Anchor>
         . To get started edit pages/Home.page.tsx file.
       </Text>
-
-      {/* Here are the books we fetched: */}
-      <ul>
-        {books.map((book: Book) => (
-          <li key={book.id}>
-            {book.title} by {book.authors.map((author) => author).join(', ')}
-            <Image src={book.coverImg} alt={`Cover of ${book.title}`} h={100} w={100} />
-          </li>
-        ))}
-      </ul>
     </>
   );
 }
