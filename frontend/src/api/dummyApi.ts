@@ -13,7 +13,7 @@ const fetchAuthors = () => {
     .map((book: Book) => book.authors)
     .flat()
     .filter(
-      (author: String, index: number, self: String[]) =>
+      (author: string, index: number, self: string[]) =>
         self.findIndex((a) => a === author) === index
     );
   return authors;
@@ -23,7 +23,7 @@ const fetchPublishers = () => {
   const publishers = (data as Book[])
     .map((book: Book) => book.publisher)
     .filter(
-      (publisher: String, index: number, self: String[]) => self.indexOf(publisher) === index
+      (publisher: string, index: number, self: string[]) => self.indexOf(publisher) === index
     );
   return publishers;
 };
@@ -32,7 +32,7 @@ const fetchGenres = () => {
   const genres = (data as Book[])
     .map((book: Book) => book.genres)
     .flat()
-    .filter((genre: String, index: number, self: String[]) => self.indexOf(genre) === index);
+    .filter((genre: string, index: number, self: string[]) => self.indexOf(genre) === index);
   return genres;
 };
 
