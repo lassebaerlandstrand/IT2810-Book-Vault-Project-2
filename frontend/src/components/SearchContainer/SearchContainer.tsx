@@ -1,29 +1,30 @@
-import { IconAdjustments, IconSearch } from '@tabler/icons-react';
+import { IconAdjustments, IconArrowRight, IconSearch } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
-import { ActionIcon, Flex, Group, TextInput } from '@mantine/core';
+import { ActionIcon, Flex, TextInput } from '@mantine/core';
 
 interface SearchProps {
   open: () => void;
 }
 
-function SearchContainer({ open }: SearchProps) {
+const SearchContainer = ({ open }: SearchProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Get the current search value from the URL
   const searchValue = searchParams.get('search') || '';
 
-  // Handle input change and update URL search params
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.currentTarget.value;
     const params = new URLSearchParams(searchParams);
 
     if (newValue) {
-      params.set('search', newValue); // Update the 'search' param in the URL
+      params.set('search', newValue);
     } else {
-      params.delete('search'); // Remove 'search' param if input is empty
+      params.delete('search');
     }
 
     setSearchParams(params);
+  };
+
+  const handleSubmit = () => {
   };
 
   return (
@@ -33,17 +34,17 @@ function SearchContainer({ open }: SearchProps) {
         leftSection={<IconSearch />}
         value={searchValue}
         onChange={handleInputChange}
-        inputContainer={(children) => (
-          <Group align="flex-start">
-            {children}
-            <ActionIcon onClick={open} size="input-sm" color="gray">
-              <IconAdjustments />
-            </ActionIcon>
-          </Group>
-        )}
+        rightSection={
+          <ActionIcon onClick={handleSubmit} variant="filled" color="gray">
+            <IconArrowRight />
+          </ActionIcon>
+        }
       />
+      <ActionIcon onClick={open} ml={10} size="input-sm" color="gray">
+        <IconAdjustments />
+      </ActionIcon>
     </Flex>
   );
-}
+};
 
 export default SearchContainer;
