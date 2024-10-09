@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Flex } from '@mantine/core';
 import { fetchBooks, fetchTotalBooksWithFilters } from '@/api/dummyApi';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import { Book } from '@/generated/graphql';
 import { usePaginationParams } from '@/hooks/usePaginationParams';
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
-import { Welcome } from '../components/Welcome/Welcome';
 
 export function HomePage() {
   const totalBooks = fetchTotalBooksWithFilters();
@@ -19,11 +18,12 @@ export function HomePage() {
 
   return (
     <>
-      <Welcome />
-      <ColorSchemeToggle />
-      <EntriesController />
+      <Flex justify="flex-end">
+        <EntriesController />
+      </Flex>
+
       <BookCardGrid books={books} />
-      <PaginationController totalBooks={totalBooks} limit={limit} />
+      <PaginationController totalBooks={totalBooks} />
     </>
   );
 }

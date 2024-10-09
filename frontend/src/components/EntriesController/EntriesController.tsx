@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { Select } from '@mantine/core';
 import { usePaginationParams } from '@/hooks/usePaginationParams';
+import styles from './EntriesController.module.css';
 
 const options = ['10', '25', '50', '100'];
 
@@ -16,12 +17,13 @@ const EntriesController = () => {
 
   return (
     <Select
-      description="Number of entries"
+      description="Entries"
       data={options}
       allowDeselect={false}
       value={limit.toString()}
       onChange={handleEntiresLimitChange}
       aria-label="Number of entries"
+      className={styles.select}
     />
   );
 };

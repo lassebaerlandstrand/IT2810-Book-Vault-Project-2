@@ -4,12 +4,11 @@ import { usePaginationParams } from '@/hooks/usePaginationParams';
 
 type PaginationControllerProps = {
   totalBooks: number;
-  limit: number;
 };
 
-const PaginationController = ({ totalBooks, limit }: PaginationControllerProps) => {
+const PaginationController = ({ totalBooks }: PaginationControllerProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { page } = usePaginationParams();
+  const { page, limit } = usePaginationParams();
 
   const handlePageChange = (newPage: number) => {
     const newParams = new URLSearchParams(searchParams.toString());
