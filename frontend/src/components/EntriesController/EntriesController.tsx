@@ -3,11 +3,9 @@ import { Select } from '@mantine/core';
 import { usePaginationParams } from '@/hooks/usePaginationParams';
 import styles from './EntriesController.module.css';
 
-const options = ['10', '25', '50', '100'];
-
 const EntriesController = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { limit, DEFAULT_LIMIT } = usePaginationParams();
+  const { limit, DEFAULT_LIMIT, LIMIT_OPTIONS } = usePaginationParams();
 
   const handleEntiresLimitChange = (newLimit: string | null) => {
     const newParams = new URLSearchParams(searchParams.toString());
@@ -18,7 +16,7 @@ const EntriesController = () => {
   return (
     <Select
       description="Entries"
-      data={options}
+      data={LIMIT_OPTIONS}
       allowDeselect={false}
       value={limit.toString()}
       onChange={handleEntiresLimitChange}
