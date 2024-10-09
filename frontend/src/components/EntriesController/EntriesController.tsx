@@ -22,6 +22,7 @@ const EntriesController = () => {
       onChange={handleEntiresLimitChange}
       aria-label="Number of entries"
       className={styles.select}
+      data-testid="entries-select"
     />
   );
 };
