@@ -17,7 +17,6 @@ exports[`EntriesController > matches snapshot 1`] = `
   >
     <p
       class="m_fe47ce59 mantine-InputWrapper-description mantine-Select-description"
-      id="mantine-fkigf0px4-description"
     >
       Entries
     </p>
@@ -29,7 +28,6 @@ exports[`EntriesController > matches snapshot 1`] = `
       style="--input-margin-top: calc(var(--mantine-spacing-xs) / 2); --input-right-section-pointer-events: none;"
     >
       <input
-        aria-describedby="mantine-fkigf0px4-description"
         aria-haspopup="listbox"
         aria-invalid="false"
         aria-label="Number of entries"
@@ -37,7 +35,6 @@ exports[`EntriesController > matches snapshot 1`] = `
         class="m_8fb7ebe7 mantine-Input-input mantine-Select-input"
         data-testid="entries-select"
         data-variant="default"
-        id="mantine-fkigf0px4"
         readonly=""
         value="10"
       />

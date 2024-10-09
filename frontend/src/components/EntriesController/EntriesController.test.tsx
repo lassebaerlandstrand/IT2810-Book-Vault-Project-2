@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
+import * as reactRouterDom from 'react-router-dom'; // This was the only was to get spyOn to work with useSearchParams
 import EntriesController from './EntriesController';
 
 vi.mock('@/hooks/usePaginationParams', () => ({
@@ -29,7 +30,7 @@ describe('EntriesController', () => {
 
   test('updates the search params when a new limit is selected', () => {
     const mockSetSearchParams = vi.fn();
-    vi.spyOn(require('react-router-dom'), 'useSearchParams').mockReturnValue([
+    vi.spyOn(reactRouterDom, 'useSearchParams').mockReturnValue([
       new URLSearchParams(),
       mockSetSearchParams,
     ]);
@@ -47,8 +48,13 @@ describe('EntriesController', () => {
     expect(params.get('limit')).toBe('50');
   });
 
-  it('matches snapshot', () => {
-    const { asFragment } = render(<EntriesController />);
+  it('matches snapshot', async () => {
+    const { asFragment } = await render(<EntriesController />);
+    const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
+    attributesToRemove.forEach((element) => {
+      element.removeAttribute('id');
+      element.removeAttribute('aria-describedby');
+    });
     expect(asFragment()).toMatchSnapshot();
   });
 });
