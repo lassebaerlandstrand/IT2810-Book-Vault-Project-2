@@ -1,8 +1,11 @@
 .innerLabel {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
 
-  /* $mantine-breakpoint-xs is too big */
-  @media (min-width: $mantine-breakpoint-xs) {
+  @media (min-width: $mantine-breakpoint-xxs) {
     font-size: 0.875rem;
   }
+}
+
+.multiSelect {
+  margin-top: 1rem;
 }

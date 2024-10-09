@@ -1,12 +1,14 @@
 import { IconAdjustments, IconArrowRight, IconSearch } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Flex, TextInput } from '@mantine/core';
+import { getHotkeyHandler } from '@mantine/hooks';
 
 interface SearchProps {
   open: () => void;
+  onSearch: () => void;
 }
 
-const SearchContainer = ({ open }: SearchProps) => {
+const SearchContainer = ({ open, onSearch }: SearchProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchValue = searchParams.get('search') || '';
@@ -24,9 +26,6 @@ const SearchContainer = ({ open }: SearchProps) => {
     setSearchParams(params);
   };
 
-  const handleSubmit = () => {
-  };
-
   return (
     <Flex justify={'center'} mt={10}>
       <TextInput
@@ -34,8 +33,9 @@ const SearchContainer = ({ open }: SearchProps) => {
         leftSection={<IconSearch />}
         value={searchValue}
         onChange={handleInputChange}
+        onKeyDown={getHotkeyHandler([['Enter', onSearch]])}
         rightSection={
-          <ActionIcon onClick={handleSubmit} variant="filled" color="gray">
+          <ActionIcon onClick={onSearch} variant="filled" color="gray">
             <IconArrowRight />
           </ActionIcon>
         }

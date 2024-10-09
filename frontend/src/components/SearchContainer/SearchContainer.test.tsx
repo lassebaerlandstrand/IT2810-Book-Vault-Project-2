@@ -6,6 +6,6 @@ vi.mock('react-router-dom', () => ({
 }));
 
 test('renders SearchContainer', () => {
-  const { asFragment } = render(<SearchContainer open={() => {}} />);
+  const { asFragment } = render(<SearchContainer open={() => {}} onSearch={() => {}} />);
   expect(asFragment()).toMatchSnapshot();
 });

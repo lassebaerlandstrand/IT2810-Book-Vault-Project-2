@@ -1,16 +1,16 @@
-import { fetchAuthors, fetchGenres, fetchPublishers } from '@/api/dummyApi';
-import { Center, InputLabel, MultiSelect, SegmentedControl } from '@mantine/core';
 import { IconSortAscending, IconSortDescending } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
+import { Center, InputLabel, MultiSelect, SegmentedControl } from '@mantine/core';
+import { fetchAuthors, fetchGenres, fetchPublishers } from '@/api/dummyApi';
 import styles from './SearchConfiguration.module.css';
 
-enum SortBy {
+export enum SortBy {
   Book = 'book',
   Author = 'author',
   Publisher = 'publisher',
 }
 
-enum SortOrder {
+export enum SortOrder {
   Ascending = 'asc',
   Descending = 'desc',
 }
@@ -18,7 +18,6 @@ enum SortOrder {
 const genres = fetchGenres();
 const publishers = fetchPublishers();
 const authors = fetchAuthors();
-
 
 const SearchConfiguration = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -48,9 +47,7 @@ const SearchConfiguration = () => {
     <>
       <InputLabel>Sort by:</InputLabel>
       <SegmentedControl
-        classNames={
-          {innerLabel: styles.innerLabel}
-        }
+        classNames={{ innerLabel: styles.innerLabel }}
         data={[
           { label: 'Book name', value: SortBy.Book },
           { label: 'Author name', value: SortBy.Author },
@@ -61,9 +58,7 @@ const SearchConfiguration = () => {
         fullWidth
       />
       <SegmentedControl
-        classNames={
-          {innerLabel: styles.innerLabel}
-        }
+        classNames={{ innerLabel: styles.innerLabel }}
         data={[
           {
             value: SortOrder.Ascending,
@@ -87,6 +82,7 @@ const SearchConfiguration = () => {
         fullWidth
       />
       <MultiSelect
+        classNames={{ root: styles.multiSelect }}
         label="Genres"
         placeholder="Pick value"
         data={genres}
@@ -97,6 +93,7 @@ const SearchConfiguration = () => {
         searchable
       />
       <MultiSelect
+        classNames={{ root: styles.multiSelect }}
         label="Publisher"
         placeholder="Pick value"
         data={publishers}
@@ -107,6 +104,7 @@ const SearchConfiguration = () => {
         searchable
       />
       <MultiSelect
+        classNames={{ root: styles.multiSelect }}
         label="Authors"
         placeholder="Pick value"
         data={authors}
