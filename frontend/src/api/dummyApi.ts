@@ -36,4 +36,9 @@ const fetchGenres = () => {
   return genres;
 };
 
-export { fetchAuthors, fetchBooks, fetchGenres, fetchPublishers };
+const fetchBook = (id: String) => {
+  const book = data.find((book) => book.id == id);
+  return book;
+};
+
+export { fetchAuthors, fetchBooks, fetchGenres, fetchPublishers, fetchBook };

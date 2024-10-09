@@ -9,6 +9,7 @@ export const GET_BOOKS = gql`
       publisher
       genres
       coverImg
+      rating
     }
   }
 `;

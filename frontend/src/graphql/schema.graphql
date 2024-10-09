@@ -5,6 +5,15 @@ type Book {
   publisher: String!
   genres: [String!]!
   coverImg: String!
+  rating: Float!
+  pages: Int!
+  bookFormat: String!
+  characters: [String!]!
+  description: String!
+  isbn: String!
+  language: String!
+  publishDate: String!
+  series: String!
 }
 
 type Query {
