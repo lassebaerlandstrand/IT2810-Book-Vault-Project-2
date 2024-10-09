@@ -14,7 +14,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
   </style>
   <div
     class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
-    style="--paper-radius: var(--mantine-radius-lg);"
+    style="--paper-radius: var(--mantine-radius-lg); margin: auto;"
   >
     <div
       class="m_599a2148 mantine-Card-section"
@@ -24,23 +24,27 @@ exports[`Bookcard component > matches snapshot 1`] = `
         alt="Cover image for Title"
         class="m_9e117634 mantine-Image-root"
         src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
-        style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain;"
+        style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
       />
     </div>
     <div
-      class="m_599a2148 mantine-Card-section"
+      class="m_599a2148 mantine-Card-section _textSection_0962fe"
       data-last-section="true"
     >
       <h4
         class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-        style="font-weight: 600;"
+        data-line-clamp="true"
+        style="--text-line-clamp: 2; font-weight: 600;"
+        title="Title"
       >
         Title
       </h4>
       <p
         class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+        data-line-clamp="true"
         data-size="xs"
-        style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs);"
+        style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
+        title="Author"
       >
         Author 
       </p>
