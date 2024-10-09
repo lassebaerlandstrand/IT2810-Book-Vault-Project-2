@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Flex } from '@mantine/core';
+import { Flex, Text } from '@mantine/core';
 import { fetchBooks, fetchTotalBooksWithFilters } from '@/api/dummyApi';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
@@ -12,13 +12,16 @@ export function HomePage() {
   const [books, setBooks] = useState<Book[]>([]);
   const { page, limit } = usePaginationParams();
 
+  const formattedTotalBooks = totalBooks.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
   useEffect(() => {
     setBooks(fetchBooks(page, limit));
   }, [page, limit]);
 
   return (
     <>
-      <Flex justify="flex-end">
+      <Flex justify="space-between" align="flex-end" gap="md">
+        <Text>{formattedTotalBooks} results</Text>
         <EntriesController />
       </Flex>
 
