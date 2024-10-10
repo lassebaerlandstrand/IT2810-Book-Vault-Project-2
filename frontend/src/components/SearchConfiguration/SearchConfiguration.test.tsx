@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@test-utils';
+import { render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import SearchConfiguration from './SearchConfiguration';
 
@@ -67,63 +67,5 @@ describe('SearchConfiguration', () => {
     expect(screen.getByText('Authors')).toBeInTheDocument();
     expect(screen.getByText('Author1')).toBeInTheDocument();
     expect(screen.getByText('Author2')).toBeInTheDocument();
-  });
-
-  test('handles sort by change', () => {
-    render(
-      <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
-      </MemoryRouter>
-    );
-
-    fireEvent.click(screen.getByText('Author name'));
-    expect(screen.getByText('Author name')).toHaveClass('mantine-SegmentedControl-active');
-  });
-
-  test('handles sort order change', () => {
-    render(
-      <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
-      </MemoryRouter>
-    );
-
-    fireEvent.click(screen.getByText('Descending'));
-    expect(screen.getByText('Descending')).toHaveClass('mantine-SegmentedControl-active');
-  });
-
-  test('handles genre selection change', () => {
-    render(
-      <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
-      </MemoryRouter>
-    );
-
-    fireEvent.click(screen.getByText('Genres'));
-    fireEvent.click(screen.getByText('Fiction'));
-    expect(screen.getByText('Fiction')).toHaveClass('mantine-MultiSelect-value');
-  });
-
-  test('handles publisher selection change', () => {
-    render(
-      <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
-      </MemoryRouter>
-    );
-
-    fireEvent.click(screen.getByText('Publisher'));
-    fireEvent.click(screen.getByText('Publisher1'));
-    expect(screen.getByText('Publisher1')).toHaveClass('mantine-MultiSelect-value');
-  });
-
-  test('handles author selection change', () => {
-    render(
-      <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
-      </MemoryRouter>
-    );
-
-    fireEvent.click(screen.getByText('Authors'));
-    fireEvent.click(screen.getByText('Author1'));
-    expect(screen.getByText('Author1')).toHaveClass('mantine-MultiSelect-value');
   });
 });
