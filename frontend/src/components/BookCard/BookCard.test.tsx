@@ -10,6 +10,15 @@ const dummyBook: Book = {
   id: '1',
   publisher: 'Publisher',
   title: 'Title',
+  bookFormat: '',
+  characters: [],
+  description: '',
+  isbn: '',
+  language: '',
+  pages: 0,
+  publishDate: '',
+  rating: 0,
+  series: '',
 };
 
 describe('Bookcard component', () => {
