@@ -1,5 +1,11 @@
 .card {
   height: 100%;
+  min-height: 20rem;
+}
+
+.textSection {
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
 }
 
 :where([data-mantine-color-scheme='light']) .card {
