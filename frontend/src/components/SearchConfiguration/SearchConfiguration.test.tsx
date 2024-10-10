@@ -1,22 +1,18 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import SearchConfiguration from './SearchConfiguration';
-import { fetchAuthors, fetchGenres, fetchPublishers } from '@/api/dummyApi';
-import { Mock } from 'vitest';
 
 vi.mock('@/api/dummyApi');
 
 describe('SearchConfiguration', () => {
-  beforeEach(() => {
-    (fetchGenres as Mock).mockReturnValue(['Fiction', 'Non-Fiction']);
-    (fetchPublishers as Mock).mockReturnValue(['Publisher1', 'Publisher2']);
-    (fetchAuthors as Mock).mockReturnValue(['Author1', 'Author2']);
-  });
+  const genres = ['Fiction', 'Non-Fiction'];
+  const publishers = ['Publisher1', 'Publisher2'];
+  const authors = ['Author1', 'Author2'];
 
   test('renders sort by options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
@@ -29,7 +25,7 @@ describe('SearchConfiguration', () => {
   test('renders sort order options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
@@ -40,7 +36,7 @@ describe('SearchConfiguration', () => {
   test('renders genre options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
@@ -52,7 +48,7 @@ describe('SearchConfiguration', () => {
   test('renders publisher options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
@@ -64,7 +60,7 @@ describe('SearchConfiguration', () => {
   test('renders author options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
@@ -76,7 +72,7 @@ describe('SearchConfiguration', () => {
   test('handles sort by change', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
@@ -87,7 +83,7 @@ describe('SearchConfiguration', () => {
   test('handles sort order change', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
@@ -98,7 +94,7 @@ describe('SearchConfiguration', () => {
   test('handles genre selection change', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
@@ -110,7 +106,7 @@ describe('SearchConfiguration', () => {
   test('handles publisher selection change', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
@@ -122,7 +118,7 @@ describe('SearchConfiguration', () => {
   test('handles author selection change', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration />
+        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </MemoryRouter>
     );
 
