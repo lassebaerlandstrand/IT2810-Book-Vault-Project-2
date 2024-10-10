@@ -1,7 +1,6 @@
 import { IconSortAscending, IconSortDescending } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { Center, InputLabel, MultiSelect, SegmentedControl } from '@mantine/core';
-import { fetchAuthors, fetchGenres, fetchPublishers } from '@/api/dummyApi';
 import styles from './SearchConfiguration.module.css';
 
 export enum SortBy {
@@ -15,11 +14,13 @@ export enum SortOrder {
   Descending = 'desc',
 }
 
-const genres = fetchGenres();
-const publishers = fetchPublishers();
-const authors = fetchAuthors();
+interface SearchConfigurationProps {
+  genres: string[];
+  publishers: string[];
+  authors: string[];
+}
 
-const SearchConfiguration = () => {
+const SearchConfiguration = ({ genres, publishers, authors }: SearchConfigurationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleParamChange = (key: string, value: string | string[]) => {

@@ -27,7 +27,7 @@ const SearchContainer = ({ open, onSearch }: SearchProps) => {
   };
 
   return (
-    <Flex justify={'center'} mt={10}>
+    <Flex justify="center" my={10}>
       <TextInput
         placeholder="Search for books"
         leftSection={<IconSearch />}
