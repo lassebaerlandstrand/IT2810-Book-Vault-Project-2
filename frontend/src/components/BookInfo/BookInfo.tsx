@@ -1,31 +1,12 @@
-import { Container, Flex, Grid, Group, Image, Paper, Rating, Text } from '@mantine/core';
+import { Container, Flex, Group, Image, Rating, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
-import styles from './BookInfo.module.css';
+import InfoGrid from '../InfoGrid/InfoGrid';
 
 type BookInfoProps = {
   book: Book;
 };
 
 const BookInfo = ({ book }: BookInfoProps) => {
-  console.log(book);
-
-  const tableInfos = [
-    { header: 'Title', description: book.title },
-    { header: 'Author', description: book.authors.join(', ') },
-    { header: 'Publisher', description: book.publisher },
-    { header: 'Genres', description: book.genres.join(', ') },
-    { header: 'Rating', description: book.rating },
-    { header: 'Pages', description: book.pages },
-    { header: 'Format', description: book.bookFormat },
-    { header: 'Characters', description: book.characters },
-    { header: 'ISBN', description: book.isbn },
-    { header: 'Language', description: book.language },
-  ];
-
-  if (book.series) {
-    tableInfos.push({ header: 'Series', description: book.series });
-  }
-
   return (
     <Group justify="center" gap="lg">
       <Container p="xs">
@@ -61,18 +42,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
           <Text>{book.description}</Text>
         </Flex>
 
-        <Paper shadow="xs" radius="md" className={styles.bgc} p="lg">
-          <Grid grow>
-            {tableInfos.map((info, index) => (
-              <Grid.Col key={index} span={6}>
-                <Text c="dimmed" fw={700}>
-                  {info.header}
-                </Text>
-                <Text c="dimmed">{info.description}</Text>
-              </Grid.Col>
-            ))}
-          </Grid>
-        </Paper>
+        <InfoGrid book={book} />
       </Flex>
     </Group>
   );

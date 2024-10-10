@@ -1,12 +1,18 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Book from './pages/Book';
+import Layout from './components/Layout/Layout';
+import Book from './pages/Book.page';
 import { HomePage } from './pages/Home.page';
 
 const router = createBrowserRouter(
   [
     {
-      path: '/',
-      element: <HomePage />,
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <HomePage />,
+        },
+      ],
     },
     {
       path: '/book/:bookId',
