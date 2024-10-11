@@ -77,6 +77,11 @@ export const fetchGenres = () => {
   return genres;
 };
 
+export const fetchBook = (id: string) => {
+  const book = data.find((book) => book.id === id);
+  return book;
+};
+
 export const fetchTotalBooksWithFilters = (searchParams: URLSearchParams) => {
   return fetchAllBooksWithFilters(searchParams).length;
 };
