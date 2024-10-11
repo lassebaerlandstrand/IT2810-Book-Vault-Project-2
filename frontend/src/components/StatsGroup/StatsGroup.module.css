@@ -28,6 +28,7 @@
 
 .stat {
   flex: 1;
+
   & + & {
     padding-left: var(--mantine-spacing-xl);
     margin-left: var(--mantine-spacing-xl);
