@@ -9,7 +9,7 @@ describe('BookInfo component', () => {
     expect(screen.getByText(Math.round(dummyBook.rating * 10) / 10)).toBeInTheDocument();
   });
 
-  it('matches snapshot', async () => {
+  it('matches snapshot', () => {
     const { asFragment } = render(<BookInfo book={dummyBook} />);
     const attributesToRemove = [
       ...document.body.querySelectorAll('div [id^="mantine"]'),
