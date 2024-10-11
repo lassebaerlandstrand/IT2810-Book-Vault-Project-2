@@ -24,10 +24,21 @@ const BookCard = ({ book }: BookCardProps) => {
           />
         </Card.Section>
         <Card.Section mt="xs" h={50} className={styles.textSection}>
-          <Text fw={600} component="h4" lineClamp={2} title={book.title}>
+          <Text
+            fw={600}
+            component="h4"
+            lineClamp={2}
+            title={book.title}
+            className={styles.bookTitle}
+          >
             {book.title}
           </Text>
-          <Text size="xs" c="dimmed" lineClamp={2} title={book.authors.join(', ')}>
+          <Text
+            size="xs"
+            lineClamp={2}
+            title={book.authors.join(', ')}
+            className={styles.bookAuthor}
+          >
             {book.authors[0]} {book.authors.length > 1 ? 'et al.' : ''}
           </Text>
         </Card.Section>

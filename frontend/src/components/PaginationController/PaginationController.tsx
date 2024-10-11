@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { Center, Pagination } from '@mantine/core';
+import { Center, Group, Pagination } from '@mantine/core';
 import { usePaginationParams } from '@/hooks/usePaginationParams';
 
 type PaginationControllerProps = {
@@ -19,12 +19,18 @@ const PaginationController = ({ totalBooks }: PaginationControllerProps) => {
   return (
     <>
       <Center>
-        <Pagination
+        <Pagination.Root
           total={Math.ceil(totalBooks / limit)}
           value={page}
           onChange={handlePageChange}
           my="md"
-        />
+        >
+          <Group gap="xs">
+            <Pagination.Previous aria-label="Previous Page" />
+            <Pagination.Items />
+            <Pagination.Next aria-label="Next Page" />
+          </Group>
+        </Pagination.Root>
       </Center>
     </>
   );

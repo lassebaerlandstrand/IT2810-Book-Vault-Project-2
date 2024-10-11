@@ -11,3 +11,23 @@
 :where([data-mantine-color-scheme='light']) .card {
   background-color: var(--mantine-color-gray-0);
 }
+
+:where([data-mantine-color-scheme='light']) .bookAuthor {
+  color: var(--mantine-color-gray-7);
+}
+
+:where([data-mantine-color-scheme='dark']) .bookAuthor {
+  color: var(--mantine-color-dark-1);
+}
+
+.bookTitle,
+.bookAuthor {
+  text-align: center;
+}
+
+@media screen and (min-width: $mantine-breakpoint-xxs) {
+  .bookTitle,
+  .bookAuthor {
+    text-align: start;
+  }
+}
