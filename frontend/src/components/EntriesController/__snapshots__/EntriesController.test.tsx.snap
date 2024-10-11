@@ -15,17 +15,18 @@ exports[`EntriesController > matches snapshot 1`] = `
   <div
     class="_select_5bf5c3 m_46b77525 mantine-InputWrapper-root mantine-Select-root"
   >
-    <p
-      class="m_fe47ce59 mantine-InputWrapper-description mantine-Select-description"
+    <label
+      class="m_8fdc1311 mantine-InputWrapper-label mantine-Select-label"
+      for="mantine-0ld07ajkj"
     >
       Entries
-    </p>
+    </label>
     <div
       class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
       data-pointer="true"
       data-variant="default"
       data-with-right-section="true"
-      style="--input-margin-top: calc(var(--mantine-spacing-xs) / 2); --input-right-section-pointer-events: none;"
+      style="--input-right-section-pointer-events: none;"
     >
       <input
         aria-haspopup="listbox"

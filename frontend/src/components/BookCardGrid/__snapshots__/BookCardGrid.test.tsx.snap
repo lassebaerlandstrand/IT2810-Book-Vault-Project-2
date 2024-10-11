@@ -56,7 +56,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -64,7 +64,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
@@ -108,7 +108,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -116,7 +116,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
@@ -160,7 +160,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -168,7 +168,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
@@ -212,7 +212,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -220,7 +220,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
@@ -264,7 +264,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -272,7 +272,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
@@ -316,7 +316,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -324,7 +324,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
@@ -368,7 +368,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -376,7 +376,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
@@ -420,7 +420,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -428,7 +428,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
@@ -472,7 +472,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -480,7 +480,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
@@ -524,7 +524,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-last-section="true"
             >
               <h4
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="Title"
@@ -532,7 +532,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 Title
               </h4>
               <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
