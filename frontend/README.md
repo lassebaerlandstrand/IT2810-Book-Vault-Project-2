@@ -17,6 +17,10 @@ This template comes with the following features:
 - `build` – build production version of the app
 - `preview` – locally preview production build
 
+## Virtual Machine
+
+The application is running on a VM at [http://it2810-05.idi.ntnu.no/project2](http://it2810-05.idi.ntnu.no/project2)
+
 ### Testing scripts
 
 - `typecheck` – checks TypeScript types
@@ -29,3 +33,4 @@ This template comes with the following features:
 ### Other scripts
 
 - `prettier:write` – formats all files with Prettier
+
