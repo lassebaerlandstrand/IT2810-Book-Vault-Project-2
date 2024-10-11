@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { HeaderSimple } from './HeaderSimple';
 
 describe('HeaderSimple Component', () => {
   test('renders all the links', () => {
     render(
-      <Router>
+      <MemoryRouter>
         <HeaderSimple />
-      </Router>
+      </MemoryRouter>
     );
 
     const homeLink = screen.getByText(/HOME/i);
@@ -19,9 +19,9 @@ describe('HeaderSimple Component', () => {
 
   test('changes active link on click', () => {
     render(
-      <Router>
+      <MemoryRouter>
         <HeaderSimple />
-      </Router>
+      </MemoryRouter>
     );
 
     const homeLink = screen.getByText(/HOME/i);
@@ -38,22 +38,22 @@ describe('HeaderSimple Component', () => {
 
   test('toggles mobile menu on burger icon click', () => {
     render(
-      <Router>
+      <MemoryRouter>
         <HeaderSimple />
-      </Router>
+      </MemoryRouter>
     );
 
-    const mobileMenu = screen.queryByRole('menu');
-    expect(mobileMenu).not.toBeInTheDocument();
+    const mobileMenu = screen.queryByText(/HOME/i);
+    expect(mobileMenu).not.toBeVisible();
 
     const burgerIcon = screen.getByRole('button');
     fireEvent.click(burgerIcon);
 
-    const openedMenu = screen.getByRole('menu');
-    expect(openedMenu).toBeInTheDocument();
+    const openedMenu = screen.getByText(/HOME/i);
+    expect(openedMenu).toBeVisible();
 
     fireEvent.click(burgerIcon);
-    const closedMenu = screen.queryByRole('menu');
-    expect(closedMenu).not.toBeInTheDocument();
+    const closedMenu = screen.queryByText(/HOME/i);
+    expect(closedMenu).not.toBeVisible();
   });
 });

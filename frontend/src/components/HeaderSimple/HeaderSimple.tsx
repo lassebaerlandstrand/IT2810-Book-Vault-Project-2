@@ -6,7 +6,7 @@ import classes from './HeaderSimple.module.css';
 
 const links = [
   { link: '/', label: 'HOME' },
-  { link: '/home', label: 'BOOKS' },
+  { link: '/books', label: 'BOOKS' },
 ];
 
 export function HeaderSimple() {
@@ -34,7 +34,7 @@ export function HeaderSimple() {
   return (
     <header className={classes.header}>
       <Container size="md" className={classes.inner}>
-        <Group className={classes.links}>{items}</Group>
+        <Group className={classes.linksDesktop}>{items}</Group>
 
         <Burger opened={opened} onClick={toggle} className={classes.burgerIcon} />
 
