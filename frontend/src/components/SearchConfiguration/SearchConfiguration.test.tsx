@@ -15,10 +15,12 @@ describe('SearchConfiguration', () => {
         <SearchConfiguration genres={[]} publishers={[]} authors={[]} />
       </MemoryRouter>
     );
-    const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
+    const attributesToRemove = document.body.querySelectorAll('input, label'); // Because Mantine uses random ids which causes snapshots to fail
     attributesToRemove.forEach((element) => {
       element.removeAttribute('id');
-      element.removeAttribute('aria-describedby');
+      element.removeAttribute('aria-controls');
+      element.removeAttribute('for');
+      element.removeAttribute('name');
     });
     expect(asFragment()).toMatchSnapshot();
   });

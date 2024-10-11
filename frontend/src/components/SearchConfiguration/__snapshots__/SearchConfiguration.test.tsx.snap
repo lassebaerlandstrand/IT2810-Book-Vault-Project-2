@@ -37,14 +37,12 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
         checked=""
         class="m_1714d588 mantine-SegmentedControl-input"
         data-focus-ring="auto"
-        name="mantine-it5qpymur"
         type="radio"
         value="book"
       />
       <label
         class="m_1738fcb2 mantine-SegmentedControl-label"
         data-active="true"
-        for="mantine-it5qpymur-book"
       >
         <span
           class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
@@ -59,13 +57,11 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
       <input
         class="m_1714d588 mantine-SegmentedControl-input"
         data-focus-ring="auto"
-        name="mantine-it5qpymur"
         type="radio"
         value="author"
       />
       <label
         class="m_1738fcb2 mantine-SegmentedControl-label"
-        for="mantine-it5qpymur-author"
       >
         <span
           class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
@@ -80,13 +76,11 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
       <input
         class="m_1714d588 mantine-SegmentedControl-input"
         data-focus-ring="auto"
-        name="mantine-it5qpymur"
         type="radio"
         value="publisher"
       />
       <label
         class="m_1738fcb2 mantine-SegmentedControl-label"
-        for="mantine-it5qpymur-publisher"
       >
         <span
           class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
@@ -116,14 +110,12 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
         checked=""
         class="m_1714d588 mantine-SegmentedControl-input"
         data-focus-ring="auto"
-        name="mantine-efjjo2y0x"
         type="radio"
         value="asc"
       />
       <label
         class="m_1738fcb2 mantine-SegmentedControl-label"
         data-active="true"
-        for="mantine-efjjo2y0x-asc"
       >
         <span
           class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
@@ -170,13 +162,11 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
       <input
         class="m_1714d588 mantine-SegmentedControl-input"
         data-focus-ring="auto"
-        name="mantine-efjjo2y0x"
         type="radio"
         value="desc"
       />
       <label
         class="m_1738fcb2 mantine-SegmentedControl-label"
-        for="mantine-efjjo2y0x-desc"
       >
         <span
           class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
@@ -223,7 +213,6 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
   >
     <label
       class="m_8fdc1311 mantine-InputWrapper-label mantine-MultiSelect-label"
-      for="mantine-9c54io39c"
     >
       Genres
     </label>
@@ -242,7 +231,6 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
           class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
         >
           <input
-            aria-controls="mantine-iilggs4vs"
             aria-haspopup="listbox"
             aria-invalid="false"
             autocomplete="off"
@@ -284,7 +272,6 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
   >
     <label
       class="m_8fdc1311 mantine-InputWrapper-label mantine-MultiSelect-label"
-      for="mantine-qkl023syb"
     >
       Publisher
     </label>
@@ -303,7 +290,6 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
           class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
         >
           <input
-            aria-controls="mantine-vcbm07rf0"
             aria-haspopup="listbox"
             aria-invalid="false"
             autocomplete="off"
@@ -345,7 +331,6 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
   >
     <label
       class="m_8fdc1311 mantine-InputWrapper-label mantine-MultiSelect-label"
-      for="mantine-9zbmykakv"
     >
       Authors
     </label>
@@ -364,411 +349,6 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
           class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
         >
           <input
-            aria-controls="mantine-vzw0hxsfm"
-            aria-haspopup="listbox"
-            aria-invalid="false"
-            autocomplete="off"
-            class="mantine-MultiSelect-inputField m_45c4369d mantine-PillsInputField-field"
-            data-type="visible"
-            placeholder="Pick value"
-            type="text"
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        class="m_82577fc2 mantine-Input-section mantine-MultiSelect-section"
-        data-position="right"
-      >
-        <svg
-          class="m_2943220b mantine-ComboboxChevron-chevron"
-          data-combobox-chevron="true"
-          fill="none"
-          viewBox="0 0 15 15"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
-            fill="currentColor"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </div>
-    </div>
-  </div>
-  <input
-    type="hidden"
-    value=""
-  />
-</DocumentFragment>
-`;
-
-exports[`renders SearchConfiguration 1`] = `
-<DocumentFragment>
-  <style
-    data-mantine-styles="true"
-  >
-    :root{--mantine-font-family: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-font-family-headings: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-breakpoint-xs: 30em;--mantine-breakpoint-md: 64em;--mantine-breakpoint-xl: 90em;--mantine-breakpoint-xxs: 24em;}
-  </style>
-  <style
-    data-mantine-styles="classes"
-  >
-    @media (max-width: 29.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 30em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 63.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 64em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 89.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 90em) {.mantine-hidden-from-xl {display: none !important;}}@media (max-width: 23.99375em) {.mantine-visible-from-xxs {display: none !important;}}@media (min-width: 24em) {.mantine-hidden-from-xxs {display: none !important;}}
-  </style>
-  <label
-    class="m_8fdc1311 mantine-InputWrapper-label"
-  >
-    Sort by:
-  </label>
-  <div
-    class="m_cf365364 mantine-SegmentedControl-root"
-    data-full-width="true"
-    data-initialized="true"
-    data-with-items-borders="true"
-    role="radiogroup"
-    style="--sc-shadow: var(--mantine-shadow-xs);"
-  >
-    <span
-      class="m_9e182ccd mantine-SegmentedControl-indicator m_96b553a6 mantine-FloatingIndicator-root"
-      style="--transition-duration: var(--sc-transition-duration); transform: translateY(0px) translateX(0px); width: 0px; height: 0px;"
-    />
-    <div
-      class="m_69686b9b mantine-SegmentedControl-control"
-      data-active="true"
-    >
-      <input
-        checked=""
-        class="m_1714d588 mantine-SegmentedControl-input"
-        data-focus-ring="auto"
-        name="mantine-n4aim17dy"
-        type="radio"
-        value="book"
-      />
-      <label
-        class="m_1738fcb2 mantine-SegmentedControl-label"
-        data-active="true"
-        for="mantine-n4aim17dy-book"
-      >
-        <span
-          class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
-        >
-          Book name
-        </span>
-      </label>
-    </div>
-    <div
-      class="m_69686b9b mantine-SegmentedControl-control"
-    >
-      <input
-        class="m_1714d588 mantine-SegmentedControl-input"
-        data-focus-ring="auto"
-        name="mantine-n4aim17dy"
-        type="radio"
-        value="author"
-      />
-      <label
-        class="m_1738fcb2 mantine-SegmentedControl-label"
-        for="mantine-n4aim17dy-author"
-      >
-        <span
-          class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
-        >
-          Author name
-        </span>
-      </label>
-    </div>
-    <div
-      class="m_69686b9b mantine-SegmentedControl-control"
-    >
-      <input
-        class="m_1714d588 mantine-SegmentedControl-input"
-        data-focus-ring="auto"
-        name="mantine-n4aim17dy"
-        type="radio"
-        value="publisher"
-      />
-      <label
-        class="m_1738fcb2 mantine-SegmentedControl-label"
-        for="mantine-n4aim17dy-publisher"
-      >
-        <span
-          class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
-        >
-          Publisher name
-        </span>
-      </label>
-    </div>
-  </div>
-  <div
-    class="m_cf365364 mantine-SegmentedControl-root"
-    data-full-width="true"
-    data-initialized="true"
-    data-with-items-borders="true"
-    role="radiogroup"
-    style="--sc-shadow: var(--mantine-shadow-xs);"
-  >
-    <span
-      class="m_9e182ccd mantine-SegmentedControl-indicator m_96b553a6 mantine-FloatingIndicator-root"
-      style="--transition-duration: var(--sc-transition-duration); transform: translateY(0px) translateX(0px); width: 0px; height: 0px;"
-    />
-    <div
-      class="m_69686b9b mantine-SegmentedControl-control"
-      data-active="true"
-    >
-      <input
-        checked=""
-        class="m_1714d588 mantine-SegmentedControl-input"
-        data-focus-ring="auto"
-        name="mantine-re8iynray"
-        type="radio"
-        value="asc"
-      />
-      <label
-        class="m_1738fcb2 mantine-SegmentedControl-label"
-        data-active="true"
-        for="mantine-re8iynray-asc"
-      >
-        <span
-          class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
-        >
-          <div
-            class="m_4451eb3a mantine-Center-root"
-          >
-            <svg
-              class="tabler-icon tabler-icon-sort-ascending "
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4 6l7 0"
-              />
-              <path
-                d="M4 12l7 0"
-              />
-              <path
-                d="M4 18l9 0"
-              />
-              <path
-                d="M15 9l3 -3l3 3"
-              />
-              <path
-                d="M18 6l0 12"
-              />
-            </svg>
-             Ascending
-          </div>
-        </span>
-      </label>
-    </div>
-    <div
-      class="m_69686b9b mantine-SegmentedControl-control"
-    >
-      <input
-        class="m_1714d588 mantine-SegmentedControl-input"
-        data-focus-ring="auto"
-        name="mantine-re8iynray"
-        type="radio"
-        value="desc"
-      />
-      <label
-        class="m_1738fcb2 mantine-SegmentedControl-label"
-        for="mantine-re8iynray-desc"
-      >
-        <span
-          class="_innerLabel_babe96 m_78882f40 mantine-SegmentedControl-innerLabel"
-        >
-          <div
-            class="m_4451eb3a mantine-Center-root"
-          >
-            <svg
-              class="tabler-icon tabler-icon-sort-descending "
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4 6l9 0"
-              />
-              <path
-                d="M4 12l7 0"
-              />
-              <path
-                d="M4 18l7 0"
-              />
-              <path
-                d="M15 15l3 3l3 -3"
-              />
-              <path
-                d="M18 6l0 12"
-              />
-            </svg>
-             Descending
-          </div>
-        </span>
-      </label>
-    </div>
-  </div>
-  <div
-    class="_multiSelect_babe96 m_46b77525 mantine-InputWrapper-root mantine-MultiSelect-root"
-  >
-    <label
-      class="m_8fdc1311 mantine-InputWrapper-label mantine-MultiSelect-label"
-      for="mantine-5s58mcssi"
-    >
-      Genres
-    </label>
-    <div
-      class="m_6c018570 mantine-Input-wrapper mantine-MultiSelect-wrapper"
-      data-multiline="true"
-      data-variant="default"
-      data-with-right-section="true"
-      style="--input-right-section-pointer-events: none;"
-    >
-      <div
-        class="m_8fb7ebe7 mantine-Input-input mantine-MultiSelect-input"
-        data-variant="default"
-      >
-        <div
-          class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
-        >
-          <input
-            aria-controls="mantine-fellkjxqr"
-            aria-haspopup="listbox"
-            aria-invalid="false"
-            autocomplete="off"
-            class="mantine-MultiSelect-inputField m_45c4369d mantine-PillsInputField-field"
-            data-type="visible"
-            placeholder="Pick value"
-            type="text"
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        class="m_82577fc2 mantine-Input-section mantine-MultiSelect-section"
-        data-position="right"
-      >
-        <svg
-          class="m_2943220b mantine-ComboboxChevron-chevron"
-          data-combobox-chevron="true"
-          fill="none"
-          viewBox="0 0 15 15"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
-            fill="currentColor"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </div>
-    </div>
-  </div>
-  <input
-    type="hidden"
-    value=""
-  />
-  <div
-    class="_multiSelect_babe96 m_46b77525 mantine-InputWrapper-root mantine-MultiSelect-root"
-  >
-    <label
-      class="m_8fdc1311 mantine-InputWrapper-label mantine-MultiSelect-label"
-      for="mantine-s4wn0vhqe"
-    >
-      Publisher
-    </label>
-    <div
-      class="m_6c018570 mantine-Input-wrapper mantine-MultiSelect-wrapper"
-      data-multiline="true"
-      data-variant="default"
-      data-with-right-section="true"
-      style="--input-right-section-pointer-events: none;"
-    >
-      <div
-        class="m_8fb7ebe7 mantine-Input-input mantine-MultiSelect-input"
-        data-variant="default"
-      >
-        <div
-          class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
-        >
-          <input
-            aria-controls="mantine-pom0urbgm"
-            aria-haspopup="listbox"
-            aria-invalid="false"
-            autocomplete="off"
-            class="mantine-MultiSelect-inputField m_45c4369d mantine-PillsInputField-field"
-            data-type="visible"
-            placeholder="Pick value"
-            type="text"
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        class="m_82577fc2 mantine-Input-section mantine-MultiSelect-section"
-        data-position="right"
-      >
-        <svg
-          class="m_2943220b mantine-ComboboxChevron-chevron"
-          data-combobox-chevron="true"
-          fill="none"
-          viewBox="0 0 15 15"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
-            fill="currentColor"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </div>
-    </div>
-  </div>
-  <input
-    type="hidden"
-    value=""
-  />
-  <div
-    class="_multiSelect_babe96 m_46b77525 mantine-InputWrapper-root mantine-MultiSelect-root"
-  >
-    <label
-      class="m_8fdc1311 mantine-InputWrapper-label mantine-MultiSelect-label"
-      for="mantine-s2tx30z1s"
-    >
-      Authors
-    </label>
-    <div
-      class="m_6c018570 mantine-Input-wrapper mantine-MultiSelect-wrapper"
-      data-multiline="true"
-      data-variant="default"
-      data-with-right-section="true"
-      style="--input-right-section-pointer-events: none;"
-    >
-      <div
-        class="m_8fb7ebe7 mantine-Input-input mantine-MultiSelect-input"
-        data-variant="default"
-      >
-        <div
-          class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
-        >
-          <input
-            aria-controls="mantine-xddz58x3p"
             aria-haspopup="listbox"
             aria-invalid="false"
             autocomplete="off"
