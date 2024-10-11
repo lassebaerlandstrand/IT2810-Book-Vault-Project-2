@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button, Group, Image, Paper, Text, Title, useMantineColorScheme } from '@mantine/core';
 import BookVaultLogo from '@/assets/BookVaultLogo.png';
 import { StatsGroup } from '@/components/StatsGroup/StatsGroup';
-import styles from './home.module.css';
+import styles from './Home.module.css';
 
 export function HomePage() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
