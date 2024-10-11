@@ -28,6 +28,7 @@ export function HomePage() {
   const [genres, setGenres] = useState<string[]>([]);
   const [publishers, setPublishers] = useState<string[]>([]);
   const [authors, setAuthors] = useState<string[]>([]);
+  const [searchValue, setSearchValue] = useState('');
 
   const formattedTotalBooks = totalBooks.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
@@ -53,9 +54,10 @@ export function HomePage() {
     const startTime = performance.now();
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.set('page', DEFAULT_PAGE.toString());
+    searchValue ? newSearchParams.set('search', searchValue) : newSearchParams.delete('search');
     setSearchParams(newSearchParams);
-    setBooks(fetchBooks(page, limit, searchParams));
-    setTotalBooks(fetchTotalBooksWithFilters(searchParams));
+    setBooks(fetchBooks(page, limit, newSearchParams));
+    setTotalBooks(fetchTotalBooksWithFilters(newSearchParams));
     setSearchTime(performance.now() - startTime);
   };
 
@@ -64,7 +66,12 @@ export function HomePage() {
       <Drawer opened={opened} onClose={searchAndCloseDrawer} title="Configure your search">
         <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
       </Drawer>
-      <SearchContainer open={open} onSearch={onSearch} />
+      <SearchContainer
+        open={open}
+        onSearch={onSearch}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
       <Flex justify="space-between" align="flex-end" gap="md">
         <Text>
           {formattedTotalBooks} results in {(searchTime / 1000).toFixed(4)} seconds
