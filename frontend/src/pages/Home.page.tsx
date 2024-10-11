@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Button, Container, Group, Image, Text, Title, useMantineColorScheme } from '@mantine/core';
+import { Button, Group, Image, Paper, Text, Title, useMantineColorScheme } from '@mantine/core';
 import BookVaultLogo from '@/assets/BookVaultLogo.png';
 import { StatsGroup } from '@/components/StatsGroup/StatsGroup';
-import styles from './Home.module.css';
+import styles from './home.module.css';
 
 export function HomePage() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -10,43 +10,41 @@ export function HomePage() {
 
   return (
     <>
-      <Container className={styles.container}>
-        <div className={styles.centerContent}>
-          <Image src={BookVaultLogo} alt="Book Vault Logo" className={styles.logo} />
+      <Paper className={styles.paperMain}>
+        <Image src={BookVaultLogo} alt="Book Vault Logo" className={styles.logo} />
 
-          <Title className={styles.title}>Welcome to Book Vault</Title>
+        <Title order={1} className={styles.title}>
+          Welcome to Book Vault
+        </Title>
 
-          <Text className={styles.text}>Explore books, manage your profile, and read reviews</Text>
-        </div>
+        <Text className={styles.subtitle}>
+          Explore books, manage your profile, and read reviews
+        </Text>
 
-        <Group className={styles.group}>
-          <Link to="/books" className={styles.link}>
+        <Group className={styles.buttonGroup}>
+          <Link to="/books">
             <Button size="lg" variant="outline" className={styles.button} disabled>
               Books
             </Button>
           </Link>
-
-          <Link to="/profile" className={styles.link}>
+          <Link to="/profile">
             <Button size="lg" variant="outline" className={styles.button} disabled>
               Profile
             </Button>
           </Link>
-
-          <Link to="/reviews" className={styles.link}>
+          <Link to="/reviews">
             <Button size="lg" variant="outline" className={styles.button} disabled>
               Reviews
             </Button>
           </Link>
         </Group>
 
-        <div className={styles.centerContent}>
-          <Button onClick={toggleColorScheme}>Switch to {isDark ? 'Light' : 'Dark'} Mode</Button>
-        </div>
-      </Container>
+        <Button className={styles.switchButton} onClick={toggleColorScheme}>
+          Switch to {isDark ? 'Light' : 'Dark'} Mode
+        </Button>
+      </Paper>
 
-      <Container my="xl" className={styles.statsContainer}>
-        <StatsGroup />
-      </Container>
+      <StatsGroup />
     </>
   );
 }
