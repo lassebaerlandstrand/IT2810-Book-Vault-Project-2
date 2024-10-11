@@ -53,7 +53,6 @@ exports[`renders SearchContainer 1`] = `
           aria-invalid="false"
           class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
           data-variant="default"
-          id="mantine-hsesk81dp"
           placeholder="Search for books"
           value=""
         />

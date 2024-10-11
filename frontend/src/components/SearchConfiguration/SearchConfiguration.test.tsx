@@ -9,6 +9,20 @@ describe('SearchConfiguration', () => {
   const publishers = ['Publisher1', 'Publisher2'];
   const authors = ['Author1', 'Author2'];
 
+  test('renders SearchConfiguration', () => {
+    const { asFragment } = render(
+      <MemoryRouter>
+        <SearchConfiguration genres={[]} publishers={[]} authors={[]} />
+      </MemoryRouter>
+    );
+    const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
+    attributesToRemove.forEach((element) => {
+      element.removeAttribute('id');
+      element.removeAttribute('aria-describedby');
+    });
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   test('renders sort by options', () => {
     render(
       <MemoryRouter>

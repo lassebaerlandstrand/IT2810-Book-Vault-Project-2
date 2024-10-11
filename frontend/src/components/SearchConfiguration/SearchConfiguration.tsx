@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from 'react';
 import { IconSortAscending, IconSortDescending } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { Center, InputLabel, MultiSelect, SegmentedControl } from '@mantine/core';
@@ -22,27 +23,42 @@ interface SearchConfigurationProps {
 
 const SearchConfiguration = ({ genres, publishers, authors }: SearchConfigurationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [sortBy, setSortBy] = useState<SortBy>(SortBy.Book);
+  const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.Ascending);
+  const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
+  const [selectedPublishers, setSelectedPublishers] = useState<string[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
-  const handleParamChange = (key: string, value: string | string[]) => {
-    const updatedParams = new URLSearchParams(searchParams);
-    if (Array.isArray(value)) {
-      updatedParams.delete(key);
-      value.forEach((v) => updatedParams.append(key, v));
-    } else {
-      updatedParams.set(key, value);
-    }
-    setSearchParams(updatedParams);
-    return value;
-  };
+  const handleParamChange = useCallback(
+    (key: string, value: string | string[]) => {
+      const updatedParams = new URLSearchParams(searchParams);
+      if (Array.isArray(value)) {
+        updatedParams.delete(key);
+        value.forEach((v) => updatedParams.append(key, v));
+      } else {
+        updatedParams.set(key, value);
+      }
+      setSearchParams(updatedParams);
+      return value;
+    },
+    [searchParams, setSearchParams]
+  );
 
-  // Get parameters from the URL
-  const sortBy = searchParams.get('sortBy') || (handleParamChange('sortBy', SortBy.Book) as string);
-  const sortOrder =
-    searchParams.get('sortOrder') ||
-    (handleParamChange('sortOrder', SortOrder.Ascending) as string);
-  const selectedAuthors = searchParams.getAll('authors');
-  const selectedPublishers = searchParams.getAll('publishers');
-  const selectedGenres = searchParams.getAll('genres');
+  useEffect(() => {
+    const initialSortBy = (searchParams.get('sortBy') ||
+      handleParamChange('sortBy', SortBy.Book)) as SortBy;
+    const initialSortOrder = (searchParams.get('sortOrder') ||
+      handleParamChange('sortOrder', SortOrder.Ascending)) as SortOrder;
+    const initialSelectedAuthors = searchParams.getAll('authors');
+    const initialSelectedPublishers = searchParams.getAll('publishers');
+    const initialSelectedGenres = searchParams.getAll('genres');
+
+    setSortBy(initialSortBy);
+    setSortOrder(initialSortOrder);
+    setSelectedAuthors(initialSelectedAuthors);
+    setSelectedPublishers(initialSelectedPublishers);
+    setSelectedGenres(initialSelectedGenres);
+  }, [searchParams, handleParamChange]);
 
   return (
     <>
