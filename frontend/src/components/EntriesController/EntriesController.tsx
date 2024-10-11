@@ -15,7 +15,7 @@ const EntriesController = () => {
 
   return (
     <Select
-      description="Entries"
+      label="Entries"
       data={LIMIT_OPTIONS}
       allowDeselect={false}
       value={limit.toString()}
