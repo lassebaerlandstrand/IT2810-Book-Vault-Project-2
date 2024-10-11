@@ -17,7 +17,6 @@ exports[`EntriesController > matches snapshot 1`] = `
   >
     <label
       class="m_8fdc1311 mantine-InputWrapper-label mantine-Select-label"
-      for="mantine-0ld07ajkj"
     >
       Entries
     </label>
