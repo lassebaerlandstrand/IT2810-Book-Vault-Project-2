@@ -21,9 +21,10 @@ exports[`PaginationController > matches snapshot 1`] = `
     >
       <div
         class="m_4081bf90 mantine-Group-root"
-        style="--group-gap: calc(0.5rem * var(--mantine-scale)); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
       >
         <button
+          aria-label="Previous Page"
           class="mantine-focus-auto m_326d024a mantine-Pagination-control m_87cf2631 mantine-UnstyledButton-root"
           data-disabled="true"
           disabled=""
@@ -64,6 +65,7 @@ exports[`PaginationController > matches snapshot 1`] = `
           3
         </button>
         <button
+          aria-label="Next Page"
           class="mantine-focus-auto mantine-active m_326d024a mantine-Pagination-control m_87cf2631 mantine-UnstyledButton-root"
           type="button"
         >

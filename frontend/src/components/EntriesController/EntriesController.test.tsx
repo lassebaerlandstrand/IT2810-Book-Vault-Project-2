@@ -54,6 +54,7 @@ describe('EntriesController', () => {
     attributesToRemove.forEach((element) => {
       element.removeAttribute('id');
       element.removeAttribute('aria-describedby');
+      element.removeAttribute('for');
     });
     expect(asFragment()).toMatchSnapshot();
   });
