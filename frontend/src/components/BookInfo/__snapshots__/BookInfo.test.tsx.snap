@@ -74,7 +74,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-0-0"
                   style="--rating-item-z-index: 0;"
                 >
                   <div
@@ -99,7 +98,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-0-1"
                   style="--rating-item-z-index: 0;"
                 >
                   <div
@@ -124,7 +122,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-0-2"
                 >
                   <div
                     class="m_fae05d6a mantine-Rating-symbolBody"
@@ -151,7 +148,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-1-0"
                   style="--rating-item-z-index: 0;"
                 >
                   <div
@@ -176,7 +172,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-1-1"
                 >
                   <div
                     class="m_fae05d6a mantine-Rating-symbolBody"
@@ -203,7 +198,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-2-0"
                   style="--rating-item-z-index: 0;"
                 >
                   <div
@@ -228,7 +222,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-2-1"
                 >
                   <div
                     class="m_fae05d6a mantine-Rating-symbolBody"
@@ -255,7 +248,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-3-0"
                   style="--rating-item-z-index: 2;"
                 >
                   <div
@@ -280,7 +272,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-3-1"
                 >
                   <div
                     class="m_fae05d6a mantine-Rating-symbolBody"
@@ -306,7 +297,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-4-0"
                   style="--rating-item-z-index: 0;"
                 >
                   <div
@@ -330,7 +320,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 <div
                   class="m_21342ee4 mantine-Rating-label"
                   data-read-only="true"
-                  for="mantine-ba9fsh08g-4-1"
                 >
                   <div
                     class="m_fae05d6a mantine-Rating-symbolBody"
