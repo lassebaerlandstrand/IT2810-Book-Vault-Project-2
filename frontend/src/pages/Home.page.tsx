@@ -18,9 +18,9 @@ import { Book } from '@/generated/graphql';
 import { usePaginationParams } from '@/hooks/usePaginationParams';
 
 export function HomePage() {
-  const { page, limit } = usePaginationParams();
+  const { page, limit, DEFAULT_PAGE } = usePaginationParams();
   const [opened, { open, close }] = useDisclosure(false);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [totalBooks, setTotalBooks] = useState(0);
   const [books, setBooks] = useState<Book[]>([]);
@@ -51,6 +51,9 @@ export function HomePage() {
     // TODO: handle search by calling Apollo
     // for now we just do all the work locally
     const startTime = performance.now();
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.set('page', DEFAULT_PAGE.toString());
+    setSearchParams(newSearchParams);
     setBooks(fetchBooks(page, limit, searchParams));
     setTotalBooks(fetchTotalBooksWithFilters(searchParams));
     setSearchTime(performance.now() - startTime);
