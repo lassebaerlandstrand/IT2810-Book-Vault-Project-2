@@ -63,17 +63,17 @@ export const fetchBooks = (page: number, limit: number, searchParams: URLSearchP
 };
 
 export const fetchAuthors = () => {
-  const uniqueAuthors = Array.from(new Set(data.flatMap(item => item.authors))); 
+  const uniqueAuthors = Array.from(new Set(data.flatMap((item) => item.authors)));
   return uniqueAuthors;
 };
 
 export const fetchPublishers = () => {
-  const publishers = Array.from(new Set(data.map(item => item.publisher))); 
+  const publishers = Array.from(new Set(data.map((item) => item.publisher)));
   return publishers;
 };
 
 export const fetchGenres = () => {
-  const genres = Array.from(new Set(data.flatMap(item => item.genres))); 
+  const genres = Array.from(new Set(data.flatMap((item) => item.genres)));
   return genres;
 };
 
