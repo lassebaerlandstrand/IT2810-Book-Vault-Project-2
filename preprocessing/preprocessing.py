@@ -43,5 +43,8 @@ df.set_index('bookId', inplace=True)
 # include the id as a column
 df['id'] = df.index
 
+# Limit rows to the first 5000
+df = df.iloc[:5000]
+
 # Save the DataFrame as a JSON list
 df.to_json('preprocessing/books.json', orient='records')
