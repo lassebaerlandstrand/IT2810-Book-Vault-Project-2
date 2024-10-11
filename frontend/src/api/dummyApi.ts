@@ -3,12 +3,12 @@ import booksData from './books.json';
 
 const data = booksData as Book[];
 
-const fetchBooks = () => {
+export const fetchBooks = (page: number, limit: number) => {
   const books = data as Book[];
-  return books;
+  return books.slice((page - 1) * limit, page * limit);
 };
 
-const fetchAuthors = () => {
+export const fetchAuthors = () => {
   const authors = (data as Book[])
     .map((book: Book) => book.authors)
     .flat()
@@ -19,7 +19,7 @@ const fetchAuthors = () => {
   return authors;
 };
 
-const fetchPublishers = () => {
+export const fetchPublishers = () => {
   const publishers = (data as Book[])
     .map((book: Book) => book.publisher)
     .filter(
@@ -28,7 +28,7 @@ const fetchPublishers = () => {
   return publishers;
 };
 
-const fetchGenres = () => {
+export const fetchGenres = () => {
   const genres = (data as Book[])
     .map((book: Book) => book.genres)
     .flat()
@@ -36,4 +36,6 @@ const fetchGenres = () => {
   return genres;
 };
 
-export { fetchAuthors, fetchBooks, fetchGenres, fetchPublishers };
+export const fetchTotalBooksWithFilters = () => {
+  return data.length; // Temporary, currently have no filters
+};

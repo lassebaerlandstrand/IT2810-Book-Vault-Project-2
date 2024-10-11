@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Bookcard component > matches snapshot 1`] = `
+exports[`Layout > matches snapshot 1`] = `
 <DocumentFragment>
   <style
     data-mantine-styles="true"
@@ -12,43 +12,26 @@ exports[`Bookcard component > matches snapshot 1`] = `
   >
     @media (max-width: 29.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 30em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 63.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 64em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 89.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 90em) {.mantine-hidden-from-xl {display: none !important;}}@media (max-width: 23.99375em) {.mantine-visible-from-xxs {display: none !important;}}@media (min-width: 24em) {.mantine-hidden-from-xxs {display: none !important;}}
   </style>
-  <div
-    class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
-    style="--paper-radius: var(--mantine-radius-lg); margin: auto;"
+  <style
+    data-mantine-styles="inline"
   >
-    <div
-      class="m_599a2148 mantine-Card-section"
-      data-first-section="true"
+    :root{--app-shell-header-height:calc(3.125rem * var(--mantine-scale));--app-shell-header-offset:calc(3.125rem * var(--mantine-scale));--app-shell-padding:var(--mantine-spacing-md);}
+  </style>
+  <div
+    class="m_89ab340 mantine-AppShell-root"
+    data-resizing="true"
+    style="--app-shell-transition-duration: 200ms; --app-shell-transition-timing-function: ease;"
+  >
+    <header
+      class="m_3b16f56b mantine-AppShell-header right-scroll-bar-position"
+      data-with-border="true"
+      style="--app-shell-header-z-index: 100;"
     >
-      <img
-        alt="Cover image for Title"
-        class="m_9e117634 mantine-Image-root"
-        src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
-        style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
-      />
-    </div>
-    <div
-      class="m_599a2148 mantine-Card-section _textSection_0962fe"
-      data-last-section="true"
-    >
-      <h4
-        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-        data-line-clamp="true"
-        style="--text-line-clamp: 2; font-weight: 600;"
-        title="Title"
-      >
-        Title
-      </h4>
-      <p
-        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-        data-line-clamp="true"
-        data-size="xs"
-        style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-        title="Author"
-      >
-        Author 
-      </p>
-    </div>
+      TODO: Header component here
+    </header>
+    <main
+      class="m_8983817 mantine-AppShell-main _wrapper_0c8bf9"
+    />
   </div>
 </DocumentFragment>
 `;
