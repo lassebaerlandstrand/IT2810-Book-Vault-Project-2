@@ -19,7 +19,7 @@ describe('InfoGrid component', () => {
   test('renders the InfoGrid component properly based on input book', () => {
     render(<InfoGrid book={dummyBook} />);
 
-    tableInfos.map((info) => {
+    tableInfos.forEach((info) => {
       expect(screen.getByText(info.header)).toBeInTheDocument();
       expect(screen.getByText(String(info.description))).toBeInTheDocument();
     });

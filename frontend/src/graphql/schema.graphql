@@ -6,9 +6,9 @@ type Book {
   genres: [String!]!
   coverImg: String!
   rating: Float!
-  pages: Int!
+  pages: String!
   bookFormat: String!
-  characters: [String!]!
+  characters: String!
   description: String!
   isbn: String!
   language: String!

@@ -36,8 +36,8 @@ export const fetchGenres = () => {
   return genres;
 };
 
-export const fetchBook = (id: String) => {
-  const book = data.find((book) => book.id == id);
+export const fetchBook = (id: string) => {
+  const book = data.find((book) => book.id === id);
   return book;
 };
 
