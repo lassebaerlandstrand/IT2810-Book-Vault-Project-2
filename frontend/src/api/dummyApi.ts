@@ -63,30 +63,17 @@ export const fetchBooks = (page: number, limit: number, searchParams: URLSearchP
 };
 
 export const fetchAuthors = () => {
-  const authors = (data as Book[])
-    .map((book: Book) => book.authors)
-    .flat()
-    .filter(
-      (author: string, index: number, self: string[]) =>
-        self.findIndex((a) => a === author) === index
-    );
-  return authors;
+  const uniqueAuthors = Array.from(new Set(data.flatMap(item => item.authors))); 
+  return uniqueAuthors;
 };
 
 export const fetchPublishers = () => {
-  const publishers = (data as Book[])
-    .map((book: Book) => book.publisher)
-    .filter(
-      (publisher: string, index: number, self: string[]) => self.indexOf(publisher) === index
-    );
+  const publishers = Array.from(new Set(data.map(item => item.publisher))); 
   return publishers;
 };
 
 export const fetchGenres = () => {
-  const genres = (data as Book[])
-    .map((book: Book) => book.genres)
-    .flat()
-    .filter((genre: string, index: number, self: string[]) => self.indexOf(genre) === index);
+  const genres = Array.from(new Set(data.flatMap(item => item.authors))); 
   return genres;
 };
 
