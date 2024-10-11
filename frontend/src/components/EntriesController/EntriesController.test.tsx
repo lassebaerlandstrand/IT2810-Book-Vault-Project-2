@@ -48,8 +48,8 @@ describe('EntriesController', () => {
     expect(params.get('limit')).toBe('50');
   });
 
-  it('matches snapshot', async () => {
-    const { asFragment } = await render(<EntriesController />);
+  it('matches snapshot', () => {
+    const { asFragment } = render(<EntriesController />);
     const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
     attributesToRemove.forEach((element) => {
       element.removeAttribute('id');

@@ -23,10 +23,19 @@ export type Scalars = {
 export type Book = {
   __typename?: 'Book';
   authors: Array<Scalars['String']['output']>;
+  bookFormat: Scalars['String']['output'];
+  characters: Scalars['String']['output'];
   coverImg: Scalars['String']['output'];
+  description: Scalars['String']['output'];
   genres: Array<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  isbn: Scalars['String']['output'];
+  language: Scalars['String']['output'];
+  pages: Scalars['String']['output'];
+  publishDate: Scalars['String']['output'];
   publisher: Scalars['String']['output'];
+  rating: Scalars['Float']['output'];
+  series: Scalars['String']['output'];
   title: Scalars['String']['output'];
 };
 
@@ -126,6 +135,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Query: ResolverTypeWrapper<{}>;
@@ -136,6 +146,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Book: Book;
   Boolean: Scalars['Boolean']['output'];
+  Float: Scalars['Float']['output'];
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
   Query: {};
@@ -147,10 +158,19 @@ export type BookResolvers<
   ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book'],
 > = {
   authors?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  bookFormat?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  characters?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   coverImg?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   genres?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  isbn?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  language?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  pages?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  publishDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   publisher?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  rating?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  series?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
