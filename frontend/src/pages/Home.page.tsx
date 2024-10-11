@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
-import { Button, Container, Group, Image, Text, Title } from '@mantine/core';
+import { Button, Container, Group, Image, Text, Title, useMantineColorScheme } from '@mantine/core';
 import BookVaultLogo from '@/assets/BookVaultLogo.png';
 import { StatsGroup } from '@/components/StatsGroup/StatsGroup';
 import styles from './Home.module.css';
 
 export function HomePage() {
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === 'dark';
+
   return (
     <>
       <Container className={styles.container}>
@@ -35,6 +38,10 @@ export function HomePage() {
             </Button>
           </Link>
         </Group>
+
+        <div className={styles.centerContent}>
+          <Button onClick={toggleColorScheme}>Switch to {isDark ? 'Light' : 'Dark'} Mode</Button>
+        </div>
       </Container>
 
       <Container my="xl" className={styles.statsContainer}>
