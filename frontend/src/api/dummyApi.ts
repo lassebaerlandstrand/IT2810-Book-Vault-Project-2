@@ -73,7 +73,7 @@ export const fetchPublishers = () => {
 };
 
 export const fetchGenres = () => {
-  const genres = Array.from(new Set(data.flatMap(item => item.authors))); 
+  const genres = Array.from(new Set(data.flatMap(item => item.genres))); 
   return genres;
 };
 
