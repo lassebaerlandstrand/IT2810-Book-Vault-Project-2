@@ -1,0 +1,72 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Layout > matches snapshot 1`] = `
+<DocumentFragment>
+  <style
+    data-mantine-styles="true"
+  >
+    :root{--mantine-font-family: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-font-family-headings: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-breakpoint-xs: 30em;--mantine-breakpoint-md: 64em;--mantine-breakpoint-xl: 90em;--mantine-breakpoint-xxs: 24em;}
+  </style>
+  <style
+    data-mantine-styles="classes"
+  >
+    @media (max-width: 29.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 30em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 63.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 64em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 89.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 90em) {.mantine-hidden-from-xl {display: none !important;}}@media (max-width: 23.99375em) {.mantine-visible-from-xxs {display: none !important;}}@media (min-width: 24em) {.mantine-hidden-from-xxs {display: none !important;}}
+  </style>
+  <style
+    data-mantine-styles="inline"
+  >
+    :root{--app-shell-header-height:calc(3.125rem * var(--mantine-scale));--app-shell-header-offset:calc(3.125rem * var(--mantine-scale));--app-shell-padding:var(--mantine-spacing-md);}
+  </style>
+  <div
+    class="m_89ab340 mantine-AppShell-root"
+    data-resizing="true"
+    style="--app-shell-transition-duration: 200ms; --app-shell-transition-timing-function: ease;"
+  >
+    <header
+      class="m_3b16f56b mantine-AppShell-header right-scroll-bar-position"
+      data-with-border="true"
+      style="--app-shell-header-z-index: 100;"
+    >
+      <header
+        class="_header_c634d8"
+      >
+        <div
+          class="_inner_c634d8 m_7485cace mantine-Container-root"
+          data-size="md"
+          style="--container-size: var(--container-size-md);"
+        >
+          <div
+            class="_linksDesktop_c634d8 m_4081bf90 mantine-Group-root"
+            style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+          >
+            <a
+              class="_link_c634d8 _active_c634d8"
+              href="/"
+            >
+              HOME
+            </a>
+            <a
+              class="_link_c634d8 "
+              href="/books"
+            >
+              BOOKS
+            </a>
+          </div>
+          <button
+            class="mantine-focus-auto _burgerIcon_c634d8 m_fea6bf1a mantine-Burger-root m_87cf2631 mantine-UnstyledButton-root"
+            type="button"
+          >
+            <div
+              class="m_d4fb9cad mantine-Burger-burger"
+              data-reduce-motion="true"
+            />
+          </button>
+        </div>
+      </header>
+    </header>
+    <main
+      class="m_8983817 mantine-AppShell-main _wrapper_0c8bf9"
+    />
+  </div>
+</DocumentFragment>
+`;
