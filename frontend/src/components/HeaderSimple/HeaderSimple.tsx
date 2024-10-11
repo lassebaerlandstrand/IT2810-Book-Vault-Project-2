@@ -5,8 +5,8 @@ import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderSimple.module.css';
 
 const links = [
-  { link: '/', label: 'Home' },
-  { link: '/HomePage2', label: 'Page 2' },
+  { link: '/', label: 'HOME' },
+  { link: '/home', label: 'BOOKS' },
 ];
 
 export function HeaderSimple() {
@@ -24,8 +24,7 @@ export function HeaderSimple() {
     <Link
       key={link.label}
       to={link.link}
-      className={classes.link}
-      data-active={active === link.link || undefined}
+      className={`${classes.link} ${active === link.link ? classes.active : ''}`}
       onClick={() => handleClick(link.link)}
     >
       {link.label}
@@ -35,21 +34,18 @@ export function HeaderSimple() {
   return (
     <header className={classes.header}>
       <Container size="md" className={classes.inner}>
-        <Group gap={5} visibleFrom="sm">
-          {items}
-        </Group>
+        <Group className={classes.links}>{items}</Group>
 
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+        <Burger opened={opened} onClick={toggle} className={classes.burgerIcon} />
+
+        <Transition mounted={opened} transition="scale-y" duration={200} timingFunction="ease">
+          {(styles) => (
+            <Paper className={classes.mobileMenu} style={styles}>
+              {items}
+            </Paper>
+          )}
+        </Transition>
       </Container>
-
-      <Transition mounted={opened} transition="scale" duration={200} timingFunction="ease">
-        {(styles) => (
-          <Paper className={classes.mobileMenu} style={styles}>
-            <Burger className={classes.burgerIcon} opened={opened} onClick={toggle} size="sm" />
-            {items}
-          </Paper>
-        )}
-      </Transition>
     </header>
   );
 }

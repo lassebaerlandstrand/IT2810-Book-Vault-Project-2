@@ -16,6 +16,11 @@
   align-items: center;
 }
 
+.links {
+  display: flex;
+  gap: rem(5px);
+}
+
 .link {
   display: block;
   line-height: 1;

@@ -14,7 +14,14 @@ export function HomePage2() {
         </Text>
 
         <Group gap="lg" mb="xl" className={styles.group}>
-          <Button size="lg" variant="outline" component="a" href="/books" className={styles.button}>
+          <Button
+            size="lg"
+            variant="outline"
+            component="a"
+            href="/books"
+            className={styles.button}
+            disabled
+          >
             Books
           </Button>
           <Button
@@ -23,6 +30,7 @@ export function HomePage2() {
             component="a"
             href="/profile"
             className={styles.button}
+            disabled
           >
             Profile
           </Button>
@@ -32,6 +40,7 @@ export function HomePage2() {
             component="a"
             href="/reviews"
             className={styles.button}
+            disabled
           >
             Reviews
           </Button>
