@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { renderHook } from '@testing-library/react';
 import { MemoryRouter, useSearchParams } from 'react-router-dom';
-import { usePaginationParams } from './usePaginationParams';
+import { usePaginationParams } from './usePagination';
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 25;

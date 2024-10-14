@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Drawer, Flex, Text } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { Button, Container, Drawer, Flex, Text, useMantineTheme } from '@mantine/core';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import {
   fetchAuthors,
   fetchBooks,
@@ -15,10 +15,14 @@ import PaginationController from '@/components/PaginationController/PaginationCo
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
 import { Book } from '@/generated/graphql';
-import { usePaginationParams } from '@/hooks/usePaginationParams';
+import { useFilters } from '@/hooks/useFilters';
+import { usePaginationParams } from '@/hooks/usePagination';
 
 export function BookList() {
+  const theme = useMantineTheme();
+  const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const { page, limit, DEFAULT_PAGE } = usePaginationParams();
+
   const [opened, { open, close }] = useDisclosure(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -44,6 +48,7 @@ export function BookList() {
   }, []);
 
   const searchAndCloseDrawer = () => {
+    console.log(useFilters());
     onSearch();
     close();
   };
@@ -63,9 +68,12 @@ export function BookList() {
 
   return (
     <>
-      <Drawer opened={opened} onClose={searchAndCloseDrawer} title="Configure your search">
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
-      </Drawer>
+      {!isDesktop && (
+        <Drawer opened={opened} onClose={searchAndCloseDrawer} title="Configure your search">
+          <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
+        </Drawer>
+      )}
+
       <SearchContainer
         open={open}
         onSearch={onSearch}
@@ -79,7 +87,16 @@ export function BookList() {
         <EntriesController />
       </Flex>
 
-      <BookCardGrid books={books} />
+      <Flex wrap="nowrap">
+        {isDesktop && (
+          <Container py="xl" pr="md" pl={0}>
+            <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
+            <Button>Apply filters</Button>
+          </Container>
+        )}
+        <BookCardGrid books={books} />
+      </Flex>
+
       <PaginationController totalBooks={totalBooks} />
     </>
   );

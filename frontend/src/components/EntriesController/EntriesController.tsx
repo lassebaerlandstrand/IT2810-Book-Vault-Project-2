@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { Select } from '@mantine/core';
-import { usePaginationParams } from '@/hooks/usePaginationParams';
+import { usePaginationParams } from '@/hooks/usePagination';
 import styles from './EntriesController.module.css';
 
 const EntriesController = () => {

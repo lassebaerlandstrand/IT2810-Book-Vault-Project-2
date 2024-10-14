@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { Center, Group, Pagination } from '@mantine/core';
-import { usePaginationParams } from '@/hooks/usePaginationParams';
+import { usePaginationParams } from '@/hooks/usePagination';
 
 type PaginationControllerProps = {
   totalBooks: number;
