@@ -1,27 +1,35 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IconSortAscending, IconSortDescending } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { Center, InputLabel, MultiSelect, SegmentedControl } from '@mantine/core';
+import { getFilterParams, SortBy, SortOrder } from '@/utils/filters';
+import { updateQueryParams } from '@/utils/queryParams';
 import styles from './SearchConfiguration.module.css';
-
-export enum SortBy {
-  Book = 'book',
-  Author = 'author',
-  Publisher = 'publisher',
-}
-
-export enum SortOrder {
-  Ascending = 'asc',
-  Descending = 'desc',
-}
 
 interface SearchConfigurationProps {
   genres: string[];
   publishers: string[];
   authors: string[];
+  applyFiltersImmediately: boolean;
+  onSearch?: (
+    resetPage: boolean,
+    newSearchValue?: string,
+    newGenres?: string[],
+    newPublishers?: string[],
+    newAuthors?: string[],
+    newSortBy?: SortBy,
+    newSortOrder?: SortOrder,
+    applyFiltersImmediately?: boolean
+  ) => void;
 }
 
-const SearchConfiguration = ({ genres, publishers, authors }: SearchConfigurationProps) => {
+const SearchConfiguration = ({
+  genres,
+  publishers,
+  authors,
+  applyFiltersImmediately,
+  onSearch,
+}: SearchConfigurationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState<SortBy>(SortBy.Book);
   const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.Ascending);
@@ -29,36 +37,38 @@ const SearchConfiguration = ({ genres, publishers, authors }: SearchConfiguratio
   const [selectedPublishers, setSelectedPublishers] = useState<string[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
-  const handleParamChange = useCallback(
-    (key: string, value: string | string[]) => {
-      const updatedParams = new URLSearchParams(searchParams);
-      if (Array.isArray(value)) {
-        updatedParams.delete(key);
-        value.forEach((v) => updatedParams.append(key, v));
-      } else {
-        updatedParams.set(key, value);
-      }
-      setSearchParams(updatedParams);
-      return value;
-    },
-    [searchParams, setSearchParams]
-  );
-
   useEffect(() => {
-    const initialSortBy = (searchParams.get('sortBy') ||
-      handleParamChange('sortBy', SortBy.Book)) as SortBy;
-    const initialSortOrder = (searchParams.get('sortOrder') ||
-      handleParamChange('sortOrder', SortOrder.Ascending)) as SortOrder;
-    const initialSelectedAuthors = searchParams.getAll('authors');
-    const initialSelectedPublishers = searchParams.getAll('publishers');
-    const initialSelectedGenres = searchParams.getAll('genres');
+    const { sortBy, sortOrder, genres, publishers, authors } = getFilterParams(searchParams);
 
-    setSortBy(initialSortBy);
-    setSortOrder(initialSortOrder);
-    setSelectedAuthors(initialSelectedAuthors);
-    setSelectedPublishers(initialSelectedPublishers);
-    setSelectedGenres(initialSelectedGenres);
-  }, [searchParams, handleParamChange]);
+    setSortBy(sortBy);
+    setSortOrder(sortOrder);
+    setSelectedAuthors(authors);
+    setSelectedPublishers(publishers);
+    setSelectedGenres(genres);
+  }, [searchParams]);
+
+  const handleParamChange = (key: string, value: string | string[]) => {
+    if (applyFiltersImmediately && onSearch) {
+      const newSortBy = key === 'sortBy' ? (value as SortBy) : sortBy;
+      const newSortOrder = key === 'sortOrder' ? (value as SortOrder) : sortOrder;
+      const newGenres = key === 'genres' ? (value as string[]) : selectedGenres;
+      const newPublishers = key === 'publishers' ? (value as string[]) : selectedPublishers;
+      const newAuthors = key === 'authors' ? (value as string[]) : selectedAuthors;
+
+      onSearch(
+        true,
+        undefined,
+        newGenres,
+        newPublishers,
+        newAuthors,
+        newSortBy,
+        newSortOrder,
+        true
+      );
+    } else {
+      updateQueryParams(setSearchParams, key, value);
+    }
+  };
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { Center, Group, Pagination } from '@mantine/core';
-import { usePaginationParams } from '@/hooks/usePaginationParams';
+import { getPaginationParams } from '@/utils/pagination';
 
 type PaginationControllerProps = {
   totalBooks: number;
@@ -8,7 +8,7 @@ type PaginationControllerProps = {
 
 const PaginationController = ({ totalBooks }: PaginationControllerProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { page, limit } = usePaginationParams();
+  const { page, limit } = getPaginationParams(searchParams);
 
   const handlePageChange = (newPage: number) => {
     const newParams = new URLSearchParams(searchParams.toString());

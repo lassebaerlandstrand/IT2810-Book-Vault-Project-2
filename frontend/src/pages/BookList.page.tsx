@@ -1,77 +1,130 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Drawer, Flex, Text } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import {
-  fetchAuthors,
-  fetchBooks,
-  fetchGenres,
-  fetchPublishers,
-  fetchTotalBooksWithFilters,
-} from '@/api/dummyApi';
+import { Drawer, Flex, Text, useMantineTheme } from '@mantine/core';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
+import { fetchBooks, fetchTotalBooksWithFilters } from '@/api/dummyApi';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
 import { Book } from '@/generated/graphql';
-import { usePaginationParams } from '@/hooks/usePaginationParams';
+import { getFilterParams, getInitialOptions, SortBy, SortOrder } from '@/utils/filters';
+import { getPaginationParams } from '@/utils/pagination';
+import { updateQueryParams } from '@/utils/queryParams';
+import { getSearchParams } from '@/utils/search';
+import { isValidUrlParams } from '@/utils/validateUrlParams';
+
+const formatNumberWithSpaces = (number: string) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
 export function BookList() {
-  const { page, limit, DEFAULT_PAGE } = usePaginationParams();
-  const [opened, { open, close }] = useDisclosure(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  if (!isValidUrlParams(searchParams)) {
+    return <Text>Invalid search params</Text>;
+  }
 
+  const theme = useMantineTheme();
+  const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
+  const [opened, { open, close }] = useDisclosure(false);
   const [totalBooks, setTotalBooks] = useState(0);
   const [books, setBooks] = useState<Book[]>([]);
   const [searchTime, setSearchTime] = useState(0);
-  const [genres, setGenres] = useState<string[]>([]);
-  const [publishers, setPublishers] = useState<string[]>([]);
-  const [authors, setAuthors] = useState<string[]>([]);
-  const [searchValue, setSearchValue] = useState('');
 
-  const formattedTotalBooks = totalBooks.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const { allGenres, allAuthors, allPublishers } = getInitialOptions();
+  const { sortBy, sortOrder, genres, authors, publishers } = getFilterParams(searchParams);
+  const { page, limit, DEFAULT_PAGE } = getPaginationParams(searchParams);
+  const { searchValue } = getSearchParams(searchParams);
+
+  const formattedTotalBooks = formatNumberWithSpaces(totalBooks.toString());
 
   useEffect(() => {
-    setBooks(fetchBooks(page, limit, searchParams));
+    setBooks(fetchBooks(page, limit, sortBy, sortOrder, genres, publishers, authors, searchValue));
   }, [page, limit]);
 
   useEffect(() => {
-    onSearch();
-    setGenres(fetchGenres());
-    setPublishers(fetchPublishers());
-    setAuthors(fetchAuthors());
+    onSearch(false);
   }, []);
 
-  const searchAndCloseDrawer = () => {
-    onSearch();
-    close();
-  };
-
-  const onSearch = () => {
-    // TODO: handle search by calling Apollo
-    // for now we just do all the work locally
+  const onSearch = (
+    resetPage: boolean,
+    newSearchValue: string = searchValue,
+    newGenres: string[] = genres,
+    newPublishers: string[] = publishers,
+    newAuthors: string[] = authors,
+    newSortBy: SortBy = sortBy,
+    newSortOrder: SortOrder = sortOrder,
+    applyFiltersImmediately: boolean = false // Used when immediate update of search params if the filters are changed within the same render as this function call
+  ) => {
     const startTime = performance.now();
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set('page', DEFAULT_PAGE.toString());
-    searchValue ? newSearchParams.set('search', searchValue) : newSearchParams.delete('search');
-    setSearchParams(newSearchParams);
-    setBooks(fetchBooks(page, limit, newSearchParams));
-    setTotalBooks(fetchTotalBooksWithFilters(newSearchParams));
+
+    updateQueryParams(setSearchParams, 'search', newSearchValue);
+    if (resetPage) {
+      updateQueryParams(setSearchParams, 'page', DEFAULT_PAGE.toString());
+    }
+
+    if (applyFiltersImmediately) {
+      updateQueryParams(setSearchParams, 'genres', newGenres);
+      updateQueryParams(setSearchParams, 'publishers', newPublishers);
+      updateQueryParams(setSearchParams, 'authors', newAuthors);
+      updateQueryParams(setSearchParams, 'sortBy', newSortBy);
+      updateQueryParams(setSearchParams, 'sortOrder', newSortOrder);
+    }
+
+    const books = fetchBooks(
+      page,
+      limit,
+      newSortBy,
+      newSortOrder,
+      newGenres,
+      newPublishers,
+      newAuthors,
+      newSearchValue
+    );
+    const totalBooks = fetchTotalBooksWithFilters(
+      newSortBy,
+      newSortOrder,
+      newGenres,
+      newPublishers,
+      newAuthors,
+      newSearchValue
+    );
+    setBooks(books);
+    setTotalBooks(totalBooks);
+
     setSearchTime(performance.now() - startTime);
   };
 
   return (
     <>
-      <Drawer opened={opened} onClose={searchAndCloseDrawer} title="Configure your search">
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
-      </Drawer>
-      <SearchContainer
-        open={open}
-        onSearch={onSearch}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
+      {!isDesktop && (
+        <Drawer
+          opened={opened}
+          onClose={() => {
+            onSearch(true);
+            close();
+          }}
+          title="Configure your search"
+        >
+          <SearchConfiguration
+            genres={allGenres}
+            authors={allAuthors}
+            publishers={allPublishers}
+            applyFiltersImmediately={false}
+          />
+        </Drawer>
+      )}
+
+      {isDesktop && (
+        <SearchConfiguration
+          genres={allGenres}
+          authors={allAuthors}
+          publishers={allPublishers}
+          applyFiltersImmediately={true}
+          onSearch={onSearch}
+        />
+      )}
+
+      <SearchContainer open={open} onSearch={(searchQuery) => onSearch(true, searchQuery)} />
       <Flex justify="space-between" align="flex-end" gap="md">
         <Text>
           {formattedTotalBooks} results in {(searchTime / 1000).toFixed(4)} seconds
@@ -79,8 +132,13 @@ export function BookList() {
         <EntriesController />
       </Flex>
 
-      <BookCardGrid books={books} />
-      <PaginationController totalBooks={totalBooks} />
+      {books.length === 0 && <Text>No books found</Text>}
+      {books.length > 0 && (
+        <>
+          <BookCardGrid books={books} />
+          <PaginationController totalBooks={totalBooks} />
+        </>
+      )}
     </>
   );
 }
