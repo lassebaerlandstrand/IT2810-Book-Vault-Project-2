@@ -1,12 +1,17 @@
 import numpy as np
 import pandas as pd
+import uuid
+from ast import literal_eval
+
+# Set UUID namespace
+namespace = uuid.UUID('12345678123456781234567812345678')
 
 # Read original dataset
 df = pd.read_csv('preprocessing/books_1.Best_Books_Ever.csv')
 
-# Dop columns with too many NAN values (that we also are not interrested in)
-df.drop(['price', 'likedPercent', 'firstPublishDate',
-        'edition'], axis=1, inplace=True)
+# Drop columns with too many NaN values that are not needed
+df.drop(['price', 'likedPercent', 'firstPublishDate', 'edition',
+        'rating', 'numRatings', 'bbeScore', 'bbeVotes'], axis=1, inplace=True)
 
 # Replace empty strings with NaN
 df.replace('', np.nan, inplace=True)
@@ -14,37 +19,72 @@ df.replace('', np.nan, inplace=True)
 # Convert to datetime, coercing errors (invalid dates will become NaT)
 df['publishDate'] = pd.to_datetime(df['publishDate'], errors='coerce')
 
-# Format all dates to mm/dd/yyyy
-df['publishDate'] = df['publishDate'].dt.strftime('%m/%d/%Y')
-
-# isbn and pages had some standard values that didnt make sense
-df['isbn'] = df['isbn'].replace('9999999999999', np.nan)
-df['pages'] = df['pages'].replace('0', np.nan)
-df['genres'] = df['genres'].replace('[]', np.nan)
+# Correct invalid values in isbn and pages
+df['isbn'].replace('9999999999999', np.nan, inplace=True)
+df['pages'].replace('0', np.nan, inplace=True)
+df['genres'].replace('[]', np.nan, inplace=True)
 
 # Remove duplicate bookIds
-df = df.drop_duplicates(subset='bookId', keep='first')
+df.drop_duplicates(subset='bookId', keep='first', inplace=True)
 
-# Drop rows with NaN values
-df.dropna(subset=['description', 'language', 'bookFormat', 'pages',
-          'publisher', 'publishDate', 'coverImg', 'isbn', 'author', 'genres'], inplace=True)
+# Drop rows with NaN values in the specified columns
+df.dropna(subset=['description', 'language', 'bookFormat', 'pages', 'publisher',
+          'publishDate', 'coverImg', 'isbn', 'author', 'genres'], inplace=True)
 
-# rename author into authors and split at comma and trim
+# Create new DataFrames for authors, genres, publishers
+authors = pd.DataFrame(df['author'].str.split(
+    ',').explode().str.strip().unique(), columns=['name'])
+genres = pd.DataFrame(df['genres'].apply(
+    literal_eval).explode().str.strip().unique(), columns=['name'])
+publishers = pd.DataFrame(
+    df['publisher'].str.strip().unique(), columns=['name'])
+
+# Assign mongodb uuid to each row
+authors['uuid'] = authors['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
+genres['uuid'] = genres['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
+publishers['uuid'] = publishers['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
+
+# Save the new DataFrames as JSON lists
+authors.to_json('preprocessing/authors.json', orient='records')
+genres.to_json('preprocessing/genres.json', orient='records')
+publishers.to_json('preprocessing/publishers.json', orient='records')
+
+# rename author into authors
 df.rename(columns={'author': 'authors'}, inplace=True)
-df['authors'] = df['authors'].str.split(',')
-df['authors'] = df['authors'].apply(lambda x: [i.strip() for i in x])
 
-# interpret the json string of genres
-df['genres'] = df['genres'].apply(lambda x: eval(x))
+# Create dictionaries for quick lookups by 'name'
+author_dict = dict(zip(authors['name'], authors['uuid']))
+genre_dict = dict(zip(genres['name'], genres['uuid']))
+publisher_dict = dict(zip(publishers['name'], publishers['uuid']))
 
-# Set bookId as the index
+# Replace values in authors, genres, and publisher columns with the ids using the dictionaries
+df['authors'] = df['authors'].str.split(',').apply(
+    lambda x: [author_dict[i.strip()] for i in x])
+df['genres'] = df['genres'].apply(literal_eval).apply(
+    lambda x: [genre_dict[i.strip()] for i in x])
+df['publisher'] = df['publisher'].apply(lambda x: publisher_dict[x.strip()])
+
+# Split the series field
+df = df[~df['series'].str.contains(r'#.*-', na=False)]
+df['numberInSeries'] = df['series'].apply(lambda x: ((int(x.split('#')[1].strip()) if x.split(
+    '#')[1].strip().isnumeric() else None) if len(x.split('#')) > 1 else None) if isinstance(x, str) else None)
+df['series'] = df['series'].apply(lambda x: x.split(
+    '#')[0].strip() if isinstance(x, str) else None)
+
+# Interpret JSON strings of other columns
+df['characters'] = df['characters'].apply(literal_eval)
+df['awards'] = df['awards'].apply(literal_eval)
+df['ratingsByStars'] = df['ratingsByStars'].apply(literal_eval).apply(
+    lambda x: {5-stars: int(reviews) for stars, reviews in enumerate(x)})
+df['setting'] = df['setting'].apply(literal_eval)
+
+# Extract digits from pages and convert to int
+df['pages'] = pd.to_numeric(
+    df['pages'].str.extract('(\d+)')[0], errors='coerce')
+
+# Set bookId as the index and add id column
 df.set_index('bookId', inplace=True)
-
-# include the id as a column
-df['id'] = df.index
-
-# Limit rows to the first 5000
-df = df.iloc[:5000]
+df['uuid'] = df.index
 
 # Save the DataFrame as a JSON list
 df.to_json('preprocessing/books.json', orient='records')
