@@ -34,23 +34,23 @@ df.dropna(subset=['description', 'language', 'bookFormat', 'pages', 'publisher',
 # rename author into authors
 df.rename(columns={'author': 'authors'}, inplace=True)
 
-# # Create new DataFrames for authors, genres, publishers
-# authors = pd.DataFrame(df['authors'].str.split(
-#     ',').explode().str.strip().unique(), columns=['name'])
-# genres = pd.DataFrame(df['genres'].apply(
-#     literal_eval).explode().str.strip().unique(), columns=['name'])
-# publishers = pd.DataFrame(
-#     df['publisher'].str.strip().unique(), columns=['name'])
+# Create new DataFrames for authors, genres, publishers
+authors = pd.DataFrame(df['authors'].str.split(
+    ',').explode().str.strip().unique(), columns=['name'])
+genres = pd.DataFrame(df['genres'].apply(
+    literal_eval).explode().str.strip().unique(), columns=['name'])
+publishers = pd.DataFrame(
+    df['publisher'].str.strip().unique(), columns=['name'])
 
 # # Assign mongodb uuid to each row
 # authors['uuid'] = authors['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
 # genres['uuid'] = genres['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
 # publishers['uuid'] = publishers['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
 
-# # Save the new DataFrames as JSON lists
-# authors.to_json('preprocessing/authors.json', orient='records')
-# genres.to_json('preprocessing/genres.json', orient='records')
-# publishers.to_json('preprocessing/publishers.json', orient='records')
+# Save the new DataFrames as JSON lists
+authors.to_json('preprocessing/authors.json', orient='records')
+genres.to_json('preprocessing/genres.json', orient='records')
+publishers.to_json('preprocessing/publishers.json', orient='records')
 
 
 # # Create dictionaries for quick lookups by 'name'

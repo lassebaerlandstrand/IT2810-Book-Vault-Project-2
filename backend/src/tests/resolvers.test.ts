@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, Mock } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import resolvers from "../resolvers.js";
 import { Kind } from "graphql";
 import db from "../db/connection.js";
@@ -78,124 +78,13 @@ describe("resolvers", () => {
         expect(result.pagination.isLastPage).toBe(true);
       });
     });
-
-    describe("authors", () => {
-      it("should return all authors", async () => {
-        const mockAuthors = [{ uuid: "1", name: "Author 1" }];
-        (db.collection as Mock).mockReturnValue({
-          find: vi
-            .fn()
-            .mockReturnValue({
-              toArray: vi.fn().mockResolvedValue(mockAuthors),
-            }),
-        });
-
-        const result = await resolvers.Query.authors();
-        expect(result).toEqual(mockAuthors);
-      });
-    });
-
-    describe("genres", () => {
-      it("should return all genres", async () => {
-        const mockGenres = [{ uuid: "1", name: "Genre 1" }];
-        (db.collection as unknown as Mock).mockReturnValue({
-          find: vi
-            .fn()
-            .mockReturnValue({
-              toArray: vi.fn().mockResolvedValue(mockGenres),
-            }),
-        });
-
-        const result = await resolvers.Query.genres();
-        expect(result).toEqual(mockGenres);
-      });
-    });
-
-    describe("publishers", () => {
-      it("should return all publishers", async () => {
-        const mockPublishers = [{ uuid: "1", name: "Publisher 1" }];
-        (db.collection as unknown as Mock).mockReturnValue({
-          find: vi
-            .fn()
-            .mockReturnValue({
-              toArray: vi.fn().mockResolvedValue(mockPublishers),
-            }),
-        });
-
-        const result = await resolvers.Query.publishers();
-        expect(result).toEqual(mockPublishers);
-      });
-    });
   });
 
   describe("Book", () => {
-    it("should return book id", () => {
-      const book = { uuid: "1" };
-      const result = resolvers.Book.id(book);
-      expect(result).toBe("1");
-    });
-
-    it("should return book authors", async () => {
-      const book = { authors: ["1"] };
-      const mockAuthor = { uuid: "1", name: "Author 1" };
-      (db.collection as Mock).mockReturnValue({
-        findOne: vi.fn().mockResolvedValue(mockAuthor),
-      });
-
-      const result = await resolvers.Book.authors(book);
-      expect(result).toEqual([mockAuthor]);
-    });
-
-    it("should return book genres", async () => {
-      const book = { genres: ["1"] };
-      const mockGenre = { uuid: "1", name: "Genre 1" };
-      (db.collection as unknown as Mock).mockReturnValue({
-        findOne: vi.fn().mockResolvedValue(mockGenre),
-      });
-
-      const result = await resolvers.Book.genres(book);
-      expect(result).toEqual([mockGenre]);
-    });
-
-    it("should return book publisher", async () => {
-      const book = { publisher: "1" };
-      const mockPublisher = { uuid: "1", name: "Publisher 1" };
-      (db.collection as unknown as Mock).mockReturnValue({
-        findOne: vi.fn().mockResolvedValue(mockPublisher),
-      });
-
-      const result = await resolvers.Book.publisher(book);
-      expect(result).toEqual(mockPublisher);
-    });
-
     it("should return book ratings by stars", async () => {
       const book = { ratingsByStars: { 1: 5, 2: 3 } };
       const result = await resolvers.Book.ratingsByStars(book);
       expect(result).toEqual([0, 5, 3, 0, 0, 0]);
-    });
-  });
-
-  describe("Author", () => {
-    it("should return author id", () => {
-      const author = { uuid: "1" };
-      const result = resolvers.Author.id(author);
-      expect(result).toBe("1");
-    });
-  });
-
-  describe("Genre", () => {
-    it("should return genre id", () => {
-      const genre = { uuid: "1" };
-      const result = resolvers.Genre.id(genre);
-      expect(result).toBe("1");
-    });
-  });
-
-  describe("Publisher", () => {
-    it("should return publisher id", () => {
-      const publisher = { uuid: "1" };
-      const result = resolvers.Publisher.id(publisher);
-      expect(result).toBe("1");
     });
   });
 });

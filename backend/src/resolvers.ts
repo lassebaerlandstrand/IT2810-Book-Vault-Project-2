@@ -142,11 +142,8 @@ const resolvers = {
     },
 
     async authors() {
-      // let collection = db.collection("authors");
-      // return await collection.find({}).toArray();
-      let collection = db.collection("books");
-      // authors is a list of strings, i want all unique authors
-      return await collection.distinct("authors");
+      let collection = db.collection("authors");
+      return await collection.find({}).toArray();
     },
 
     async genres() {
@@ -161,50 +158,11 @@ const resolvers = {
   },
 
   Book: {
-    id: (book: { uuid: string }) => book.uuid,
-    authors: async (book: { authors: string[] }) => {
-      const authorCollection = db.collection("authors");
-      return Promise.all(
-        book.authors.map(async (authorId: string) => {
-          return await authorCollection.findOne({
-            uuid: authorId,
-          });
-        })
-      );
-    },
-    genres: async (book: { genres: string[] }) => {
-      const genreCollection = db.collection("genres");
-      return Promise.all(
-        book.genres.map(async (genreId: string) => {
-          return await genreCollection.findOne({
-            uuid: genreId,
-          });
-        })
-      );
-    },
-    publisher: async (book: { publisher: string }) => {
-      const publisherCollection = db.collection("publishers");
-      return await publisherCollection.findOne({
-        uuid: book.publisher,
-      });
-    },
     ratingsByStars: async (book: {
       ratingsByStars: { [x: number]: number };
     }) => {
       return Array.from({ length: 6 }, (_, i) => book.ratingsByStars[i] || 0);
     },
-  },
-
-  Author: {
-    id: (author: { uuid: string }) => author.uuid,
-  },
-
-  Genre: {
-    id: (genre: { uuid: string }) => genre.uuid,
-  },
-
-  Publisher: {
-    id: (publisher: { uuid: string }) => publisher.uuid,
   },
 };
 
