@@ -7,7 +7,7 @@ from ast import literal_eval
 namespace = uuid.UUID('12345678123456781234567812345678')
 
 # Read original dataset
-df = pd.read_csv('preprocessing/books_1.Best_Books_Ever.csv')
+df = pd.read_csv('preprocessing/dataset.csv')
 
 # Drop columns with too many NaN values that are not needed
 df.drop(['price', 'likedPercent', 'firstPublishDate', 'edition',
@@ -31,38 +31,37 @@ df.drop_duplicates(subset='bookId', keep='first', inplace=True)
 df.dropna(subset=['description', 'language', 'bookFormat', 'pages', 'publisher',
           'publishDate', 'coverImg', 'isbn', 'author', 'genres'], inplace=True)
 
-# Create new DataFrames for authors, genres, publishers
-authors = pd.DataFrame(df['author'].str.split(
-    ',').explode().str.strip().unique(), columns=['name'])
-genres = pd.DataFrame(df['genres'].apply(
-    literal_eval).explode().str.strip().unique(), columns=['name'])
-publishers = pd.DataFrame(
-    df['publisher'].str.strip().unique(), columns=['name'])
-
-# Assign mongodb uuid to each row
-authors['uuid'] = authors['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
-genres['uuid'] = genres['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
-publishers['uuid'] = publishers['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
-
-# Save the new DataFrames as JSON lists
-authors.to_json('preprocessing/authors.json', orient='records')
-genres.to_json('preprocessing/genres.json', orient='records')
-publishers.to_json('preprocessing/publishers.json', orient='records')
-
 # rename author into authors
 df.rename(columns={'author': 'authors'}, inplace=True)
 
-# Create dictionaries for quick lookups by 'name'
-author_dict = dict(zip(authors['name'], authors['uuid']))
-genre_dict = dict(zip(genres['name'], genres['uuid']))
-publisher_dict = dict(zip(publishers['name'], publishers['uuid']))
+# # Create new DataFrames for authors, genres, publishers
+# authors = pd.DataFrame(df['authors'].str.split(
+#     ',').explode().str.strip().unique(), columns=['name'])
+# genres = pd.DataFrame(df['genres'].apply(
+#     literal_eval).explode().str.strip().unique(), columns=['name'])
+# publishers = pd.DataFrame(
+#     df['publisher'].str.strip().unique(), columns=['name'])
 
-# Replace values in authors, genres, and publisher columns with the ids using the dictionaries
-df['authors'] = df['authors'].str.split(',').apply(
-    lambda x: [author_dict[i.strip()] for i in x])
-df['genres'] = df['genres'].apply(literal_eval).apply(
-    lambda x: [genre_dict[i.strip()] for i in x])
-df['publisher'] = df['publisher'].apply(lambda x: publisher_dict[x.strip()])
+# # Assign mongodb uuid to each row
+# authors['uuid'] = authors['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
+# genres['uuid'] = genres['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
+# publishers['uuid'] = publishers['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
+
+# # Save the new DataFrames as JSON lists
+# authors.to_json('preprocessing/authors.json', orient='records')
+# genres.to_json('preprocessing/genres.json', orient='records')
+# publishers.to_json('preprocessing/publishers.json', orient='records')
+
+
+# # Create dictionaries for quick lookups by 'name'
+# author_dict = dict(zip(authors['name'], authors['uuid']))
+# genre_dict = dict(zip(genres['name'], genres['uuid']))
+# publisher_dict = dict(zip(publishers['name'], publishers['uuid']))
+
+# Replace values in authors, genres, and publisher columns. Also trim
+df['authors'] = df['authors'].str.split(',').apply(lambda x: [y.strip() for y in x])
+df['genres'] = df['genres'].apply(literal_eval).apply(lambda x: [y.strip() for y in x])
+df['publisher'] = df['publisher'].str.strip()
 
 # Split the series field
 df = df[~df['series'].str.contains(r'#.*-', na=False)]
@@ -84,7 +83,7 @@ df['pages'] = pd.to_numeric(
 
 # Set bookId as the index and add id column
 df.set_index('bookId', inplace=True)
-df['uuid'] = df.index
+df['id'] = df.index
 
 # Save the DataFrame as a JSON list
 df.to_json('preprocessing/books.json', orient='records')

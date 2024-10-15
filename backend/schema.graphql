@@ -1,0 +1,107 @@
+scalar Date
+
+"General pagination information"
+type PaginationInfo {
+  totalPages: Int!
+  currentPage: Int!
+  isLastPage: Boolean!
+}
+
+"Paginated list of books"
+type BookPagination {
+  books: [Book!]!
+  pagination: PaginationInfo!
+}
+
+type Book {
+  "Unique identifier for the book"
+  id: ID!
+  "Title of the book"
+  title: String!
+  "The series the book belongs to, if any"
+  series: String
+  "List of authors of the book"
+  authors: [Author!]!
+  "Description of the book"
+  description: String!
+  "Language of the book"
+  language: String!
+  "ISBN number of the book"
+  isbn: String!
+  "List of genres the book belongs to"
+  genres: [Genre!]!
+  "List of characters in the book"
+  characters: [String!]
+  "Format of the book (e.g., hardcover, paperback, ebook)"
+  bookFormat: String!
+  "Number of pages in the book"
+  pages: Int!
+  "Publisher of the book"
+  publisher: Publisher!
+  "Date the book was published"
+  publishDate: Date!
+  "List of awards the book has received"
+  awards: [String!]
+  "Ratings received by the book, categorized by stars. Each index corresponds to the number of stars (0-5). For example, ratingsByStars[5] is the number of 5-star ratings."
+  ratingsByStars: [Int!]!
+  "Setting of the book. A list of locations/periods where the book takes place"
+  setting: [String!]
+  "URL for the cover image of the book"
+  coverImg: String!
+  "Position of the book in the series"
+  numberInSeries: Int
+}
+
+type Author {
+  "Name of the author"
+  name: ID!
+}
+
+type Genre {
+  "Name of the genre"
+  name: ID!
+}
+
+type Publisher {
+  "Name of the publisher"
+  name: ID!
+}
+
+type Query {
+  "Retrieve a list of books with optional filters"
+  books(
+    limit: Int
+    offset: Int
+    orderBy: SortByInput
+    beforeDate: Date
+    afterDate: Date
+    authors: [ID!]
+    genres: [ID!]
+    publishers: [ID!]
+  ): BookPagination!
+
+  "Retrieve a list of authors"
+  authors: [Author!]!
+
+  "Retrieve a list of genres"
+  genres: [Genre!]!
+
+  "Retrieve a list of publishers"
+  publishers: [Publisher!]!
+}
+
+enum SortOrder {
+  "Sort in ascending order"
+  asc
+  "Sort in descending order"
+  desc
+}
+
+input SortByInput {
+  "Sort books by their name"
+  bookName: SortOrder
+  "Sort books by the name of the primary author"
+  authorName: SortOrder
+  "Sort books by the publish date"
+  publisherName: SortOrder
+}
