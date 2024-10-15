@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import resolvers from "../resolvers.js";
-import { Kind } from "graphql";
+import { Kind, ValueNode } from "graphql";
 import db from "../db/connection.js";
 import { ObjectId } from "mongodb";
 
@@ -27,19 +27,19 @@ describe("resolvers", () => {
 
     it("should parse literal from string", () => {
       const ast = { kind: Kind.STRING, value: "2023-01-01" };
-      const date = Date.parseLiteral(ast as any);
+      const date = Date.parseLiteral(ast as ValueNode);
       expect(date).toEqual(new globalThis.Date("2023-01-01"));
     });
 
     it("should parse literal from numerical string", () => {
       const ast = { kind: Kind.STRING, value: "1672531200000" };
-      const date = Date.parseLiteral(ast as any);
+      const date = Date.parseLiteral(ast as ValueNode);
       expect(date).toEqual(new globalThis.Date(1672531200000));
     });
 
     it("should parse literal from int", () => {
       const ast = { kind: Kind.INT, value: 1672531200000 };
-      const date = Date.parseLiteral(ast as any);
+      const date = Date.parseLiteral(ast as ValueNode);
       expect(date).toEqual(new globalThis.Date(1672531200000));
     });
   });
