@@ -56,8 +56,6 @@ const resolvers = {
       }: BooksQueryArgs
     ) {
       const collection = db.collection("books");
-      console.log("beforeDate", beforeDate);
-      console.log("afterDate", afterDate);
 
       interface MongoBookFilters {
         publishDate?: { $lt?: number; $gt?: number };
@@ -129,7 +127,6 @@ const resolvers = {
       pipeline.push({ $skip: offset });
       pipeline.push({ $limit: limit });
       const books = await collection.aggregate(pipeline).toArray();
-      console.log("books", books);
 
       return {
         books,
@@ -142,18 +139,15 @@ const resolvers = {
     },
 
     async authors() {
-      let collection = db.collection("authors");
-      return await collection.find({}).toArray();
+      return (await db.collection('books').distinct('authors')).map(author => ({ name: author }));
     },
 
     async genres() {
-      let collection = db.collection("genres");
-      return await collection.find({}).toArray();
+      return (await db.collection('books').distinct('genres')).map(genre => ({ name: genre }));
     },
 
     async publishers() {
-      let collection = db.collection("publishers");
-      return await collection.find({}).toArray();
+      return (await db.collection('books').distinct('publisher')).map(publisher => ({ name: publisher }));
     },
   },
 
