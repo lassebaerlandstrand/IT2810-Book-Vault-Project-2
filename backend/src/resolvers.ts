@@ -91,30 +91,14 @@ const resolvers = {
           });
         } else if (orderBy.authorName) {
           pipeline.push({
-            $lookup: {
-              from: "authors",
-              localField: "authors",
-              foreignField: "uuid",
-              as: "authorDetails",
-            },
-          });
-          pipeline.push({
             $sort: {
-              "authorDetails.name": orderBy.authorName === "asc" ? 1 : -1,
+              "authors.0": orderBy.authorName === "asc" ? 1 : -1,
             },
           });
         } else if (orderBy.publisherName) {
           pipeline.push({
-            $lookup: {
-              from: "publishers",
-              localField: "publisher",
-              foreignField: "uuid",
-              as: "publisherDetails",
-            },
-          });
-          pipeline.push({
             $sort: {
-              "publisherDetails.name": orderBy.publisherName === "asc" ? 1 : -1,
+              publisher: orderBy.publisherName === "asc" ? 1 : -1,
             },
           });
         }
@@ -139,19 +123,34 @@ const resolvers = {
     },
 
     async authors() {
-      return (await db.collection('books').distinct('authors')).map(author => ({ name: author }));
+      return (await db.collection("books").distinct("authors")).map(
+        (author) => ({ name: author })
+      );
     },
 
     async genres() {
-      return (await db.collection('books').distinct('genres')).map(genre => ({ name: genre }));
+      return (await db.collection("books").distinct("genres")).map((genre) => ({
+        name: genre,
+      }));
     },
 
     async publishers() {
-      return (await db.collection('books').distinct('publisher')).map(publisher => ({ name: publisher }));
+      return (await db.collection("books").distinct("publisher")).map(
+        (publisher) => ({ name: publisher })
+      );
     },
   },
 
   Book: {
+    authors: async (book: { authors: string[] }) => {
+      return book.authors.map((author) => ({ name: author }));
+    },
+    genres: async (book: { genres: string[] }) => {
+      return book.genres.map((genre) => ({ name: genre }));
+    },
+    publisher: async (book: { publisher: string }) => {
+      return { name: book.publisher };
+    },
     ratingsByStars: async (book: {
       ratingsByStars: { [x: number]: number };
     }) => {
