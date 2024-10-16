@@ -14,6 +14,7 @@ const isValidFilters = (sortBy: SortBy, sortOrder: SortOrder): boolean => {
 };
 
 const isValidPagination = (page: number, limit: number, LIMIT_OPTIONS: string[]): boolean => {
+  console.log(page, page <= 0);
   if (isNaN(page) || page <= 0) {
     return false;
   }
