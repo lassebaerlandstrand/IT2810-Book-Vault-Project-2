@@ -5,6 +5,7 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { fetchBooks, fetchTotalBooksWithFilters } from '@/api/dummyApi';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
+import { ErrorPage } from '@/components/ErrorPage/ErrorPage';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
@@ -19,10 +20,6 @@ const formatNumberWithSpaces = (number: string) => number.replace(/\B(?=(\d{3})+
 
 export function BookList() {
   const [searchParams, setSearchParams] = useSearchParams();
-  if (!isValidUrlParams(searchParams)) {
-    return <Text>Invalid search params</Text>;
-  }
-
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
@@ -46,6 +43,8 @@ export function BookList() {
   }, []);
 
   const onSearch = (
+    // TODO: handle search by calling Apollo
+    // for now we just do all the work locally
     resetPage: boolean,
     newSearchValue: string = searchValue,
     newGenres: string[] = genres,
@@ -94,6 +93,16 @@ export function BookList() {
     setSearchTime(performance.now() - startTime);
   };
 
+  if (!isValidUrlParams(searchParams)) {
+    return (
+      <ErrorPage
+        title="Invalid search parameters"
+        description="It looks like the search parameters in the URL are incorrect. Please check and try again."
+        link="/books"
+      />
+    );
+  }
+
   return (
     <>
       {!isDesktop && (
@@ -112,16 +121,6 @@ export function BookList() {
             applyFiltersImmediately={false}
           />
         </Drawer>
-      )}
-
-      {isDesktop && (
-        <SearchConfiguration
-          genres={allGenres}
-          authors={allAuthors}
-          publishers={allPublishers}
-          applyFiltersImmediately={true}
-          onSearch={onSearch}
-        />
       )}
 
       <SearchContainer open={open} onSearch={(searchQuery) => onSearch(true, searchQuery)} />
