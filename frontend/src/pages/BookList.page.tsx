@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Drawer, Flex, Text, useMantineTheme } from '@mantine/core';
+import { Container, Drawer, Flex, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { fetchBooks, fetchTotalBooksWithFilters } from '@/api/dummyApi';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
@@ -15,6 +15,7 @@ import { getPaginationParams } from '@/utils/pagination';
 import { updateQueryParams } from '@/utils/queryParams';
 import { getSearchParams } from '@/utils/search';
 import { isValidUrlParams } from '@/utils/validateUrlParams';
+import styles from './BookList.module.css';
 
 const formatNumberWithSpaces = (number: string) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
@@ -131,13 +132,24 @@ export function BookList() {
         <EntriesController />
       </Flex>
 
-      {books.length === 0 && <Text>No books found</Text>}
-      {books.length > 0 && (
-        <>
+      <Flex gap="lg" my="lg">
+        {isDesktop && (
+          <Container flex={0} px={0} className={styles.filterContainer}>
+            <SearchConfiguration
+              genres={allGenres}
+              authors={allAuthors}
+              publishers={allPublishers}
+              applyFiltersImmediately={true}
+              onSearch={onSearch}
+            />
+          </Container>
+        )}
+        <Container flex={1} px={0}>
           <BookCardGrid books={books} />
-          <PaginationController totalBooks={totalBooks} />
-        </>
-      )}
+        </Container>
+      </Flex>
+
+      <PaginationController totalBooks={totalBooks} />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Grid } from '@mantine/core';
+import { Grid, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
 import BookCard from '../BookCard/BookCard';
 import styles from './BookCardGrid.module.css';
@@ -9,6 +9,14 @@ type BookCardGridProps = {
 };
 
 const BookCardGrid = ({ books }: BookCardGridProps) => {
+  if (books.length === 0) {
+    return (
+      <Text size="xl" ta="center" fw={700} my="xl">
+        No books found
+      </Text>
+    );
+  }
+
   return (
     <>
       <Grid my="xl" gutter="md">

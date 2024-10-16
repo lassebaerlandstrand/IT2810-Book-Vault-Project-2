@@ -20,7 +20,7 @@ const PaginationController = ({ totalBooks }: PaginationControllerProps) => {
     <>
       <Center>
         <Pagination.Root
-          total={Math.ceil(totalBooks / limit)}
+          total={Math.max(Math.ceil(totalBooks / limit), 1)}
           value={page}
           onChange={handlePageChange}
           my="md"
