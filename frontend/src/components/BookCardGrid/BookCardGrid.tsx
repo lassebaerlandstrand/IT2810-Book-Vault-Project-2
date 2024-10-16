@@ -1,5 +1,6 @@
+import { IconBookOff } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import { Grid, Text } from '@mantine/core';
+import { Grid, Group, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
 import BookCard from '../BookCard/BookCard';
 import styles from './BookCardGrid.module.css';
@@ -11,9 +12,12 @@ type BookCardGridProps = {
 const BookCardGrid = ({ books }: BookCardGridProps) => {
   if (books.length === 0) {
     return (
-      <Text size="xl" ta="center" fw={700} my="xl">
-        No books found
-      </Text>
+      <Group justify="center" align="center" className={styles.noResultWrapper}>
+        <IconBookOff />
+        <Text size="xl" fw={700} my="xl">
+          No books found
+        </Text>
+      </Group>
     );
   }
 

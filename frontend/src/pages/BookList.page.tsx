@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
+import { IconAdjustments } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
-import { Container, Drawer, Flex, Text, useMantineTheme } from '@mantine/core';
+import { ActionIcon, Container, Drawer, Flex, Group, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { fetchBooks, fetchTotalBooksWithFilters } from '@/api/dummyApi';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
-import { ErrorPage } from '@/components/ErrorPage/ErrorPage';
+import { Error404 } from '@/components/ErrorPage/ErrorPage';
+import LoadingCircle from '@/components/Loader/Loader';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
@@ -42,6 +44,10 @@ export function BookList() {
   useEffect(() => {
     onSearch(false);
   }, []);
+
+  useEffect(() => {
+    close();
+  }, [isDesktop]);
 
   const onSearch = (
     // TODO: handle search by calling Apollo
@@ -96,12 +102,17 @@ export function BookList() {
 
   if (!isValidUrlParams(searchParams)) {
     return (
-      <ErrorPage
+      <Error404
         title="Invalid search parameters"
         description="It looks like the search parameters in the URL are incorrect. Please check and try again."
         link="/books"
       />
     );
+  }
+
+  // TODO: Add more loading states here
+  if (isDesktop == null) {
+    return <LoadingCircle />;
   }
 
   return (
@@ -124,7 +135,15 @@ export function BookList() {
         </Drawer>
       )}
 
-      <SearchContainer open={open} onSearch={(searchQuery) => onSearch(true, searchQuery)} />
+      <Group justify="center" gap="sm" wrap="nowrap">
+        <SearchContainer onSearch={(searchQuery) => onSearch(true, searchQuery)} />
+        {!isDesktop && (
+          <ActionIcon onClick={open} size="lg">
+            <IconAdjustments size="75%" />
+          </ActionIcon>
+        )}
+      </Group>
+
       <Flex justify="space-between" align="flex-end" gap="md">
         <Text>
           {formattedTotalBooks} results in {(searchTime / 1000).toFixed(4)} seconds
@@ -135,6 +154,9 @@ export function BookList() {
       <Flex gap="lg" my="lg">
         {isDesktop && (
           <Container flex={0} px={0} className={styles.filterContainer}>
+            <Text component="h2" mt="xl" mb="md">
+              Configure your search
+            </Text>
             <SearchConfiguration
               genres={allGenres}
               authors={allAuthors}
