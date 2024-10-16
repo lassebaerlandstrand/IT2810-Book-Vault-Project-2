@@ -44,7 +44,7 @@ const ErrorUnexpectedError = ({ error }: { error: Error }) => {
           Something went wrong, please try again.
         </Text>
         <Center>
-          <Link to={'/'}>
+          <Link to={'/'} reloadDocument>
             <Button size="md">Take me back to safe ground</Button>
           </Link>
         </Center>
@@ -68,7 +68,7 @@ const ErrorUnexpectedError = ({ error }: { error: Error }) => {
   );
 };
 
-const Error404 = ({
+export const Error404 = ({
   title = 'Nothing to see here',
   description = 'Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL.',
   link = '/',
@@ -82,7 +82,7 @@ const Error404 = ({
           {description}
         </Text>
         <Group justify="center">
-          <Link to={link}>
+          <Link to={link} reloadDocument>
             <Button size="md">Take me back to safe ground</Button>
           </Link>
         </Group>
