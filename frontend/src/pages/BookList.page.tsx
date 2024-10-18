@@ -161,7 +161,7 @@ export function BookList() {
               genres={allGenres}
               authors={allAuthors}
               publishers={allPublishers}
-              applyFiltersImmediately={true}
+              applyFiltersImmediately
               onSearch={onSearch}
             />
           </Container>

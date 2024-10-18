@@ -44,7 +44,7 @@ const ErrorUnexpectedError = ({ error }: { error: Error }) => {
           Something went wrong, please try again.
         </Text>
         <Center>
-          <Link to={'/'} reloadDocument>
+          <Link to="/" reloadDocument>
             <Button size="md">Take me back to safe ground</Button>
           </Link>
         </Center>

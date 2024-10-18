@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Group, Text } from '@mantine/core';
+import { Container, Group } from '@mantine/core';
 import { fetchBook } from '@/api/dummyApi';
 import BookInfo from '@/components/BookInfo/BookInfo';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
