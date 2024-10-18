@@ -6,7 +6,7 @@ import styles from './Layout.module.css';
 const Layout = () => {
   return (
     <AppShell padding="md" header={{ height: 56 }} className={RemoveScroll.classNames.zeroRight}>
-      <AppShell.Header>
+      <AppShell.Header className={styles.header}>
         <HeaderSimple />
       </AppShell.Header>
       <AppShell.Main className={styles.wrapper}>
