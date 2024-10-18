@@ -24,8 +24,6 @@ const InfoGrid = ({ book }: InfoGridProps) => {
     { header: 'Language', description: book.language },
   ];
 
-  console.log(book.characters);
-
   if (book.series) {
     tableInfos.push({ header: 'Series', description: book.series });
   }
