@@ -3,7 +3,3 @@
   width: 100%;
   max-width: $mantine-breakpoint-lg;
 }
-
-.header {
-  width: 100vw;
-}
