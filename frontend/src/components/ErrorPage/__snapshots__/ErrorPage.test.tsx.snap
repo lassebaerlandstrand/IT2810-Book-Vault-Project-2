@@ -90,23 +90,6 @@ exports[`ErrorPage Component > matches snapshot 1`] = `
             >
               Test error message
             </pre>
-            <pre
-              class="m_b183c0a2 mantine-Code-root"
-              data-block="true"
-              dir="ltr"
-            >
-              Error: Test error message
-    at C:\\Users\\Lasse\\Documents\\NTNU\\IT2810-Webutvikling\\T05-Project-2\\frontend\\src\\components\\ErrorPage\\ErrorPage.test.tsx:55:19
-    at file:///C:/Users/Lasse/Documents/NTNU/IT2810-Webutvikling/T05-Project-2/frontend/node_modules/@vitest/runner/dist/index.js:146:14
-    at file:///C:/Users/Lasse/Documents/NTNU/IT2810-Webutvikling/T05-Project-2/frontend/node_modules/@vitest/runner/dist/index.js:529:11
-    at runWithTimeout (file:///C:/Users/Lasse/Documents/NTNU/IT2810-Webutvikling/T05-Project-2/frontend/node_modules/@vitest/runner/dist/index.js:61:7)
-    at runTest (file:///C:/Users/Lasse/Documents/NTNU/IT2810-Webutvikling/T05-Project-2/frontend/node_modules/@vitest/runner/dist/index.js:982:17)
-    at processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at runSuite (file:///C:/Users/Lasse/Documents/NTNU/IT2810-Webutvikling/T05-Project-2/frontend/node_modules/@vitest/runner/dist/index.js:1131:15)
-    at runSuite (file:///C:/Users/Lasse/Documents/NTNU/IT2810-Webutvikling/T05-Project-2/frontend/node_modules/@vitest/runner/dist/index.js:1131:15)
-    at runFiles (file:///C:/Users/Lasse/Documents/NTNU/IT2810-Webutvikling/T05-Project-2/frontend/node_modules/@vitest/runner/dist/index.js:1188:5)
-    at startTests (file:///C:/Users/Lasse/Documents/NTNU/IT2810-Webutvikling/T05-Project-2/frontend/node_modules/@vitest/runner/dist/index.js:1197:3)
-            </pre>
           </div>
         </div>
       </div>

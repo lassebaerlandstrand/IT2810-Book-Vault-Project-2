@@ -87,6 +87,11 @@ describe('ErrorPage Component', () => {
       element.removeAttribute('id');
       element.removeAttribute('aria-describedby');
     });
+    // Delete element with data-testid="stackTrace" because it has random text content
+    const stackTraceElement = document.body.querySelector('[data-testid="stackTrace"]');
+    if (stackTraceElement) {
+      stackTraceElement.remove();
+    }
     expect(asFragment()).toMatchSnapshot();
   });
 });

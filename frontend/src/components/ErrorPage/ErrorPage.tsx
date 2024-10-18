@@ -57,7 +57,7 @@ const ErrorUnexpectedError = ({ error }: { error: Error }) => {
               <Code block mt="sm">
                 {errorMessage}
               </Code>
-              <Code block mt="sm">
+              <Code block mt="sm" data-testid="stackTrace">
                 {errorStack}
               </Code>
             </Collapse>
