@@ -2,7 +2,6 @@ import { getFilterParams, SortBy, SortOrder } from './filters';
 import { getPaginationParams } from './pagination';
 
 const isValidFilters = (sortBy: SortBy, sortOrder: SortOrder): boolean => {
-
   if (!Object.values(SortBy).includes(sortBy)) {
     return false;
   }
@@ -15,7 +14,6 @@ const isValidFilters = (sortBy: SortBy, sortOrder: SortOrder): boolean => {
 };
 
 const isValidPagination = (page: number, limit: number, LIMIT_OPTIONS: string[]): boolean => {
-
   if (isNaN(page) || page <= 0) {
     return false;
   }
@@ -28,7 +26,6 @@ const isValidPagination = (page: number, limit: number, LIMIT_OPTIONS: string[])
 };
 
 export const isValidUrlParams = (searchParams: URLSearchParams): boolean => {
-  
   const { sortBy, sortOrder } = getFilterParams(searchParams);
   if (!isValidFilters(sortBy, sortOrder)) {
     return false;
