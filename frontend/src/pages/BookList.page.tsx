@@ -7,7 +7,7 @@ import { fetchBooks, fetchTotalBooksWithFilters } from '@/api/dummyApi';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
-import LoadingCircle from '@/components/Loader/Loader';
+import LoadingCircle from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';

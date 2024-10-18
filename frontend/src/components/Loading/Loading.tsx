@@ -1,6 +1,6 @@
 import { Center, Loader } from '@mantine/core';
 
-const LoadingCircle = () => {
+const Loading = () => {
   return (
     <Center my={100}>
       <Loader size="xl" type="dots" />
@@ -8,4 +8,4 @@ const LoadingCircle = () => {
   );
 };
 
-export default LoadingCircle;
+export default Loading;
