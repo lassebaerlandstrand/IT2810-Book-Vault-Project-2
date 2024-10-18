@@ -15,54 +15,50 @@ exports[`Layout > matches snapshot 1`] = `
   <style
     data-mantine-styles="inline"
   >
-    :root{--app-shell-header-height:calc(3.125rem * var(--mantine-scale));--app-shell-header-offset:calc(3.125rem * var(--mantine-scale));--app-shell-padding:var(--mantine-spacing-md);}
+    :root{--app-shell-header-height:calc(3.5rem * var(--mantine-scale));--app-shell-header-offset:calc(3.5rem * var(--mantine-scale));--app-shell-padding:var(--mantine-spacing-md);}
   </style>
   <div
-    class="m_89ab340 mantine-AppShell-root"
+    class="right-scroll-bar-position m_89ab340 mantine-AppShell-root"
     data-resizing="true"
     style="--app-shell-transition-duration: 200ms; --app-shell-transition-timing-function: ease;"
   >
     <header
-      class="m_3b16f56b mantine-AppShell-header right-scroll-bar-position"
+      class="m_3b16f56b mantine-AppShell-header right-scroll-bar-position _header_0c8bf9"
       data-with-border="true"
       style="--app-shell-header-z-index: 100;"
     >
-      <header
-        class="_header_c634d8"
+      <div
+        class="_wrapper_c634d8 m_7485cace mantine-Container-root"
+        data-size="md"
+        style="--container-size: var(--container-size-md);"
       >
         <div
-          class="_inner_c634d8 m_7485cace mantine-Container-root"
-          data-size="md"
-          style="--container-size: var(--container-size-md);"
+          class="_linksDesktop_c634d8 m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+        >
+          <a
+            class="_link_c634d8 _active_c634d8"
+            href="/"
+          >
+            HOME
+          </a>
+          <a
+            class="_link_c634d8 "
+            href="/books"
+          >
+            BOOKS
+          </a>
+        </div>
+        <button
+          class="mantine-focus-auto _burgerIcon_c634d8 m_fea6bf1a mantine-Burger-root m_87cf2631 mantine-UnstyledButton-root"
+          type="button"
         >
           <div
-            class="_linksDesktop_c634d8 m_4081bf90 mantine-Group-root"
-            style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
-          >
-            <a
-              class="_link_c634d8 _active_c634d8"
-              href="/"
-            >
-              HOME
-            </a>
-            <a
-              class="_link_c634d8 "
-              href="/books"
-            >
-              BOOKS
-            </a>
-          </div>
-          <button
-            class="mantine-focus-auto _burgerIcon_c634d8 m_fea6bf1a mantine-Burger-root m_87cf2631 mantine-UnstyledButton-root"
-            type="button"
-          >
-            <div
-              class="m_d4fb9cad mantine-Burger-burger"
-              data-reduce-motion="true"
-            />
-          </button>
-        </div>
-      </header>
+            class="m_d4fb9cad mantine-Burger-burger"
+            data-reduce-motion="true"
+          />
+        </button>
+      </div>
     </header>
     <main
       class="m_8983817 mantine-AppShell-main _wrapper_0c8bf9"

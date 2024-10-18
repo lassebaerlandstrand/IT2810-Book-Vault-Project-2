@@ -1,15 +1,23 @@
-import { IconAdjustments, IconArrowRight, IconSearch } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { IconArrowRight, IconSearch } from '@tabler/icons-react';
+import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Flex, TextInput } from '@mantine/core';
 import { getHotkeyHandler } from '@mantine/hooks';
+import { getSearchParams } from '@/utils/search';
 
 interface SearchProps {
-  open: () => void;
-  onSearch: () => void;
-  setSearchValue: (value: string) => void;
-  searchValue: string;
+  onSearch: (searchValue: string) => void;
 }
 
-const SearchContainer = ({ open, onSearch, searchValue, setSearchValue }: SearchProps) => {
+const SearchContainer = ({ onSearch }: SearchProps) => {
+  const [searchParams] = useSearchParams();
+  const [searchValue, setSearchValue] = useState('');
+
+  useEffect(() => {
+    const { searchValue } = getSearchParams(searchParams);
+    setSearchValue(searchValue);
+  }, []);
+
   return (
     <Flex justify="center" my={10}>
       <TextInput
@@ -19,16 +27,13 @@ const SearchContainer = ({ open, onSearch, searchValue, setSearchValue }: Search
         onInput={(event) => {
           setSearchValue((event.target as HTMLInputElement).value);
         }}
-        onKeyDown={getHotkeyHandler([['Enter', onSearch]])}
+        onKeyDown={getHotkeyHandler([['Enter', () => onSearch(searchValue)]])}
         rightSection={
-          <ActionIcon onClick={onSearch} variant="filled" color="gray">
-            <IconArrowRight />
+          <ActionIcon onClick={() => onSearch(searchValue)} variant="filled">
+            <IconArrowRight size="80%" />
           </ActionIcon>
         }
       />
-      <ActionIcon onClick={open} ml={10} size="input-sm" color="gray">
-        <IconAdjustments />
-      </ActionIcon>
     </Flex>
   );
 };
