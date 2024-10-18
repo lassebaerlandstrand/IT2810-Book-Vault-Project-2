@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Group, Text } from '@mantine/core';
 import { fetchBook } from '@/api/dummyApi';
 import BookInfo from '@/components/BookInfo/BookInfo';
+import { Error404 } from '@/components/ErrorPage/ErrorPage';
 import { Book as BookType } from '@/generated/graphql';
 
 const Book = () => {
@@ -16,7 +17,13 @@ const Book = () => {
   }, [bookId]);
 
   if (!book) {
-    return <Text>Error</Text>;
+    return (
+      <Error404
+        title="Not a valid book"
+        description="The book you are looking for does not exist."
+        link="/books"
+      />
+    );
   }
   return (
     <Group justify="center">
