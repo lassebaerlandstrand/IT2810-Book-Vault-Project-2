@@ -33,9 +33,11 @@ const BookInfo = ({ book }: BookInfoProps) => {
               {book.genres.length > 3 ? '...' : null}
             </Text>
 
-            <Flex justify="center">
+            <Flex justify="center" align="center" gap={5} mt="xs">
               <Rating value={Math.round(book.rating * 2) / 2} fractions={2} readOnly />
-              <Text>{Math.round(book.rating * 10) / 10}</Text>
+              <Text mt={3} fw={500}>
+                {Math.round(book.rating * 10) / 10}
+              </Text>
             </Flex>
           </Container>
 
