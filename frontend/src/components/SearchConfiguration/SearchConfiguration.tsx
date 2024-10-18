@@ -10,7 +10,7 @@ interface SearchConfigurationProps {
   genres: string[];
   publishers: string[];
   authors: string[];
-  applyFiltersImmediately: boolean;
+  applyFiltersImmediately?: boolean;
   onSearch?: (
     resetPage: boolean,
     newSearchValue?: string,

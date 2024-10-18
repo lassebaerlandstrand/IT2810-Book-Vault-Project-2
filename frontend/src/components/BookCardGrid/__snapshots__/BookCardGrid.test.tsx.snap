@@ -27,7 +27,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r2{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-r2{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-r2"
@@ -79,7 +79,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-ra{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-ra{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-ra{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-ra{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-ra{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-ra{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-ra{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-ra{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-ra{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-ra{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-ra"
@@ -131,7 +131,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-ri{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-ri{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-ri{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-ri{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-ri{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-ri{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-ri{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-ri{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-ri{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-ri{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-ri"
@@ -183,7 +183,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-rq{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-rq{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-rq{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-rq{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-rq{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-rq{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-rq{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-rq{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-rq{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-rq{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-rq"
@@ -235,7 +235,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r12{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r12{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r12{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r12{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r12{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-r12{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r12{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r12{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r12{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r12{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-r12"
@@ -287,7 +287,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r1a{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r1a{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r1a{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r1a{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r1a{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-r1a{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r1a{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r1a{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r1a{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r1a{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-r1a"
@@ -339,7 +339,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r1i{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r1i{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r1i{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r1i{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r1i{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-r1i{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r1i{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r1i{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r1i{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r1i{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-r1i"
@@ -391,7 +391,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r1q{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r1q{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r1q{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r1q{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r1q{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-r1q{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r1q{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r1q{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r1q{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r1q{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-r1q"
@@ -443,7 +443,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r22{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r22{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r22{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r22{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r22{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-r22{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r22{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r22{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r22{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r22{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-r22"
@@ -495,7 +495,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r2a{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r2a{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r2a{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r2a{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r2a{--col-flex-grow:auto;--col-flex-basis:16.666666666666668%;--col-max-width:16.666666666666668%;}}
+        .__m__-r2a{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r2a{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r2a{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r2a{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r2a{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col __m__-r2a"
