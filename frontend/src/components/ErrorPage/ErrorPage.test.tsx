@@ -2,7 +2,7 @@
 import { fireEvent, render, screen } from '@test-utils';
 import { isRouteErrorResponse, MemoryRouter, useRouteError } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
-import { Error404, ErrorPage } from './ErrorPage';
+import { ErrorPage } from './ErrorPage';
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');

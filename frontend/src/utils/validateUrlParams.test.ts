@@ -1,6 +1,6 @@
+import { describe, expect, it, vi } from 'vitest';
 import { getFilterParams, SortBy, SortOrder } from './filters';
 import { getPaginationParams } from './pagination';
-import { describe, expect, it, vi } from 'vitest';
 import { isValidUrlParams } from './validateUrlParams';
 
 // Mock getFilterParams and getPaginationParams
@@ -14,7 +14,7 @@ vi.mock('./filters', () => ({
   SortOrder: {
     Ascending: 'asc',
     Descending: 'desc',
-  }
+  },
 }));
 
 vi.mock('./pagination', () => ({
