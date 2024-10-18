@@ -1,0 +1,99 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorPage Component > matches snapshot 1`] = `
+<DocumentFragment>
+  <style
+    data-mantine-styles="true"
+  >
+    :root{--mantine-font-family: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-font-family-headings: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-breakpoint-xs: 30em;--mantine-breakpoint-md: 64em;--mantine-breakpoint-xl: 90em;--mantine-breakpoint-xxs: 24em;}
+  </style>
+  <style
+    data-mantine-styles="classes"
+  >
+    @media (max-width: 29.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 30em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 63.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 64em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 89.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 90em) {.mantine-hidden-from-xl {display: none !important;}}@media (max-width: 23.99375em) {.mantine-visible-from-xxs {display: none !important;}}@media (min-width: 24em) {.mantine-hidden-from-xxs {display: none !important;}}
+  </style>
+  <div
+    class="_container_0b6ffd m_7485cace mantine-Container-root"
+  >
+    <div
+      class="_content_0b6ffd m_7485cace mantine-Container-root"
+    >
+      <h1
+        class="_title_0b6ffd m_8a5d1357 mantine-Title-root"
+        data-order="1"
+        style="--title-fw: var(--mantine-h1-font-weight); --title-lh: var(--mantine-h1-line-height); --title-fz: var(--mantine-h1-font-size);"
+      >
+        Unexpected Application Error!
+      </h1>
+      <p
+        class="mantine-focus-auto _description_0b6ffd m_b6d8b162 mantine-Text-root"
+        data-size="lg"
+        style="--text-fz: var(--mantine-font-size-lg); --text-lh: var(--mantine-line-height-lg); text-align: center;"
+      >
+        Something went wrong, please try again.
+      </p>
+      <div
+        class="m_4451eb3a mantine-Center-root"
+      >
+        <a
+          href="/"
+        >
+          <button
+            class="mantine-focus-auto mantine-active m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
+            data-size="md"
+            style="--button-height: var(--button-height-md); --button-padding-x: var(--button-padding-x-md); --button-fz: var(--mantine-font-size-md); --button-color: var(--mantine-color-white);"
+            type="button"
+          >
+            <span
+              class="m_80f1301b mantine-Button-inner"
+            >
+              <span
+                class="m_811560b9 mantine-Button-label"
+              >
+                Take me back to safe ground
+              </span>
+            </span>
+          </button>
+        </a>
+      </div>
+      <div
+        class="m_4451eb3a mantine-Center-root"
+      >
+        <div
+          class="m_6d731127 mantine-Stack-root"
+          style="--stack-gap: var(--mantine-spacing-md); --stack-align: center; --stack-justify: flex-start;"
+        >
+          <button
+            class="mantine-focus-auto mantine-active m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
+            style="--button-color: var(--mantine-color-white);"
+            type="button"
+          >
+            <span
+              class="m_80f1301b mantine-Button-inner"
+            >
+              <span
+                class="m_811560b9 mantine-Button-label"
+              >
+                Hide error message
+              </span>
+            </span>
+          </button>
+          <div
+            aria-hidden="false"
+            class=""
+            style="box-sizing: border-box; opacity: 1; transition: opacity 200ms ease;"
+          >
+            <pre
+              class="m_b183c0a2 mantine-Code-root"
+              data-block="true"
+              dir="ltr"
+            >
+              Test error message
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

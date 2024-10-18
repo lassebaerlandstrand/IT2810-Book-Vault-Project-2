@@ -32,20 +32,18 @@ export function HeaderSimple() {
   ));
 
   return (
-    <header className={classes.header}>
-      <Container size="md" className={classes.inner}>
-        <Group className={classes.linksDesktop}>{items}</Group>
+    <Container size="md" className={classes.wrapper}>
+      <Group className={classes.linksDesktop}>{items}</Group>
 
-        <Burger opened={opened} onClick={toggle} className={classes.burgerIcon} />
+      <Burger opened={opened} onClick={toggle} className={classes.burgerIcon} />
 
-        <Transition mounted={opened} transition="scale-y" duration={200} timingFunction="ease">
-          {(styles) => (
-            <Paper className={classes.mobileMenu} style={styles}>
-              {items}
-            </Paper>
-          )}
-        </Transition>
-      </Container>
-    </header>
+      <Transition mounted={opened} transition="scale-y" duration={200} timingFunction="ease">
+        {(styles) => (
+          <Paper className={classes.mobileMenu} style={styles}>
+            {items}
+          </Paper>
+        )}
+      </Transition>
+    </Container>
   );
 }

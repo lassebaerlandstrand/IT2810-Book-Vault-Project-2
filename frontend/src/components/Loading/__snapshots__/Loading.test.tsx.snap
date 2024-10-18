@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Loading > matches snapshot 1`] = `
+<DocumentFragment>
+  <style
+    data-mantine-styles="true"
+  >
+    :root{--mantine-font-family: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-font-family-headings: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-breakpoint-xs: 30em;--mantine-breakpoint-md: 64em;--mantine-breakpoint-xl: 90em;--mantine-breakpoint-xxs: 24em;}
+  </style>
+  <style
+    data-mantine-styles="classes"
+  >
+    @media (max-width: 29.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 30em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 63.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 64em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 89.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 90em) {.mantine-hidden-from-xl {display: none !important;}}@media (max-width: 23.99375em) {.mantine-visible-from-xxs {display: none !important;}}@media (min-width: 24em) {.mantine-hidden-from-xxs {display: none !important;}}
+  </style>
+  <div
+    class="m_4451eb3a mantine-Center-root"
+    style="margin-block: calc(6.25rem * var(--mantine-scale));"
+  >
+    <span
+      class="m_4e3f22d7 m_5ae2e3c mantine-Loader-root"
+      data-size="xl"
+      style="--loader-size: var(--loader-size-xl);"
+    >
+      <span
+        class="m_870c4af"
+      />
+      <span
+        class="m_870c4af"
+      />
+      <span
+        class="m_870c4af"
+      />
+    </span>
+  </div>
+</DocumentFragment>
+`;
