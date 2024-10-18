@@ -1,9 +1,36 @@
 import { fireEvent, render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
+import { useMantineColorScheme } from '@mantine/core';
 import { HeaderSimple } from '@/components/HeaderSimple/HeaderSimple';
-import classes from './HeaderSimple.module.css';
+
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useRouteError: vi.fn(),
+    isRouteErrorResponse: vi.fn(),
+    Link: ({ children }: any) => <a href="/">{children}</a>, // Mock <Link> for simplicity
+  };
+});
+
+vi.mock('@mantine/core', async () => {
+  const actual = await vi.importActual('@mantine/core');
+  return {
+    ...actual,
+    useMantineColorScheme: vi.fn(),
+  };
+});
+
+const mockSetColorScheme = vi.fn();
 
 describe('HeaderSimple Component', () => {
+  beforeEach(() => {
+    (useMantineColorScheme as jest.Mock).mockReturnValue({
+      setColorScheme: mockSetColorScheme,
+      colorScheme: 'light',
+    });
+  });
+
   test('renders navigation links correctly', () => {
     render(
       <MemoryRouter>
@@ -18,22 +45,17 @@ describe('HeaderSimple Component', () => {
     expect(booksLink).toBeInTheDocument();
   });
 
-  test('updates active link on click', () => {
+  test('toggles color scheme on click', () => {
     render(
       <MemoryRouter>
         <HeaderSimple />
       </MemoryRouter>
     );
 
-    const homeLink = screen.getByText(/home/i);
-    const booksLink = screen.getByText(/books/i);
+    const toggleButton = screen.getByLabelText(/change color theme/i);
 
-    expect(homeLink).toHaveClass(classes.active);
-    expect(booksLink).not.toHaveClass(classes.active);
+    fireEvent.click(toggleButton);
 
-    fireEvent.click(booksLink);
-
-    expect(booksLink).toHaveClass(classes.active);
-    expect(homeLink).not.toHaveClass(classes.active);
+    expect(mockSetColorScheme).toHaveBeenCalledWith('dark');
   });
 });
