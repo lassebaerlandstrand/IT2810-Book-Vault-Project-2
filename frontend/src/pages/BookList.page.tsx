@@ -64,7 +64,7 @@ export function BookList() {
     const startTime = performance.now();
 
     updateQueryParams(setSearchParams, 'search', newSearchValue);
-    if (resetPage) {
+    if (resetPage && page !== DEFAULT_PAGE) {
       updateQueryParams(setSearchParams, 'page', DEFAULT_PAGE.toString());
     }
 

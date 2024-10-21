@@ -1,45 +1,69 @@
-import { useState } from 'react';
+import { IconMoon, IconSunFilled } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import { Burger, Container, Group, Paper, Transition } from '@mantine/core';
+import {
+  ActionIcon,
+  Burger,
+  Container,
+  Group,
+  Paper,
+  Transition,
+  useComputedColorScheme,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import classes from './HeaderSimple.module.css';
+import { LogoFull } from '../Logo/Logo';
+import styles from './HeaderSimple.module.css';
 
 const links = [
   { link: '/', label: 'HOME' },
   { link: '/books', label: 'BOOKS' },
+  { link: '/myRatings', label: 'REVIEWS' },
 ];
 
 export function HeaderSimple() {
   const [opened, { toggle }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
+  const { setColorScheme } = useMantineColorScheme();
+  const computedColorScheme = useComputedColorScheme('light');
 
-  const handleClick = (link: string) => {
-    setActive(link);
+  const toggleColorScheme = () => {
+    setColorScheme(computedColorScheme === 'dark' ? 'light' : 'dark');
+  };
+
+  const handleClick = () => {
     if (opened) {
       toggle();
     }
   };
 
   const items = links.map((link) => (
-    <Link
-      key={link.label}
-      to={link.link}
-      className={`${classes.link} ${active === link.link ? classes.active : ''}`}
-      onClick={() => handleClick(link.link)}
-    >
+    <Link key={link.label} to={link.link} className={`${styles.link}`} onClick={handleClick}>
       {link.label}
     </Link>
   ));
 
   return (
-    <Container size="md" className={classes.wrapper}>
-      <Group className={classes.linksDesktop}>{items}</Group>
+    <Container className={styles.wrapper}>
+      <Link to="/" className={styles.logo}>
+        <LogoFull />
+      </Link>
+      <Group className={styles.linksDesktop} gap="sm">
+        {items}
+        <ActionIcon
+          color="white"
+          onClick={toggleColorScheme}
+          variant="default"
+          aria-label="Change color theme"
+          size="lg"
+        >
+          {computedColorScheme === 'dark' ? <IconSunFilled /> : <IconMoon />}
+        </ActionIcon>
+      </Group>
 
-      <Burger opened={opened} onClick={toggle} className={classes.burgerIcon} />
+      <Burger opened={opened} onClick={toggle} className={styles.burgerIcon} />
 
       <Transition mounted={opened} transition="scale-y" duration={200} timingFunction="ease">
-        {(styles) => (
-          <Paper className={classes.mobileMenu} style={styles}>
+        {(transition) => (
+          <Paper className={styles.mobileMenu} style={transition}>
             {items}
           </Paper>
         )}

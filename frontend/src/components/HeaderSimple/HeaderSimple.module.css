@@ -1,9 +1,11 @@
 .wrapper {
   height: var(--app-shell-header-height);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  padding: 0 var(--mantine-spacing-xl);
+  padding-left: var(--app-shell-padding);
+  padding-right: var(--app-shell-padding);
+  max-width: $mantine-breakpoint-lg;
 }
 
 .linksDesktop {
@@ -49,11 +51,20 @@
   cursor: pointer;
 }
 
-@media (min-width: $mantine-breakpoint-xs) {
-  .wrapper {
-    justify-content: space-between;
-  }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: calc(var(--app-shell-header-height) - 1rem);
+  text-decoration: none;
+  color: light-dark(var(--mantine-color-logo-theme-7), var(--mantine-color-logo-theme-0));
+}
 
+.abc {
+  color: yellow;
+}
+
+@media (min-width: $mantine-breakpoint-sm) {
   .mobileMenu {
     display: none;
   }
@@ -64,6 +75,5 @@
 
   .linksDesktop {
     display: flex;
-    gap: rem(5px);
   }
 }
