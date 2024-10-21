@@ -26,7 +26,7 @@ const RatingGrid = ({ reviews }: ReviewProps) => {
       <Group justify="center" align="center" className={styles.noResultWrapper}>
         <IconBookOff />
         <Text size="xl" fw={700} my="xl">
-          No books found
+          No reviews found
         </Text>
       </Group>
     );
