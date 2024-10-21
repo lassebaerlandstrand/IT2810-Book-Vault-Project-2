@@ -1,6 +1,6 @@
 // This file defines all queries related to books
 
-import { gql } from '@apollo/client';
+import { gql } from '@/generated';
 
 export const GET_BOOKS = gql(`
   query GetBooks($limit: Int, $offset: Int) {
@@ -10,7 +10,6 @@ export const GET_BOOKS = gql(`
         title
         coverImg
         rating
-        numRatings
       }
     }
   }

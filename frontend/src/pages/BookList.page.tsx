@@ -11,7 +11,7 @@ import LoadingCircle from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
-import { Book } from '@/generated/graphql';
+import { useBooks } from '@/hooks/useBooks';
 import { getFilterParams, getInitialOptions, SortBy, SortOrder } from '@/utils/filters';
 import { getPaginationParams } from '@/utils/pagination';
 import { updateQueryParams } from '@/utils/queryParams';
@@ -27,7 +27,6 @@ export function BookList() {
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
   const [totalBooks, setTotalBooks] = useState(0);
-  const [books, setBooks] = useState<Book[]>([]);
   const [searchTime, setSearchTime] = useState(0);
 
   const { allGenres, allAuthors, allPublishers } = getInitialOptions();
@@ -37,8 +36,21 @@ export function BookList() {
 
   const formattedTotalBooks = formatNumberWithSpaces(totalBooks.toString());
 
+  const {
+    books: books,
+    loading: booksLoading,
+    error: booksError,
+  } = useBooks({
+    limit: limit,
+    page: page,
+  });
+
   useEffect(() => {
-    setBooks(fetchBooks(page, limit, sortBy, sortOrder, genres, publishers, authors, searchValue));
+    console.log(books, booksLoading, booksError);
+  }, [books, booksLoading, booksError]);
+
+  useEffect(() => {
+    // setBooks(fetchBooks(page, limit, sortBy, sortOrder, genres, publishers, authors, searchValue));
   }, [page, limit]);
 
   useEffect(() => {
@@ -94,7 +106,7 @@ export function BookList() {
       newAuthors,
       newSearchValue
     );
-    setBooks(books);
+    // setBooks(books);
     setTotalBooks(totalBooks);
 
     setSearchTime(performance.now() - startTime);
@@ -110,7 +122,6 @@ export function BookList() {
     );
   }
 
-  // TODO: Add more loading states here
   if (isDesktop == null) {
     return <LoadingCircle />;
   }
@@ -167,7 +178,7 @@ export function BookList() {
           </Container>
         )}
         <Container flex={1} px={0}>
-          <BookCardGrid books={books} />
+          <BookCardGrid books={books} loading={booksLoading} error={booksError} />
         </Container>
       </Flex>
 

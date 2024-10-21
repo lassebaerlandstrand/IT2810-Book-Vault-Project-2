@@ -1,4 +1,5 @@
-import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+/* eslint-disable */
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -132,182 +133,13 @@ export enum SortOrder {
   Desc = 'desc'
 }
 
+export type GetBooksQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+}>;
 
 
-export type ResolverTypeWrapper<T> = Promise<T> | T;
+export type GetBooksQuery = { __typename?: 'Query', books: { __typename?: 'BookPagination', books: Array<{ __typename?: 'Book', id: string, title: string, coverImg: string, rating: number }> } };
 
 
-export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> = ResolverFn<TResult, TParent, TContext, TArgs> | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
-
-export type ResolverFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Promise<TResult> | TResult;
-
-export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => AsyncIterable<TResult> | Promise<AsyncIterable<TResult>>;
-
-export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => TResult | Promise<TResult>;
-
-export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<{ [key in TKey]: TResult }, TParent, TContext, TArgs>;
-  resolve?: SubscriptionResolveFn<TResult, { [key in TKey]: TResult }, TContext, TArgs>;
-}
-
-export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<any, TParent, TContext, TArgs>;
-  resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>;
-}
-
-export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> =
-  | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
-  | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
-
-export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> =
-  | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
-  | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
-
-export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
-  parent: TParent,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
-
-export type IsTypeOfResolverFn<T = {}, TContext = {}> = (obj: T, context: TContext, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
-
-export type NextResolverFn<T> = () => Promise<T>;
-
-export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
-  next: NextResolverFn<TResult>,
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => TResult | Promise<TResult>;
-
-
-
-/** Mapping between all available schema types and the resolvers types */
-export type ResolversTypes = {
-  Author: ResolverTypeWrapper<Author>;
-  Book: ResolverTypeWrapper<Book>;
-  BookPagination: ResolverTypeWrapper<BookPagination>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Date: ResolverTypeWrapper<Scalars['Date']['output']>;
-  Float: ResolverTypeWrapper<Scalars['Float']['output']>;
-  Genre: ResolverTypeWrapper<Genre>;
-  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
-  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
-  PaginationInfo: ResolverTypeWrapper<PaginationInfo>;
-  Publisher: ResolverTypeWrapper<Publisher>;
-  Query: ResolverTypeWrapper<{}>;
-  SortByInput: SortByInput;
-  SortOrder: SortOrder;
-  String: ResolverTypeWrapper<Scalars['String']['output']>;
-};
-
-/** Mapping between all available schema types and the resolvers parents */
-export type ResolversParentTypes = {
-  Author: Author;
-  Book: Book;
-  BookPagination: BookPagination;
-  Boolean: Scalars['Boolean']['output'];
-  Date: Scalars['Date']['output'];
-  Float: Scalars['Float']['output'];
-  Genre: Genre;
-  ID: Scalars['ID']['output'];
-  Int: Scalars['Int']['output'];
-  PaginationInfo: PaginationInfo;
-  Publisher: Publisher;
-  Query: {};
-  SortByInput: SortByInput;
-  String: Scalars['String']['output'];
-};
-
-export type AuthorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = {
-  name?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type BookResolvers<ContextType = any, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = {
-  authors?: Resolver<Array<ResolversTypes['Author']>, ParentType, ContextType>;
-  awards?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>;
-  bookFormat?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  characters?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>;
-  coverImg?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  genres?: Resolver<Array<ResolversTypes['Genre']>, ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  isbn?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  language?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  numRatings?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  numberInSeries?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  pages?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  publishDate?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
-  publisher?: Resolver<ResolversTypes['Publisher'], ParentType, ContextType>;
-  rating?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
-  series?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  setting?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>;
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type BookPaginationResolvers<ContextType = any, ParentType extends ResolversParentTypes['BookPagination'] = ResolversParentTypes['BookPagination']> = {
-  books?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType>;
-  pagination?: Resolver<ResolversTypes['PaginationInfo'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
-  name: 'Date';
-}
-
-export type GenreResolvers<ContextType = any, ParentType extends ResolversParentTypes['Genre'] = ResolversParentTypes['Genre']> = {
-  name?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type PaginationInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['PaginationInfo'] = ResolversParentTypes['PaginationInfo']> = {
-  currentPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  isLastPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  totalPages?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type PublisherResolvers<ContextType = any, ParentType extends ResolversParentTypes['Publisher'] = ResolversParentTypes['Publisher']> = {
-  name?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  authors?: Resolver<Array<ResolversTypes['Author']>, ParentType, ContextType>;
-  books?: Resolver<ResolversTypes['BookPagination'], ParentType, ContextType, Partial<QueryBooksArgs>>;
-  genres?: Resolver<Array<ResolversTypes['Genre']>, ParentType, ContextType>;
-  publishers?: Resolver<Array<ResolversTypes['Publisher']>, ParentType, ContextType>;
-};
-
-export type Resolvers<ContextType = any> = {
-  Author?: AuthorResolvers<ContextType>;
-  Book?: BookResolvers<ContextType>;
-  BookPagination?: BookPaginationResolvers<ContextType>;
-  Date?: GraphQLScalarType;
-  Genre?: GenreResolvers<ContextType>;
-  PaginationInfo?: PaginationInfoResolvers<ContextType>;
-  Publisher?: PublisherResolvers<ContextType>;
-  Query?: QueryResolvers<ContextType>;
-};
-
+export const GetBooksDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBooks"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"offset"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"books"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"offset"},"value":{"kind":"Variable","name":{"kind":"Name","value":"offset"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"books"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"coverImg"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}}]}}]}}]}}]} as unknown as DocumentNode<GetBooksQuery, GetBooksQueryVariables>;
