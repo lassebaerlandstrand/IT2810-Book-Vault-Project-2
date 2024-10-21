@@ -53,12 +53,72 @@ const fetchAllBooksWithFilters = (
   return newBooks;
 };
 
+const fetchRatedBooksWithFilters = (
+  sortBy: SortBy,
+  sortOrder: SortOrder,
+  genres: string[],
+  publishers: string[],
+  authors: string[],
+  search: string,
+  ids: string[]
+) => {
+  const allBooks = ids
+    .map((id) => fetchBook(id))
+    .filter((item): item is Book => item !== undefined);
+  let newBooks = [] as Book[];
+
+  allBooks.forEach((book) => {
+    if (!book.title.toLowerCase().includes(search.toLowerCase())) {
+      return;
+    }
+    if (authors.length > 0 && !authors.some((author) => book.authors.includes(author))) {
+      return;
+    }
+    if (genres.length > 0 && !genres.some((genre) => book.genres.includes(genre))) {
+      return;
+    }
+    if (publishers.length > 0 && !publishers.some((publisher) => book.publisher === publisher)) {
+      return;
+    }
+
+    newBooks.push(book);
+  });
+
+  newBooks = newBooks.sort((a, b) => {
+    let c = a;
+    let d = b;
+    if (sortOrder === SortOrder.Descending) {
+      [c, d] = [b, a];
+    }
+    if (sortBy === 'book') {
+      return c.title.localeCompare(d.title);
+    }
+    if (sortBy === 'author') {
+      return c.authors[0].localeCompare(d.authors[0]);
+    }
+    if (sortBy === 'publisher') {
+      return c.publisher.localeCompare(d.publisher);
+    }
+    return 0;
+  });
+
+  return newBooks;
+};
+
 export const fetchBooks = (
   page: number,
   limit: number,
   ...args: Parameters<typeof fetchAllBooksWithFilters>
 ) => {
   return fetchAllBooksWithFilters(...args).slice((page - 1) * limit, page * limit);
+};
+
+export const fetchRatedBooks = (
+  page: number,
+  limit: number,
+  ...args: Parameters<typeof fetchRatedBooksWithFilters>
+) => {
+  return fetchRatedBooksWithFilters(...args).slice((page - 1) * limit, page * limit);
 };
 
 export const fetchAuthors = () => {
@@ -85,4 +145,10 @@ export const fetchTotalBooksWithFilters = (
   ...args: Parameters<typeof fetchAllBooksWithFilters>
 ) => {
   return fetchAllBooksWithFilters(...args).length;
+};
+
+export const fetchTotalRatedBooksWithFilters = (
+  ...args: Parameters<typeof fetchRatedBooksWithFilters>
+) => {
+  return fetchRatedBooksWithFilters(...args).length;
 };

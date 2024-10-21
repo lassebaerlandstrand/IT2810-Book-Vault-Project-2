@@ -3,7 +3,7 @@ import { IconAdjustments } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Container, Drawer, Flex, Group, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { fetchBooks, fetchTotalBooksWithFilters } from '@/api/dummyApi';
+import { fetchBooks, fetchRatedBooks, fetchTotalRatedBooksWithFilters } from '@/api/dummyApi';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
@@ -11,6 +11,7 @@ import LoadingCircle from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
+import { useUser } from '@/contexts/UserFunctions';
 import { Book } from '@/generated/graphql';
 import { getFilterParams, getInitialOptions, SortBy, SortOrder } from '@/utils/filters';
 import { getPaginationParams } from '@/utils/pagination';
@@ -29,6 +30,7 @@ export function MyRatings() {
   const [totalBooks, setTotalBooks] = useState(0);
   const [books, setBooks] = useState<Book[]>([]);
   const [searchTime, setSearchTime] = useState(0);
+  const user = useUser();
 
   const { allGenres, allAuthors, allPublishers } = getInitialOptions();
   const { sortBy, sortOrder, genres, authors, publishers } = getFilterParams(searchParams);
@@ -76,7 +78,7 @@ export function MyRatings() {
       updateQueryParams(setSearchParams, 'sortOrder', newSortOrder);
     }
 
-    const books = fetchBooks(
+    const books = fetchRatedBooks(
       page,
       limit,
       newSortBy,
@@ -84,15 +86,18 @@ export function MyRatings() {
       newGenres,
       newPublishers,
       newAuthors,
-      newSearchValue
+      newSearchValue,
+      user.ratings.map((item) => item.id)
     );
-    const totalBooks = fetchTotalBooksWithFilters(
+
+    const totalBooks = fetchTotalRatedBooksWithFilters(
       newSortBy,
       newSortOrder,
       newGenres,
       newPublishers,
       newAuthors,
-      newSearchValue
+      newSearchValue,
+      user.ratings.map((item) => item.id)
     );
     setBooks(books);
     setTotalBooks(totalBooks);
