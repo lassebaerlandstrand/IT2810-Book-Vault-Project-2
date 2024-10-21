@@ -1,4 +1,4 @@
-schema: 'src/graphql/schema.graphql' # Use your server URL or path to schema file
+schema: '../backend/schema.graphql' # Use your server URL or path to schema file
 documents:
   - 'src/**/*.graphql' # If you have .graphql files for your queries/mutations
   - 'src/graphql/queries.ts'

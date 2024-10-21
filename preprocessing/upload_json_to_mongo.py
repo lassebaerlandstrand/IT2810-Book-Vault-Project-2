@@ -1,28 +1,46 @@
 import json
 from pymongo import MongoClient
 
+print("Connecting to client...")
 client = MongoClient('mongodb://localhost:27017/')
-db = client['bookvault']
+db     = client['bookvault']
+
+print("Dopping collections...")
 db.drop_collection('authors')
 db.drop_collection('genres')
 db.drop_collection('publishers')
 db.drop_collection('books')
+db.drop_collection('nouns')
+db.drop_collection('adjectives')
+db.drop_collection('users')
 
-authors = db['authors']
-genres = db['genres']
+print("Creating collections...")
+authors    = db['authors']
+genres     = db['genres']
 publishers = db['publishers']
-books = db['books']
+books      = db['books']
+nouns      = db['nouns']
+adjectives = db['adjectives']
+users      = db['users']
 
-for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json']:
+print("Populating collections...")
+for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json', 'nouns.json', 'adjectives.json', 'users.json']:
     with open(f'preprocessing/{file}', 'r') as f:
         data = json.load(f)
-        if file == 'authors.json':
-            authors.insert_many(data)
-        elif file == 'genres.json':
-            genres.insert_many(data)
-        elif file == 'publishers.json':
-            publishers.insert_many(data)
-        else:
-            books.insert_many(data)
-
+        match file:
+            case 'authors.json':
+                authors.insert_many(data)
+            case 'genres.json':
+                genres.insert_many(data)
+            case 'publishers.json':
+                publishers.insert_many(data)
+            case 'books.json':
+                books.insert_many(data)
+            case 'nouns.json':
+                nouns.insert_many(data)
+            case 'adjectives.json':
+                adjectives.insert_many(data)
+            case 'users.json':
+                users.insert_many(data)
 client.close()
+print("Connections closed successfully")

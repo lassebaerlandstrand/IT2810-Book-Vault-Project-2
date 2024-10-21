@@ -105,3 +105,19 @@ input SortByInput {
   "Sort books by the publish date"
   publisherName: SortOrder
 }
+
+type User {
+  "Unique identifier for user"
+  UUID: ID!
+  name: String!
+  wantToRead: [ID!]!
+  haveRead: [ID!]!
+}
+
+type Noun {
+  word: ID!
+}
+
+type Adjective {
+  word: ID!
+}
