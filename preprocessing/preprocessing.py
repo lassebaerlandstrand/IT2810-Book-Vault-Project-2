@@ -34,6 +34,9 @@ df.dropna(subset=['description', 'language', 'bookFormat', 'pages', 'publisher',
 # rename author into authors
 df.rename(columns={'author': 'authors'}, inplace=True)
 
+# Replace commas inside parentheses with a placeholder (e.g., ';')
+df['authors'] = df['authors'].str.replace(r'\(.*?\)', '', regex=True)
+
 # Create new DataFrames for authors, genres, publishers
 authors = pd.DataFrame(df['authors'].str.split(
     ',').explode().str.strip().unique(), columns=['name'])
