@@ -1,4 +1,4 @@
-import { Container, Flex, Grid, Group, Image, Rating, Text } from '@mantine/core';
+import { Container, Flex, Grid, Group, Image, Rating, Spoiler, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
 import InfoGrid from '../InfoGrid/InfoGrid';
 import styles from './BookInfo.module.css';
@@ -47,7 +47,9 @@ const BookInfo = ({ book }: BookInfoProps) => {
               </Flex>
             </Container>
 
-            <Text>{book.description}</Text>
+            <Spoiler maxHeight={250} hideLabel={'Show less'} showLabel={'Show more'}>
+              <Text>{book.description}</Text>
+            </Spoiler>
           </Flex>
         </Grid.Col>
 
