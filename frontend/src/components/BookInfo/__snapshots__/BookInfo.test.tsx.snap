@@ -61,7 +61,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
           </p>
           <div
             class="m_8bffd616 mantine-Flex-root __m__-r32"
-            style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: center;"
+            style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
           >
             <div
               class="m_f8d312f2 mantine-Rating-root"
