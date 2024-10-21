@@ -5,12 +5,17 @@ import { Book } from '@/generated/graphql';
 import BookCard from '../BookCard/BookCard';
 import styles from './BookCardGrid.module.css';
 
+type BookRating = {
+  id: string;
+  rating: number;
+};
 type BookCardGridProps = {
   books: Book[];
+  ratings?: BookRating[];
 };
 
-const BookCardGrid = ({ books }: BookCardGridProps) => {
-  if (books.length === 0) {
+const BookCardGrid = (props: BookCardGridProps) => {
+  if (props.books.length === 0) {
     return (
       <Group justify="center" align="center" className={styles.noResultWrapper}>
         <IconBookOff />
@@ -24,10 +29,14 @@ const BookCardGrid = ({ books }: BookCardGridProps) => {
   return (
     <>
       <Grid my="xl" gutter="md">
-        {books.map((book) => (
+        {props.books.map((book, index) => (
           <Grid.Col key={book.id} span={{ base: 12, xxs: 6, xs: 4, sm: 3, md: 3 }}>
             <Link to={`/book/${book.id}`} className={styles.link}>
-              <BookCard book={book} />
+              {props.ratings ? (
+                <BookCard book={book} rating={props.ratings[index].rating} />
+              ) : (
+                <BookCard book={book} />
+              )}
             </Link>
           </Grid.Col>
         ))}

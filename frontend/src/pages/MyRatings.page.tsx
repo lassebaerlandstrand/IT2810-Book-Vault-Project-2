@@ -172,7 +172,7 @@ export function MyRatings() {
           </Container>
         )}
         <Container flex={1} px={0}>
-          <BookCardGrid books={books} />
+          <BookCardGrid books={books} ratings={user.ratings} />
         </Container>
       </Flex>
 
