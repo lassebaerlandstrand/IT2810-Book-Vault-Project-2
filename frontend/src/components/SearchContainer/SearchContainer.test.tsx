@@ -6,9 +6,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 test('renders SearchContainer', () => {
-  const { asFragment } = render(
-    <SearchContainer open={() => {}} onSearch={() => {}} setSearchValue={() => {}} searchValue="" />
-  );
+  const { asFragment } = render(<SearchContainer onSearch={() => {}} />);
   const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
   attributesToRemove.forEach((element) => {
     element.removeAttribute('id');
@@ -17,28 +15,20 @@ test('renders SearchContainer', () => {
   expect(asFragment()).toMatchSnapshot();
 });
 
-test('calls setSearchValue on input change', () => {
-  const setSearchValue = vi.fn();
-  render(
-    <SearchContainer
-      open={() => {}}
-      onSearch={() => {}}
-      setSearchValue={setSearchValue}
-      searchValue=""
-    />
-  );
+test('do not call onSearch when typing', () => {
+  const onSearch = vi.fn();
+  render(<SearchContainer onSearch={onSearch} />);
 
   const input = screen.getByPlaceholderText('Search for books');
   fireEvent.input(input, { target: { value: 'new value' } });
 
-  expect(setSearchValue).toHaveBeenCalledWith('new value');
+  // onSearch should not be called
+  expect(onSearch).not.toHaveBeenCalled();
 });
 
 test('calls onSearch on Enter key press', () => {
   const onSearch = vi.fn();
-  render(
-    <SearchContainer open={() => {}} onSearch={onSearch} setSearchValue={() => {}} searchValue="" />
-  );
+  render(<SearchContainer onSearch={onSearch} />);
 
   const input = screen.getByPlaceholderText('Search for books');
   fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });

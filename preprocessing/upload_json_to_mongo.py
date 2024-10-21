@@ -1,5 +1,5 @@
 import json
-from pymongo import MongoClient
+from pymongo import MongoClient, TEXT
 
 print("Connecting to client...")
 client = MongoClient('mongodb://localhost:27017/')
@@ -36,6 +36,7 @@ for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json', 'no
                 publishers.insert_many(data)
             case 'books.json':
                 books.insert_many(data)
+                books.create_index([('title', TEXT)], language_override='dummy')
             case 'nouns.json':
                 nouns.insert_many(data)
             case 'adjectives.json':

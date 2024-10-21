@@ -1,41 +1,36 @@
-import { SortBy, SortOrder } from '@/components/SearchConfiguration/SearchConfiguration';
 import { Book } from '@/generated/graphql';
+import { SortBy, SortOrder } from '@/utils/filters';
 import booksData from './books.json';
 
 const data = booksData as Book[];
 
-const fetchAllBooksWithFilters = (searchParams: URLSearchParams) => {
+const fetchAllBooksWithFilters = (
+  sortBy: SortBy,
+  sortOrder: SortOrder,
+  genres: string[],
+  publishers: string[],
+  authors: string[],
+  search: string
+) => {
   const allBooks = data as Book[];
   let newBooks = [] as Book[];
 
   allBooks.forEach((book) => {
-    if (!book.title.toLowerCase().includes(searchParams.get('search')?.toLowerCase() || '')) {
+    if (!book.title.toLowerCase().includes(search.toLowerCase())) {
       return;
     }
-    if (
-      searchParams.has('authors') &&
-      !searchParams.getAll('authors').some((author) => book.authors.includes(author))
-    ) {
+    if (authors.length > 0 && !authors.some((author) => book.authors.includes(author))) {
       return;
     }
-    if (
-      searchParams.has('genres') &&
-      !searchParams.getAll('genres').some((genre) => book.genres.includes(genre))
-    ) {
+    if (genres.length > 0 && !genres.some((genre) => book.genres.includes(genre))) {
       return;
     }
-    if (
-      searchParams.has('publishers') &&
-      !searchParams.getAll('publishers').some((publisher) => book.publisher === publisher)
-    ) {
+    if (publishers.length > 0 && !publishers.some((publisher) => book.publisher === publisher)) {
       return;
     }
 
     newBooks.push(book);
   });
-
-  const sortBy = searchParams.get('sortBy') || SortBy.Book;
-  const sortOrder = searchParams.get('sortOrder') || SortOrder.Ascending;
 
   newBooks = newBooks.sort((a, b) => {
     let c = a;
@@ -58,8 +53,12 @@ const fetchAllBooksWithFilters = (searchParams: URLSearchParams) => {
   return newBooks;
 };
 
-export const fetchBooks = (page: number, limit: number, searchParams: URLSearchParams) => {
-  return fetchAllBooksWithFilters(searchParams).slice((page - 1) * limit, page * limit);
+export const fetchBooks = (
+  page: number,
+  limit: number,
+  ...args: Parameters<typeof fetchAllBooksWithFilters>
+) => {
+  return fetchAllBooksWithFilters(...args).slice((page - 1) * limit, page * limit);
 };
 
 export const fetchAuthors = () => {
@@ -82,6 +81,8 @@ export const fetchBook = (id: string) => {
   return book;
 };
 
-export const fetchTotalBooksWithFilters = (searchParams: URLSearchParams) => {
-  return fetchAllBooksWithFilters(searchParams).length;
+export const fetchTotalBooksWithFilters = (
+  ...args: Parameters<typeof fetchAllBooksWithFilters>
+) => {
+  return fetchAllBooksWithFilters(...args).length;
 };
