@@ -2,14 +2,18 @@ import { Card, Flex, Grid, Image, Rating, Stack, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
 import styles from './RatingCard.module.css';
 
-type RatingProps = {
-  book: Book;
+type Review = {
+  description: string;
   rating: number;
-  review: string;
   at: Date;
 };
 
-const RatingCard = ({ book, rating, review, at }: RatingProps) => {
+type RatingProps = {
+  book: Book;
+  review: Review;
+};
+
+const RatingCard = ({ book, review }: RatingProps) => {
   return (
     <>
       <Card p={30} radius="lg" className={styles.card} m="auto">
@@ -35,18 +39,18 @@ const RatingCard = ({ book, rating, review, at }: RatingProps) => {
                     Review of {book.title}
                   </Text>
                   <Text fw={500} size="sm" fs="italic" lineClamp={2}>
-                    {at.toDateString()}
+                    {review.at.toDateString()}
                   </Text>
                 </Stack>
               </Grid.Col>
               <Grid.Col span="auto">
                 <Flex justify="center" align="center" gap={7} mt="xs">
-                  <Rating value={rating} fractions={2} readOnly />
-                  <Text fw={500}>{rating.toFixed(1)}</Text>
+                  <Rating value={review.rating} fractions={2} readOnly />
+                  <Text fw={500}>{review.rating.toFixed(1)}</Text>
                 </Flex>
               </Grid.Col>
               <Grid.Col span={12}>
-                <Text lineClamp={5}>{review}</Text>
+                <Text lineClamp={5}>{review.description}</Text>
               </Grid.Col>
             </Grid>
           </Grid.Col>

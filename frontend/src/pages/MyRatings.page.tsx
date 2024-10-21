@@ -3,7 +3,7 @@ import { IconAdjustments } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Container, Drawer, Flex, Group, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { fetchBooks, fetchRatedBooks, fetchTotalRatedBooksWithFilters } from '@/api/dummyApi';
+import { fetchRatedBooks, fetchTotalRatedBooksWithFilters } from '@/api/dummyApi';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
 import LoadingCircle from '@/components/Loading/Loading';
@@ -22,13 +22,24 @@ import styles from './BookList.module.css';
 
 const formatNumberWithSpaces = (number: string) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
+type Review = {
+  description: string;
+  rating: number;
+  at: Date;
+};
+
+type ReviewAndBook = {
+  book: Book;
+  review: Review;
+};
+
 export function MyRatings() {
   const [searchParams, setSearchParams] = useSearchParams();
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
   const [totalBooks, setTotalBooks] = useState(0);
-  const [books, setBooks] = useState<Book[]>([]);
+  const [reviews, setReviews] = useState<ReviewAndBook[]>([]);
   const [searchTime, setSearchTime] = useState(0);
   const user = useUser();
 
@@ -40,7 +51,27 @@ export function MyRatings() {
   const formattedTotalBooks = formatNumberWithSpaces(totalBooks.toString());
 
   useEffect(() => {
-    setBooks(fetchBooks(page, limit, sortBy, sortOrder, genres, publishers, authors, searchValue));
+    const returnedBooks = fetchRatedBooks(
+      page,
+      limit,
+      sortBy,
+      sortOrder,
+      genres,
+      publishers,
+      authors,
+      searchValue,
+      user.ratings.map((review) => review.id)
+    );
+    const bookAndReviews: ReviewAndBook[] = [];
+    for (const book of returnedBooks) {
+      console.log(user.ratings);
+      console.log(book);
+      console.log(user.ratings.filter((review) => review.id == book.id));
+      const { description, rating, at } = user.ratings.filter((review) => review.id == book.id)[0];
+      bookAndReviews.push({ book: book, review: { description, rating, at } });
+    }
+
+    setReviews(bookAndReviews);
   }, [page, limit]);
 
   useEffect(() => {
@@ -78,7 +109,7 @@ export function MyRatings() {
       updateQueryParams(setSearchParams, 'sortOrder', newSortOrder);
     }
 
-    const books = fetchRatedBooks(
+    const returnedBooks = fetchRatedBooks(
       page,
       limit,
       newSortBy,
@@ -99,7 +130,15 @@ export function MyRatings() {
       newSearchValue,
       user.ratings.map((item) => item.id)
     );
-    setBooks(books);
+
+    const bookAndReviews: ReviewAndBook[] = [];
+    for (const book of returnedBooks) {
+      const { description, rating, at } = user.ratings.filter((review) => review.id === book.id)[0];
+      bookAndReviews.push({ book: book, review: { description, rating, at } });
+    }
+
+    setReviews(bookAndReviews);
+
     setTotalBooks(totalBooks);
 
     setSearchTime(performance.now() - startTime);
@@ -172,7 +211,7 @@ export function MyRatings() {
           </Container>
         )}
         <Container flex={1} px={0}>
-          <RatingGrid books={books} ratings={user.ratings} />
+          <RatingGrid reviews={reviews} />
         </Container>
       </Flex>
 
