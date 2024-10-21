@@ -161,10 +161,30 @@ const resolvers = {
     publisher: async (book: { publisher: string }) => {
       return { name: book.publisher };
     },
-    ratingsByStars: async (book: {
-      ratingsByStars: { [x: number]: number };
-    }) => {
-      return Array.from({ length: 6 }, (_, i) => book.ratingsByStars[i] || 0);
+    numRatings: async (book: { ratingsByStars: { [x: number]: number } }) => {
+      return Object.values(book.ratingsByStars).reduce(
+        (total, count) => total + count,
+        0
+      );
+    },
+    rating: async (book: { ratingsByStars: { [x: number]: number } }) => {
+      const numRatings = Object.values(book.ratingsByStars).reduce(
+        (total, count) => total + count,
+        0
+      );
+
+      if (numRatings === 0) {
+        return 0;
+      }
+
+      const weightedSum = Object.entries(book.ratingsByStars).reduce(
+        (sum, [key, count]) => {
+          return sum + parseInt(key, 10) * count;
+        },
+        0
+      );
+
+      return weightedSum / numRatings;
     },
   },
 };

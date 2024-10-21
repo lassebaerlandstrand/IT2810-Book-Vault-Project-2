@@ -74,7 +74,11 @@ describe("resolvers", () => {
 
       it("should return books filtered by authors", async () => {
         const mockBooks = [
-          { _id: new ObjectId(), title: "Book by Author 1", authors: ["Author 1"] },
+          {
+            _id: new ObjectId(),
+            title: "Book by Author 1",
+            authors: ["Author 1"],
+          },
         ];
 
         db.collection = vi.fn().mockReturnValue({
@@ -143,10 +147,7 @@ describe("resolvers", () => {
 
         const result = await resolvers.Query.authors();
 
-        expect(result).toEqual([
-          { name: "Author 1" },
-          { name: "Author 2" },
-        ]);
+        expect(result).toEqual([{ name: "Author 1" }, { name: "Author 2" }]);
       });
     });
 
@@ -159,10 +160,7 @@ describe("resolvers", () => {
 
         const result = await resolvers.Query.genres();
 
-        expect(result).toEqual([
-          { name: "Fantasy" },
-          { name: "Sci-Fi" },
-        ]);
+        expect(result).toEqual([{ name: "Fantasy" }, { name: "Sci-Fi" }]);
       });
     });
 
@@ -184,28 +182,28 @@ describe("resolvers", () => {
   });
 
   describe("Book", () => {
-    it("should return book ratings by stars", async () => {
+    it("should return the total number of ratings", async () => {
       const book = { ratingsByStars: { 1: 5, 2: 3 } };
-      const result = await resolvers.Book.ratingsByStars(book);
-      expect(result).toEqual([0, 5, 3, 0, 0, 0]);
+      const result = await resolvers.Book.numRatings(book);
+      expect(result).toEqual(8);
+    });
+
+    it("should return weighted sum of ratings", async () => {
+      const book = { ratingsByStars: { 1: 5, 2: 3 } };
+      const result = await resolvers.Book.rating(book);
+      expect(result).toEqual((1 * 5 + 2 * 3) / 8);
     });
 
     it("should return authors for a book", async () => {
       const book = { authors: ["Author 1", "Author 2"] };
       const result = await resolvers.Book.authors(book);
-      expect(result).toEqual([
-        { name: "Author 1" },
-        { name: "Author 2" },
-      ]);
+      expect(result).toEqual([{ name: "Author 1" }, { name: "Author 2" }]);
     });
 
     it("should return genres for a book", async () => {
       const book = { genres: ["Fantasy", "Adventure"] };
       const result = await resolvers.Book.genres(book);
-      expect(result).toEqual([
-        { name: "Fantasy" },
-        { name: "Adventure" },
-      ]);
+      expect(result).toEqual([{ name: "Fantasy" }, { name: "Adventure" }]);
     });
 
     it("should return publisher for a book", async () => {

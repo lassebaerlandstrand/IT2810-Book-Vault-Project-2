@@ -39,7 +39,7 @@ const BookCard = ({ book }: BookCardProps) => {
             title={book.authors.join(', ')}
             className={styles.bookAuthor}
           >
-            {book.authors[0]} {book.authors.length > 1 ? 'et al.' : ''}
+            {book.authors[0].name} {book.authors.length > 1 ? 'et al.' : ''}
           </Text>
         </Card.Section>
       </Card>

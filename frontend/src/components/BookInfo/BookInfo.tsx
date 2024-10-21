@@ -14,7 +14,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
           {book.title}
         </Text>
         <Text size="md" c="dimmed">
-          {book.authors[0]} {book.authors.length > 1 ? 'et al.' : ''}
+          {book.authors[0].name} {book.authors.length > 1 ? 'et al.' : ''}
         </Text>
       </Container>
       <Flex gap="sm" justify="center" align="center" direction="row" wrap="wrap">
