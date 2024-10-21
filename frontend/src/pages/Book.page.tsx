@@ -4,6 +4,7 @@ import { Container, Group } from '@mantine/core';
 import { fetchBook } from '@/api/dummyApi';
 import BookInfo from '@/components/BookInfo/BookInfo';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
+import Ratings from '@/components/Ratings/Ratings';
 import { Book as BookType } from '@/generated/graphql';
 
 const Book = () => {
@@ -29,6 +30,7 @@ const Book = () => {
     <Group justify="center">
       <Container>
         <BookInfo book={book} />
+        <Ratings book={book} />
       </Container>
     </Group>
   );

@@ -36,8 +36,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const wantToRead: string[] = ['7046495-lover-mine'];
   const haveRead: string[] = ['7046495-lover-mine'];
 
-  const ratings: BookRating[] = [{ id: '7046495-lover-mine', rating: 5 }];
-
+  const ratings: BookRating[] = [
+    { id: '7046495-lover-mine', rating: 5 },
+    { id: '6917952-burned', rating: 4.5 },
+  ];
   return (
     <UserContext.Provider value={{ UUID, name, at, wantToRead, haveRead, ratings }}>
       {children}

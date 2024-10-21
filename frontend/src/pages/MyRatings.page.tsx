@@ -4,11 +4,11 @@ import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Container, Drawer, Flex, Group, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { fetchBooks, fetchRatedBooks, fetchTotalRatedBooksWithFilters } from '@/api/dummyApi';
-import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
 import LoadingCircle from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
+import RatingGrid from '@/components/RatingGrid/RatingGrid';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
 import { useUser } from '@/contexts/UserFunctions';
@@ -172,7 +172,7 @@ export function MyRatings() {
           </Container>
         )}
         <Container flex={1} px={0}>
-          <BookCardGrid books={books} ratings={user.ratings} />
+          <RatingGrid books={books} ratings={user.ratings} />
         </Container>
       </Flex>
 
