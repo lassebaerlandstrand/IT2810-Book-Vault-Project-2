@@ -9,7 +9,7 @@ export const dummyBook: Book = {
   publisher: 'A company',
   title: 'A name',
   bookFormat: 'Paper',
-  characters: 'A swedish person that is dumb',
+  characters: '["A swedish person that is dumb"]',
   description: 'A deep book about deep topics',
   isbn: '999999999',
   language: 'Swedish',

@@ -15,39 +15,82 @@ exports[`Layout > matches snapshot 1`] = `
   <style
     data-mantine-styles="inline"
   >
-    :root{--app-shell-header-height:calc(3.5rem * var(--mantine-scale));--app-shell-header-offset:calc(3.5rem * var(--mantine-scale));--app-shell-padding:var(--mantine-spacing-md);}
+    :root{--app-shell-header-height:calc(3.5rem * var(--mantine-scale));--app-shell-header-offset:calc(3.5rem * var(--mantine-scale));--app-shell-padding:var(--mantine-spacing-xl);}
   </style>
   <div
-    class="right-scroll-bar-position m_89ab340 mantine-AppShell-root"
+    class="m_89ab340 mantine-AppShell-root"
     data-resizing="true"
-    style="--app-shell-transition-duration: 200ms; --app-shell-transition-timing-function: ease;"
+    style="--app-shell-transition-duration: 200ms; --app-shell-transition-timing-function: ease; width: calc(100vw - 0px);"
   >
     <header
       class="m_3b16f56b mantine-AppShell-header right-scroll-bar-position _header_0c8bf9"
       data-with-border="true"
-      style="--app-shell-header-z-index: 100;"
+      style="width: 100vw; padding-right: 0px; --app-shell-header-z-index: 100;"
     >
       <div
         class="_wrapper_c634d8 m_7485cace mantine-Container-root"
-        data-size="md"
-        style="--container-size: var(--container-size-md);"
       >
+        <a
+          class="_logo_c634d8"
+          href="/"
+        >
+          <img
+            class="m_9e117634 mantine-Image-root"
+            src="/project2/src/assets/BookVaultLogo.png"
+          />
+          <h3
+            class="_title_c634d8 m_8a5d1357 mantine-Title-root"
+            data-order="3"
+            style="--title-fw: var(--mantine-h3-font-weight); --title-lh: var(--mantine-h3-line-height); --title-fz: var(--mantine-h3-font-size);"
+          >
+            Book Vault
+          </h3>
+        </a>
         <div
           class="_linksDesktop_c634d8 m_4081bf90 mantine-Group-root"
-          style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+          style="--group-gap: var(--mantine-spacing-sm); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
         >
           <a
-            class="_link_c634d8 _active_c634d8"
+            class="_link_c634d8"
             href="/"
           >
             HOME
           </a>
           <a
-            class="_link_c634d8 "
+            class="_link_c634d8"
             href="/books"
           >
             BOOKS
           </a>
+          <button
+            aria-label="Change color theme"
+            class="mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
+            data-size="lg"
+            data-variant="default"
+            style="--ai-size: var(--ai-size-lg); --ai-bg: var(--mantine-color-default); --ai-hover: var(--mantine-color-default-hover); --ai-color: var(--mantine-color-default-color); --ai-bd: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-default-border);"
+            type="button"
+          >
+            <span
+              class="m_8d3afb97 mantine-ActionIcon-icon"
+            >
+              <svg
+                class="tabler-icon tabler-icon-moon "
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+                />
+              </svg>
+            </span>
+          </button>
         </div>
         <button
           class="mantine-focus-auto _burgerIcon_c634d8 m_fea6bf1a mantine-Burger-root m_87cf2631 mantine-UnstyledButton-root"

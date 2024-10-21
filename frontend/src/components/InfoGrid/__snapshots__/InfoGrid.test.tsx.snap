@@ -14,7 +14,7 @@ exports[`InfoGrid component > matches snapshot 1`] = `
   </style>
   <div
     class="_paperBackground_e10025 m_1b7284a3 mantine-Paper-root"
-    style="--paper-radius: var(--mantine-radius-md); --paper-shadow: var(--mantine-shadow-xs);"
+    style="--paper-radius: var(--mantine-radius-md); --paper-shadow: var(--mantine-shadow-sm); margin-block: var(--mantine-spacing-xl);"
   >
     <style
       data-mantine-styles="inline"
