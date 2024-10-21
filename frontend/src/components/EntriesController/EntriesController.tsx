@@ -1,11 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
 import { Select } from '@mantine/core';
-import { usePaginationParams } from '@/hooks/usePaginationParams';
+import { getPaginationParams } from '@/utils/pagination';
 import styles from './EntriesController.module.css';
 
 const EntriesController = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { limit, DEFAULT_LIMIT, LIMIT_OPTIONS } = usePaginationParams();
+  const { limit, DEFAULT_LIMIT, LIMIT_OPTIONS } = getPaginationParams(searchParams);
 
   const handleEntiresLimitChange = (newLimit: string | null) => {
     const newParams = new URLSearchParams(searchParams.toString());

@@ -3,8 +3,8 @@ import { MemoryRouter } from 'react-router-dom';
 import * as reactRouterDom from 'react-router-dom'; // This was the only was to get spyOn to work with useSearchParams
 import EntriesController from './EntriesController';
 
-vi.mock('@/hooks/usePaginationParams', () => ({
-  usePaginationParams: vi.fn(() => ({
+vi.mock('@/utils/pagination', () => ({
+  getPaginationParams: vi.fn(() => ({
     page: 1,
     limit: 10,
     DEFAULT_LIMIT: 25,

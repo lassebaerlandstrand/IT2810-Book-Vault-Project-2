@@ -9,6 +9,7 @@ interface OrderByInput {
 }
 
 interface BooksQueryArgs {
+  search?: string;
   limit?: number;
   offset?: number;
   orderBy?: OrderByInput;
@@ -27,8 +28,8 @@ const resolvers = {
     parseValue(value: string | number) {
       return new Date(value);
     },
-    serialize(value) {
-      return value;
+    serialize(value: number) {
+      return new Date(value);
     },
     parseLiteral(ast) {
       if (ast.kind === Kind.STRING && ast.value.match(/^\d+$/)) {
@@ -45,6 +46,7 @@ const resolvers = {
     async books(
       _,
       {
+        search,
         limit = 10,
         offset = 0,
         orderBy,
@@ -58,6 +60,7 @@ const resolvers = {
       const collection = db.collection("books");
 
       interface MongoBookFilters {
+        $text?: { $search: string };
         publishDate?: { $lt?: number; $gt?: number };
         authors?: { $in: string[] };
         genres?: { $in: string[] };
@@ -65,10 +68,17 @@ const resolvers = {
       }
 
       const filters: MongoBookFilters = {};
-      if (beforeDate) {
-        filters.publishDate = { $lt: beforeDate.valueOf() };
+      if (search) {
+        filters.$text = { $search: search };
       }
-      if (afterDate) {
+      if (beforeDate && afterDate) {
+        filters.publishDate = {
+          $lt: beforeDate.valueOf(),
+          $gt: afterDate.valueOf(),
+        };
+      } else if (beforeDate) {
+        filters.publishDate = { $lt: beforeDate.valueOf() };
+      } else if (afterDate) {
         filters.publishDate = { $gt: afterDate.valueOf() };
       }
       if (authors) {

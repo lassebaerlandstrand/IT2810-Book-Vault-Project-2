@@ -70,6 +70,7 @@ type Publisher {
 type Query {
   "Retrieve a list of books with optional filters"
   books(
+    search: String
     limit: Int
     offset: Int
     orderBy: SortByInput

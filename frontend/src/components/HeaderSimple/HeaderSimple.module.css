@@ -1,23 +1,14 @@
-.header {
-  height: rem(56px);
-  margin-bottom: rem(120px);
-  background-color: var(--mantine-color-body);
-  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-}
-
-.inner {
-  height: rem(56px);
+.wrapper {
+  height: var(--app-shell-header-height);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  padding: 0 var(--mantine-spacing-xl);
 }
 
 .linksDesktop {
   display: none;
+  height: 100%;
 }
 
 .link {
@@ -54,14 +45,15 @@
 }
 
 .burgerIcon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   z-index: 110;
   cursor: pointer;
 }
 
-@media (min-width: 768px) {
+@media (min-width: $mantine-breakpoint-xs) {
+  .wrapper {
+    justify-content: space-between;
+  }
+
   .mobileMenu {
     display: none;
   }
