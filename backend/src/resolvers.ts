@@ -117,12 +117,13 @@ const resolvers = {
           });
         }
       }
-      const totalCount = await collection.countDocuments(filters);
-      const totalPages = Math.ceil(totalCount / limit);
+      const totalBooks = await collection.countDocuments(filters);
+      const totalPages = Math.ceil(totalBooks / limit);
       const currentPage = Math.floor(offset / limit) + 1;
       const isLastPage = currentPage >= totalPages;
+      const skip = offset * limit;
 
-      pipeline.push({ $skip: offset });
+      pipeline.push({ $skip: skip });
       pipeline.push({ $limit: limit });
       const books = await collection.aggregate(pipeline).toArray();
 
@@ -132,6 +133,9 @@ const resolvers = {
           totalPages,
           currentPage,
           isLastPage,
+        },
+        summary: {
+          totalBooks,
         },
       };
     },

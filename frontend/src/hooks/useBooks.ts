@@ -13,6 +13,7 @@ export const useBooks = ({ limit, page }: UseBooksArgs) => {
 
   return {
     books: data?.books.books,
+    totalBooks: data?.books.summary.totalBooks,
     loading,
     error,
   };

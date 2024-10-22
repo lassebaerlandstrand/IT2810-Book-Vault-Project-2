@@ -7,10 +7,15 @@ type PaginationInfo {
   isLastPage: Boolean!
 }
 
+type BookSummary {
+  totalBooks: Int!
+}
+
 "Paginated list of books"
 type BookPagination {
   books: [Book!]!
   pagination: PaginationInfo!
+  summary: BookSummary!
 }
 
 type Book {

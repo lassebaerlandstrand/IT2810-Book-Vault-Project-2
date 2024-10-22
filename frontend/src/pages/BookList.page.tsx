@@ -28,7 +28,6 @@ export function BookList() {
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
-  const [totalBooks, setTotalBooks] = useState(0);
   const [searchTime, setSearchTime] = useState(0);
 
   const { sortBy, sortOrder, genres, authors, publishers } = getFilterParams(searchParams);
@@ -45,6 +44,7 @@ export function BookList() {
 
   const {
     books: books,
+    totalBooks,
     loading: booksLoading,
     error: booksError,
   } = useBooks({
@@ -52,7 +52,7 @@ export function BookList() {
     page,
   });
 
-  const formattedTotalBooks = formatNumberWithSpaces(totalBooks.toString());
+  const formattedTotalBooks = totalBooks ? formatNumberWithSpaces(totalBooks.toString()) : '';
 
   useEffect(() => {
     onSearch(false);
@@ -108,7 +108,6 @@ export function BookList() {
     //   newSearchValue
     // );
     // setBooks(books);
-    setTotalBooks(totalBooks);
 
     setSearchTime(performance.now() - startTime);
   };
@@ -175,7 +174,9 @@ export function BookList() {
 
       <Flex justify="space-between" align="flex-end" gap="md">
         <Text>
-          {formattedTotalBooks} results in {(searchTime / 1000).toFixed(4)} seconds
+          {booksLoading
+            ? 'Loading...'
+            : `${formattedTotalBooks} results in ${(searchTime / 1000).toFixed(4)} seconds`}
         </Text>
         <EntriesController />
       </Flex>
