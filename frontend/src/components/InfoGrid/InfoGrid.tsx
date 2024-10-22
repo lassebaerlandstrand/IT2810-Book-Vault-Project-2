@@ -12,7 +12,7 @@ const InfoGrid = ({ book }: InfoGridProps) => {
     { header: 'Author', description: book.authors.map((author) => author.name).join(', ') },
     { header: 'Publisher', description: book.publisher.name },
     { header: 'Genres', description: book.genres.map((genre) => genre.name).join(', ') },
-    { header: 'Rating', description: book.rating },
+    { header: 'Rating', description: book.rating.toFixed(1) },
     { header: 'Pages', description: book.pages },
     { header: 'Format', description: book.bookFormat },
     {
