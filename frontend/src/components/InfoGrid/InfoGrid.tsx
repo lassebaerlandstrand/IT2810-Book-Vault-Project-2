@@ -9,15 +9,15 @@ type InfoGridProps = {
 const InfoGrid = ({ book }: InfoGridProps) => {
   const tableInfos = [
     { header: 'Title', description: book.title },
-    { header: 'Author', description: book.authors.join(', ') },
+    { header: 'Author', description: book.authors.map((author) => author.name).join(', ') },
     { header: 'Publisher', description: book.publisher.name },
-    { header: 'Genres', description: book.genres.join(', ') },
+    { header: 'Genres', description: book.genres.map((genre) => genre.name).join(', ') },
     { header: 'Rating', description: book.rating },
     { header: 'Pages', description: book.pages },
     { header: 'Format', description: book.bookFormat },
     {
       header: 'Characters',
-      description: book.characters || 'No characters registered',
+      description: book.characters?.join(', ') ?? 'No characters registered',
     },
     { header: 'ISBN', description: book.isbn },
     { header: 'Language', description: book.language },

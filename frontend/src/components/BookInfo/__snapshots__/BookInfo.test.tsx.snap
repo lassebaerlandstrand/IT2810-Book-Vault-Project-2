@@ -24,14 +24,14 @@ exports[`BookInfo component > matches snapshot 1`] = `
         data-size="lg"
         style="--text-fz: var(--mantine-font-size-lg); --text-lh: var(--mantine-line-height-lg); font-weight: 700;"
       >
-        A name
+        A title
       </h1>
       <p
         class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         data-size="md"
         style="--text-fz: var(--mantine-font-size-md); --text-lh: var(--mantine-line-height-md);"
       >
-        An author 
+        A name 
       </p>
     </div>
     <div
@@ -39,7 +39,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
       style="gap: var(--mantine-spacing-sm); align-items: center; justify-content: center; flex-wrap: wrap; flex-direction: row;"
     >
       <img
-        alt="Cover image for A name"
+        alt="Cover image for A title"
         class="m_9e117634 mantine-Image-root"
         sizes="xs"
         src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
@@ -57,7 +57,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
           <p
             class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
           >
-            A genre
+            [object Object]
           </p>
           <div
             class="m_8bffd616 mantine-Flex-root __m__-r32"
@@ -386,7 +386,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <p
                 class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
               >
-                A name
+                A title
               </p>
             </div>
             <style
@@ -406,7 +406,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <p
                 class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
               >
-                An author
+                A name
               </p>
             </div>
             <style
@@ -426,7 +426,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <p
                 class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
               >
-                A company
+                A publisher
               </p>
             </div>
             <style
@@ -526,7 +526,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <p
                 class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
               >
-                A swedish person that is dumb
+                A character
               </p>
             </div>
             <style

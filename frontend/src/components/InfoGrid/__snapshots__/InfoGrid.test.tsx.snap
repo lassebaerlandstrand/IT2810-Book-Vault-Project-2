@@ -44,7 +44,7 @@ exports[`InfoGrid component > matches snapshot 1`] = `
           <p
             class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
           >
-            A name
+            A title
           </p>
         </div>
         <style
@@ -64,7 +64,7 @@ exports[`InfoGrid component > matches snapshot 1`] = `
           <p
             class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
           >
-            An author
+            A name
           </p>
         </div>
         <style
@@ -84,7 +84,7 @@ exports[`InfoGrid component > matches snapshot 1`] = `
           <p
             class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
           >
-            A company
+            A publisher
           </p>
         </div>
         <style
@@ -184,7 +184,7 @@ exports[`InfoGrid component > matches snapshot 1`] = `
           <p
             class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
           >
-            A swedish person that is dumb
+            A character
           </p>
         </div>
         <style
