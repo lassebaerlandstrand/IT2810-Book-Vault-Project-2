@@ -20,6 +20,10 @@ interface BooksQueryArgs {
   publishers?: string[];
 }
 
+interface BookQueryArgs {
+  id: string;
+}
+
 const resolvers = {
   Date: new GraphQLScalarType({
     name: "Date",
@@ -130,6 +134,10 @@ const resolvers = {
           isLastPage,
         },
       };
+    },
+
+    async book(_, { id }: BookQueryArgs) {
+      return await db.collection("books").findOne({ _id: id });
     },
 
     async authors() {
