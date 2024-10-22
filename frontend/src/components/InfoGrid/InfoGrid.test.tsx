@@ -7,7 +7,7 @@ const tableInfos = [
   { header: 'Author', description: dummyBook.authors.map((author) => author.name).join(', ') },
   { header: 'Publisher', description: dummyBook.publisher.name },
   { header: 'Genres', description: dummyBook.genres.map((genre) => genre.name).join(', ') },
-  { header: 'Rating', description: dummyBook.rating },
+  { header: 'Rating', description: dummyBook.rating.toFixed(1) },
   { header: 'Pages', description: dummyBook.pages },
   { header: 'Format', description: dummyBook.bookFormat },
   {
@@ -21,8 +21,6 @@ const tableInfos = [
 describe('InfoGrid component', () => {
   test('renders the InfoGrid component properly based on input book', () => {
     render(<InfoGrid book={dummyBook} />);
-
-    console.log(tableInfos);
 
     tableInfos.forEach((info) => {
       expect(screen.getByText(info.header)).toBeInTheDocument();

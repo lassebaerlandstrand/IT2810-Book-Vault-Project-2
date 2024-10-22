@@ -48,13 +48,9 @@ export function BookList() {
     loading: booksLoading,
     error: booksError,
   } = useBooks({
-    limit: limit,
-    page: page,
+    limit,
+    page,
   });
-
-  useEffect(() => {
-    console.log(books);
-  }, [books]);
 
   const formattedTotalBooks = formatNumberWithSpaces(totalBooks.toString());
 
