@@ -2,16 +2,16 @@ import { useQuery } from '@apollo/client';
 import { GET_BOOK } from '@/graphql/queries/books';
 
 type UseBookArgs = {
-  id: string;
+  bookId: string;
 };
 
-export const useBooks = ({ id }: UseBookArgs) => {
+export const useBook = ({ bookId }: UseBookArgs) => {
   const { data, loading, error } = useQuery(GET_BOOK, {
-    variables: { id },
+    variables: { bookId },
   });
 
   return {
-    books: data?.books.books,
+    books: data?.book,
     loading,
     error,
   };

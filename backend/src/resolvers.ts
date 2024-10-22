@@ -136,14 +136,14 @@ const resolvers = {
       };
     },
 
-    async book(_, { id }: BookQueryArgs) {
-      return await db.collection("books").findOne({ _id: id });
-    },
-
     async authors() {
       return (await db.collection("books").distinct("authors")).map(
         (author) => ({ name: author })
       );
+    },
+
+    async book(_, { id }: BookQueryArgs) {
+      return await db.collection("books").findOne({ id: id });
     },
 
     async genres() {

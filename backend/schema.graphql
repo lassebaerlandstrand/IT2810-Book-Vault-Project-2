@@ -83,6 +83,8 @@ type Query {
     publishers: [ID!]
   ): BookPagination!
 
+  book(id: String!): Book!
+
   "Retrieve a list of authors"
   authors: [Author!]!
 
