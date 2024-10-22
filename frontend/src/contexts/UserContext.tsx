@@ -1,5 +1,7 @@
-import React, { createContext, ReactNode, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, { createContext, ReactNode } from 'react';
+import { Text } from '@mantine/core';
+import { makeUser } from '@/hooks/makeUser';
+import { useUserHook } from '@/hooks/useUserHook';
 
 type BookRating = {
   id: string;
@@ -20,23 +22,20 @@ interface UserContextProps {
 export const UserContext = createContext<UserContextProps | undefined>(undefined);
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [UUID, setUUID] = useState<string>(() => {
-    const storedUUID = localStorage.getItem('user');
-    if (!storedUUID) {
-      const newUUID = uuidv4();
-      localStorage.setItem('user', newUUID);
-      return newUUID;
+  const userFunction = () => {
+    const UUID = localStorage.getItem('userID');
+    if (UUID) {
+      const oldUser = useUserHook({ UUID });
+      console.log(oldUser);
+      return oldUser;
+    } else {
+      const newUser = makeUser();
+      if (newUser.user) localStorage.setItem('userID', newUser.user.UUID);
+      console.log(newUser);
+      return newUser;
     }
-    return storedUUID;
-  });
-
-  // Dummy data
-  const name = 'Cool Monkey';
-  const at = new Date();
-
-  // WantToRead and haveRead to be implemented in other issues
-  const wantToRead: string[] = ['7046495-lover-mine'];
-  const haveRead: string[] = ['7046495-lover-mine'];
+  };
+  const { user, loading, error } = userFunction();
 
   const ratings: BookRating[] = [
     {
@@ -54,9 +53,24 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       at: new Date(),
     },
   ];
-  return (
-    <UserContext.Provider value={{ UUID, name, at, wantToRead, haveRead, ratings }}>
-      {children}
-    </UserContext.Provider>
-  );
+
+  if (loading) {
+    return <Text>Loading</Text>;
+  }
+
+  if (user)
+    return (
+      <UserContext.Provider
+        value={{
+          UUID: user.UUID,
+          name: user.name,
+          at: user.at,
+          wantToRead: user.wantToRead,
+          haveRead: user.haveRead,
+          ratings,
+        }}
+      >
+        {children}
+      </UserContext.Provider>
+    );
 };

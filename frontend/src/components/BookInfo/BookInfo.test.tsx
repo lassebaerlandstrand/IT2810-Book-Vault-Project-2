@@ -6,7 +6,7 @@ describe('BookInfo component', () => {
   test('renders the rating properly', () => {
     render(<BookInfo book={dummyBook} />);
 
-    expect(screen.getByText(Math.round(dummyBook.rating * 10) / 10)).toBeInTheDocument();
+    expect(screen.getAllByText(dummyBook.rating.toFixed(1))).toHaveLength(2);
   });
 
   it('matches snapshot', () => {

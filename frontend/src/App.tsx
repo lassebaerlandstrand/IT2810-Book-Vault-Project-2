@@ -1,16 +1,20 @@
 import '@mantine/core/styles.css';
 
+import { ApolloProvider } from '@apollo/client';
 import { MantineProvider } from '@mantine/core';
 import { UserProvider } from './contexts/UserContext';
+import { client } from './graphql/apolloClient';
 import { Router } from './Router';
 import { theme } from './theme';
 
 export default function App() {
   return (
     <MantineProvider theme={theme}>
-      <UserProvider>
-        <Router />
-      </UserProvider>
+      <ApolloProvider client={client}>
+        <UserProvider>
+          <Router />
+        </UserProvider>
+      </ApolloProvider>
     </MantineProvider>
   );
 }

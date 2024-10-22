@@ -1,9 +1,0 @@
-schema: '../backend/schema.graphql' # Use your server URL or path to schema file
-documents:
-  - 'src/**/*.graphql' # If you have .graphql files for your queries/mutations
-  - 'src/graphql/queries.ts'
-generates:
-  src/generated/graphql.ts: # Path where the types will be generated
-    plugins:
-      - 'typescript'
-      - 'typescript-resolvers'

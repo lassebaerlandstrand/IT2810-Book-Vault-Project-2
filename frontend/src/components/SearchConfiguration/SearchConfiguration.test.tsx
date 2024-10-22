@@ -5,9 +5,9 @@ import SearchConfiguration from './SearchConfiguration';
 vi.mock('@/api/dummyApi');
 
 describe('SearchConfiguration', () => {
-  const genres = ['Fiction', 'Non-Fiction'];
-  const publishers = ['Publisher1', 'Publisher2'];
-  const authors = ['Author1', 'Author2'];
+  const genres = [{ name: 'Fiction' }, { name: 'Non-Fiction' }];
+  const publishers = [{ name: 'Publisher1' }, { name: 'Publisher2' }];
+  const authors = [{ name: 'Author1' }, { name: 'Author2' }];
 
   test('renders SearchConfiguration', () => {
     const { asFragment } = render(

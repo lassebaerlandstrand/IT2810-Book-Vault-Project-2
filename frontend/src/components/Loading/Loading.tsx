@@ -1,9 +1,9 @@
-import { Center, Loader } from '@mantine/core';
+import { Center, Loader, LoaderProps } from '@mantine/core';
 
-const Loading = () => {
+const Loading = (props: LoaderProps) => {
   return (
     <Center my={100}>
-      <Loader size="xl" type="dots" />
+      <Loader size="xl" type="dots" {...props} />
     </Center>
   );
 };
