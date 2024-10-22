@@ -1,95 +1,99 @@
 import { useEffect, useState } from 'react';
 import { IconSortAscending, IconSortDescending } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
-import { Center, InputLabel, MultiSelect, SegmentedControl } from '@mantine/core';
-import { Author, Genre, Publisher } from '@/generated/graphql';
-import { getFilterParams, SortBy, SortOrder } from '@/utils/filters';
+import { Center, Drawer, InputLabel, MultiSelect, SegmentedControl } from '@mantine/core';
+import { Author, Genre, Publisher, SortBy, SortOrder } from '@/generated/graphql';
+import { getFilterParams } from '@/utils/filters';
+import { DEFAULT_PAGE } from '@/utils/pagination';
 import { updateQueryParams } from '@/utils/queryParams';
 import styles from './SearchConfiguration.module.css';
 
-interface SearchConfigurationProps {
+type Updates = {
+  [key: string]: string | string[];
+};
+
+type SearchConfigurationProps = {
   genres: Genre[];
   publishers: Publisher[];
   authors: Author[];
-  applyFiltersImmediately?: boolean;
-  onSearch?: (
-    resetPage: boolean,
-    newSearchValue?: string,
-    newGenres?: string[],
-    newPublishers?: string[],
-    newAuthors?: string[],
-    newSortBy?: SortBy,
-    newSortOrder?: SortOrder,
-    applyFiltersImmediately?: boolean
-  ) => void;
-}
+  useDrawer: boolean;
+  opened?: boolean;
+  close?: () => void;
+};
 
 const SearchConfiguration = ({
   genres,
   publishers,
   authors,
-  applyFiltersImmediately,
-  onSearch,
+  useDrawer,
+  opened,
+  close,
 }: SearchConfigurationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [sortBy, setSortBy] = useState<SortBy>(SortBy.Book);
-  const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.Ascending);
-  const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
-  const [selectedPublishers, setSelectedPublishers] = useState<string[]>([]);
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
+  const {
+    sortBy: initialSortBy,
+    sortOrder: initialSortOrder,
+    genres: initialGenres,
+    publishers: initialPublishers,
+    authors: initialAuthors,
+  } = getFilterParams(searchParams);
+
+  const [sortBy, setSortBy] = useState<SortBy>(initialSortBy);
+  const [sortOrder, setSortOrder] = useState<SortOrder>(initialSortOrder);
+  const [selectedGenres, setSelectedGenres] = useState<string[]>(initialGenres);
+  const [selectedPublishers, setSelectedPublishers] = useState<string[]>(initialPublishers);
+  const [selectedAuthors, setSelectedAuthors] = useState<string[]>(initialAuthors);
+  const [updates, setUpdates] = useState<Updates>({});
+  const [shouldUpdateParams, setShouldUpdateParams] = useState(false);
+
+  // Update search params. If useDrawer is true, we wait to apply the changes until the drawer is closed
   useEffect(() => {
-    const { sortBy, sortOrder, genres, publishers, authors } = getFilterParams(searchParams);
-
-    setSortBy(sortBy);
-    setSortOrder(sortOrder);
-    setSelectedAuthors(authors);
-    setSelectedPublishers(publishers);
-    setSelectedGenres(genres);
-  }, [searchParams]);
-
-  const handleParamChange = (key: string, value: string | string[]) => {
-    if (applyFiltersImmediately && onSearch) {
-      const newSortBy = key === 'sortBy' ? (value as SortBy) : sortBy;
-      const newSortOrder = key === 'sortOrder' ? (value as SortOrder) : sortOrder;
-      const newGenres = key === 'genres' ? (value as string[]) : selectedGenres;
-      const newPublishers = key === 'publishers' ? (value as string[]) : selectedPublishers;
-      const newAuthors = key === 'authors' ? (value as string[]) : selectedAuthors;
-
-      onSearch(
-        true,
-        undefined,
-        newGenres,
-        newPublishers,
-        newAuthors,
-        newSortBy,
-        newSortOrder,
-        true
-      );
-    } else {
-      updateQueryParams(setSearchParams, key, value);
+    if (shouldUpdateParams && !useDrawer) {
+      updateParameters();
+      setShouldUpdateParams(false);
     }
+  }, [shouldUpdateParams, useDrawer]);
+
+  if (useDrawer && (close == null || opened == null)) {
+    throw new Error('open and close functions must be provided when useDrawer is true');
+  }
+
+  const handleParamsChange = (key: string, value: string | string[]) => {
+    setUpdates((current) => ({ ...current, [key]: value }));
+    setShouldUpdateParams(true);
   };
 
-  return (
+  const updateParameters = () => {
+    updateQueryParams(setSearchParams, 'page', DEFAULT_PAGE.toString());
+    Object.entries(updates).forEach(([key, value]) => {
+      updateQueryParams(setSearchParams, key, value);
+    });
+    setUpdates({});
+  };
+
+  const content = (
     <>
       <InputLabel>Sort by:</InputLabel>
       <SegmentedControl
         classNames={{ innerLabel: styles.innerLabel }}
         data={[
-          { label: 'Book name', value: SortBy.Book },
-          { label: 'Author name', value: SortBy.Author },
-          { label: 'Publisher name', value: SortBy.Publisher },
+          { label: 'Book name', value: SortBy.BookName },
+          { label: 'Author name', value: SortBy.AuthorName },
+          { label: 'Publisher name', value: SortBy.PublisherName },
         ]}
         value={sortBy}
-        onChange={(value) => handleParamChange('sortBy', value)}
+        onChange={(value) => {
+          setSortBy(value as SortBy);
+          handleParamsChange('sortBy', value);
+        }}
         fullWidth
       />
       <SegmentedControl
         classNames={{ innerLabel: styles.innerLabel }}
         data={[
           {
-            value: SortOrder.Ascending,
+            value: SortOrder.Asc,
             label: (
               <Center>
                 <IconSortAscending /> Ascending
@@ -97,7 +101,7 @@ const SearchConfiguration = ({
             ),
           },
           {
-            value: SortOrder.Descending,
+            value: SortOrder.Desc,
             label: (
               <Center>
                 <IconSortDescending /> Descending
@@ -106,7 +110,10 @@ const SearchConfiguration = ({
           },
         ]}
         value={sortOrder}
-        onChange={(value) => handleParamChange('sortOrder', value)}
+        onChange={(value) => {
+          setSortOrder(value as SortOrder);
+          handleParamsChange('sortOrder', value);
+        }}
         fullWidth
       />
       <MultiSelect
@@ -117,7 +124,10 @@ const SearchConfiguration = ({
         hidePickedOptions
         limit={10}
         value={selectedGenres}
-        onChange={(value) => handleParamChange('genres', value)}
+        onChange={(value) => {
+          setSelectedGenres(value);
+          handleParamsChange('genres', value);
+        }}
         searchable
       />
       <MultiSelect
@@ -128,7 +138,10 @@ const SearchConfiguration = ({
         hidePickedOptions
         limit={10}
         value={selectedPublishers}
-        onChange={(value) => handleParamChange('publishers', value)}
+        onChange={(value) => {
+          setSelectedPublishers(value);
+          handleParamsChange('publishers', value);
+        }}
         searchable
       />
       <MultiSelect
@@ -139,11 +152,31 @@ const SearchConfiguration = ({
         hidePickedOptions
         limit={10}
         value={selectedAuthors}
-        onChange={(value) => handleParamChange('authors', value)}
+        onChange={(value) => {
+          setSelectedAuthors(value);
+          handleParamsChange('authors', value);
+        }}
         searchable
       />
     </>
   );
+
+  if (useDrawer && opened != null && close != null) {
+    return (
+      <Drawer
+        opened={opened}
+        onClose={() => {
+          updateParameters();
+          close();
+        }}
+        title="Configure your search"
+      >
+        {content}
+      </Drawer>
+    );
+  }
+
+  return content;
 };
 
 export default SearchConfiguration;
