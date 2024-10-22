@@ -71,8 +71,6 @@ const resolvers = {
         publishers,
       }: BooksQueryArgs,
     ) {
-      console.log(authors);
-
       const collection = db.collection('books');
 
       interface MongoBookFilters {
@@ -114,7 +112,6 @@ const resolvers = {
         const sortOrder = sortInput.sortOrder == SortOrder.Ascending ? 1 : -1;
         switch (sortInput.sortBy) {
           case SortBy.Book:
-            console.log('sorting by book', sortOrder);
             pipeline.push({
               $sort: { title: sortOrder },
             });
@@ -140,8 +137,6 @@ const resolvers = {
 
       pipeline.push({ $skip: skip });
       pipeline.push({ $limit: limit });
-
-      console.log(pipeline);
 
       const books = await collection.aggregate(pipeline).toArray();
 

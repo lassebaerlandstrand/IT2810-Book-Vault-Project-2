@@ -23,7 +23,7 @@ import styles from './BookList.module.css';
 const formatNumberWithSpaces = (number: string) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
 export function BookList() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
@@ -50,6 +50,7 @@ export function BookList() {
   } = useBooks({
     limit,
     page,
+    search: searchValue,
     sortBy,
     sortOrder,
     authors,
@@ -57,7 +58,8 @@ export function BookList() {
     publishers,
   });
 
-  const formattedTotalBooks = totalBooks ? formatNumberWithSpaces(totalBooks.toString()) : '';
+  const formattedTotalBooks =
+    totalBooks != null ? formatNumberWithSpaces(totalBooks.toString()) : '';
 
   useEffect(() => {
     if (booksLoading) {

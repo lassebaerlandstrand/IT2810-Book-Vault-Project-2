@@ -122,13 +122,15 @@ const SearchConfiguration = ({
         placeholder="Pick value"
         data={genres.map((genre) => genre.name)}
         hidePickedOptions
-        limit={10}
+        limit={30}
         value={selectedGenres}
         onChange={(value) => {
           setSelectedGenres(value);
           handleParamsChange('genres', value);
         }}
         searchable
+        clearable
+        nothingFoundMessage="No genre matches your search"
       />
       <MultiSelect
         classNames={{ root: styles.multiSelect }}
@@ -136,13 +138,15 @@ const SearchConfiguration = ({
         placeholder="Pick value"
         data={publishers.map((publisher) => publisher.name)}
         hidePickedOptions
-        limit={10}
+        limit={30}
         value={selectedPublishers}
         onChange={(value) => {
           setSelectedPublishers(value);
           handleParamsChange('publishers', value);
         }}
         searchable
+        clearable
+        nothingFoundMessage="No publisher matches your search"
       />
       <MultiSelect
         classNames={{ root: styles.multiSelect }}
@@ -150,13 +154,15 @@ const SearchConfiguration = ({
         placeholder="Pick value"
         data={authors.map((author) => author.name)}
         hidePickedOptions
-        limit={10}
+        limit={30}
         value={selectedAuthors}
         onChange={(value) => {
           setSelectedAuthors(value);
           handleParamsChange('authors', value);
         }}
         searchable
+        clearable
+        nothingFoundMessage="No author matches your search"
       />
     </>
   );

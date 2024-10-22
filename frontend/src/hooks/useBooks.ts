@@ -31,9 +31,8 @@ export const useBooks = ({
     sortBy: sortBy,
     sortOrder: sortOrder,
   };
-
   const { data, loading, error } = useQuery(GET_BOOKS, {
-    variables: { limit, offset: page - 1, sortInput, authors },
+    variables: { limit, offset: page - 1, search, sortInput, authors, genres, publishers },
   });
 
   return {
