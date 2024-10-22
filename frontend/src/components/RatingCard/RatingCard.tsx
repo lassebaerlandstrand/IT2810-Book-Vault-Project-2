@@ -52,7 +52,7 @@ const RatingCard = ({ review, type }: RatingProps) => {
                     }
                   </Text>
                   <Text fw={500} size="sm" fs="italic" lineClamp={2}>
-                    {review.at}
+                    {new Date(review.at).toDateString()}
                   </Text>
                 </Stack>
               </Grid.Col>

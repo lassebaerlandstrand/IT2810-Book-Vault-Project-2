@@ -177,7 +177,7 @@ const resolvers = {
           UUID: rating.UUID,
           description: rating.description,
           rating: rating.rating,
-          at: rating.at,
+          at: new Date(rating.at),
           user: user,
           book: book,
         });
