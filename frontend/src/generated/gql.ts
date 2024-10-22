@@ -19,6 +19,7 @@ const documents = {
     "\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n": types.GetAuthorsDocument,
     "\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n": types.GetGenresDocument,
     "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n": types.GetPublishersDocument,
+    "\n  query GetBooksRatings($bookId: String!) {\n    bookRatings(id: $bookId) {\n      UUID\n      description\n      rating\n      at\n      user {\n        UUID\n        name\n        wantToRead\n        haveRead\n      }\n      book {\n        id\n        title\n        series\n        numberInSeries\n        language\n        isbn\n        coverImg\n        rating\n        numRatings\n        characters\n        bookFormat\n        pages\n        publishDate\n        awards\n        setting\n        publisher {\n          name\n        }\n        genres {\n          name\n        }\n        authors {\n          name\n        }\n        description\n      }\n    }\n  }\n": types.GetBooksRatingsDocument,
     "\n  query GetUser($UUID: String!) {\n    user(UUID: $UUID) {\n      UUID\n      name\n      wantToRead\n      haveRead\n    }\n  }\n": types.GetUserDocument,
 };
 
@@ -60,6 +61,10 @@ export function gql(source: "\n  query GetGenres {\n    genres {\n      name\n  
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetBooksRatings($bookId: String!) {\n    bookRatings(id: $bookId) {\n      UUID\n      description\n      rating\n      at\n      user {\n        UUID\n        name\n        wantToRead\n        haveRead\n      }\n      book {\n        id\n        title\n        series\n        numberInSeries\n        language\n        isbn\n        coverImg\n        rating\n        numRatings\n        characters\n        bookFormat\n        pages\n        publishDate\n        awards\n        setting\n        publisher {\n          name\n        }\n        genres {\n          name\n        }\n        authors {\n          name\n        }\n        description\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetBooksRatings($bookId: String!) {\n    bookRatings(id: $bookId) {\n      UUID\n      description\n      rating\n      at\n      user {\n        UUID\n        name\n        wantToRead\n        haveRead\n      }\n      book {\n        id\n        title\n        series\n        numberInSeries\n        language\n        isbn\n        coverImg\n        rating\n        numRatings\n        characters\n        bookFormat\n        pages\n        publishDate\n        awards\n        setting\n        publisher {\n          name\n        }\n        genres {\n          name\n        }\n        authors {\n          name\n        }\n        description\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

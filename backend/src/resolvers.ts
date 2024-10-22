@@ -29,6 +29,10 @@ interface UserQueryArgs {
   UUID: string;
 }
 
+interface BookRatingsQueryArgs {
+  id: string;
+}
+
 const resolvers = {
   Date: new GraphQLScalarType({
     name: 'Date',
@@ -155,6 +159,31 @@ const resolvers = {
 
     async user(_, { UUID }: UserQueryArgs) {
       return await db.collection('users').findOne({ UUID: UUID });
+    },
+
+    async bookRatings(_, { id }: BookRatingsQueryArgs) {
+      const ratings = await db.collection('ratings').find({ bookID: id }).toArray();
+      const book = await db.collection('books').findOne({ id: id });
+
+      // each user is only allowed to post 1 review,
+      // meaning each user will only be found once
+      // for each call to bookRatings resolver
+      const finishedRatings = [];
+      for (let i = 0; i < ratings.length; i++) {
+        const rating = ratings[i];
+        const user = await db.collection('users').findOne({ UUID: rating.userUUID });
+
+        finishedRatings.push({
+          UUID: rating.UUID,
+          description: rating.description,
+          rating: rating.rating,
+          at: rating.at,
+          user: user,
+          book: book,
+        });
+      }
+
+      return finishedRatings;
     },
 
     async genres() {

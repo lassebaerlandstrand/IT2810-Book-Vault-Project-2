@@ -82,6 +82,16 @@ type Publisher {
   name: ID!
 }
 
+type Rating {
+  "id for review"
+  UUID: ID!
+  description: String!
+  rating: Float!
+  at: Date!
+  user: User!
+  book: Book!
+}
+
 type Query {
   "Retrieve a list of books with optional filters"
   books(
@@ -99,6 +109,9 @@ type Query {
   book(id: String!): Book!
 
   user(UUID: String!): User!
+
+  "Retrieve ratings for book"
+  bookRatings(id: String!): [Rating!]!
 
   "Retrieve a list of authors"
   authors: [Author!]!

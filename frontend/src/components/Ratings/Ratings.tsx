@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button, Flex, Grid, Group, Rating, Stack, Text, Textarea } from '@mantine/core';
-import { Book } from '@/generated/graphql';
+import { Book, Rating as RatingType } from '@/generated/graphql';
+import { useBookRatings } from '@/hooks/useBookRatings';
 import RatingGrid from '../RatingGrid/RatingGrid';
 import styles from './Ratings.module.css';
 
@@ -8,45 +9,9 @@ type RatingsProps = {
   book: Book;
 };
 
-const reviews = [
-  {
-    user: {
-      name: 'Strong Monkey',
-      id: 'UUIDfdsfdsfds',
-    },
-    review: {
-      description:
-        'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet',
-      rating: 5,
-      at: new Date(),
-    },
-  },
-  {
-    user: {
-      name: 'Weak Monkey',
-      id: 'UUIDfdsfdsfds',
-    },
-    review: {
-      description: 'Lorem ipsum dolor sit amet',
-      rating: 3,
-      at: new Date(),
-    },
-  },
-  {
-    user: {
-      name: 'Bonkers Monkey',
-      id: 'UUIDfdsfdsfds',
-    },
-    review: {
-      description: 'Lorem ipsum dolor sit amet',
-      rating: 2,
-      at: new Date(),
-    },
-  },
-];
-
 const Ratings = ({ book }: RatingsProps) => {
   const [visible, setVisible] = useState(false);
+  const { ratings, loading, error } = useBookRatings({ id: book.id });
 
   const toggleTextbox = () => {
     setVisible((prev) => !prev);
@@ -99,7 +64,7 @@ const Ratings = ({ book }: RatingsProps) => {
           <></>
         )}
 
-        <RatingGrid reviews={reviews} />
+        <RatingGrid reviews={ratings as RatingType[]} type={'pfp'} />
       </Stack>
     </Group>
   );
