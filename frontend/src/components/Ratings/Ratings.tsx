@@ -8,6 +8,42 @@ type RatingsProps = {
   book: Book;
 };
 
+const reviews = [
+  {
+    user: {
+      name: 'Strong Monkey',
+      id: 'UUIDfdsfdsfds',
+    },
+    review: {
+      description: 'Lorem ipsum dolor sit amet',
+      rating: 5,
+      at: new Date(),
+    },
+  },
+  {
+    user: {
+      name: 'Weak Monkey',
+      id: 'UUIDfdsfdsfds',
+    },
+    review: {
+      description: 'Lorem ipsum dolor sit amet',
+      rating: 3,
+      at: new Date(),
+    },
+  },
+  {
+    user: {
+      name: 'Bonkers Monkey',
+      id: 'UUIDfdsfdsfds',
+    },
+    review: {
+      description: 'Lorem ipsum dolor sit amet',
+      rating: 2,
+      at: new Date(),
+    },
+  },
+];
+
 const Ratings = ({ book }: RatingsProps) => {
   const [visible, setVisible] = useState(false);
 
@@ -62,7 +98,7 @@ const Ratings = ({ book }: RatingsProps) => {
           <></>
         )}
 
-        <RatingGrid reviews={[]} />
+        <RatingGrid reviews={reviews} />
       </Stack>
     </Group>
   );

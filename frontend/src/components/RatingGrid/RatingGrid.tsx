@@ -11,13 +11,19 @@ type Review = {
   at: Date;
 };
 
-type ReviewAndBook = {
-  book: Book;
+type User = {
+  name: string;
+  id: string;
+};
+
+type RatingCardProps = {
+  book?: Book;
+  user?: User;
   review: Review;
 };
 
 type ReviewProps = {
-  reviews: ReviewAndBook[];
+  reviews: RatingCardProps[];
 };
 
 const RatingGrid = ({ reviews }: ReviewProps) => {
@@ -35,11 +41,17 @@ const RatingGrid = ({ reviews }: ReviewProps) => {
   return (
     <>
       <Grid my="xl" gutter="md">
-        {reviews.map((review) => (
-          <Grid.Col key={review.book.id} span={{ base: 12 }}>
-            <Link to={`/book/${review.book.id}`} className={styles.link}>
-              <RatingCard book={review.book} review={review.review} />
-            </Link>
+        {reviews.map((review, index) => (
+          <Grid.Col key={index} span={{ base: 12 }}>
+            {review.book ? (
+              <Link to={`/book/${review.book.id}`} className={styles.link}>
+                <RatingCard book={review.book} review={review.review} />
+              </Link>
+            ) : (
+              <Link to={`/user/${review.user?.id}`} className={styles.link}>
+                <RatingCard user={review.user} review={review.review} />
+              </Link>
+            )}
           </Grid.Col>
         ))}
       </Grid>
