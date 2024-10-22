@@ -75,7 +75,7 @@ const RatingCard = ({ book, user, review }: RatingProps) => {
                 </Flex>
               </Grid.Col>
               <Grid.Col span={12}>
-                <Text lineClamp={5}>{review.description}</Text>
+                <Text lineClamp={book && 5}>{review.description}</Text>
               </Grid.Col>
             </Grid>
           </Grid.Col>
