@@ -204,13 +204,27 @@ const resolvers = {
   Mutation: {
     async createUser() {
       const collection = db.collection('users');
+
+      const randomAdjective = await db
+        .collection('adjectives')
+        .aggregate([{ $sample: { size: 1 } }])
+        .toArray();
+
+      const randomNoun = await db
+        .collection('nouns')
+        .aggregate([{ $sample: { size: 1 } }])
+        .toArray();
+
+      const randomName = randomAdjective[0].word + ' ' + randomNoun[0].word;
+
       const newUser = {
         UUID: uuidv4(),
-        name: 'Default Name',
+        name: randomName,
         at: new Date(),
         wantToRead: [],
         haveRead: [],
       };
+
       await collection.insertOne(newUser);
       return newUser; // Return the created user
     },
