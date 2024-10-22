@@ -44,7 +44,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
         data-line-clamp="true"
         data-size="xs"
         style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-      />
+        title="A name"
+      >
+        A name 
+      </p>
     </div>
   </div>
 </DocumentFragment>

@@ -57,7 +57,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
           <p
             class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
           >
-            [object Object]
+            A genre
           </p>
           <div
             class="m_8bffd616 mantine-Flex-root __m__-r32"
@@ -466,7 +466,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <p
                 class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
               >
-                3.555
+                3.6
               </p>
             </div>
             <style
