@@ -7,10 +7,15 @@ type PaginationInfo {
   isLastPage: Boolean!
 }
 
+type BookSummary {
+  totalBooks: Int!
+}
+
 "Paginated list of books"
 type BookPagination {
   books: [Book!]!
   pagination: PaginationInfo!
+  summary: BookSummary!
 }
 
 type Book {
@@ -42,8 +47,10 @@ type Book {
   publishDate: Date!
   "List of awards the book has received"
   awards: [String!]
-  "Ratings received by the book, categorized by stars. Each index corresponds to the number of stars (0-5). For example, ratingsByStars[5] is the number of 5-star ratings."
-  ratingsByStars: [Int!]!
+  "Weighted sum of the ratings."
+  rating: Float!
+  "Total number of ratings."
+  numRatings: Int!
   "Setting of the book. A list of locations/periods where the book takes place"
   setting: [String!]
   "URL for the cover image of the book"
@@ -80,6 +87,8 @@ type Query {
     genres: [ID!]
     publishers: [ID!]
   ): BookPagination!
+
+  book(id: String!): Book!
 
   "Retrieve a list of authors"
   authors: [Author!]!

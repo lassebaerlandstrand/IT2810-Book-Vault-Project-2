@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Group } from '@mantine/core';
-import { fetchBook } from '@/api/dummyApi';
 import BookInfo from '@/components/BookInfo/BookInfo';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
-import { Book as BookType } from '@/generated/graphql';
+import Loading from '@/components/Loading/Loading';
+import { useBook } from '@/hooks/useBook';
 
 const Book = () => {
   const { bookId } = useParams<{ bookId: string }>();
-  const [book, setBook] = useState<BookType | null>();
-  useEffect(() => {
-    if (bookId) {
-      const fetchedBook = fetchBook(bookId);
-      setBook(fetchedBook);
-    }
-  }, [bookId]);
+  const { book, loading, error } = useBook({ bookId });
 
-  if (!book) {
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return (
+      <Error404
+        title="An error occurred"
+        description="An error occurred while trying to load the book."
+      />
+    );
+  }
+
+  if (!bookId || !book) {
     return (
       <Error404
         title="Not a valid book"
@@ -25,6 +31,7 @@ const Book = () => {
       />
     );
   }
+
   return (
     <Group justify="center">
       <Container>
