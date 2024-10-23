@@ -92,6 +92,16 @@ type Rating {
   book: Book!
 }
 
+type newRating {
+  "id for review"
+  UUID: ID!
+  description: String!
+  rating: Float!
+  at: Date!
+  userUUID: ID!
+  bookID: ID!
+}
+
 type Query {
   "Retrieve a list of books with optional filters"
   books(
@@ -125,6 +135,8 @@ type Query {
 
 type Mutation {
   createUser: User!
+
+  createReview(userUUID: String!, bookID: String!, description: String!, rating: Float!): newRating!
 }
 
 enum SortOrder {

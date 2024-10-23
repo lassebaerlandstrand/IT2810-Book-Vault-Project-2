@@ -6,6 +6,7 @@ export const GET_USER = gql(`
     user(UUID: $UUID) {
       UUID
       name
+      at
       wantToRead
       haveRead
     }

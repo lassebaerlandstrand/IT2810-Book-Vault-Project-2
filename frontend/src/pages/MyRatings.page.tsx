@@ -64,9 +64,6 @@ export function MyRatings() {
     );
     const bookAndReviews: ReviewAndBook[] = [];
     for (const book of returnedBooks) {
-      console.log(user.ratings);
-      console.log(book);
-      console.log(user.ratings.filter((review) => review.id == book.id));
       const { description, rating, at } = user.ratings.filter((review) => review.id == book.id)[0];
       bookAndReviews.push({ book: book, review: { description, rating, at } });
     }

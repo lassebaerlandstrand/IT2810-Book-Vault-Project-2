@@ -33,6 +33,13 @@ interface BookRatingsQueryArgs {
   id: string;
 }
 
+interface BookRatingMutationArgs {
+  userUUID: string;
+  bookID: string;
+  description: string;
+  rating: number;
+}
+
 const resolvers = {
   Date: new GraphQLScalarType({
     name: 'Date',
@@ -162,7 +169,11 @@ const resolvers = {
     },
 
     async bookRatings(_, { id }: BookRatingsQueryArgs) {
-      const ratings = await db.collection('ratings').find({ bookID: id }).toArray();
+      const ratings = await db
+        .collection('ratings')
+        .aggregate([{ $match: { bookID: id } }, { $sort: { at: -1 } }])
+        .toArray();
+
       const book = await db.collection('books').findOne({ id: id });
 
       // each user is only allowed to post 1 review,
@@ -256,6 +267,22 @@ const resolvers = {
 
       await collection.insertOne(newUser);
       return newUser; // Return the created user
+    },
+
+    async createReview(_, { userUUID, bookID, description, rating }: BookRatingMutationArgs) {
+      const collection = db.collection('ratings');
+
+      const newRating = {
+        UUID: uuidv4(),
+        description: description,
+        rating: rating,
+        at: new Date(),
+        userUUID: userUUID,
+        bookID: bookID,
+      };
+
+      await collection.insertOne(newRating);
+      return newRating;
     },
   },
 };

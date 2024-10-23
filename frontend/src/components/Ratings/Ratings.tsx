@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Button, Flex, Grid, Group, Rating, Stack, Text, Textarea } from '@mantine/core';
+import { Button, Flex, Grid, Group, Rating, Skeleton, Stack, Text, Textarea } from '@mantine/core';
+import { useUser } from '@/contexts/UserFunctions';
 import { Book, Rating as RatingType } from '@/generated/graphql';
+import { makeReview } from '@/hooks/makeReview';
 import { useBookRatings } from '@/hooks/useBookRatings';
 import RatingGrid from '../RatingGrid/RatingGrid';
 import styles from './Ratings.module.css';
@@ -11,14 +13,35 @@ type RatingsProps = {
 
 const Ratings = ({ book }: RatingsProps) => {
   const [visible, setVisible] = useState(false);
-  const { ratings, loading, error } = useBookRatings({ id: book.id });
+  const [rating, setRating] = useState(1);
+  const [text, setText] = useState('');
+
+  const { ratings, loading, error, refetch } = useBookRatings({ id: book.id });
+
+  const {
+    submitReview,
+    review: newReview,
+    loading: reviewLoading,
+    error: reviewError,
+  } = makeReview();
 
   const toggleTextbox = () => {
     setVisible((prev) => !prev);
   };
 
+  const UUID = useUser().info.UUID;
+
   const submit = () => {
     setVisible(false);
+    submitReview({
+      userUUID: UUID,
+      bookID: book.id,
+      description: text,
+      rating: rating,
+    });
+    refetch();
+    setRating(1);
+    setText('');
   };
 
   return (
@@ -47,9 +70,13 @@ const Ratings = ({ book }: RatingsProps) => {
 
         {visible ? (
           <>
-            <Rating size="xl" />
+            <Rating size="xl" onChange={setRating} />
 
-            <Textarea />
+            <Textarea
+              value={text}
+              onChange={(event) => setText(event.currentTarget.value)}
+              label="Your review"
+            />
 
             <Flex justify="Right" gap="lg">
               <Button variant="filled" color="gray" onClick={toggleTextbox}>
@@ -64,7 +91,24 @@ const Ratings = ({ book }: RatingsProps) => {
           <></>
         )}
 
+        {reviewLoading ? <Skeleton height={100} mt={6} radius="xl" /> : <></>}
+        {loading ? (
+          <>
+            <Skeleton height={100} mt={6} radius="xl" />
+            <Skeleton height={100} mt={6} radius="xl" />
+            <Skeleton height={100} mt={6} radius="xl" />
+          </>
+        ) : (
+          <></>
+        )}
+
         <RatingGrid reviews={ratings as RatingType[]} type={'pfp'} />
+
+        <Flex justify="center" align="center">
+          <Button variant="filled" color="red">
+            Load more
+          </Button>
+        </Flex>
       </Stack>
     </Group>
   );
