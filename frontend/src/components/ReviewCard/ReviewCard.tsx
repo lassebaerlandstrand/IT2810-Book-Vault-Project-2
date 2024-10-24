@@ -1,14 +1,13 @@
 import { Avatar, Card, Flex, Grid, Image, Rating, Stack, Text } from '@mantine/core';
-import { Rating as RatingType } from '@/generated/graphql';
-import styles from './RatingCard.module.css';
+import { Review as ReviewType } from '@/generated/graphql';
+import styles from './ReviewCard.module.css';
 
-// This component has 2 looks, 1 for when book is defined, one for when user is defined
-type RatingProps = {
-  review: RatingType;
+type ReviewProps = {
+  review: ReviewType;
   type: 'pfp' | 'book';
 };
 
-const RatingCard = ({ review, type }: RatingProps) => {
+const ReviewCard = ({ review, type }: ReviewProps) => {
   return (
     <>
       <Card p={30} radius="lg" className={styles.card} m="auto">
@@ -77,4 +76,4 @@ const RatingCard = ({ review, type }: RatingProps) => {
   );
 };
 
-export default RatingCard;
+export default ReviewCard;

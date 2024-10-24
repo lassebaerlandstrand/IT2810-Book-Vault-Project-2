@@ -1,31 +1,31 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, Flex, Grid, Group, Rating, Skeleton, Stack, Text, Textarea } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
-import { Book, Rating as RatingType } from '@/generated/graphql';
+import { Book, Review as ReviewType } from '@/generated/graphql';
 import { makeReview } from '@/hooks/makeReview';
 import { updateReview } from '@/hooks/updateReview';
-import { useBookRatings } from '@/hooks/useBookRatings';
-import { useYourBookRating } from '@/hooks/useYourBookRating';
-import RatingGrid from '../RatingGrid/RatingGrid';
-import styles from './Ratings.module.css';
+import { useBookReviews } from '@/hooks/useBookReviews';
+import { useYourBookReview } from '@/hooks/useYourBookReview';
+import ReviewStack from '../ReviewStack/ReviewStack';
+import styles from './Reviews.module.css';
 
-type RatingsProps = {
+type ReviewProps = {
   book: Book;
 };
 
-const Ratings = ({ book }: RatingsProps) => {
+const Reviews = ({ book }: ReviewProps) => {
   const [visible, setVisible] = useState(false);
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
   const [page, setPage] = useState(0);
-  const [reviews, setReviews] = useState<RatingType[]>([]);
+  const [displayReviews, setReviews] = useState<ReviewType[]>([]);
 
   const limit: number = 3;
 
   const UUID: string = useUser().info.UUID;
 
   // Fetch other peoples reviews of the book (if there are any)
-  const { ratings, pagination, total, loading, error } = useBookRatings({
+  const { reviews, pagination, total, loading, error } = useBookReviews({
     bookID: book.id,
     limit: limit,
     offset: page,
@@ -34,11 +34,11 @@ const Ratings = ({ book }: RatingsProps) => {
 
   // Fetch your review of the book (if it exists)
   const {
-    rating: yourRating,
+    review: yourReview,
     loading: yourLoading,
     error: yourError,
-    refetch: refetchYourRating,
-  } = useYourBookRating({
+    refetch: refetchYourReview,
+  } = useYourBookReview({
     bookID: book.id,
     userUUID: UUID,
   });
@@ -66,18 +66,18 @@ const Ratings = ({ book }: RatingsProps) => {
 
   // Cancel update to review
   const cancel = () => {
-    if (yourRating) {
-      setRating(yourRating.rating);
-      setText(yourRating.description);
+    if (yourReview) {
+      setRating(yourReview.rating);
+      setText(yourReview.description);
     }
     toggleReviewDisplay();
   };
 
   // Update review
   const update = () => {
-    if (yourRating) {
+    if (yourReview) {
       submitUpdate({
-        reviewUUID: yourRating.UUID,
+        reviewUUID: yourReview.UUID,
         description: text,
         rating: rating,
       });
@@ -102,37 +102,37 @@ const Ratings = ({ book }: RatingsProps) => {
 
   // Whenever you get more reviews, add them
   useEffect(() => {
-    if (ratings) {
-      setReviews([...reviews, ...(ratings as RatingType[])]);
+    if (reviews) {
+      setReviews([...displayReviews, ...(reviews as ReviewType[])]);
     }
-  }, [ratings]);
+  }, [reviews]);
 
   // Refetch your review after either posting one or updating it
   useEffect(() => {
-    refetchYourRating();
+    if (success || newReview) refetchYourReview();
   }, [success, newReview]);
 
   // For updating reviews
   useEffect(() => {
-    if (yourRating) {
-      setRating(yourRating.rating);
-      setText(yourRating.description);
+    if (yourReview) {
+      setRating(yourReview.rating);
+      setText(yourReview.description);
     }
-  }, [yourRating]);
+  }, [yourReview]);
 
   // For scrolling to top when reaching bottom
-  const topOfRating = useRef<HTMLDivElement>(null);
+  const topOfReviews = useRef<HTMLDivElement>(null);
 
   const scrollToTop = () => {
-    if (topOfRating.current)
+    if (topOfReviews.current)
       window.scrollTo({
-        top: topOfRating.current.offsetTop,
+        top: topOfReviews.current.offsetTop,
         behavior: 'smooth',
       });
   };
 
   return (
-    <Group justify="left" gap="lg" ref={topOfRating}>
+    <Group justify="left" gap="lg" ref={topOfReviews}>
       <Stack gap="sm" className={styles.gridWidth}>
         <Text size="xl" fw={700}>
           Reviews
@@ -141,7 +141,7 @@ const Ratings = ({ book }: RatingsProps) => {
           <Grid justify="Space-between">
             <Grid.Col span="auto">
               <Button variant="filled" color="red" onClick={toggleReviewDisplay}>
-                {!yourRating ? 'Give Review' : 'Edit Review'}
+                {!yourReview ? 'Give Review' : 'Edit Review'}
               </Button>
             </Grid.Col>
             <Grid.Col span="auto">
@@ -169,7 +169,7 @@ const Ratings = ({ book }: RatingsProps) => {
               <Button variant="filled" color="gray" onClick={cancel}>
                 Cancel
               </Button>
-              {yourRating ? (
+              {yourReview ? (
                 <Button variant="filled" color="red" onClick={update}>
                   Update Review
                 </Button>
@@ -195,13 +195,13 @@ const Ratings = ({ book }: RatingsProps) => {
           <></>
         )}
 
-        {!visible && yourRating ? (
-          <RatingGrid reviews={[yourRating] as RatingType[]} type={'pfp'} />
+        {!visible && yourReview ? (
+          <ReviewStack reviews={[yourReview] as ReviewType[]} type={'pfp'} />
         ) : (
           <></>
         )}
 
-        <RatingGrid reviews={reviews as RatingType[]} type={'pfp'} />
+        <ReviewStack reviews={displayReviews as ReviewType[]} type={'pfp'} />
 
         {!pagination?.isLastPage ? (
           <Flex justify="center" align="center">
@@ -221,4 +221,4 @@ const Ratings = ({ book }: RatingsProps) => {
   );
 };
 
-export default Ratings;
+export default Reviews;

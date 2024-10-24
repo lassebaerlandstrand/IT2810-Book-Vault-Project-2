@@ -8,7 +8,7 @@ import EntriesController from '@/components/EntriesController/EntriesController'
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
 import LoadingCircle from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
-import RatingGrid from '@/components/RatingGrid/RatingGrid';
+import RatingGrid from '@/components/ReviewStack/ReviewStack';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
 import { useUser } from '@/contexts/UserFunctions';

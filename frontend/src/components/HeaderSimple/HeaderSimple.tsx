@@ -17,7 +17,7 @@ import styles from './HeaderSimple.module.css';
 const links = [
   { link: '/', label: 'HOME' },
   { link: '/books', label: 'BOOKS' },
-  { link: '/myRatings', label: 'REVIEWS' },
+  { link: '/myReviews', label: 'REVIEWS' },
   { link: '/testing', label: 'TESTING' },
 ];
 

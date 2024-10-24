@@ -29,26 +29,26 @@ interface UserQueryArgs {
   UUID: string;
 }
 
-interface BookRatingsQueryArgs {
+interface BookReviewsQueryArgs {
   bookID: string;
   limit: number;
   offset: number;
   userUUID: string;
 }
 
-interface SingleBookRatingQueryArgs {
+interface SingleBookReviewQueryArgs {
   bookID: string;
   userUUID: string;
 }
 
-interface BookRatingMutationArgs {
+interface BookReviewMutationArgs {
   userUUID: string;
   bookID: string;
   description: string;
   rating: number;
 }
 
-interface UpdateBookRatingMutationArgs {
+interface UpdateBookReviewMutationArgs {
   reviewUUID: string;
   description: string;
   rating: number;
@@ -182,9 +182,9 @@ const resolvers = {
       return await db.collection('users').findOne({ UUID: UUID });
     },
 
-    async bookRatings(_, { bookID, limit, offset, userUUID }: BookRatingsQueryArgs) {
+    async bookReviews(_, { bookID, limit, offset, userUUID }: BookReviewsQueryArgs) {
       const total = await db
-        .collection('ratings')
+        .collection('reviews')
         .countDocuments({ bookID: bookID, userUUID: { $ne: userUUID } });
 
       const totalPages = Math.ceil(total / limit);
@@ -192,8 +192,8 @@ const resolvers = {
       const isLastPage = currentPage >= totalPages;
       const skip = offset * limit;
 
-      const ratings = await db
-        .collection('ratings')
+      const reviews = await db
+        .collection('reviews')
         .aggregate([
           { $match: { bookID: bookID, userUUID: { $ne: userUUID } } },
           { $sort: { at: -1 } },
@@ -208,23 +208,23 @@ const resolvers = {
       // meaning each user will only be found once
       // for each call to bookRatings resolver
 
-      const finishedRatings = [];
-      for (let i = 0; i < ratings.length; i++) {
-        const rating = ratings[i];
-        const user = await db.collection('users').findOne({ UUID: rating.userUUID });
+      const finishedReviews = [];
+      for (let i = 0; i < reviews.length; i++) {
+        const review = reviews[i];
+        const user = await db.collection('users').findOne({ UUID: review.userUUID });
 
-        finishedRatings.push({
-          UUID: rating.UUID,
-          description: rating.description,
-          rating: rating.rating,
-          at: new Date(rating.at),
+        finishedReviews.push({
+          UUID: review.UUID,
+          description: review.description,
+          rating: review.rating,
+          at: new Date(review.at),
           user: user,
           book: book,
         });
       }
 
       return {
-        ratings: finishedRatings,
+        reviews: finishedReviews,
         pagination: {
           totalPages,
           currentPage,
@@ -236,16 +236,16 @@ const resolvers = {
       };
     },
 
-    async getYourBookRating(_, { bookID, userUUID }: SingleBookRatingQueryArgs) {
-      const rating = await db.collection('ratings').findOne({ bookID: bookID, userUUID: userUUID });
+    async getYourBookReview(_, { bookID, userUUID }: SingleBookReviewQueryArgs) {
+      const review = await db.collection('reviews').findOne({ bookID: bookID, userUUID: userUUID });
       const book = await db.collection('books').findOne({ id: bookID });
       const user = await db.collection('users').findOne({ UUID: userUUID });
 
       return {
-        UUID: rating.UUID,
-        description: rating.description,
-        rating: rating.rating,
-        at: new Date(rating.at),
+        UUID: review.UUID,
+        description: review.description,
+        rating: review.rating,
+        at: new Date(review.at),
         user: user,
         book: book,
       };
@@ -323,10 +323,10 @@ const resolvers = {
       return newUser; // Return the created user
     },
 
-    async createReview(_, { userUUID, bookID, description, rating }: BookRatingMutationArgs) {
-      const collection = db.collection('ratings');
+    async createReview(_, { userUUID, bookID, description, rating }: BookReviewMutationArgs) {
+      const collection = db.collection('reviews');
 
-      const newRating = {
+      const newReview = {
         UUID: uuidv4(),
         description: description,
         rating: rating,
@@ -335,12 +335,12 @@ const resolvers = {
         bookID: bookID,
       };
 
-      await collection.insertOne(newRating);
-      return newRating;
+      await collection.insertOne(newReview);
+      return newReview;
     },
 
-    async updateReview(_, { reviewUUID, description, rating }: UpdateBookRatingMutationArgs) {
-      const collection = db.collection('ratings');
+    async updateReview(_, { reviewUUID, description, rating }: UpdateBookReviewMutationArgs) {
+      const collection = db.collection('reviews');
 
       await collection.updateOne(
         { UUID: reviewUUID },

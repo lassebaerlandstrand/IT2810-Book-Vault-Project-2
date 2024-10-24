@@ -11,7 +11,7 @@ type BookSummary {
   totalBooks: Int!
 }
 
-type RatingSummary {
+type ReviewSummary {
   total: Int!
 }
 
@@ -86,7 +86,7 @@ type Publisher {
   name: ID!
 }
 
-type Rating {
+type Review {
   "id for review"
   UUID: ID!
   description: String!
@@ -96,7 +96,7 @@ type Rating {
   book: Book!
 }
 
-type newRating {
+type newReview {
   "id for review"
   UUID: ID!
   description: String!
@@ -106,10 +106,10 @@ type newRating {
   bookID: ID!
 }
 
-type RatingPagination {
-  ratings: [Rating!]!
+type ReviewPagination {
+  reviews: [Review!]!
   pagination: PaginationInfo!
-  summary: RatingSummary!
+  summary: ReviewSummary!
 }
 
 type Status {
@@ -134,10 +134,10 @@ type Query {
 
   user(UUID: String!): User!
 
-  "Retrieve ratings for book"
-  bookRatings(bookID: String!, limit: Int!, offset: Int!, userUUID: String!): RatingPagination!
+  "Retrieve reviews for book"
+  bookReviews(bookID: String!, limit: Int!, offset: Int!, userUUID: String!): ReviewPagination!
 
-  getYourBookRating(bookID: String!, userUUID: String!): Rating!
+  getYourBookReview(bookID: String!, userUUID: String!): Review!
 
   "Retrieve a list of authors"
   authors: [Author!]!
@@ -152,7 +152,7 @@ type Query {
 type Mutation {
   createUser: User!
 
-  createReview(userUUID: String!, bookID: String!, description: String!, rating: Float!): newRating!
+  createReview(userUUID: String!, bookID: String!, description: String!, rating: Float!): newReview!
 
   updateReview(reviewUUID: String!, description: String!, rating: Float!): Status!
 }

@@ -1,16 +1,16 @@
 import { IconBookOff } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import { Grid, Group, Text } from '@mantine/core';
-import { Rating } from '@/generated/graphql';
-import RatingCard from '../RatingCard/RatingCard';
-import styles from './RatingGrid.module.css';
+import { Review } from '@/generated/graphql';
+import ReviewCard from '../ReviewCard/ReviewCard';
+import styles from './ReviewStack.module.css';
 
 type ReviewProps = {
-  reviews?: Rating[];
+  reviews?: Review[];
   type: 'pfp' | 'book';
 };
 
-const RatingGrid = ({ reviews, type }: ReviewProps) => {
+const ReviewStack = ({ reviews, type }: ReviewProps) => {
   if (!reviews || reviews.length === 0) {
     return (
       <Group justify="center" align="center" className={styles.noResultWrapper}>
@@ -29,11 +29,11 @@ const RatingGrid = ({ reviews, type }: ReviewProps) => {
           <Grid.Col key={index} span={{ base: 12 }}>
             {type == 'book' ? (
               <Link to={`/book/${review.book.id}`} className={styles.link}>
-                <RatingCard review={review} type={type} />
+                <ReviewCard review={review} type={type} />
               </Link>
             ) : (
               <Link to={`/user/${review.user?.UUID}`} className={styles.link}>
-                <RatingCard review={review} type={type} />
+                <ReviewCard review={review} type={type} />
               </Link>
             )}
           </Grid.Col>
@@ -43,4 +43,4 @@ const RatingGrid = ({ reviews, type }: ReviewProps) => {
   );
 };
 
-export default RatingGrid;
+export default ReviewStack;

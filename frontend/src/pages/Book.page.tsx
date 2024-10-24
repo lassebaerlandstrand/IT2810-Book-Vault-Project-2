@@ -3,7 +3,7 @@ import { Container, Group } from '@mantine/core';
 import BookInfo from '@/components/BookInfo/BookInfo';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
 import Loading from '@/components/Loading/Loading';
-import Ratings from '@/components/Ratings/Ratings';
+import Reviews from '@/components/Reviews/Reviews';
 import { useBook } from '@/hooks/useBook';
 
 const Book = () => {
@@ -37,7 +37,7 @@ const Book = () => {
     <Group justify="center">
       <Container>
         <BookInfo book={book} />
-        <Ratings book={book} />
+        <Reviews book={book} />
       </Container>
     </Group>
   );
