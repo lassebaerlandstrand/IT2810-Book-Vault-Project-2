@@ -11,9 +11,11 @@ import styles from './Reviews.module.css';
 
 type ReviewProps = {
   book: Book;
+  avgRating: number;
+  setAvgRating: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Reviews = ({ book }: ReviewProps) => {
+const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
   const [visible, setVisible] = useState(false);
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
@@ -43,16 +45,16 @@ const Reviews = ({ book }: ReviewProps) => {
     userUUID: UUID,
   });
 
-  // For submitting a review
+  // For submitting a review (NR = new review)
   const {
     submitReview,
-    review: newReview,
+    updatedRating: updatedRatingNR,
     loading: reviewLoading,
     error: reviewError,
   } = makeReview();
 
-  // For updating reviews
-  const { submitUpdate, success: success, loading: l, error: e } = updateReview();
+  // For updating reviews (UR = updated review)
+  const { submitUpdate, updatedRating: updatedRatingUR, loading: l, error: e } = updateReview();
 
   // Toggle the review
   const toggleReviewDisplay = () => {
@@ -107,10 +109,21 @@ const Reviews = ({ book }: ReviewProps) => {
     }
   }, [reviews]);
 
+  // Update rating + refetch your rating
+  const updateRating = (updatedRating: number) => {
+    if (!updatedRating) return;
+    refetchYourReview();
+    if (updatedRating != -1) setAvgRating(updatedRating);
+  };
+
   // Refetch your review after either posting one or updating it
   useEffect(() => {
-    if (success || newReview) refetchYourReview();
-  }, [success, newReview]);
+    updateRating(updatedRatingNR);
+  }, [updatedRatingNR]);
+
+  useEffect(() => {
+    updateRating(updatedRatingUR);
+  }, [updatedRatingUR]);
 
   // For updating reviews
   useEffect(() => {
@@ -146,8 +159,8 @@ const Reviews = ({ book }: ReviewProps) => {
             </Grid.Col>
             <Grid.Col span="auto">
               <Flex justify="right" align="center" gap={7} mt="xs">
-                <Rating value={Math.round(book.rating * 2) / 2} fractions={2} readOnly />
-                <Text fw={500}>{book.rating.toFixed(1)}</Text>
+                <Rating value={Math.round(avgRating * 2) / 2} fractions={2} readOnly />
+                <Text fw={500}>{avgRating.toFixed(1)}</Text>
               </Flex>
             </Grid.Col>
           </Grid>

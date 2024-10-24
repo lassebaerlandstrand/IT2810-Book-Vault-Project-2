@@ -96,24 +96,14 @@ type Review {
   book: Book!
 }
 
-type newReview {
-  "id for review"
-  UUID: ID!
-  description: String!
-  rating: Float!
-  at: Date!
-  userUUID: ID!
-  bookID: ID!
-}
-
 type ReviewPagination {
   reviews: [Review!]!
   pagination: PaginationInfo!
   summary: ReviewSummary!
 }
 
-type Status {
-  success: Boolean!
+type updatedRating {
+  rating: Float!
 }
 
 type Query {
@@ -152,9 +142,14 @@ type Query {
 type Mutation {
   createUser: User!
 
-  createReview(userUUID: String!, bookID: String!, description: String!, rating: Float!): newReview!
+  createReview(
+    userUUID: String!
+    bookID: String!
+    description: String!
+    rating: Float!
+  ): updatedRating!
 
-  updateReview(reviewUUID: String!, description: String!, rating: Float!): Status!
+  updateReview(reviewUUID: String!, description: String!, rating: Float!): updatedRating
 }
 
 enum SortOrder {

@@ -13,8 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  mutation CreateReview($userUUID: String!, $bookID: String!, $description: String!, $rating: Float!) {\n    createReview(userUUID: $userUUID, bookID: $bookID, description: $description, rating: $rating) {\n      UUID\n      description\n      rating\n      at\n      userUUID\n      bookID\n    }\n  }\n": types.CreateReviewDocument,
-    "\n  mutation UpdateReview($reviewUUID: String!, $description: String!, $rating: Float!) {\n    updateReview(reviewUUID: $reviewUUID, description: $description, rating: $rating) {\n      success\n    }\n  }\n": types.UpdateReviewDocument,
+    "\n  mutation CreateReview($userUUID: String!, $bookID: String!, $description: String!, $rating: Float!) {\n    createReview(userUUID: $userUUID, bookID: $bookID, description: $description, rating: $rating) {\n      rating\n    }\n  }\n": types.CreateReviewDocument,
+    "\n  mutation UpdateReview($reviewUUID: String!, $description: String!, $rating: Float!) {\n    updateReview(reviewUUID: $reviewUUID, description: $description, rating: $rating) {\n      rating\n    }\n  }\n": types.UpdateReviewDocument,
     "\n  mutation CreateUser {\n    createUser {\n      UUID\n      name\n      at\n      wantToRead\n      haveRead\n    }\n  }\n": types.CreateUserDocument,
     "\n  query GetBooks($limit: Int, $offset: Int) {\n    books(limit: $limit, offset: $offset) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n": types.GetBooksDocument,
     "\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      rating\n      numRatings\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n": types.GetBookDocument,
@@ -43,11 +43,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  mutation CreateReview($userUUID: String!, $bookID: String!, $description: String!, $rating: Float!) {\n    createReview(userUUID: $userUUID, bookID: $bookID, description: $description, rating: $rating) {\n      UUID\n      description\n      rating\n      at\n      userUUID\n      bookID\n    }\n  }\n"): (typeof documents)["\n  mutation CreateReview($userUUID: String!, $bookID: String!, $description: String!, $rating: Float!) {\n    createReview(userUUID: $userUUID, bookID: $bookID, description: $description, rating: $rating) {\n      UUID\n      description\n      rating\n      at\n      userUUID\n      bookID\n    }\n  }\n"];
+export function gql(source: "\n  mutation CreateReview($userUUID: String!, $bookID: String!, $description: String!, $rating: Float!) {\n    createReview(userUUID: $userUUID, bookID: $bookID, description: $description, rating: $rating) {\n      rating\n    }\n  }\n"): (typeof documents)["\n  mutation CreateReview($userUUID: String!, $bookID: String!, $description: String!, $rating: Float!) {\n    createReview(userUUID: $userUUID, bookID: $bookID, description: $description, rating: $rating) {\n      rating\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  mutation UpdateReview($reviewUUID: String!, $description: String!, $rating: Float!) {\n    updateReview(reviewUUID: $reviewUUID, description: $description, rating: $rating) {\n      success\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateReview($reviewUUID: String!, $description: String!, $rating: Float!) {\n    updateReview(reviewUUID: $reviewUUID, description: $description, rating: $rating) {\n      success\n    }\n  }\n"];
+export function gql(source: "\n  mutation UpdateReview($reviewUUID: String!, $description: String!, $rating: Float!) {\n    updateReview(reviewUUID: $reviewUUID, description: $description, rating: $rating) {\n      rating\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateReview($reviewUUID: String!, $description: String!, $rating: Float!) {\n    updateReview(reviewUUID: $reviewUUID, description: $description, rating: $rating) {\n      rating\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

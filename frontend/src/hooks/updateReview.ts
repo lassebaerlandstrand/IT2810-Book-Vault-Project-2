@@ -24,7 +24,7 @@ export const updateReview = () => {
 
   return {
     submitUpdate,
-    success: data?.updateReview.success || null,
+    updatedRating: data?.updateReview?.rating || -1,
     loading,
     error,
   };

@@ -24,7 +24,7 @@ export const makeReview = () => {
 
   return {
     submitReview, // Function to trigger the mutation later
-    review: data?.createReview || null,
+    updatedRating: data?.createReview.rating || -1,
     loading,
     error,
   };

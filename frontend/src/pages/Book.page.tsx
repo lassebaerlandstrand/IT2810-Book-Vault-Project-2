@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Group } from '@mantine/core';
 import BookInfo from '@/components/BookInfo/BookInfo';
@@ -9,6 +10,11 @@ import { useBook } from '@/hooks/useBook';
 const Book = () => {
   const { bookId } = useParams<{ bookId: string }>();
   const { book, loading, error } = useBook({ bookId });
+  const [rating, setRating] = useState<number>(0);
+
+  useEffect(() => {
+    if (book) setRating(book.rating);
+  }, [book]);
 
   if (loading) {
     return <Loading />;
@@ -36,8 +42,8 @@ const Book = () => {
   return (
     <Group justify="center">
       <Container>
-        <BookInfo book={book} />
-        <Reviews book={book} />
+        <BookInfo book={book} avgRating={rating} />
+        <Reviews book={book} avgRating={rating} setAvgRating={setRating} />
       </Container>
     </Group>
   );

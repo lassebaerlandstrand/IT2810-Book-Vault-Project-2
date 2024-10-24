@@ -324,8 +324,6 @@ const resolvers = {
     },
 
     async createReview(_, { userUUID, bookID, description, rating }: BookReviewMutationArgs) {
-      const collection = db.collection('reviews');
-
       const newReview = {
         UUID: uuidv4(),
         description: description,
@@ -335,14 +333,47 @@ const resolvers = {
         bookID: bookID,
       };
 
-      await collection.insertOne(newReview);
-      return newReview;
+      await db.collection('reviews').insertOne(newReview);
+
+      const incKey = rating.toString();
+
+      const result = await db.collection('books').findOneAndUpdate(
+        { id: bookID },
+        {
+          $inc: {
+            [`ratingsByStars.${incKey}`]: 1,
+          },
+        },
+        {
+          returnDocument: 'after',
+        },
+      );
+
+      const updatedBook = result.value;
+
+      const numRatings = Object.values(updatedBook.ratingsByStars).reduce(
+        (total: number, count: number) => total + count,
+        0,
+      ) as number;
+
+      // I dont think it is possible for numRatings to be 0 after incrementation, but
+      // its a nice failsafe
+      if (numRatings === 0) {
+        return 0;
+      }
+
+      const weightedSum = Object.entries(updatedBook.ratingsByStars).reduce(
+        (sum, [key, count]: [string, number]) => {
+          return sum + parseInt(key, 10) * count;
+        },
+        0,
+      );
+
+      return { rating: weightedSum / numRatings };
     },
 
     async updateReview(_, { reviewUUID, description, rating }: UpdateBookReviewMutationArgs) {
-      const collection = db.collection('reviews');
-
-      await collection.updateOne(
+      const oldReview = await db.collection('reviews').findOneAndUpdate(
         { UUID: reviewUUID },
         {
           $set: {
@@ -350,10 +381,48 @@ const resolvers = {
             rating: rating,
           },
         },
+        {
+          returnDocument: 'before',
+        },
       );
 
-      // Mutation was successfull
-      return { success: true };
+      if (rating != oldReview.value.rating) {
+        const incKey = rating.toString(); // Increment new rating
+        const decKey = oldReview.value.rating.toString(); // Decrement old one
+
+        const result = await db.collection('books').findOneAndUpdate(
+          { id: oldReview.value.bookID },
+          {
+            $inc: {
+              [`ratingsByStars.${incKey}`]: 1,
+              [`ratingsByStars.${decKey}`]: -1,
+            },
+          },
+          {
+            returnDocument: 'after',
+          },
+        );
+
+        const updatedBook = result.value;
+
+        const numRatings = Object.values(updatedBook.ratingsByStars).reduce(
+          (total: number, count: number) => total + count,
+          0,
+        ) as number;
+
+        if (numRatings === 0) {
+          return 0;
+        }
+
+        const weightedSum = Object.entries(updatedBook.ratingsByStars).reduce(
+          (sum, [key, count]: [string, number]) => {
+            return sum + parseInt(key, 10) * count;
+          },
+          0,
+        );
+        return { rating: weightedSum / numRatings };
+      }
+      return;
     },
   },
 };
