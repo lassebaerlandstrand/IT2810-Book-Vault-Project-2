@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, Flex, Grid, Group, Rating, Skeleton, Stack, Text, Textarea } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { Book, Rating as RatingType } from '@/generated/graphql';
@@ -105,8 +105,18 @@ const Ratings = ({ book }: RatingsProps) => {
     setText('');
   };
 
+  const topOfRating = useRef<HTMLDivElement>(null);
+
+  const scrollToTop = () => {
+    if (topOfRating.current)
+      window.scrollTo({
+        top: topOfRating.current.offsetTop,
+        behavior: 'smooth',
+      });
+  };
+
   return (
-    <Group justify="left" gap="lg">
+    <Group justify="left" gap="lg" ref={topOfRating}>
       <Stack gap="sm" className={styles.gridWidth}>
         <Text size="xl" fw={700}>
           Reviews
@@ -184,7 +194,11 @@ const Ratings = ({ book }: RatingsProps) => {
             </Button>
           </Flex>
         ) : (
-          <></>
+          <Flex justify="center" align="center">
+            <Button variant="filled" color="red" onClick={scrollToTop}>
+              Scroll to top
+            </Button>
+          </Flex>
         )}
       </Stack>
     </Group>

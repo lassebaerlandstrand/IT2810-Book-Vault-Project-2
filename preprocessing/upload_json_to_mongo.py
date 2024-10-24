@@ -12,9 +12,8 @@ db.drop_collection('publishers')
 db.drop_collection('books')
 db.drop_collection('nouns')
 db.drop_collection('adjectives')
-#db.drop_collection('users')
+db.drop_collection('users')
 db.drop_collection('ratings')
-
 
 print("Creating collections...")
 authors    = db['authors']
@@ -27,7 +26,7 @@ users      = db['users']
 ratings    = db['ratings']
 
 print("Populating collections...")
-for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json', 'nouns.json', 'adjectives.json','ratings.json']:
+for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json', 'nouns.json', 'adjectives.json','ratings.json', 'users.json']:
     with open(f'preprocessing/{file}', 'r') as f:
         print(file)
         data = json.load(f)
