@@ -36,6 +36,16 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     );
   }
 
+  if (error) {
+    <Flex justify="center" align="center" className={styles.centeredOnPage}>
+      <Stack align="center">
+        <Text c="red" size="lg">
+          Error fetching user data
+        </Text>
+      </Stack>
+    </Flex>;
+  }
+
   if (user)
     return (
       <UserContext.Provider

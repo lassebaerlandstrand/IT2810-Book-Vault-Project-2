@@ -18,10 +18,13 @@ const Ratings = ({ book }: RatingsProps) => {
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
   const [page, setPage] = useState(0);
+  const [reviews, setReviews] = useState<RatingType[]>([]);
 
   const limit: number = 3;
+
   const UUID: string = useUser().info.UUID;
 
+  // Fetch other peoples reviews of the book (if there are any)
   const { ratings, pagination, total, loading, error } = useBookRatings({
     bookID: book.id,
     limit: limit,
@@ -29,6 +32,7 @@ const Ratings = ({ book }: RatingsProps) => {
     userUUID: UUID,
   });
 
+  // Fetch your review of the book (if it exists)
   const {
     rating: yourRating,
     loading: yourLoading,
@@ -39,14 +43,7 @@ const Ratings = ({ book }: RatingsProps) => {
     userUUID: UUID,
   });
 
-  const [reviews, setReviews] = useState<RatingType[]>([]);
-
-  useEffect(() => {
-    if (ratings) {
-      setReviews([...reviews, ...(ratings as RatingType[])]);
-    }
-  }, [ratings]);
-
+  // For submitting a review
   const {
     submitReview,
     review: newReview,
@@ -54,30 +51,29 @@ const Ratings = ({ book }: RatingsProps) => {
     error: reviewError,
   } = makeReview();
 
+  // For updating reviews
   const { submitUpdate, success: success, loading: l, error: e } = updateReview();
 
-  const toggleTextbox = () => {
+  // Toggle the review
+  const toggleReviewDisplay = () => {
     setVisible((prev) => !prev);
   };
 
-  useEffect(() => {
-    if (yourRating) {
-      setRating(yourRating.rating);
-      setText(yourRating.description);
-    }
-  }, [yourRating]);
-
+  // Increase pagination page when clicking "load more"
   const upPage = () => {
     setPage(page + 1);
   };
 
+  // Cancel update to review
   const cancel = () => {
     if (yourRating) {
       setRating(yourRating.rating);
       setText(yourRating.description);
     }
-    toggleTextbox();
+    toggleReviewDisplay();
   };
+
+  // Update review
   const update = () => {
     if (yourRating) {
       submitUpdate({
@@ -85,13 +81,13 @@ const Ratings = ({ book }: RatingsProps) => {
         description: text,
         rating: rating,
       });
-      toggleTextbox();
+      toggleReviewDisplay();
       setRating(1);
       setText('');
     }
-    refetchYourRating();
   };
 
+  // Submit review
   const submit = () => {
     setVisible(false);
     submitReview({
@@ -100,11 +96,31 @@ const Ratings = ({ book }: RatingsProps) => {
       description: text,
       rating: rating,
     });
-    refetchYourRating();
     setRating(1);
     setText('');
   };
 
+  // Whenever you get more reviews, add them
+  useEffect(() => {
+    if (ratings) {
+      setReviews([...reviews, ...(ratings as RatingType[])]);
+    }
+  }, [ratings]);
+
+  // Refetch your review after either posting one or updating it
+  useEffect(() => {
+    refetchYourRating();
+  }, [success, newReview]);
+
+  // For updating reviews
+  useEffect(() => {
+    if (yourRating) {
+      setRating(yourRating.rating);
+      setText(yourRating.description);
+    }
+  }, [yourRating]);
+
+  // For scrolling to top when reaching bottom
   const topOfRating = useRef<HTMLDivElement>(null);
 
   const scrollToTop = () => {
@@ -124,7 +140,7 @@ const Ratings = ({ book }: RatingsProps) => {
         {!visible ? (
           <Grid justify="Space-between">
             <Grid.Col span="auto">
-              <Button variant="filled" color="red" onClick={toggleTextbox}>
+              <Button variant="filled" color="red" onClick={toggleReviewDisplay}>
                 {!yourRating ? 'Give Review' : 'Edit Review'}
               </Button>
             </Grid.Col>
