@@ -11,6 +11,10 @@ type BookSummary {
   totalBooks: Int!
 }
 
+type RatingSummary {
+  total: Int!
+}
+
 "Paginated list of books"
 type BookPagination {
   books: [Book!]!
@@ -102,6 +106,16 @@ type newRating {
   bookID: ID!
 }
 
+type RatingPagination {
+  ratings: [Rating!]!
+  pagination: PaginationInfo!
+  summary: RatingSummary!
+}
+
+type Status {
+  success: Boolean!
+}
+
 type Query {
   "Retrieve a list of books with optional filters"
   books(
@@ -121,7 +135,9 @@ type Query {
   user(UUID: String!): User!
 
   "Retrieve ratings for book"
-  bookRatings(id: String!): [Rating!]!
+  bookRatings(bookID: String!, limit: Int!, offset: Int!, userUUID: String!): RatingPagination!
+
+  getYourBookRating(bookID: String!, userUUID: String!): Rating!
 
   "Retrieve a list of authors"
   authors: [Author!]!
@@ -137,6 +153,8 @@ type Mutation {
   createUser: User!
 
   createReview(userUUID: String!, bookID: String!, description: String!, rating: Float!): newRating!
+
+  updateReview(reviewUUID: String!, description: String!, rating: Float!): Status!
 }
 
 enum SortOrder {

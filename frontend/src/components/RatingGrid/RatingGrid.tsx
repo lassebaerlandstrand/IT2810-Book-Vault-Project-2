@@ -24,7 +24,7 @@ const RatingGrid = ({ reviews, type }: ReviewProps) => {
 
   return (
     <>
-      <Grid my="xl" gutter="md">
+      <Grid my="xs" gutter="md">
         {reviews.map((review, index) => (
           <Grid.Col key={index} span={{ base: 12 }}>
             {type == 'book' ? (

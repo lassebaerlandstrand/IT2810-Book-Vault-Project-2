@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Flex, Grid, Group, Rating, Skeleton, Stack, Text, Textarea } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { Book, Rating as RatingType } from '@/generated/graphql';
 import { makeReview } from '@/hooks/makeReview';
+import { updateReview } from '@/hooks/updateReview';
 import { useBookRatings } from '@/hooks/useBookRatings';
+import { useYourBookRating } from '@/hooks/useYourBookRating';
 import RatingGrid from '../RatingGrid/RatingGrid';
 import styles from './Ratings.module.css';
 
@@ -15,8 +17,35 @@ const Ratings = ({ book }: RatingsProps) => {
   const [visible, setVisible] = useState(false);
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
+  const [page, setPage] = useState(0);
 
-  const { ratings, loading, error, refetch } = useBookRatings({ id: book.id });
+  const limit: number = 3;
+  const UUID: string = useUser().info.UUID;
+
+  const { ratings, pagination, total, loading, error } = useBookRatings({
+    bookID: book.id,
+    limit: limit,
+    offset: page,
+    userUUID: UUID,
+  });
+
+  const {
+    rating: yourRating,
+    loading: yourLoading,
+    error: yourError,
+    refetch: refetchYourRating,
+  } = useYourBookRating({
+    bookID: book.id,
+    userUUID: UUID,
+  });
+
+  const [reviews, setReviews] = useState<RatingType[]>([]);
+
+  useEffect(() => {
+    if (ratings) {
+      setReviews([...reviews, ...(ratings as RatingType[])]);
+    }
+  }, [ratings]);
 
   const {
     submitReview,
@@ -25,11 +54,43 @@ const Ratings = ({ book }: RatingsProps) => {
     error: reviewError,
   } = makeReview();
 
+  const { submitUpdate, success: success, loading: l, error: e } = updateReview();
+
   const toggleTextbox = () => {
     setVisible((prev) => !prev);
   };
 
-  const UUID = useUser().info.UUID;
+  useEffect(() => {
+    if (yourRating) {
+      setRating(yourRating.rating);
+      setText(yourRating.description);
+    }
+  }, [yourRating]);
+
+  const upPage = () => {
+    setPage(page + 1);
+  };
+
+  const cancel = () => {
+    if (yourRating) {
+      setRating(yourRating.rating);
+      setText(yourRating.description);
+    }
+    toggleTextbox();
+  };
+  const update = () => {
+    if (yourRating) {
+      submitUpdate({
+        reviewUUID: yourRating.UUID,
+        description: text,
+        rating: rating,
+      });
+      toggleTextbox();
+      setRating(1);
+      setText('');
+    }
+    refetchYourRating();
+  };
 
   const submit = () => {
     setVisible(false);
@@ -39,14 +100,14 @@ const Ratings = ({ book }: RatingsProps) => {
       description: text,
       rating: rating,
     });
-    refetch();
+    refetchYourRating();
     setRating(1);
     setText('');
   };
 
   return (
     <Group justify="left" gap="lg">
-      <Stack className={styles.gridWidth}>
+      <Stack gap="sm" className={styles.gridWidth}>
         <Text size="xl" fw={700}>
           Reviews
         </Text>
@@ -54,7 +115,7 @@ const Ratings = ({ book }: RatingsProps) => {
           <Grid justify="Space-between">
             <Grid.Col span="auto">
               <Button variant="filled" color="red" onClick={toggleTextbox}>
-                Give Review
+                {!yourRating ? 'Give Review' : 'Edit Review'}
               </Button>
             </Grid.Col>
             <Grid.Col span="auto">
@@ -70,7 +131,7 @@ const Ratings = ({ book }: RatingsProps) => {
 
         {visible ? (
           <>
-            <Rating size="xl" onChange={setRating} />
+            <Rating size="xl" value={rating} onChange={setRating} />
 
             <Textarea
               value={text}
@@ -79,12 +140,18 @@ const Ratings = ({ book }: RatingsProps) => {
             />
 
             <Flex justify="Right" gap="lg">
-              <Button variant="filled" color="gray" onClick={toggleTextbox}>
+              <Button variant="filled" color="gray" onClick={cancel}>
                 Cancel
               </Button>
-              <Button variant="filled" color="red" onClick={submit}>
-                Submit review
-              </Button>
+              {yourRating ? (
+                <Button variant="filled" color="red" onClick={update}>
+                  Update Review
+                </Button>
+              ) : (
+                <Button variant="filled" color="red" onClick={submit}>
+                  Submit Review
+                </Button>
+              )}
             </Flex>
           </>
         ) : (
@@ -102,13 +169,23 @@ const Ratings = ({ book }: RatingsProps) => {
           <></>
         )}
 
-        <RatingGrid reviews={ratings as RatingType[]} type={'pfp'} />
+        {!visible && yourRating ? (
+          <RatingGrid reviews={[yourRating] as RatingType[]} type={'pfp'} />
+        ) : (
+          <></>
+        )}
 
-        <Flex justify="center" align="center">
-          <Button variant="filled" color="red">
-            Load more
-          </Button>
-        </Flex>
+        <RatingGrid reviews={reviews as RatingType[]} type={'pfp'} />
+
+        {!pagination?.isLastPage ? (
+          <Flex justify="center" align="center">
+            <Button variant="filled" color="red" onClick={upPage}>
+              Load more
+            </Button>
+          </Flex>
+        ) : (
+          <></>
+        )}
       </Stack>
     </Group>
   );
