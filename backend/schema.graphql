@@ -7,10 +7,41 @@ type PaginationInfo {
   isLastPage: Boolean!
 }
 
+"Result of counting items for each filter"
+type FilterCountResult {
+  authors: [FilterCount!]!
+  genres: [FilterCount!]!
+  publishers: [FilterCount!]!
+  publishDates: [PublishDateCount!]!
+  pages: [PagesCount!]!
+  ratings: [RatingCount!]!
+}
+
+type PublishDateCount {
+  year: Int!
+  count: Int!
+}
+
+type RatingCount {
+  rating: Int!
+  count: Int!
+}
+
+type FilterCount {
+  name: String!
+  count: Int!
+}
+
+type PagesCount {
+  pages: Int!
+  count: Int!
+}
+
 "Paginated list of books"
 type BookPagination {
   books: [Book!]!
   pagination: PaginationInfo!
+  filterCounts: FilterCountResult!
 }
 
 type Book {
@@ -79,6 +110,9 @@ type Query {
     authors: [ID!]
     genres: [ID!]
     publishers: [ID!]
+    minPages: Int
+    maxPages: Int
+    minRating: Int
   ): BookPagination!
 
   "Retrieve a list of authors"

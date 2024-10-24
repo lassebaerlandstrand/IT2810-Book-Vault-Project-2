@@ -1,6 +1,7 @@
 import { GraphQLScalarType, Kind } from "graphql";
 import db from "./db/connection.js";
 import { Document } from "mongodb";
+import { mongoCalculateAverageRatingAggregationPipeline } from "./db/queries.js";
 
 interface OrderByInput {
   bookName?: "asc" | "desc";
@@ -18,7 +19,16 @@ interface BooksQueryArgs {
   authors?: string[];
   genres?: string[];
   publishers?: string[];
+  minPages?: number;
+  maxPages?: number;
+  minRating?: number;
 }
+
+const mapCounts = (counts: Document, keyName: string, valueName = "count") =>
+  Object.entries(counts).map(([key, value]) => ({
+    [keyName]: key,
+    [valueName]: value,
+  }));
 
 const resolvers = {
   Date: new GraphQLScalarType({
@@ -28,7 +38,7 @@ const resolvers = {
     parseValue(value: string | number) {
       return new Date(value);
     },
-    serialize(value: number) {
+    serialize(value: string) {
       return new Date(value);
     },
     parseLiteral(ast) {
@@ -55,16 +65,21 @@ const resolvers = {
         authors,
         genres,
         publishers,
+        minPages,
+        maxPages,
+        minRating,
       }: BooksQueryArgs
     ) {
       const collection = db.collection("books");
 
       interface MongoBookFilters {
         $text?: { $search: string };
-        publishDate?: { $lt?: number; $gt?: number };
+        publishDate?: { $lt?: Date; $gt?: Date };
         authors?: { $in: string[] };
         genres?: { $in: string[] };
         publisher?: { $in: string[] };
+        pages?: { $gte?: number; $lte?: number };
+        averageRating?: { $gte?: number };
       }
 
       const filters: MongoBookFilters = {};
@@ -73,13 +88,13 @@ const resolvers = {
       }
       if (beforeDate && afterDate) {
         filters.publishDate = {
-          $lt: beforeDate.valueOf(),
-          $gt: afterDate.valueOf(),
+          $lt: beforeDate,
+          $gt: afterDate,
         };
       } else if (beforeDate) {
-        filters.publishDate = { $lt: beforeDate.valueOf() };
+        filters.publishDate = { $lt: beforeDate };
       } else if (afterDate) {
-        filters.publishDate = { $gt: afterDate.valueOf() };
+        filters.publishDate = { $gt: afterDate };
       }
       if (authors) {
         filters.authors = { $in: authors };
@@ -90,9 +105,30 @@ const resolvers = {
       if (publishers) {
         filters.publisher = { $in: publishers };
       }
+      if (minPages && maxPages) {
+        filters.pages = { $gte: minPages, $lte: maxPages };
+      } else if (minPages) {
+        filters.pages = { $gte: minPages };
+      } else if (maxPages) {
+        filters.pages = { $lte: maxPages };
+      }
 
-      const pipeline: Document[] = [];
-      pipeline.push({ $match: filters });
+      const filterAggregations = [
+        { $match: filters },
+        ...mongoCalculateAverageRatingAggregationPipeline,
+        {
+          $addFields: {
+            roundedAverageRating: { $round: ["$averageRating", 0] },
+          },
+        },
+        {
+          $match: {
+            roundedAverageRating: { $gte: minRating },
+          },
+        },
+      ];
+
+      const pipeline: Document[] = [...filterAggregations];
 
       if (orderBy) {
         if (orderBy.bookName) {
@@ -101,26 +137,59 @@ const resolvers = {
           });
         } else if (orderBy.authorName) {
           pipeline.push({
-            $sort: {
-              "authors.0": orderBy.authorName === "asc" ? 1 : -1,
-            },
+            $sort: { "authors.0": orderBy.authorName === "asc" ? 1 : -1 },
           });
         } else if (orderBy.publisherName) {
           pipeline.push({
-            $sort: {
-              publisher: orderBy.publisherName === "asc" ? 1 : -1,
-            },
+            $sort: { publisher: orderBy.publisherName === "asc" ? 1 : -1 },
           });
         }
       }
-      const totalCount = await collection.countDocuments(filters);
+
+      const filteredBooks = await collection.aggregate(pipeline).toArray();
+
+      const totalCount = filteredBooks.length;
       const totalPages = Math.ceil(totalCount / limit);
       const currentPage = Math.floor(offset / limit) + 1;
       const isLastPage = currentPage >= totalPages;
 
-      pipeline.push({ $skip: offset });
-      pipeline.push({ $limit: limit });
-      const books = await collection.aggregate(pipeline).toArray();
+      const books = filteredBooks.slice(offset, offset + limit);
+
+      const authorCounts = filteredBooks.reduce((acc, book) => {
+        book.authors.forEach((author: string) => {
+          acc[author] = (acc[author] || 0) + 1;
+        });
+        return acc;
+      }, {});
+
+      const genreCounts = filteredBooks.reduce((acc, book) => {
+        book.genres.forEach((genre: string) => {
+          acc[genre] = (acc[genre] || 0) + 1;
+        });
+        return acc;
+      }, {});
+
+      const publisherCounts = filteredBooks.reduce((acc, book) => {
+        acc[book.publisher] = (acc[book.publisher] || 0) + 1;
+        return acc;
+      }, {});
+
+      const publishDateCounts = filteredBooks.reduce((acc, book) => {
+        const year = book.publishDate.getFullYear();
+        acc[year] = (acc[year] || 0) + 1;
+        return acc;
+      }, {});
+
+      const pageCounts = filteredBooks.reduce((acc, book) => {
+        acc[book.pages] = (acc[book.pages] || 0) + 1;
+        return acc;
+      }, {});
+
+      const ratingCounts = filteredBooks.reduce((acc, book) => {
+        acc[book.roundedAverageRating] =
+          (acc[book.roundedAverageRating] || 0) + 1;
+        return acc;
+      }, {});
 
       return {
         books,
@@ -128,6 +197,14 @@ const resolvers = {
           totalPages,
           currentPage,
           isLastPage,
+        },
+        filterCounts: {
+          authors: mapCounts(authorCounts, "name"),
+          genres: mapCounts(genreCounts, "name"),
+          publishers: mapCounts(publisherCounts, "name"),
+          publishDates: mapCounts(publishDateCounts, "year"),
+          pages: mapCounts(pageCounts, "pages"),
+          ratings: mapCounts(ratingCounts, "rating"),
         },
       };
     },
