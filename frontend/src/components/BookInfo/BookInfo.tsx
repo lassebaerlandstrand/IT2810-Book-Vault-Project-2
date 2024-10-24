@@ -14,7 +14,8 @@ const BookInfo = ({ book }: BookInfoProps) => {
           {book.title}
         </Text>
         <Text size="md" c="dimmed">
-          {book.authors[0]} {book.authors.length > 1 ? 'et al.' : ''}
+          {book.authors.length > 0 && book.authors[0].name}{' '}
+          {book.authors.length > 1 ? 'et al.' : ''}
         </Text>
       </Container>
       <Flex gap="sm" justify="center" align="center" direction="row" wrap="wrap">
@@ -29,7 +30,10 @@ const BookInfo = ({ book }: BookInfoProps) => {
         <Flex gap="sm" justify="center" align="center" direction="row" wrap="wrap">
           <Container p="xs" size="sm">
             <Text>
-              {book.genres.slice(0, 3).join(', ')}
+              {book.genres
+                .map((genre) => genre.name)
+                .slice(0, 3)
+                .join(', ')}
               {book.genres.length > 3 ? '...' : null}
             </Text>
 

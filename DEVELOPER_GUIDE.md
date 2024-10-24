@@ -175,6 +175,10 @@ We will use milestones to track our progress. Utilizing milestones allows us to 
 
 Active engagement with milestones is encouraged, including regular progress updates, task completion, and addressing any obstacles encountered. By leveraging milestones, we enhance coordination, facilitate communication, and ensure project success.
 
+## How to create new hooks in the frontend
+
+First create your GraphQL query in `frontend/src/graphql/queries`. It is adviced to experiment in Apollo Sandbox to create the correct query. After that gql expression has been created, run `npm run generate`, to update type files. Then create a new hook in `frontend/src/hooks` that uses the query. The hook should return the data, loading and error state. Use the already created hooks as examples.
+
 ## Conventions
 
 We will follow [Google's TypeScript styling guide](https://google.github.io/styleguide/tsguide.html#naming).

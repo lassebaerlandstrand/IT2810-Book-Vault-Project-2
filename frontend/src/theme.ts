@@ -1,4 +1,4 @@
-import { Container, createTheme, rem } from '@mantine/core';
+import { Container, createTheme, MantineColorsTuple, rem } from '@mantine/core';
 
 const CONTAINER_SIZES: Record<string, string> = {
   xxs: '24em',
@@ -9,6 +9,20 @@ const CONTAINER_SIZES: Record<string, string> = {
   xl: '90em',
 };
 
+// https://colorkit.co/color-palette-generator/061017-0b202e-132937-2f434f-495a65-63717b-7d8991-97a0a6-cbcfd2-fefefe/
+const logoTheme: MantineColorsTuple = [
+  '#fefefe',
+  '#cbcfd2',
+  '#97a0a6',
+  '#7d8991',
+  '#63717b',
+  '#495a65',
+  '#2f434f',
+  '#132937', // This is the main logo color
+  '#0b202e',
+  '#061017',
+];
+
 export const theme = createTheme({
   fontFamily: 'Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji',
   breakpoints: {
@@ -18,6 +32,9 @@ export const theme = createTheme({
     md: '64em', // 1024px
     lg: '75em', // 1200px
     xl: '90em', // 1440px
+  },
+  colors: {
+    'logo-theme': logoTheme,
   },
   components: {
     Container: Container.extend({

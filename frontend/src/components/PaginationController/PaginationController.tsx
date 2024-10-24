@@ -3,7 +3,7 @@ import { Center, Group, Pagination } from '@mantine/core';
 import { getPaginationParams } from '@/utils/pagination';
 
 type PaginationControllerProps = {
-  totalBooks: number;
+  totalBooks?: number;
 };
 
 const PaginationController = ({ totalBooks }: PaginationControllerProps) => {
@@ -20,7 +20,7 @@ const PaginationController = ({ totalBooks }: PaginationControllerProps) => {
     <>
       <Center>
         <Pagination.Root
-          total={Math.max(Math.ceil(totalBooks / limit), 1)}
+          total={Math.max(Math.ceil((totalBooks ?? 0) / limit), 1)}
           value={page}
           onChange={handlePageChange}
           my="md"

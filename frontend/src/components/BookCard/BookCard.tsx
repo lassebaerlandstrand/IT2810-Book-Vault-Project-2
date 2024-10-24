@@ -3,7 +3,7 @@ import { Book } from '@/generated/graphql';
 import styles from './BookCard.module.css';
 
 type BookCardProps = {
-  book: Book;
+  book: Pick<Book, 'id' | 'title' | 'coverImg' | 'rating' | 'authors'>;
 };
 
 const BookCard = ({ book }: BookCardProps) => {
@@ -21,6 +21,7 @@ const BookCard = ({ book }: BookCardProps) => {
             maw="100%"
             mah="100%"
             m="auto"
+            key={book.id}
           />
         </Card.Section>
         <Card.Section mt="xs" h={50} className={styles.textSection}>
@@ -36,10 +37,11 @@ const BookCard = ({ book }: BookCardProps) => {
           <Text
             size="xs"
             lineClamp={2}
-            title={book.authors.join(', ')}
+            title={book.authors.map((author) => author.name).join(', ')}
             className={styles.bookAuthor}
           >
-            {book.authors[0]} {book.authors.length > 1 ? 'et al.' : ''}
+            {book.authors.length > 0 && book.authors[0].name}{' '}
+            {book.authors.length > 1 ? 'et al.' : ''}
           </Text>
         </Card.Section>
       </Card>

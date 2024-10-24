@@ -13,7 +13,7 @@ describe('Bookcard component', () => {
   it('matches snapshot', () => {
     const { asFragment } = render(
       <MemoryRouter>
-        <BookCardGrid books={dummyBooks} />
+        <BookCardGrid books={dummyBooks} loading={false} error={undefined} />
       </MemoryRouter>
     );
     expect(asFragment()).toMatchSnapshot();

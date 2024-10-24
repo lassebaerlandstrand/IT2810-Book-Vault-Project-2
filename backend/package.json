@@ -7,7 +7,9 @@
     "postinstall": "npm run compile",
     "compile": "tsc",
     "start": "npm run compile && node dist/server.js",
-    "test": "npm run compile && vitest run"
+    "test": "npm run compile && vitest run",
+    "prettier": "prettier --check \"**/*.{ts,tsx}\"",
+    "prettier:write": "prettier --write \"**/*.{ts,tsx}\""
   },
   "keywords": [],
   "author": "",
@@ -27,6 +29,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^20.3.3",
+    "prettier": "^3.3.3",
     "typescript": "^5.1.6",
     "vitest": "^2.0.5"
   }

@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 import { IconSortAscending, IconSortDescending } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { Center, InputLabel, MultiSelect, SegmentedControl } from '@mantine/core';
+import { Author, Genre, Publisher } from '@/generated/graphql';
 import { getFilterParams, SortBy, SortOrder } from '@/utils/filters';
 import { updateQueryParams } from '@/utils/queryParams';
 import styles from './SearchConfiguration.module.css';
 
 interface SearchConfigurationProps {
-  genres: string[];
-  publishers: string[];
-  authors: string[];
+  genres: Genre[];
+  publishers: Publisher[];
+  authors: Author[];
   applyFiltersImmediately?: boolean;
   onSearch?: (
     resetPage: boolean,
@@ -112,7 +113,7 @@ const SearchConfiguration = ({
         classNames={{ root: styles.multiSelect }}
         label="Genres"
         placeholder="Pick value"
-        data={genres}
+        data={genres.map((genre) => genre.name)}
         hidePickedOptions
         limit={10}
         value={selectedGenres}
@@ -123,7 +124,7 @@ const SearchConfiguration = ({
         classNames={{ root: styles.multiSelect }}
         label="Publisher"
         placeholder="Pick value"
-        data={publishers}
+        data={publishers.map((publisher) => publisher.name)}
         hidePickedOptions
         limit={10}
         value={selectedPublishers}
@@ -134,7 +135,7 @@ const SearchConfiguration = ({
         classNames={{ root: styles.multiSelect }}
         label="Authors"
         placeholder="Pick value"
-        data={authors}
+        data={authors.map((author) => author.name)}
         hidePickedOptions
         limit={10}
         value={selectedAuthors}

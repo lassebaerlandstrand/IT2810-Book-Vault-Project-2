@@ -5,15 +5,13 @@ import {
   Burger,
   Container,
   Group,
-  Image,
   Paper,
-  Title,
   Transition,
   useComputedColorScheme,
   useMantineColorScheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import BookVaultLogo from '../../assets/BookVaultLogo.png';
+import { LogoFull } from '../Logo/Logo';
 import styles from './HeaderSimple.module.css';
 
 const links = [
@@ -45,10 +43,7 @@ export function HeaderSimple() {
   return (
     <Container className={styles.wrapper}>
       <Link to="/" className={styles.logo}>
-        <Image src={BookVaultLogo} />
-        <Title order={3} className={styles.title}>
-          Book Vault
-        </Title>
+        <LogoFull />
       </Link>
       <Group className={styles.linksDesktop} gap="sm">
         {items}

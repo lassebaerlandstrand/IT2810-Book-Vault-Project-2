@@ -9,17 +9,16 @@ type InfoGridProps = {
 const InfoGrid = ({ book }: InfoGridProps) => {
   const tableInfos = [
     { header: 'Title', description: book.title },
-    { header: 'Author', description: book.authors.join(', ') },
-    { header: 'Publisher', description: book.publisher },
-    { header: 'Genres', description: book.genres.join(', ') },
-    { header: 'Rating', description: book.rating },
+    { header: 'Author', description: book.authors.map((author) => author.name).join(', ') },
+    { header: 'Publisher', description: book.publisher.name },
+    { header: 'Genres', description: book.genres.map((genre) => genre.name).join(', ') },
+    { header: 'Rating', description: book.rating.toFixed(1) },
     { header: 'Pages', description: book.pages },
     { header: 'Format', description: book.bookFormat },
     {
       header: 'Characters',
-      description:
-        JSON.parse(book.characters.replace(/'/g, '"')).join(', ') || 'No characters registered',
-    }, // TODO: Change this when characters has array type. Temporary when parse with JSON.
+      description: book.characters?.join(', ') ?? 'No characters registered',
+    },
     { header: 'ISBN', description: book.isbn },
     { header: 'Language', description: book.language },
   ];

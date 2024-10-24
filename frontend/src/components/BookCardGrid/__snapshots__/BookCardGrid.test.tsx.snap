@@ -5,7 +5,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
   <style
     data-mantine-styles="true"
   >
-    :root{--mantine-font-family: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-font-family-headings: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-breakpoint-xs: 30em;--mantine-breakpoint-md: 64em;--mantine-breakpoint-xl: 90em;--mantine-breakpoint-xxs: 24em;}
+    :root{--mantine-font-family: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-font-family-headings: Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;--mantine-breakpoint-xs: 30em;--mantine-breakpoint-md: 64em;--mantine-breakpoint-xl: 90em;--mantine-breakpoint-xxs: 24em;--mantine-color-logo-theme-0: #fefefe;--mantine-color-logo-theme-1: #cbcfd2;--mantine-color-logo-theme-2: #97a0a6;--mantine-color-logo-theme-3: #7d8991;--mantine-color-logo-theme-4: #63717b;--mantine-color-logo-theme-5: #495a65;--mantine-color-logo-theme-6: #2f434f;--mantine-color-logo-theme-7: #132937;--mantine-color-logo-theme-8: #0b202e;--mantine-color-logo-theme-9: #061017;}:root[data-mantine-color-scheme="dark"]{--mantine-color-logo-theme-text: var(--mantine-color-logo-theme-4);--mantine-color-logo-theme-filled: var(--mantine-color-logo-theme-8);--mantine-color-logo-theme-filled-hover: var(--mantine-color-logo-theme-9);--mantine-color-logo-theme-light: rgba(47, 67, 79, 0.15);--mantine-color-logo-theme-light-hover: rgba(47, 67, 79, 0.2);--mantine-color-logo-theme-light-color: var(--mantine-color-logo-theme-3);--mantine-color-logo-theme-outline: var(--mantine-color-logo-theme-4);--mantine-color-logo-theme-outline-hover: rgba(99, 113, 123, 0.05);}:root[data-mantine-color-scheme="light"]{--mantine-color-logo-theme-text: var(--mantine-color-logo-theme-filled);--mantine-color-logo-theme-filled: var(--mantine-color-logo-theme-6);--mantine-color-logo-theme-filled-hover: var(--mantine-color-logo-theme-7);--mantine-color-logo-theme-light: rgba(47, 67, 79, 0.1);--mantine-color-logo-theme-light-hover: rgba(47, 67, 79, 0.12);--mantine-color-logo-theme-light-color: var(--mantine-color-logo-theme-6);--mantine-color-logo-theme-outline: var(--mantine-color-logo-theme-6);--mantine-color-logo-theme-outline-hover: rgba(47, 67, 79, 0.05);}
   </style>
   <style
     data-mantine-styles="classes"
@@ -45,7 +45,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -59,18 +59,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>
@@ -97,7 +97,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -111,18 +111,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>
@@ -149,7 +149,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -163,18 +163,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>
@@ -201,7 +201,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -215,18 +215,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>
@@ -253,7 +253,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -267,18 +267,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>
@@ -305,7 +305,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -319,18 +319,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>
@@ -357,7 +357,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -371,18 +371,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>
@@ -409,7 +409,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -423,18 +423,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>
@@ -461,7 +461,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -475,18 +475,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>
@@ -513,7 +513,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
               data-first-section="true"
             >
               <img
-                alt="Cover image for A name"
+                alt="Cover image for A title"
                 class="m_9e117634 mantine-Image-root"
                 src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
                 style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
@@ -527,18 +527,18 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
-                title="A name"
+                title="A title"
               >
-                A name
+                A title
               </h4>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 data-size="xs"
                 style="--text-fz: var(--mantine-font-size-xs); --text-lh: var(--mantine-line-height-xs); --text-line-clamp: 2;"
-                title="An author"
+                title="A name"
               >
-                An author 
+                A name 
               </p>
             </div>
           </div>

@@ -1,12 +1,12 @@
-import { GraphQLScalarType, Kind } from "graphql";
-import db from "./db/connection.js";
-import { Document } from "mongodb";
-import { mongoCalculateAverageRatingAggregationPipeline } from "./db/queries.js";
+import { GraphQLScalarType, Kind } from 'graphql';
+import db from './db/connection.js';
+import { Document } from 'mongodb';
+import { mongoCalculateAverageRatingAggregationPipeline } from './db/queries.js';
 
 interface OrderByInput {
-  bookName?: "asc" | "desc";
-  authorName?: "asc" | "desc";
-  publisherName?: "asc" | "desc";
+  bookName?: 'asc' | 'desc';
+  authorName?: 'asc' | 'desc';
+  publisherName?: 'asc' | 'desc';
 }
 
 interface BooksQueryArgs {
@@ -24,15 +24,19 @@ interface BooksQueryArgs {
   minRating?: number;
 }
 
-const mapCounts = (counts: Document, keyName: string, valueName = "count") =>
+const mapCounts = (counts: Document, keyName: string, valueName = 'count') =>
   Object.entries(counts).map(([key, value]) => ({
     [keyName]: key,
     [valueName]: value,
   }));
 
+interface BookQueryArgs {
+  id: string;
+}
+
 const resolvers = {
   Date: new GraphQLScalarType({
-    name: "Date",
+    name: 'Date',
     description:
       "A Date can be a string in the format 'YYYY-MM-DD' or a number representing the milliseconds since the Unix epoch (1970-01-01T00:00:00Z)",
     parseValue(value: string | number) {
@@ -68,9 +72,9 @@ const resolvers = {
         minPages,
         maxPages,
         minRating,
-      }: BooksQueryArgs
+      }: BooksQueryArgs,
     ) {
-      const collection = db.collection("books");
+      const collection = db.collection('books');
 
       interface MongoBookFilters {
         $text?: { $search: string };
@@ -113,47 +117,50 @@ const resolvers = {
         filters.pages = { $lte: maxPages };
       }
 
-      const filterAggregations = [
+      let filterAggregations: Document[] = [
         { $match: filters },
         ...mongoCalculateAverageRatingAggregationPipeline,
         {
           $addFields: {
-            roundedAverageRating: { $round: ["$averageRating", 0] },
-          },
-        },
-        {
-          $match: {
-            roundedAverageRating: { $gte: minRating },
+            roundedAverageRating: { $round: ['$averageRating', 0] },
           },
         },
       ];
+      if (minRating) {
+        filterAggregations.push({
+          $match: {
+            roundedAverageRating: { $gte: minRating },
+          },
+        });
+      }
 
       const pipeline: Document[] = [...filterAggregations];
 
       if (orderBy) {
         if (orderBy.bookName) {
           pipeline.push({
-            $sort: { title: orderBy.bookName === "asc" ? 1 : -1 },
+            $sort: { title: orderBy.bookName === 'asc' ? 1 : -1 },
           });
         } else if (orderBy.authorName) {
           pipeline.push({
-            $sort: { "authors.0": orderBy.authorName === "asc" ? 1 : -1 },
+            $sort: { 'authors.0': orderBy.authorName === 'asc' ? 1 : -1 },
           });
         } else if (orderBy.publisherName) {
           pipeline.push({
-            $sort: { publisher: orderBy.publisherName === "asc" ? 1 : -1 },
+            $sort: { publisher: orderBy.publisherName === 'asc' ? 1 : -1 },
           });
         }
       }
 
       const filteredBooks = await collection.aggregate(pipeline).toArray();
 
-      const totalCount = filteredBooks.length;
-      const totalPages = Math.ceil(totalCount / limit);
+      const totalBooks = filteredBooks.length;
+      const totalPages = Math.ceil(totalBooks / limit);
       const currentPage = Math.floor(offset / limit) + 1;
       const isLastPage = currentPage >= totalPages;
+      const skip = offset * limit;
 
-      const books = filteredBooks.slice(offset, offset + limit);
+      const books = filteredBooks.slice(skip, skip + limit);
 
       const authorCounts = filteredBooks.reduce((acc, book) => {
         book.authors.forEach((author: string) => {
@@ -186,8 +193,7 @@ const resolvers = {
       }, {});
 
       const ratingCounts = filteredBooks.reduce((acc, book) => {
-        acc[book.roundedAverageRating] =
-          (acc[book.roundedAverageRating] || 0) + 1;
+        acc[book.roundedAverageRating] = (acc[book.roundedAverageRating] || 0) + 1;
         return acc;
       }, {});
 
@@ -198,33 +204,38 @@ const resolvers = {
           currentPage,
           isLastPage,
         },
+        summary: {
+          totalBooks,
+        },
         filterCounts: {
-          authors: mapCounts(authorCounts, "name"),
-          genres: mapCounts(genreCounts, "name"),
-          publishers: mapCounts(publisherCounts, "name"),
-          publishDates: mapCounts(publishDateCounts, "year"),
-          pages: mapCounts(pageCounts, "pages"),
-          ratings: mapCounts(ratingCounts, "rating"),
+          authors: mapCounts(authorCounts, 'name'),
+          genres: mapCounts(genreCounts, 'name'),
+          publishers: mapCounts(publisherCounts, 'name'),
+          publishDates: mapCounts(publishDateCounts, 'year'),
+          pages: mapCounts(pageCounts, 'pages'),
+          ratings: mapCounts(ratingCounts, 'rating'),
         },
       };
     },
 
     async authors() {
-      return (await db.collection("books").distinct("authors")).map(
-        (author) => ({ name: author })
-      );
+      return (await db.collection('books').distinct('authors')).map((author) => ({ name: author }));
+    },
+
+    async book(_, { id }: BookQueryArgs) {
+      return await db.collection('books').findOne({ id: id });
     },
 
     async genres() {
-      return (await db.collection("books").distinct("genres")).map((genre) => ({
+      return (await db.collection('books').distinct('genres')).map((genre) => ({
         name: genre,
       }));
     },
 
     async publishers() {
-      return (await db.collection("books").distinct("publisher")).map(
-        (publisher) => ({ name: publisher })
-      );
+      return (await db.collection('books').distinct('publisher')).map((publisher) => ({
+        name: publisher,
+      }));
     },
   },
 
@@ -238,10 +249,24 @@ const resolvers = {
     publisher: async (book: { publisher: string }) => {
       return { name: book.publisher };
     },
-    ratingsByStars: async (book: {
-      ratingsByStars: { [x: number]: number };
-    }) => {
-      return Array.from({ length: 6 }, (_, i) => book.ratingsByStars[i] || 0);
+    numRatings: async (book: { ratingsByStars: { [x: number]: number } }) => {
+      return Object.values(book.ratingsByStars).reduce((total, count) => total + count, 0);
+    },
+    rating: async (book: { ratingsByStars: { [x: number]: number } }) => {
+      const numRatings = Object.values(book.ratingsByStars).reduce(
+        (total, count) => total + count,
+        0,
+      );
+
+      if (numRatings === 0) {
+        return 0;
+      }
+
+      const weightedSum = Object.entries(book.ratingsByStars).reduce((sum, [key, count]) => {
+        return sum + parseInt(key, 10) * count;
+      }, 0);
+
+      return weightedSum / numRatings;
     },
   },
 };

@@ -3,7 +3,6 @@ import { IconAdjustments } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Container, Drawer, Flex, Group, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { fetchBooks, fetchTotalBooksWithFilters } from '@/api/dummyApi';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
@@ -11,8 +10,11 @@ import LoadingCircle from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
-import { Book } from '@/generated/graphql';
-import { getFilterParams, getInitialOptions, SortBy, SortOrder } from '@/utils/filters';
+import { useAuthors } from '@/hooks/useAuthors';
+import { useBooks } from '@/hooks/useBooks';
+import { useGenres } from '@/hooks/useGenres';
+import { usePublishers } from '@/hooks/usePublishers';
+import { getFilterParams, SortBy, SortOrder } from '@/utils/filters';
 import { getPaginationParams } from '@/utils/pagination';
 import { updateQueryParams } from '@/utils/queryParams';
 import { getSearchParams } from '@/utils/search';
@@ -26,20 +28,31 @@ export function BookList() {
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
-  const [totalBooks, setTotalBooks] = useState(0);
-  const [books, setBooks] = useState<Book[]>([]);
   const [searchTime, setSearchTime] = useState(0);
 
-  const { allGenres, allAuthors, allPublishers } = getInitialOptions();
   const { sortBy, sortOrder, genres, authors, publishers } = getFilterParams(searchParams);
   const { page, limit, DEFAULT_PAGE } = getPaginationParams(searchParams);
   const { searchValue } = getSearchParams(searchParams);
 
-  const formattedTotalBooks = formatNumberWithSpaces(totalBooks.toString());
+  const { genres: allGenres, loading: loadingGenres, error: errorGenres } = useGenres();
+  const { authors: allAuthors, loading: loadingAuthors, error: errorAuthors } = useAuthors();
+  const {
+    publishers: allPublishers,
+    loading: loadingPublishers,
+    error: errorPublishers,
+  } = usePublishers();
 
-  useEffect(() => {
-    setBooks(fetchBooks(page, limit, sortBy, sortOrder, genres, publishers, authors, searchValue));
-  }, [page, limit]);
+  const {
+    books: books,
+    totalBooks,
+    loading: booksLoading,
+    error: booksError,
+  } = useBooks({
+    limit,
+    page,
+  });
+
+  const formattedTotalBooks = totalBooks ? formatNumberWithSpaces(totalBooks.toString()) : '';
 
   useEffect(() => {
     onSearch(false);
@@ -76,26 +89,25 @@ export function BookList() {
       updateQueryParams(setSearchParams, 'sortOrder', newSortOrder);
     }
 
-    const books = fetchBooks(
-      page,
-      limit,
-      newSortBy,
-      newSortOrder,
-      newGenres,
-      newPublishers,
-      newAuthors,
-      newSearchValue
-    );
-    const totalBooks = fetchTotalBooksWithFilters(
-      newSortBy,
-      newSortOrder,
-      newGenres,
-      newPublishers,
-      newAuthors,
-      newSearchValue
-    );
-    setBooks(books);
-    setTotalBooks(totalBooks);
+    // const books = fetchBooks(
+    //   page,
+    //   limit,
+    //   newSortBy,
+    //   newSortOrder,
+    //   newGenres,
+    //   newPublishers,
+    //   newAuthors,
+    //   newSearchValue
+    // );
+    // const totalBooks = fetchTotalBooksWithFilters(
+    //   newSortBy,
+    //   newSortOrder,
+    //   newGenres,
+    //   newPublishers,
+    //   newAuthors,
+    //   newSearchValue
+    // );
+    // setBooks(books);
 
     setSearchTime(performance.now() - startTime);
   };
@@ -110,9 +122,25 @@ export function BookList() {
     );
   }
 
-  // TODO: Add more loading states here
-  if (isDesktop == null) {
+  if (isDesktop == null || loadingGenres || loadingAuthors || loadingPublishers) {
     return <LoadingCircle />;
+  }
+
+  if (
+    errorGenres ||
+    errorAuthors ||
+    errorPublishers ||
+    allGenres == null ||
+    allAuthors == null ||
+    allPublishers == null
+  ) {
+    return (
+      <Error404
+        title="Failed to load data"
+        description="We were unable to load the necessary data to display the page."
+        link="/"
+      />
+    );
   }
 
   return (
@@ -146,7 +174,9 @@ export function BookList() {
 
       <Flex justify="space-between" align="flex-end" gap="md">
         <Text>
-          {formattedTotalBooks} results in {(searchTime / 1000).toFixed(4)} seconds
+          {booksLoading
+            ? 'Loading...'
+            : `${formattedTotalBooks} results in ${(searchTime / 1000).toFixed(4)} seconds`}
         </Text>
         <EntriesController />
       </Flex>
@@ -167,7 +197,7 @@ export function BookList() {
           </Container>
         )}
         <Container flex={1} px={0}>
-          <BookCardGrid books={books} />
+          <BookCardGrid books={books} loading={booksLoading} error={booksError} />
         </Container>
       </Flex>
 
