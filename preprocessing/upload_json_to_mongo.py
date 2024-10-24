@@ -1,5 +1,6 @@
 import json
 from pymongo import MongoClient, TEXT
+from datetime import UTC, datetime, timedelta
 
 client = MongoClient('mongodb://localhost:27017/')
 db = client['bookvault']
@@ -23,6 +24,11 @@ for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json']:
         elif file == 'publishers.json':
             publishers.insert_many(data)
         else:
+            for book in data:
+                if book['publishDate'] < 0:
+                    book['publishDate'] = datetime(1970, 1, 1) + timedelta(seconds=book['publishDate']/1000)
+                else:
+                    book['publishDate'] = datetime.fromtimestamp(book['publishDate']/1000, tz=UTC)
             books.insert_many(data)
             books.create_index([('title', TEXT)], language_override='dummy')
 

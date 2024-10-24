@@ -18,6 +18,7 @@ df.replace('', np.nan, inplace=True)
 
 # Convert to datetime, coercing errors (invalid dates will become NaT)
 df['publishDate'] = pd.to_datetime(df['publishDate'], errors='coerce')
+df['publishDate'] = df['publishDate'].apply(lambda x: x - pd.DateOffset(years=100) if x.year > 2024 else x)
 
 # Correct invalid values in isbn and pages
 df['isbn'].replace('9999999999999', np.nan, inplace=True)
