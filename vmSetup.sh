@@ -3,7 +3,7 @@ cd /home/krisose/T05-Project-2/
 git pull
 
 # preprocessing
-cd /preprocessing
+cd /home/krisose/T05-Project-2/preprocessing
 python3 preprocessing.py
 python3 upload_json_to_mongo.py
 
