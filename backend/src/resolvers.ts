@@ -74,7 +74,7 @@ const resolvers = {
       const collection = db.collection('books');
 
       interface MongoBookFilters {
-        $text?: { $search: string };
+        $or?: { [key: string]: { $regex: RegExp } }[];
         publishDate?: { $lt?: number; $gt?: number };
         authors?: { $in: string[] };
         genres?: { $in: string[] };
@@ -83,7 +83,13 @@ const resolvers = {
 
       const filters: MongoBookFilters = {};
       if (search) {
-        filters.$text = { $search: search };
+        // Does a case-insensitive search on the title and description fields
+        const searchRegexSubString = new RegExp(search, 'i');
+        const searchRegexWholeWords = new RegExp(`\\b${search}\\b`, 'i');
+        filters.$or = [
+          { title: { $regex: searchRegexSubString } },
+          { description: { $regex: searchRegexWholeWords } },
+        ];
       }
       if (beforeDate && afterDate) {
         filters.publishDate = {
