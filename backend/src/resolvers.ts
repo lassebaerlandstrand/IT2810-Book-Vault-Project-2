@@ -113,17 +113,17 @@ const resolvers = {
         switch (sortInput.sortBy) {
           case SortBy.Book:
             pipeline.push({
-              $sort: { title: sortOrder },
+              $sort: { title: sortOrder, _id: 1 }, // Secondary sort by _id to ensure consistent ordering
             });
             break;
           case SortBy.Author:
             pipeline.push({
-              $sort: { 'authors.0': sortOrder },
+              $sort: { 'authors.0': sortOrder, _id: 1 },
             });
             break;
           case SortBy.Publisher:
             pipeline.push({
-              $sort: { publisher: sortOrder },
+              $sort: { publisher: sortOrder, _id: 1 },
             });
             break;
         }
