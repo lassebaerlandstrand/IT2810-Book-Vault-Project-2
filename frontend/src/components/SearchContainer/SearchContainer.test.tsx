@@ -1,37 +1,84 @@
 import { fireEvent, render, screen } from '@test-utils';
+import { useSearchParams } from 'react-router-dom';
+import { updateQueryParams } from '@/utils/queryParams';
+import { getSearchParams } from '@/utils/search';
 import SearchContainer from './SearchContainer';
 
 vi.mock('react-router-dom', () => ({
-  useSearchParams: vi.fn(() => [{ get: vi.fn(), set: vi.fn() }, vi.fn()]),
+  useSearchParams: vi.fn(),
 }));
 
-test('renders SearchContainer', () => {
-  const { asFragment } = render(<SearchContainer onSearch={() => {}} />);
-  const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
-  attributesToRemove.forEach((element) => {
-    element.removeAttribute('id');
-    element.removeAttribute('aria-describedby');
+vi.mock('@/utils/queryParams', () => ({
+  updateQueryParams: vi.fn(),
+}));
+
+vi.mock('@/utils/search', () => ({
+  getSearchParams: vi.fn(),
+}));
+
+describe('SearchContainer', () => {
+  const mockSetSearchParams = vi.fn();
+
+  beforeEach(() => {
+    (useSearchParams as jest.Mock).mockImplementation(() => [
+      new URLSearchParams(), // Simulating an empty searchParams initially
+      mockSetSearchParams, // This is a mock setter function
+    ]);
+
+    (getSearchParams as jest.Mock).mockReturnValue({ searchValue: '' });
   });
-  expect(asFragment()).toMatchSnapshot();
-});
 
-test('do not call onSearch when typing', () => {
-  const onSearch = vi.fn();
-  render(<SearchContainer onSearch={onSearch} />);
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
-  const input = screen.getByPlaceholderText('Search for books');
-  fireEvent.input(input, { target: { value: 'new value' } });
+  it('renders the search input field', () => {
+    render(<SearchContainer />);
 
-  // onSearch should not be called
-  expect(onSearch).not.toHaveBeenCalled();
-});
+    const searchInput = screen.getByPlaceholderText('Search for books');
+    expect(searchInput).toBeInTheDocument();
+  });
 
-test('calls onSearch on Enter key press', () => {
-  const onSearch = vi.fn();
-  render(<SearchContainer onSearch={onSearch} />);
+  it('updates search value on input change', () => {
+    render(<SearchContainer />);
 
-  const input = screen.getByPlaceholderText('Search for books');
-  fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    const inputElement = screen.getByPlaceholderText('Search for books');
+    fireEvent.input(inputElement, { target: { value: 'Harry Potter' } });
 
-  expect(onSearch).toHaveBeenCalled();
+    expect(inputElement).toHaveValue('Harry Potter');
+  });
+
+  it('calls performSearch on Enter key press', async () => {
+    render(<SearchContainer />);
+
+    const inputElement = screen.getByPlaceholderText('Search for books');
+    fireEvent.input(inputElement, { target: { value: 'Harry Potter' } });
+    fireEvent.keyDown(inputElement, { key: 'Enter' });
+
+    expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'page', '1');
+    expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'search', 'Harry Potter');
+  });
+
+  it('calls performSearch on search button click', async () => {
+    render(<SearchContainer />);
+
+    const inputElement = screen.getByPlaceholderText('Search for books');
+    fireEvent.input(inputElement, { target: { value: 'Harry Potter' } });
+    const searchButton = screen.getByRole('button');
+
+    fireEvent.click(searchButton);
+
+    expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'page', '1');
+    expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'search', 'Harry Potter');
+  });
+
+  it('matches snapshot', () => {
+    const { asFragment } = render(<SearchContainer />);
+    const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
+    attributesToRemove.forEach((element) => {
+      element.removeAttribute('id');
+      element.removeAttribute('aria-describedby');
+    });
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

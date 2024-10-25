@@ -1,4 +1,5 @@
-import { getFilterParams, SortBy, SortOrder } from './filters';
+import { SortBy, SortOrder } from '@/generated/graphql';
+import { getFilterParams } from './filters';
 import { getPaginationParams } from './pagination';
 
 const isValidFilters = (sortBy: SortBy, sortOrder: SortOrder): boolean => {

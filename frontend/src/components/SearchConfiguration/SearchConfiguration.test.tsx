@@ -9,10 +9,10 @@ describe('SearchConfiguration', () => {
   const publishers = [{ name: 'Publisher1' }, { name: 'Publisher2' }];
   const authors = [{ name: 'Author1' }, { name: 'Author2' }];
 
-  test('renders SearchConfiguration', () => {
+  test('matches snapshot', () => {
     const { asFragment } = render(
       <MemoryRouter>
-        <SearchConfiguration genres={[]} publishers={[]} authors={[]} />
+        <SearchConfiguration genres={[]} publishers={[]} authors={[]} useDrawer={false} />
       </MemoryRouter>
     );
     const attributesToRemove = document.body.querySelectorAll('input, label'); // Because Mantine uses random ids which causes snapshots to fail
@@ -28,7 +28,12 @@ describe('SearchConfiguration', () => {
   test('renders sort by options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
+        <SearchConfiguration
+          genres={genres}
+          publishers={publishers}
+          authors={authors}
+          useDrawer={false}
+        />
       </MemoryRouter>
     );
 
@@ -41,7 +46,12 @@ describe('SearchConfiguration', () => {
   test('renders sort order options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
+        <SearchConfiguration
+          genres={genres}
+          publishers={publishers}
+          authors={authors}
+          useDrawer={false}
+        />
       </MemoryRouter>
     );
 
@@ -52,7 +62,12 @@ describe('SearchConfiguration', () => {
   test('renders genre options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
+        <SearchConfiguration
+          genres={genres}
+          publishers={publishers}
+          authors={authors}
+          useDrawer={false}
+        />
       </MemoryRouter>
     );
 
@@ -64,7 +79,12 @@ describe('SearchConfiguration', () => {
   test('renders publisher options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
+        <SearchConfiguration
+          genres={genres}
+          publishers={publishers}
+          authors={authors}
+          useDrawer={false}
+        />
       </MemoryRouter>
     );
 
@@ -76,7 +96,12 @@ describe('SearchConfiguration', () => {
   test('renders author options', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration genres={genres} publishers={publishers} authors={authors} />
+        <SearchConfiguration
+          genres={genres}
+          publishers={publishers}
+          authors={authors}
+          useDrawer={false}
+        />
       </MemoryRouter>
     );
 

@@ -2,17 +2,27 @@ import { GraphQLScalarType, Kind } from 'graphql';
 import db from './db/connection.js';
 import { Document } from 'mongodb';
 
-interface OrderByInput {
-  bookName?: 'asc' | 'desc';
-  authorName?: 'asc' | 'desc';
-  publisherName?: 'asc' | 'desc';
+enum SortBy {
+  Book = 'bookName',
+  Author = 'authorName',
+  Publisher = 'publisherName',
+}
+
+enum SortOrder {
+  Ascending = 'asc',
+  Descending = 'desc',
+}
+
+interface SortInput {
+  sortBy: SortBy;
+  sortOrder: SortOrder;
 }
 
 interface BooksQueryArgs {
   search?: string;
   limit?: number;
   offset?: number;
-  orderBy?: OrderByInput;
+  sortInput?: SortInput;
   beforeDate?: Date;
   afterDate?: Date;
   authors?: string[];
@@ -53,7 +63,7 @@ const resolvers = {
         search,
         limit = 10,
         offset = 0,
-        orderBy,
+        sortInput,
         beforeDate,
         afterDate,
         authors,
@@ -64,7 +74,7 @@ const resolvers = {
       const collection = db.collection('books');
 
       interface MongoBookFilters {
-        $text?: { $search: string };
+        $or?: { [key: string]: { $regex: RegExp } }[];
         publishDate?: { $lt?: number; $gt?: number };
         authors?: { $in: string[] };
         genres?: { $in: string[] };
@@ -73,7 +83,13 @@ const resolvers = {
 
       const filters: MongoBookFilters = {};
       if (search) {
-        filters.$text = { $search: search };
+        // Does a case-insensitive search on the title and description fields
+        const searchRegexSubString = new RegExp(search, 'i');
+        const searchRegexWholeWords = new RegExp(`\\b${search}\\b`, 'i');
+        filters.$or = [
+          { title: { $regex: searchRegexSubString } },
+          { description: { $regex: searchRegexWholeWords } },
+        ];
       }
       if (beforeDate && afterDate) {
         filters.publishDate = {
@@ -85,38 +101,40 @@ const resolvers = {
       } else if (afterDate) {
         filters.publishDate = { $gt: afterDate.valueOf() };
       }
-      if (authors) {
+      if (authors && authors.length > 0) {
         filters.authors = { $in: authors };
       }
-      if (genres) {
+      if (genres && genres.length > 0) {
         filters.genres = { $in: genres };
       }
-      if (publishers) {
+      if (publishers && publishers.length > 0) {
         filters.publisher = { $in: publishers };
       }
 
       const pipeline: Document[] = [];
       pipeline.push({ $match: filters });
 
-      if (orderBy) {
-        if (orderBy.bookName) {
-          pipeline.push({
-            $sort: { title: orderBy.bookName === 'asc' ? 1 : -1 },
-          });
-        } else if (orderBy.authorName) {
-          pipeline.push({
-            $sort: {
-              'authors.0': orderBy.authorName === 'asc' ? 1 : -1,
-            },
-          });
-        } else if (orderBy.publisherName) {
-          pipeline.push({
-            $sort: {
-              publisher: orderBy.publisherName === 'asc' ? 1 : -1,
-            },
-          });
+      if (sortInput) {
+        const sortOrder = sortInput.sortOrder == SortOrder.Ascending ? 1 : -1;
+        switch (sortInput.sortBy) {
+          case SortBy.Book:
+            pipeline.push({
+              $sort: { title: sortOrder, _id: 1 }, // Secondary sort by _id to ensure consistent ordering
+            });
+            break;
+          case SortBy.Author:
+            pipeline.push({
+              $sort: { 'authors.0': sortOrder, _id: 1 },
+            });
+            break;
+          case SortBy.Publisher:
+            pipeline.push({
+              $sort: { publisher: sortOrder, _id: 1 },
+            });
+            break;
         }
       }
+
       const totalBooks = await collection.countDocuments(filters);
       const totalPages = Math.ceil(totalBooks / limit);
       const currentPage = Math.floor(offset / limit) + 1;
@@ -125,6 +143,7 @@ const resolvers = {
 
       pipeline.push({ $skip: skip });
       pipeline.push({ $limit: limit });
+
       const books = await collection.aggregate(pipeline).toArray();
 
       return {
