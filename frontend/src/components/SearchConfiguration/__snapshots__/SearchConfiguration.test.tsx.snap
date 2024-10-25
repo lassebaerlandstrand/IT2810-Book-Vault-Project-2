@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
+exports[`SearchConfiguration > matches snapshot 1`] = `
 <DocumentFragment>
   <style
     data-mantine-styles="true"
