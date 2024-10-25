@@ -67,8 +67,16 @@ type User {
   UUID: ID!
   name: String!
   at: Date!
-  wantToRead: [String!]!
-  haveRead: [String!]!
+  wantToRead: [String]!
+  haveRead: [String]!
+}
+
+type UnstrictUser {
+  UUID: ID
+  name: String!
+  at: Date
+  wantToRead: [String]
+  haveRead: [String]
 }
 
 type Author {
@@ -92,8 +100,8 @@ type Review {
   description: String!
   rating: Float!
   at: Date!
-  user: User!
-  book: Book!
+  user: UnstrictUser
+  book: Book
 }
 
 type ReviewPagination {

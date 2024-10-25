@@ -11,38 +11,7 @@ export const GET_BOOKS_REVIEWS = gql(`
         rating
         at
         user {
-          UUID
           name
-          at
-          wantToRead
-          haveRead
-        }
-        book {
-          id
-          title
-          series
-          numberInSeries
-          language
-          isbn
-          coverImg
-          rating
-          numRatings
-          characters
-          bookFormat
-          pages
-          publishDate
-          awards
-          setting
-          publisher {
-            name
-          }
-          genres {
-            name
-          }
-          authors {
-            name
-          }
-          description
         }
       }
       pagination 

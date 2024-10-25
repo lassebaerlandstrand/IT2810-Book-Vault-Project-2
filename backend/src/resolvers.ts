@@ -202,7 +202,7 @@ const resolvers = {
         ])
         .toArray();
 
-      const book = await db.collection('books').findOne({ id: bookID });
+      //const book = await db.collection('books').findOne({ id: bookID });
 
       // each user is only allowed to post 1 review per book,
       // meaning each user will only be found once
@@ -218,8 +218,9 @@ const resolvers = {
           description: review.description,
           rating: review.rating,
           at: new Date(review.at),
-          user: user,
-          book: book,
+          user: {
+            name: user.name,
+          },
         });
       }
 

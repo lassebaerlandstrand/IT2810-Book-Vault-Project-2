@@ -8,11 +8,14 @@ type ReviewProps = {
 };
 
 const ReviewCard = ({ review, type }: ReviewProps) => {
+  if (type == 'book' && !review.book) return <>Type is book but book is not set</>;
+  if (type == 'pfp' && !review.user) return <>Type is book but user is not set</>;
+
   return (
     <>
       <Card p={30} radius="lg" className={styles.card} m="auto">
         <Grid>
-          {type == 'book' ? (
+          {type == 'book' && review.book ? (
             <Grid.Col span="content" h={200} className={styles.img}>
               <Image
                 src={review.book.coverImg}
@@ -31,7 +34,7 @@ const ReviewCard = ({ review, type }: ReviewProps) => {
           )}
           <Grid.Col span="auto">
             <Grid justify="flex-start">
-              {type == 'pfp' ? (
+              {type == 'pfp' && review.user ? (
                 <Grid.Col span="content">
                   <Avatar color="blue">
                     {review.user.name
@@ -46,9 +49,11 @@ const ReviewCard = ({ review, type }: ReviewProps) => {
               <Grid.Col span="content">
                 <Stack gap={0}>
                   <Text fw={600} component="h4" lineClamp={2} className={styles.bookTitle}>
-                    {
-                      type == 'book' ? 'Review of' + review.book.title : review.user.name //Either book or user is set
-                    }
+                    {type == 'book' && review.book
+                      ? 'Review of ' + review.book.title
+                      : review.user
+                        ? review.user.name
+                        : '???'}
                   </Text>
                   <Text fw={500} size="sm" fs="italic" lineClamp={2}>
                     {new Date(review.at).toDateString()}
@@ -61,13 +66,17 @@ const ReviewCard = ({ review, type }: ReviewProps) => {
                   <Text fw={500}>{review.rating.toFixed(1)}</Text>
                 </Flex>
               </Grid.Col>
-              <Grid.Col span={12}>
-                {type == 'book' ? (
-                  <Text lineClamp={5}>{review.description}</Text>
-                ) : (
-                  <Text>{review.description}</Text>
-                )}
-              </Grid.Col>
+              {review.description ? (
+                <Grid.Col span={12}>
+                  {type == 'book' ? (
+                    <Text lineClamp={5}>{review.description}</Text>
+                  ) : (
+                    <Text>{review.description}</Text>
+                  )}
+                </Grid.Col>
+              ) : (
+                <></>
+              )}
             </Grid>
           </Grid.Col>
         </Grid>

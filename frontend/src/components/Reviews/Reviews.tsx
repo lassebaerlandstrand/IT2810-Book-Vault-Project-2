@@ -20,7 +20,7 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
   const [page, setPage] = useState(0);
-  const [displayReviews, setReviews] = useState<ReviewType[]>([]);
+  const [displayReviews, setDisplayReviews] = useState<ReviewType[]>([]);
 
   const limit: number = 3;
 
@@ -84,8 +84,6 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
         rating: rating,
       });
       toggleReviewDisplay();
-      setRating(1);
-      setText('');
     }
   };
 
@@ -104,10 +102,10 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
 
   // Whenever you get more reviews, add them
   useEffect(() => {
-    if (reviews) {
-      setReviews([...displayReviews, ...(reviews as ReviewType[])]);
+    if (reviews && reviews.length > 0) {
+      setDisplayReviews((oldReviews) => [...oldReviews, ...reviews]);
     }
-  }, [reviews]);
+  }, [JSON.stringify(reviews)]);
 
   // Update rating + refetch your rating
   const updateRating = (updatedRating: number) => {
