@@ -24,6 +24,5 @@ for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json']:
             publishers.insert_many(data)
         else:
             books.insert_many(data)
-            books.create_index([('title', TEXT)], language_override='dummy')
 
 client.close()
