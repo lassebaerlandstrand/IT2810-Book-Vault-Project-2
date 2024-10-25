@@ -135,7 +135,7 @@ export function BookList() {
 
       <Flex justify="space-between" align="flex-end" gap="md">
         <Text>
-          {searchTime[0] == 'Loading' || booksLoading
+          {searchTime[0] === 'Loading' || booksLoading
             ? 'Loading...'
             : `${formattedTotalBooks} results in ${(searchTime[1] / 1000).toFixed(4)} seconds`}
         </Text>

@@ -32,7 +32,7 @@ export const useBooks = ({
   const sortInput: SortInput = { sortBy, sortOrder };
   const { data, loading, error } = useQuery(GET_BOOKS, {
     variables: { limit, offset: page - 1, search, sortInput, authors, genres, publishers },
-    onCompleted: onCompleted,
+    onCompleted,
   });
 
   return {
