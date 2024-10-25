@@ -17,7 +17,10 @@ const InfoGrid = ({ book }: InfoGridProps) => {
     { header: 'Format', description: book.bookFormat },
     {
       header: 'Characters',
-      description: book.characters?.join(', ') ?? 'No characters registered',
+      description:
+        book.characters && book.characters.length > 0
+          ? book.characters.join(', ')
+          : 'No characters registered',
     },
     { header: 'ISBN', description: book.isbn },
     { header: 'Language', description: book.language },
