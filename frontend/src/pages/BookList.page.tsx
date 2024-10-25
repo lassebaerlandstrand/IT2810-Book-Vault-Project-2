@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { IconAdjustments } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Container, Flex, Group, Text, useMantineTheme } from '@mantine/core';
@@ -27,7 +27,6 @@ export function BookList() {
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
-  const [searchTime, setSearchTime] = useState<['Loading' | 'Finished', number]>(['Loading', 0]); // Need to define a tuple, because we can only benchmark the search with the onCompleted function
 
   const { sortBy, sortOrder, genres, authors, publishers } = getFilterParams(searchParams);
   const { page, limit } = getPaginationParams(searchParams);
@@ -55,26 +54,10 @@ export function BookList() {
     authors,
     genres,
     publishers,
-    onCompleted: () => {
-      setSearchTime((startSearchTime) => ['Finished', Date.now() - startSearchTime[1]]);
-    },
   });
 
   const formattedTotalBooks =
     totalBooks != null ? formatNumberWithSpaces(totalBooks.toString()) : '';
-
-  useEffect(() => {
-    setSearchTime(['Loading', Date.now()]);
-  }, [
-    page, // We call the useBooks hook if any of these changes, so we can define this as the start time. Apollo doesn't have any methods for when a query starts, but it does for when it ends
-    limit,
-    searchValue,
-    sortBy,
-    sortOrder,
-    JSON.stringify(authors),
-    JSON.stringify(genres),
-    JSON.stringify(publishers),
-  ]);
 
   useEffect(() => {
     close();
@@ -134,11 +117,7 @@ export function BookList() {
       </Group>
 
       <Flex justify="space-between" align="flex-end" gap="md">
-        <Text>
-          {searchTime[0] === 'Loading' || booksLoading
-            ? 'Loading...'
-            : `${formattedTotalBooks} results in ${(searchTime[1] / 1000).toFixed(4)} seconds`}
-        </Text>
+        <Text>{booksLoading ? 'Loading...' : `${formattedTotalBooks} results`}</Text>
         <EntriesController />
       </Flex>
 
