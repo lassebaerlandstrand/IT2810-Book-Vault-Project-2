@@ -8,8 +8,8 @@ type UseBooksArgs = {
   sortBy: SortBy;
   sortOrder: SortOrder;
   search?: string;
-  beforeDate?: Date;
-  afterDate?: Date;
+  _beforeDate?: Date;
+  _afterDate?: Date;
   authors?: string[];
   genres?: string[];
   publishers?: string[];
@@ -21,16 +21,13 @@ export const useBooks = ({
   search,
   sortBy,
   sortOrder,
-  beforeDate,
-  afterDate,
+  _beforeDate, // TODO: Underlined because unused, to satisfy eslint
+  _afterDate,
   authors,
   genres,
   publishers,
 }: UseBooksArgs) => {
-  const sortInput: SortInput = {
-    sortBy: sortBy,
-    sortOrder: sortOrder,
-  };
+  const sortInput: SortInput = { sortBy, sortOrder };
   const { data, loading, error } = useQuery(GET_BOOKS, {
     variables: { limit, offset: page - 1, search, sortInput, authors, genres, publishers },
   });

@@ -111,7 +111,7 @@ export function BookList() {
           genres={allGenres}
           authors={allAuthors}
           publishers={allPublishers}
-          useDrawer={true}
+          useDrawer
           opened={opened}
           close={close}
         />
