@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
+exports[`SearchConfiguration > matches snapshot 1`] = `
 <DocumentFragment>
   <style
     data-mantine-styles="true"
@@ -38,7 +38,7 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
         class="m_1714d588 mantine-SegmentedControl-input"
         data-focus-ring="auto"
         type="radio"
-        value="book"
+        value="bookName"
       />
       <label
         class="m_1738fcb2 mantine-SegmentedControl-label"
@@ -58,7 +58,7 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
         class="m_1714d588 mantine-SegmentedControl-input"
         data-focus-ring="auto"
         type="radio"
-        value="author"
+        value="authorName"
       />
       <label
         class="m_1738fcb2 mantine-SegmentedControl-label"
@@ -77,7 +77,7 @@ exports[`SearchConfiguration > renders SearchConfiguration 1`] = `
         class="m_1714d588 mantine-SegmentedControl-input"
         data-focus-ring="auto"
         type="radio"
-        value="publisher"
+        value="publisherName"
       />
       <label
         class="m_1738fcb2 mantine-SegmentedControl-label"

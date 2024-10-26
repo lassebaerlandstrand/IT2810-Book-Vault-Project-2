@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import { useQuery } from '@apollo/client';
 import { Button, Flex, Grid, Group, Rating, Skeleton, Stack, Text, Textarea } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { Book, Review as ReviewType } from '@/generated/graphql';
+import { GET_BOOKS_REVIEWS } from '@/graphql/queries/reviews';
 import { makeReview } from '@/hooks/makeReview';
 import { updateReview } from '@/hooks/updateReview';
-import { useBookReviews } from '@/hooks/useBookReviews';
 import { useYourBookReview } from '@/hooks/useYourBookReview';
 import ReviewStack from '../ReviewStack/ReviewStack';
 import styles from './Reviews.module.css';
@@ -22,36 +23,16 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
   const [page, setPage] = useState(0);
   const [displayReviews, setDisplayReviews] = useState<ReviewType[]>([]);
 
-  const limit: number = 3;
-
   const UUID: string = useUser().info.UUID;
 
-  // Fetch other peoples reviews of the book (if there are any)
-  const { reviews, pagination, total, loading, error } = useBookReviews({
-    bookID: book.id,
-    limit: limit,
-    offset: page,
-    userUUID: UUID,
-  });
-
   // Fetch your review of the book (if it exists)
-  const {
-    review: yourReview,
-    loading: yourLoading,
-    error: yourError,
-    refetch: refetchYourReview,
-  } = useYourBookReview({
+  const { review: yourReview, refetch: refetchYourReview } = useYourBookReview({
     bookID: book.id,
     userUUID: UUID,
   });
 
   // For submitting a review (NR = new review)
-  const {
-    submitReview,
-    updatedRating: updatedRatingNR,
-    loading: reviewLoading,
-    error: reviewError,
-  } = makeReview();
+  const { submitReview, updatedRating: updatedRatingNR, loading: yourReviewLoading } = makeReview();
 
   // For updating reviews (UR = updated review)
   const { submitUpdate, updatedRating: updatedRatingUR, loading: l, error: e } = updateReview();
@@ -59,11 +40,6 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
   // Toggle the review
   const toggleReviewDisplay = () => {
     setVisible((prev) => !prev);
-  };
-
-  // Increase pagination page when clicking "load more"
-  const upPage = () => {
-    setPage(page + 1);
   };
 
   // Cancel update to review
@@ -100,12 +76,23 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
     setText('');
   };
 
-  // Whenever you get more reviews, add them
-  useEffect(() => {
-    if (reviews && reviews.length > 0) {
-      setDisplayReviews((oldReviews) => [...oldReviews, ...reviews]);
-    }
-  }, [JSON.stringify(reviews)]);
+  const {
+    data,
+    loading: loadingDisplayReviews,
+    fetchMore,
+  } = useQuery(GET_BOOKS_REVIEWS, {
+    variables: { bookID: book.id, limit: 3, offset: page, userUUID: UUID },
+    onCompleted: (data) => {
+      setDisplayReviews((old) => [...old, ...data.bookReviews.reviews]);
+    },
+  });
+
+  const loadMoreReviews = () => {
+    fetchMore({
+      variables: { offset: page + 1 },
+    });
+    setPage((currentPage) => currentPage + 1);
+  };
 
   // Update rating + refetch your rating
   const updateRating = (updatedRating: number) => {
@@ -151,9 +138,13 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
         {!visible ? (
           <Grid justify="Space-between">
             <Grid.Col span="auto">
-              <Button variant="filled" color="red" onClick={toggleReviewDisplay}>
-                {!yourReview ? 'Give Review' : 'Edit Review'}
-              </Button>
+              {!yourReviewLoading ? (
+                <Button variant="filled" color="red" onClick={toggleReviewDisplay}>
+                  {!yourReview ? 'Give Review' : 'Edit Review'}
+                </Button>
+              ) : (
+                <></>
+              )}
             </Grid.Col>
             <Grid.Col span="auto">
               <Flex justify="right" align="center" gap={7} mt="xs">
@@ -168,13 +159,12 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
 
         {visible ? (
           <>
+            <Text size="sm">Your rating</Text>
             <Rating size="xl" value={rating} onChange={setRating} />
 
-            <Textarea
-              value={text}
-              onChange={(event) => setText(event.currentTarget.value)}
-              label="Your review"
-            />
+            <Text size="sm">Your review</Text>
+
+            <Textarea value={text} onChange={(event) => setText(event.currentTarget.value)} />
 
             <Flex justify="Right" gap="lg">
               <Button variant="filled" color="gray" onClick={cancel}>
@@ -195,8 +185,8 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
           <></>
         )}
 
-        {reviewLoading ? <Skeleton height={100} mt={6} radius="xl" /> : <></>}
-        {loading ? (
+        {yourReviewLoading ? <Skeleton height={100} mt={6} radius="xl" /> : <></>}
+        {loadingDisplayReviews ? (
           <>
             <Skeleton height={100} mt={6} radius="xl" />
             <Skeleton height={100} mt={6} radius="xl" />
@@ -214,9 +204,9 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
 
         <ReviewStack reviews={displayReviews as ReviewType[]} type={'pfp'} />
 
-        {!pagination?.isLastPage ? (
+        {data?.bookReviews.pagination.isLastPage && !data.bookReviews.pagination.isLastPage ? (
           <Flex justify="center" align="center">
-            <Button variant="filled" color="red" onClick={upPage}>
+            <Button variant="filled" color="red" onClick={loadMoreReviews}>
               Load more
             </Button>
           </Flex>
