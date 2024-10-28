@@ -1,0 +1,164 @@
+[
+  {
+    "UUID": "676d7326-9742-4acc-aed2-17171894ff16",
+    "name": "Default Name",
+    "at": {
+      "$date": "2024-10-22T20:41:32.185Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "a50fd845-c8d3-4fbc-8aa6-b44054dc70ff",
+    "name": "Cuckoo Firetruck",
+    "at": {
+      "$date": "2024-10-22T21:14:20.790Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "8f9340d2-9469-44d8-9a24-43f51a518084",
+    "name": "Foofy Puppet",
+    "at": {
+      "$date": "2024-10-23T12:24:53.851Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "051d9147-7747-4091-8031-64dac6f64104",
+    "name": "Fribbly Coconut",
+    "at": {
+      "$date": "2024-10-23T21:52:08.347Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "5c744386-b058-4412-881c-deb4ded69c8a",
+    "name": "Floopish Muffin",
+    "at": {
+      "$date": "2024-10-24T11:33:47.130Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "56e0c302-51ea-489b-9ee0-a8fe7d4d56a1",
+    "name": "Whirligiggly Pancake",
+    "at": {
+      "$date": "2024-10-24T11:34:28.765Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "b99f5583-876d-4041-93e0-f6106caeb240",
+    "name": "Scribbly Balloon",
+    "at": {
+      "$date": "2024-10-24T11:34:32.690Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "8a36c9bb-ed42-405f-ba05-51b1ef6ae63c",
+    "name": "Splatty Wizard",
+    "at": {
+      "$date": "2024-10-24T11:35:52.919Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "0ecef11a-3c4e-4a1d-930b-9932849094a6",
+    "name": "Zoomy Jigsaw",
+    "at": {
+      "$date": "2024-10-24T11:35:57.968Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "da25e45e-7a42-49fc-973a-4c03b2bcf09e",
+    "name": "Gadzooky Rainbow",
+    "at": {
+      "$date": "2024-10-24T11:36:01.391Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "294f3890-e86e-4b98-9cb3-08f70adcb2f4",
+    "name": "Quacktastic Monster",
+    "at": {
+      "$date": "2024-10-24T11:53:06.951Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "58bb92ee-ffb8-4523-b983-27d8cd7926c1",
+    "name": "Snerk-Worthy Lighthouse",
+    "at": {
+      "$date": "2024-10-24T11:56:09.639Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
+    "name": "Quibbleworthy Teddy bear",
+    "at": {
+      "$date": "2024-10-24T11:57:23.153Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "01b9552c-bd73-465e-ac73-99b1e465087d",
+    "name": "Squiggle-Worthy Tornado",
+    "at": {
+      "$date": "2024-10-24T11:57:58.529Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "485c3374-b7fb-4418-826f-d195a16828cf",
+    "name": "Snerk-Worthy Puzzle",
+    "at": {
+      "$date": "2024-10-24T11:58:43.620Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "96ae7735-8f35-42b0-8560-1602cbdaad93",
+    "name": "Bouncy Sailboat",
+    "at": {
+      "$date": "2024-10-24T11:59:22.904Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "fe041395-df6e-4c10-a193-8fc25630d25f",
+    "name": "Skedaddle-Ish Tophat",
+    "at": {
+      "$date": "2024-10-24T12:00:14.509Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  },
+  {
+    "UUID": "35ebe2f4-473f-4c6b-94e8-30e112946597",
+    "name": "Splatty Dinosaur",
+    "at": {
+      "$date": "2024-10-24T12:00:46.513Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
+  }
+]
