@@ -1,4 +1,5 @@
-import { Container, createTheme, MantineColorsTuple, rem } from '@mantine/core';
+import { Container, createTheme, Loader, MantineColorsTuple, rem } from '@mantine/core';
+import { BookLoader } from './components/Loading/Loading';
 
 const CONTAINER_SIZES: Record<string, string> = {
   xxs: '24em',
@@ -47,6 +48,21 @@ export const theme = createTheme({
               : rem(size),
         },
       }),
+    }),
+    Loader: Loader.extend({
+      defaultProps: {
+        loaders: { ...Loader.defaultLoaders, book: BookLoader },
+      },
+      vars: (_, props) => {
+        if (props.size === 'xxl') {
+          return {
+            root: {
+              '--loader-size': rem(90),
+            },
+          };
+        }
+        return { root: {} };
+      },
     }),
   },
 });
