@@ -1,6 +1,6 @@
 import { SVGProps } from 'react';
 import { Group, GroupProps, Image, ImageProps } from '@mantine/core';
-import BookVaultLogo from '../../assets/BookVaultLogo.png';
+import BookVaultLogoV3 from '../../assets/BookVaultLogoV3.png';
 import BookVaultText from '../../assets/BookVaultText.svg?react';
 import styles from './Logo.module.css';
 
@@ -8,7 +8,7 @@ export const LogoFull = (props: GroupProps) => {
   return (
     <>
       <Group component="figure" {...props} className={`${styles.wrapper} ${props.className ?? ''}`}>
-        <Image src={BookVaultLogo} />
+        <Image src={BookVaultLogoV3} />
         <BookVaultText />
       </Group>
     </>
@@ -16,7 +16,7 @@ export const LogoFull = (props: GroupProps) => {
 };
 
 export const LogoIcon = (props: ImageProps) => {
-  return <Image src={BookVaultLogo} {...props} />;
+  return <Image src={BookVaultLogoV3} {...props} />;
 };
 
 export const LogoText = (props: SVGProps<SVGSVGElement>) => {
