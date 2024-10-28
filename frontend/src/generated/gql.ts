@@ -13,11 +13,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query GetBooks($limit: Int, $offset: Int, $search: String, $sortInput: SortInput, $authors: [String!], $genres: [String!], $publishers: [String!]) {\n    books(limit: $limit, offset: $offset, search: $search, sortInput: $sortInput, authors: $authors, genres: $genres, publishers: $publishers) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n": types.GetBooksDocument,
+    "\n  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {\n    books(limit: $limit, offset: $offset, input: $input) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n": types.GetBooksDocument,
     "\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      rating\n      numRatings\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n": types.GetBookDocument,
     "\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n": types.GetAuthorsDocument,
     "\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n": types.GetGenresDocument,
     "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n": types.GetPublishersDocument,
+    "\n  query GetFilterCount($input: FilterInput) {\n    filterCount(input: $input) {\n      authors {\n        name\n        count\n      }\n      genres {\n        name\n        count\n      }\n      publishers {\n        name\n        count\n      }\n      publishDates {\n        year\n        count\n      }\n      pages {\n        pages\n        count\n      }\n      ratings {\n        rating\n        count\n      }\n    }\n  }\n": types.GetFilterCountDocument,
 };
 
 /**
@@ -37,7 +38,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetBooks($limit: Int, $offset: Int, $search: String, $sortInput: SortInput, $authors: [String!], $genres: [String!], $publishers: [String!]) {\n    books(limit: $limit, offset: $offset, search: $search, sortInput: $sortInput, authors: $authors, genres: $genres, publishers: $publishers) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetBooks($limit: Int, $offset: Int, $search: String, $sortInput: SortInput, $authors: [String!], $genres: [String!], $publishers: [String!]) {\n    books(limit: $limit, offset: $offset, search: $search, sortInput: $sortInput, authors: $authors, genres: $genres, publishers: $publishers) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n"];
+export function gql(source: "\n  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {\n    books(limit: $limit, offset: $offset, input: $input) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {\n    books(limit: $limit, offset: $offset, input: $input) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -54,6 +55,10 @@ export function gql(source: "\n  query GetGenres {\n    genres {\n      name\n  
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetFilterCount($input: FilterInput) {\n    filterCount(input: $input) {\n      authors {\n        name\n        count\n      }\n      genres {\n        name\n        count\n      }\n      publishers {\n        name\n        count\n      }\n      publishDates {\n        year\n        count\n      }\n      pages {\n        pages\n        count\n      }\n      ratings {\n        rating\n        count\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetFilterCount($input: FilterInput) {\n    filterCount(input: $input) {\n      authors {\n        name\n        count\n      }\n      genres {\n        name\n        count\n      }\n      publishers {\n        name\n        count\n      }\n      publishDates {\n        year\n        count\n      }\n      pages {\n        pages\n        count\n      }\n      ratings {\n        rating\n        count\n      }\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

@@ -105,22 +105,25 @@ type Publisher {
   name: ID!
 }
 
+input FilterInput {
+  search: String
+  sortInput: SortInput
+  beforeDate: Date
+  afterDate: Date
+  authors: [String!] # String instead of ID, because when storing the author string in the URL, we lose the object ID
+  genres: [String!]
+  publishers: [String!]
+  minPages: Int
+  maxPages: Int
+  minRating: Int
+}
+
 type Query {
   "Retrieve a list of books with optional filters"
-  books(
-    search: String
-    limit: Int
-    offset: Int
-    sortInput: SortInput
-    beforeDate: Date
-    afterDate: Date
-    authors: [String!] # String instead of ID, because when storing the author string in the URL, we lose the object ID
-    genres: [String!]
-    publishers: [String!]
-    minPages: Int
-    maxPages: Int
-    minRating: Int
-  ): BookPagination!
+  books(input: FilterInput, offset: Int = 0, limit: Int = 10): BookPagination!
+
+  "Retrieve the amount of books meeting current filters and the new one"
+  filterCount(input: FilterInput): FilterCountResult!
 
   "Retrieve a specific book based on id"
   book(id: String!): Book!

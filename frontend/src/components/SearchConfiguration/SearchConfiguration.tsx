@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
 import { IconSortAscending, IconSortDescending } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
-import { Center, Drawer, InputLabel, MultiSelect, SegmentedControl } from '@mantine/core';
+import {
+  Center,
+  Checkbox,
+  Drawer,
+  InputLabel,
+  MultiSelect,
+  SegmentedControl,
+  SimpleGrid,
+} from '@mantine/core';
 import { Author, Genre, Publisher, SortBy, SortOrder } from '@/generated/graphql';
 import { getFilterParams } from '@/utils/filters';
 import { DEFAULT_PAGE } from '@/utils/pagination';
@@ -72,6 +80,14 @@ const SearchConfiguration = ({
     setUpdates({});
   };
 
+  const handleGenreChange = (genre: string, isChecked: boolean) => {
+    const newSelection = isChecked
+      ? [...selectedGenres, genre]
+      : selectedGenres.filter((g) => g !== genre);
+    setSelectedGenres(newSelection);
+    handleParamsChange('genres', newSelection);
+  };
+
   const content = (
     <>
       <InputLabel>Sort by:</InputLabel>
@@ -118,22 +134,6 @@ const SearchConfiguration = ({
       />
       <MultiSelect
         classNames={{ root: styles.multiSelect }}
-        label="Genres"
-        placeholder="Pick value"
-        data={genres.map((genre) => genre.name)}
-        hidePickedOptions
-        limit={30}
-        value={selectedGenres}
-        onChange={(value) => {
-          setSelectedGenres(value);
-          handleParamsChange('genres', value);
-        }}
-        searchable
-        clearable
-        nothingFoundMessage="No genre matches your search"
-      />
-      <MultiSelect
-        classNames={{ root: styles.multiSelect }}
         label="Publisher"
         placeholder="Pick value"
         data={publishers.map((publisher) => publisher.name)}
@@ -164,6 +164,17 @@ const SearchConfiguration = ({
         clearable
         nothingFoundMessage="No author matches your search"
       />
+      <InputLabel mt={10}>Genres</InputLabel>
+      <SimpleGrid cols={2} mt="xs">
+        {genres.map((genre) => (
+          <Checkbox
+            value={genre.name}
+            label={genre.name}
+            checked={selectedGenres.includes(genre.name)}
+            onChange={(event) => handleGenreChange(genre.name, event.target.checked)}
+          />
+        ))}
+      </SimpleGrid>
     </>
   );
 

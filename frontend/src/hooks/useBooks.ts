@@ -29,9 +29,10 @@ export const useBooks = ({
   publishers,
 }: UseBooksArgs) => {
   const sortInput: SortInput = { sortBy, sortOrder };
+  const filterInput = { search, sortInput, authors, genres, publishers };
 
   const { data, loading, error } = useQuery(GET_BOOKS, {
-    variables: { limit, offset: page - 1, search, sortInput, authors, genres, publishers },
+    variables: { limit, offset: page - 1, input: filterInput },
   });
 
   return {

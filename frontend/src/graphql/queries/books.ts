@@ -3,8 +3,8 @@
 import { gql } from '@/generated';
 
 export const GET_BOOKS = gql(`
-  query GetBooks($limit: Int, $offset: Int, $search: String, $sortInput: SortInput, $authors: [String!], $genres: [String!], $publishers: [String!]) {
-    books(limit: $limit, offset: $offset, search: $search, sortInput: $sortInput, authors: $authors, genres: $genres, publishers: $publishers) {
+  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {
+    books(limit: $limit, offset: $offset, input: $input) {
       books {
         id
         title
@@ -76,6 +76,37 @@ export const GET_PUBLISHERS = gql(`
   query GetPublishers {
     publishers {
       name
+    }
+  }
+`);
+
+export const GET_FILTERS = gql(`
+  query GetFilterCount($input: FilterInput) {
+    filterCount(input: $input) {
+      authors {
+        name
+        count
+      }
+      genres {
+        name
+        count
+      }
+      publishers {
+        name
+        count
+      }
+      publishDates {
+        year
+        count
+      }
+      pages {
+        pages
+        count
+      }
+      ratings {
+        rating
+        count
+      }
     }
   }
 `);
