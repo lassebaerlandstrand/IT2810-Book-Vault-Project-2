@@ -111,17 +111,18 @@ type Query {
     search: String
     limit: Int
     offset: Int
-    orderBy: SortByInput
+    sortInput: SortInput
     beforeDate: Date
     afterDate: Date
-    authors: [ID!]
-    genres: [ID!]
-    publishers: [ID!]
+    authors: [String!] # String instead of ID, because when storing the author string in the URL, we lose the object ID
+    genres: [String!]
+    publishers: [String!]
     minPages: Int
     maxPages: Int
     minRating: Int
   ): BookPagination!
 
+  "Retrieve a specific book based on id"
   book(id: String!): Book!
 
   "Retrieve a list of authors"
@@ -141,11 +142,16 @@ enum SortOrder {
   desc
 }
 
-input SortByInput {
-  "Sort books by their name"
-  bookName: SortOrder
-  "Sort books by the name of the primary author"
-  authorName: SortOrder
-  "Sort books by the publish date"
-  publisherName: SortOrder
+enum SortBy {
+  "Sort by book name"
+  bookName
+  "Sort by author name"
+  authorName
+  "Sort by publisher name"
+  publisherName
+}
+
+input SortInput {
+  sortBy: SortBy!
+  sortOrder: SortOrder!
 }

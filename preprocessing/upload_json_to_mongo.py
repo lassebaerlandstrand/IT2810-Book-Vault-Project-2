@@ -30,6 +30,5 @@ for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json']:
                 else:
                     book['publishDate'] = datetime.fromtimestamp(book['publishDate']/1000, tz=UTC)
             books.insert_many(data)
-            books.create_index([('title', TEXT)], language_override='dummy')
 
 client.close()

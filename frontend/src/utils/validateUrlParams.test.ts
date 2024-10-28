@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { getFilterParams, SortBy, SortOrder } from './filters';
+import { SortBy, SortOrder } from '@/generated/graphql';
+import { getFilterParams } from './filters';
 import { getPaginationParams } from './pagination';
 import { isValidUrlParams } from './validateUrlParams';
 
@@ -35,8 +36,8 @@ describe('isValidUrlParams', () => {
 
     // Mocking the return values of getFilterParams and getPaginationParams
     (getFilterParams as jest.Mock).mockReturnValue({
-      sortBy: SortBy.Book,
-      sortOrder: SortOrder.Ascending,
+      sortBy: SortBy.BookName,
+      sortOrder: SortOrder.Asc,
     });
 
     (getPaginationParams as jest.Mock).mockReturnValue({
@@ -58,7 +59,7 @@ describe('isValidUrlParams', () => {
 
     (getFilterParams as jest.Mock).mockReturnValue({
       sortBy: 'invalidSortBy',
-      sortOrder: SortOrder.Ascending,
+      sortOrder: SortOrder.Asc,
     });
 
     (getPaginationParams as jest.Mock).mockReturnValue({
@@ -79,7 +80,7 @@ describe('isValidUrlParams', () => {
     });
 
     (getFilterParams as jest.Mock).mockReturnValue({
-      sortBy: SortBy.Book,
+      sortBy: SortBy.BookName,
       sortOrder: 'invalidOrder',
     });
 
@@ -101,8 +102,8 @@ describe('isValidUrlParams', () => {
     });
 
     (getFilterParams as jest.Mock).mockReturnValue({
-      sortBy: SortBy.Book,
-      sortOrder: SortOrder.Ascending,
+      sortBy: SortBy.BookName,
+      sortOrder: SortOrder.Asc,
     });
 
     (getPaginationParams as jest.Mock).mockReturnValue({
@@ -123,8 +124,8 @@ describe('isValidUrlParams', () => {
     });
 
     (getFilterParams as jest.Mock).mockReturnValue({
-      sortBy: SortBy.Book,
-      sortOrder: SortOrder.Ascending,
+      sortBy: SortBy.BookName,
+      sortOrder: SortOrder.Asc,
     });
 
     (getPaginationParams as jest.Mock).mockReturnValue({
