@@ -183,41 +183,6 @@ const resolvers = {
 
       const books = filteredBooks.slice(skip, skip + limit);
 
-      const authorCounts = filteredBooks.reduce((acc, book) => {
-        book.authors.forEach((author: string) => {
-          acc[author] = (acc[author] || 0) + 1;
-        });
-        return acc;
-      }, {});
-
-      const genreCounts = filteredBooks.reduce((acc, book) => {
-        book.genres.forEach((genre: string) => {
-          acc[genre] = (acc[genre] || 0) + 1;
-        });
-        return acc;
-      }, {});
-
-      const publisherCounts = filteredBooks.reduce((acc, book) => {
-        acc[book.publisher] = (acc[book.publisher] || 0) + 1;
-        return acc;
-      }, {});
-
-      const publishDateCounts = filteredBooks.reduce((acc, book) => {
-        const year = book.publishDate.getFullYear();
-        acc[year] = (acc[year] || 0) + 1;
-        return acc;
-      }, {});
-
-      const pageCounts = filteredBooks.reduce((acc, book) => {
-        acc[book.pages] = (acc[book.pages] || 0) + 1;
-        return acc;
-      }, {});
-
-      const ratingCounts = filteredBooks.reduce((acc, book) => {
-        acc[book.roundedAverageRating] = (acc[book.roundedAverageRating] || 0) + 1;
-        return acc;
-      }, {});
-
       return {
         books,
         pagination: {
@@ -229,12 +194,7 @@ const resolvers = {
           totalBooks,
         },
         filterCounts: {
-          authors: mapCounts(authorCounts, 'name'),
-          genres: mapCounts(genreCounts, 'name'),
-          publishers: mapCounts(publisherCounts, 'name'),
-          publishDates: mapCounts(publishDateCounts, 'year'),
-          pages: mapCounts(pageCounts, 'pages'),
-          ratings: mapCounts(ratingCounts, 'rating'),
+          books: filteredBooks,
         },
       };
     },
@@ -288,6 +248,60 @@ const resolvers = {
       }, 0);
 
       return weightedSum / numRatings;
+    },
+  },
+  FilterCountResult: {
+    authors: async (filterCounts: { books: Document[] }) => {
+      const authorCounts = filterCounts.books.reduce((acc, book) => {
+        book.authors.forEach((author: string) => {
+          acc[author] = (acc[author] || 0) + 1;
+        });
+        return acc;
+      }, {});
+      return mapCounts(authorCounts, 'name');
+    },
+
+    genres: async (filterCounts: { books: Document[] }) => {
+      const genreCounts = filterCounts.books.reduce((acc, book) => {
+        book.genres.forEach((genre) => {
+          acc[genre] = (acc[genre] || 0) + 1;
+        });
+        return acc;
+      }, {});
+      return mapCounts(genreCounts, 'name');
+    },
+
+    publishers: async (filterCounts: { books: Document[] }) => {
+      const publisherCounts = filterCounts.books.reduce((acc, book) => {
+        acc[book.publisher] = (acc[book.publisher] || 0) + 1;
+        return acc;
+      }, {});
+      return mapCounts(publisherCounts, 'name');
+    },
+
+    publishDates: async (filterCounts: { books: Document[] }) => {
+      const publishDateCounts = filterCounts.books.reduce((acc, book) => {
+        const year = book.publishDate.getFullYear();
+        acc[year] = (acc[year] || 0) + 1;
+        return acc;
+      }, {});
+      return mapCounts(publishDateCounts, 'year');
+    },
+
+    pages: async (filterCounts: { books: Document[] }) => {
+      const pageCounts = filterCounts.books.reduce((acc, book) => {
+        acc[book.pages] = (acc[book.pages] || 0) + 1;
+        return acc;
+      }, {});
+      return mapCounts(pageCounts, 'pages');
+    },
+
+    ratings: async (filterCounts: { books: Document[] }) => {
+      const ratingCounts = filterCounts.books.reduce((acc, book) => {
+        acc[book.roundedAverageRating] = (acc[book.roundedAverageRating] || 0) + 1;
+        return acc;
+      }, {});
+      return mapCounts(ratingCounts, 'ratings');
     },
   },
 };
