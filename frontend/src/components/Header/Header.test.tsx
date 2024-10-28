@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import { useMantineColorScheme } from '@mantine/core';
-import { HeaderSimple } from '@/components/HeaderSimple/HeaderSimple';
+import { Header } from '@/components/Header/Header';
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
@@ -34,7 +34,7 @@ describe('HeaderSimple Component', () => {
   test('renders navigation links correctly', () => {
     render(
       <MemoryRouter>
-        <HeaderSimple />
+        <Header />
       </MemoryRouter>
     );
 
@@ -48,7 +48,7 @@ describe('HeaderSimple Component', () => {
   test('toggles color scheme on click', () => {
     render(
       <MemoryRouter>
-        <HeaderSimple />
+        <Header />
       </MemoryRouter>
     );
 

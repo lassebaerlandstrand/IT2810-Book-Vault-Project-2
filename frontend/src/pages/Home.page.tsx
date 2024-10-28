@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Button, Group, Image, Paper, Text, Title, useMantineColorScheme } from '@mantine/core';
-import BookVaultLogo from '@/assets/BookVaultLogo.png';
+import { Button, Group, Paper, Text, Title, useMantineColorScheme } from '@mantine/core';
+import { LogoIcon } from '@/components/Logo/Logo';
 import { StatsGroup } from '@/components/StatsGroup/StatsGroup';
 import styles from './Home.module.css';
 
@@ -11,7 +11,7 @@ export function HomePage() {
   return (
     <>
       <Paper className={styles.paperMain}>
-        <Image src={BookVaultLogo} alt="Book Vault Logo" className={styles.logo} />
+        <LogoIcon className={styles.logo} />
 
         <Title order={1} className={styles.title}>
           Welcome to Book Vault
