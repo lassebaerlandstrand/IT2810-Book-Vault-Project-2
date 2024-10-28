@@ -1,4 +1,11 @@
-import { Container, createTheme, Loader, MantineColorsTuple, rem } from '@mantine/core';
+import {
+  Container,
+  createTheme,
+  DEFAULT_THEME,
+  Loader,
+  MantineColorsTuple,
+  rem,
+} from '@mantine/core';
 import { BookLoader } from './components/Loading/Loading';
 
 const CONTAINER_SIZES: Record<string, string> = {
@@ -24,8 +31,22 @@ const logoTheme: MantineColorsTuple = [
   '#061017',
 ];
 
+// https://colorkit.co/color-palette-generator/6a5f4a-d4bd94-dac5a1-e2d1b5-e9ddc8-eee4d3-f2eade-f6f0e7-f9f5ef-fcfaf7/
+const beige: MantineColorsTuple = [
+  '#fcfaf7',
+  '#f9f5ef',
+  '#f6f0e7',
+  '#f2eade',
+  '#eee4d3',
+  '#e9ddc8',
+  '#e2d1b5',
+  '#dac5a1',
+  '#d4bd94',
+  '#6a5f4a',
+];
+
 export const theme = createTheme({
-  fontFamily: 'Poppins, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji',
+  fontFamily: `Poppins, ${DEFAULT_THEME.fontFamily}`,
   breakpoints: {
     xxs: '24em', // 384px
     xs: '30em', // 480px
@@ -36,6 +57,7 @@ export const theme = createTheme({
   },
   colors: {
     'logo-theme': logoTheme,
+    beige,
   },
   components: {
     Container: Container.extend({

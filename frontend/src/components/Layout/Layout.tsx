@@ -19,7 +19,12 @@ const Layout = () => {
   };
 
   return (
-    <AppShell padding="xl" header={{ height: 56 }} style={reserveScrollbarByReducingWidth}>
+    <AppShell
+      padding="xl"
+      header={{ height: 56 }}
+      style={reserveScrollbarByReducingWidth}
+      className={styles.background}
+    >
       <AppShell.Header className={styles.header} style={reserveScrollbarWithPadding}>
         <HeaderSimple />
       </AppShell.Header>
