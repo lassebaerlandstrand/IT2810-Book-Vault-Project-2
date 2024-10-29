@@ -1,5 +1,6 @@
 import React, { createContext, ReactNode } from 'react';
-import { Flex, Loader, Stack, Text } from '@mantine/core';
+import { Flex, Stack, Text } from '@mantine/core';
+import Loading from '@/components/Loading/Loading';
 import { User } from '@/generated/graphql';
 import { makeUser } from '@/hooks/makeUser';
 import { useUserHook } from '@/hooks/useUserHook';
@@ -30,7 +31,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       <Flex justify="center" align="center" className={styles.centeredOnPage}>
         <Stack align="center">
           <Text size="lg">Fetching user data</Text>
-          <Loader type="dots" size="lg" />
+          <Loading />
         </Stack>
       </Flex>
     );

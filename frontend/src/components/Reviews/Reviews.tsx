@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { ApolloQueryResult, OperationVariables, useQuery } from '@apollo/client';
 import { Button, Flex, Grid, Group, Rating, Skeleton, Stack, Text, Textarea } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { Book, Review as ReviewType } from '@/generated/graphql';
@@ -12,11 +12,10 @@ import styles from './Reviews.module.css';
 
 type ReviewProps = {
   book: Book;
-  avgRating: number;
-  setAvgRating: React.Dispatch<React.SetStateAction<number>>;
+  updateAvgRating: (variables?: Partial<OperationVariables>) => Promise<ApolloQueryResult<any>>;
 };
 
-const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
+const Reviews = ({ book, updateAvgRating }: ReviewProps) => {
   const [visible, setVisible] = useState(false);
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
@@ -54,12 +53,13 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
   // Update review
   const update = () => {
     if (yourReview) {
+      setVisible(false);
+
       submitUpdate({
         reviewUUID: yourReview.UUID,
         description: text,
         rating: rating,
       });
-      toggleReviewDisplay();
     }
   };
 
@@ -72,8 +72,6 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
       description: text,
       rating: rating,
     });
-    setRating(1);
-    setText('');
   };
 
   const {
@@ -98,7 +96,7 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
   const updateRating = (updatedRating: number) => {
     if (!updatedRating) return;
     refetchYourReview();
-    if (updatedRating != -1) setAvgRating(updatedRating);
+    if (updatedRating != -1) updateAvgRating();
   };
 
   // Refetch your review after either posting one or updating it
@@ -148,8 +146,8 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
             </Grid.Col>
             <Grid.Col span="auto">
               <Flex justify="right" align="center" gap={7} mt="xs">
-                <Rating value={Math.round(avgRating * 2) / 2} fractions={2} readOnly />
-                <Text fw={500}>{avgRating.toFixed(1)}</Text>
+                <Rating value={Math.round(book.rating * 2) / 2} fractions={2} readOnly />
+                <Text fw={500}>{book.rating.toFixed(1)}</Text>
               </Flex>
             </Grid.Col>
           </Grid>
@@ -197,14 +195,28 @@ const Reviews = ({ book, avgRating, setAvgRating }: ReviewProps) => {
         )}
 
         {!visible && yourReview ? (
-          <ReviewStack reviews={[yourReview] as ReviewType[]} type={'pfp'} />
+          <ReviewStack
+            reviews={[
+              {
+                UUID: yourReview.UUID,
+                at: yourReview.at,
+                rating: yourReview.rating,
+                description: yourReview.description,
+                user: {
+                  name: 'Your review',
+                  UUID: UUID,
+                },
+              },
+            ]}
+            type={'you'}
+          />
         ) : (
           <></>
         )}
 
         <ReviewStack reviews={displayReviews as ReviewType[]} type={'pfp'} />
 
-        {data?.bookReviews.pagination.isLastPage && !data.bookReviews.pagination.isLastPage ? (
+        {data && !data.bookReviews.pagination.isLastPage ? (
           <Flex justify="center" align="center">
             <Button variant="filled" color="red" onClick={loadMoreReviews}>
               Load more

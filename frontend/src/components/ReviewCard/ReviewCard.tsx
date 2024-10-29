@@ -4,12 +4,13 @@ import styles from './ReviewCard.module.css';
 
 type ReviewProps = {
   review: ReviewType;
-  type: 'pfp' | 'book';
+  type: 'pfp' | 'book' | 'you';
 };
 
 const ReviewCard = ({ review, type }: ReviewProps) => {
   if (type == 'book' && !review.book) return <>Type is book but book is not set</>;
-  if (type == 'pfp' && !review.user) return <>Type is book but user is not set</>;
+  if (type == 'pfp' && !review.user) return <>Type is pfp but user is not set</>;
+  if (type == 'you' && !review.user) return <>Type is you but user is not set</>;
 
   return (
     <>
@@ -66,7 +67,7 @@ const ReviewCard = ({ review, type }: ReviewProps) => {
                   <Text fw={500}>{review.rating.toFixed(1)}</Text>
                 </Flex>
               </Grid.Col>
-              {review.description ? (
+              {review.description && review.description != '' ? (
                 <Grid.Col span={12}>
                   {type == 'book' ? (
                     <Text lineClamp={5}>{review.description}</Text>

@@ -5,10 +5,9 @@ import styles from './BookInfo.module.css';
 
 type BookInfoProps = {
   book: Book;
-  avgRating: number;
 };
 
-const BookInfo = ({ book, avgRating }: BookInfoProps) => {
+const BookInfo = ({ book }: BookInfoProps) => {
   return (
     <Group justify="center" gap="lg">
       <Container p="xs" className={styles.titleContainer}>
@@ -47,8 +46,8 @@ const BookInfo = ({ book, avgRating }: BookInfoProps) => {
               </Text>
 
               <Flex justify="center" align="center" gap={7} mt="xs">
-                <Rating value={Math.round(avgRating * 2) / 2} fractions={2} readOnly />
-                <Text fw={500}>{avgRating.toFixed(1)}</Text>
+                <Rating value={Math.round(book.rating * 2) / 2} fractions={2} readOnly />
+                <Text fw={500}>{book.rating.toFixed(1)}</Text>
               </Flex>
             </Container>
 

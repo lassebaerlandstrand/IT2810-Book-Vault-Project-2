@@ -7,7 +7,7 @@ import styles from './ReviewStack.module.css';
 
 type ReviewProps = {
   reviews?: Review[];
-  type: 'pfp' | 'book';
+  type: 'pfp' | 'book' | 'you';
 };
 
 const ReviewStack = ({ reviews, type }: ReviewProps) => {
@@ -28,7 +28,7 @@ const ReviewStack = ({ reviews, type }: ReviewProps) => {
         {reviews.map((review, index) => (
           <Grid.Col key={index} span={{ base: 12 }}>
             {type == 'book' ? (
-              <Link to={`/book/${review.book.id}`} className={styles.link}>
+              <Link to={`/book/${review.book?.id}`} className={styles.link}>
                 <ReviewCard review={review} type={type} />
               </Link>
             ) : (

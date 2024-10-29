@@ -10,7 +10,27 @@ type UpdateReviewArgs = {
 };
 
 export const updateReview = () => {
-  const [update, { data, loading, error }] = useMutation(UPDATE_REVIEW);
+  const [update, { data, loading, error }] = useMutation(UPDATE_REVIEW, {
+    update(cache) {
+      // On update remove the getYourBookReviews queries from cache as
+      // they are now stale
+      const allKeys = cache.extract().ROOT_QUERY;
+
+      Object.keys(allKeys).forEach((key) => {
+        if (key.startsWith('getYourBookReviews')) {
+          cache.evict({
+            id: cache.identify({
+              __typename: 'Query',
+              key,
+            }),
+          });
+        }
+      });
+
+      //Clean up
+      cache.gc();
+    },
+  });
 
   const submitUpdate = async ({ reviewUUID, description, rating }: UpdateReviewArgs) => {
     try {

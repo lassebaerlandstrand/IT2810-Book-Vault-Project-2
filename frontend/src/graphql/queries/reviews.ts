@@ -12,6 +12,7 @@ export const GET_BOOKS_REVIEWS = gql(`
         at
         user {
           name
+          UUID
         }
       }
       pagination 
@@ -35,39 +36,34 @@ export const GET_YOUR_BOOK_REVIEW = gql(`
       description
       rating
       at
-      user {
+    }
+  }
+
+`);
+
+export const GET_YOUR_BOOK_REVIEWS = gql(`
+  query GetYourBookReviews($limit: Int!, $offset: Int!, $userUUID: String!) {
+    getYourBookReviews(limit: $limit, offset: $offset, userUUID: $userUUID) {
+      reviews {
         UUID
-        name
-        at
-        wantToRead
-        haveRead
-      }
-      book {
-        id
-        title
-        series
-        numberInSeries
-        language
-        isbn
-        coverImg
-        rating
-        numRatings
-        characters
-        bookFormat
-        pages
-        publishDate
-        awards
-        setting
-        publisher {
-          name
-        }
-        genres {
-          name
-        }
-        authors {
-          name
-        }
         description
+        rating
+        at
+        book {
+          id
+          title
+          coverImg
+        }
+      }
+      pagination 
+      {
+        totalPages
+        currentPage
+        isLastPage
+      }
+      summary 
+      {
+        total
       }
     }
   }

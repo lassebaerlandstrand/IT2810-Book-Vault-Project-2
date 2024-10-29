@@ -138,6 +138,8 @@ type Query {
 
   getYourBookReview(bookID: String!, userUUID: String!): Review!
 
+  getYourBookReviews(limit: Int!, offset: Int!, userUUID: String!): ReviewPagination!
+
   "Retrieve a list of authors"
   authors: [Author!]!
 

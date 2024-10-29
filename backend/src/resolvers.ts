@@ -221,12 +221,6 @@ const resolvers = {
         ])
         .toArray();
 
-      //const book = await db.collection('books').findOne({ id: bookID });
-
-      // each user is only allowed to post 1 review per book,
-      // meaning each user will only be found once
-      // for each call to bookRatings resolver
-
       const finishedReviews = [];
       for (let i = 0; i < reviews.length; i++) {
         const review = reviews[i];
@@ -239,6 +233,7 @@ const resolvers = {
           at: new Date(review.at),
           user: {
             name: user.name,
+            UUID: user.UUID,
           },
         });
       }
@@ -258,16 +253,61 @@ const resolvers = {
 
     async getYourBookReview(_, { bookID, userUUID }: SingleBookReviewQueryArgs) {
       const review = await db.collection('reviews').findOne({ bookID: bookID, userUUID: userUUID });
-      const book = await db.collection('books').findOne({ id: bookID });
-      const user = await db.collection('users').findOne({ UUID: userUUID });
 
       return {
         UUID: review.UUID,
         description: review.description,
         rating: review.rating,
         at: new Date(review.at),
-        user: user,
-        book: book,
+      };
+    },
+
+    async getYourBookReviews(_, { limit, offset, userUUID }: BookReviewsQueryArgs) {
+      const total = await db.collection('reviews').countDocuments({ userUUID: userUUID });
+
+      const totalPages = Math.ceil(total / limit);
+      const currentPage = Math.floor(offset / limit) + 1;
+      const isLastPage = currentPage >= totalPages;
+      const skip = offset * limit;
+
+      const reviews = await db
+        .collection('reviews')
+        .aggregate([
+          { $match: { userUUID: userUUID } },
+          { $sort: { at: -1 } },
+          { $skip: skip },
+          { $limit: limit },
+        ])
+        .toArray();
+
+      const finishedReviews = [];
+      for (let i = 0; i < reviews.length; i++) {
+        const review = reviews[i];
+        const book = await db.collection('books').findOne({ id: review.bookID });
+
+        finishedReviews.push({
+          UUID: review.UUID,
+          description: review.description,
+          rating: review.rating,
+          at: new Date(review.at),
+          book: {
+            title: book.title,
+            coverImg: book.coverImg,
+            id: book.id,
+          },
+        });
+      }
+
+      return {
+        reviews: finishedReviews,
+        pagination: {
+          totalPages,
+          currentPage,
+          isLastPage,
+        },
+        summary: {
+          total,
+        },
       };
     },
 
