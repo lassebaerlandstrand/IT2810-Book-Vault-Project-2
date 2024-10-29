@@ -178,6 +178,44 @@ const resolvers = {
         name: publisher,
       }));
     },
+
+    async stats() {
+      return {}; // Uses the resolver in Stats, this makes it so if a field is not requested, then it is not calculated
+    },
+  },
+
+  Stats: {
+    totalBooks: async () => {
+      return await db.collection('books').countDocuments();
+    },
+    totalAuthors: async () => {
+      return (await db.collection('books').distinct('publisher')).length;
+    },
+    totalRatings: async () => {
+      const totalRatings = await db
+        .collection('books')
+        .aggregate([
+          {
+            $group: {
+              _id: null,
+              totalRatings: {
+                $sum: {
+                  $add: [
+                    '$ratingsByStars.1',
+                    '$ratingsByStars.2',
+                    '$ratingsByStars.3',
+                    '$ratingsByStars.4',
+                    '$ratingsByStars.5',
+                  ],
+                },
+              },
+            },
+          },
+        ])
+        .toArray();
+
+      return totalRatings[0]?.totalRatings || 0;
+    },
   },
 
   Book: {

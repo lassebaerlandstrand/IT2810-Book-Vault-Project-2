@@ -18,6 +18,7 @@ const documents = {
     "\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n": types.GetAuthorsDocument,
     "\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n": types.GetGenresDocument,
     "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n": types.GetPublishersDocument,
+    "\n  query Query {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n": types.QueryDocument,
 };
 
 /**
@@ -54,6 +55,10 @@ export function gql(source: "\n  query GetGenres {\n    genres {\n      name\n  
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query Query {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n"): (typeof documents)["\n  query Query {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
