@@ -1,5 +1,6 @@
 .wrapper {
   height: 100%;
+  color: light-dark(black, white);
 
   img {
     height: 100%;
