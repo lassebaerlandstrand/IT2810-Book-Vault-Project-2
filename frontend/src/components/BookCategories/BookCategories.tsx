@@ -29,7 +29,7 @@ const BookCategories = ({ categories }: BookCategoriesProps) => {
         Popular Categories
       </Title>
       <ScrollArea w="100%" type="auto" offsetScrollbars="x" scrollbarSize={6}>
-        <Flex justify="space-between" gap="xl" py="xs">
+        <Flex justify="space-between" gap="md" py="xs">
           {categories.map((category) => (
             <BookCategory key={category.name} {...category} />
           ))}

@@ -7,7 +7,7 @@ import {
   IconPencil,
 } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import { Button, Group, Paper, Text, Title, useMantineColorScheme } from '@mantine/core';
+import { Button, Group, Paper, Stack, Text, Title, useMantineColorScheme } from '@mantine/core';
 import BookCategories from '@/components/BookCategories/BookCategories';
 import { LogoIcon } from '@/components/Logo/Logo';
 import { StatsGroup } from '@/components/StatsGroup/StatsGroup';
@@ -26,48 +26,46 @@ const popularCategories = [
 ];
 
 export function HomePage() {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const { colorScheme } = useMantineColorScheme();
   const isDark = colorScheme === 'dark';
 
   return (
     <>
-      <Paper className={styles.paperMain}>
-        <LogoIcon className={styles.logo} />
+      <Stack gap="xl">
+        <Paper className={styles.paperMain}>
+          <LogoIcon className={styles.logo} />
 
-        <Title order={1} className={styles.title}>
-          Welcome to Book Vault
-        </Title>
+          <Title order={1} className={styles.title}>
+            Welcome to Book Vault
+          </Title>
 
-        <Text className={styles.subtitle}>
-          Explore books, manage your profile, and read reviews
-        </Text>
+          <Text className={styles.subtitle}>
+            Explore books, manage your profile, and read reviews
+          </Text>
 
-        <Group className={styles.buttonGroup}>
-          <Link to="/books">
-            <Button size="lg" variant="outline" className={styles.button} disabled>
-              Books
-            </Button>
-          </Link>
-          <Link to="/profile">
-            <Button size="lg" variant="outline" className={styles.button} disabled>
-              Profile
-            </Button>
-          </Link>
-          <Link to="/reviews">
-            <Button size="lg" variant="outline" className={styles.button} disabled>
-              Reviews
-            </Button>
-          </Link>
-        </Group>
+          <Group className={styles.buttonGroup}>
+            <Link to="/books">
+              <Button size="lg" variant="outline" className={styles.button} disabled>
+                Books
+              </Button>
+            </Link>
+            <Link to="/profile">
+              <Button size="lg" variant="outline" className={styles.button} disabled>
+                Profile
+              </Button>
+            </Link>
+            <Link to="/reviews">
+              <Button size="lg" variant="outline" className={styles.button} disabled>
+                Reviews
+              </Button>
+            </Link>
+          </Group>
+        </Paper>
 
-        <Button className={styles.switchButton} onClick={toggleColorScheme}>
-          Switch to {isDark ? 'Light' : 'Dark'} Mode
-        </Button>
-      </Paper>
+        <StatsGroup />
 
-      <StatsGroup />
-
-      <BookCategories categories={popularCategories} />
+        <BookCategories categories={popularCategories} />
+      </Stack>
     </>
   );
 }

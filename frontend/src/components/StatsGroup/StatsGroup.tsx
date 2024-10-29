@@ -1,22 +1,60 @@
-import { Container, Text } from '@mantine/core';
-import classes from './StatsGroup.module.css';
+import { ApolloError } from '@apollo/client/errors';
+import { Box, Container, Text } from '@mantine/core';
+import { Stats } from '@/generated/graphql';
+import { useStats } from '@/hooks/useStats';
+import { formatNumberWithSpaces } from '@/utils/formatting';
+import styles from './StatsGroup.module.css';
 
-const data = [
-  {
-    title: 'Book reviews',
-    stats: '48133',
-    description: 'A growing collection of insights and thoughts, 24% more reviews added this year',
-  },
-];
+type StatsType = Omit<Stats, '__typename'>;
 
-export function StatsGroup() {
-  const stats = data.map((stat) => (
-    <Container key={stat.title} className={classes.stat}>
-      <Text className={classes.count}>{stat.stats}</Text>
-      <Text className={classes.title}>{stat.title}</Text>
-      <Text className={classes.description}>{stat.description}</Text>
-    </Container>
-  ));
+const getField = (
+  stats: StatsType | undefined,
+  field: keyof StatsType,
+  loading: boolean,
+  error: ApolloError | undefined
+): string => {
+  if (loading) {
+    return '. . .';
+  }
+  if (error || stats == null) {
+    return '-';
+  }
+  return formatNumberWithSpaces(stats[field]);
+};
 
-  return <div className={classes.root}>{stats}</div>;
-}
+export const StatsGroup = () => {
+  const { stats, loading, error } = useStats();
+
+  const data = [
+    {
+      title: 'Books in our collection',
+      stats: getField(stats, 'totalBooks', loading, error),
+      description:
+        'Explore our vast collection of books, where every title opens the door to new adventures and ideas!',
+    },
+    {
+      title: 'Authors featured',
+      stats: getField(stats, 'totalAuthors', loading, error),
+      description:
+        'Immerse yourself in stories from a diverse set of authors, each bringing a unique perspective to our library.',
+    },
+    {
+      title: 'Number of ratings',
+      stats: getField(stats, 'totalRatings', loading, error),
+      description:
+        'With a massive collection of ratings, you have the insights you need to discover your next favorite book.',
+    },
+  ];
+
+  return (
+    <Box className={styles.wrapper}>
+      {data.map((stat, i) => (
+        <Container key={i} className={styles.stat}>
+          <Text className={styles.count}>{stat.stats}</Text>
+          <Text className={styles.title}>{stat.title}</Text>
+          <Text className={styles.description}>{stat.description}</Text>
+        </Container>
+      ))}
+    </Box>
+  );
+};
