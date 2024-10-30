@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ApolloQueryResult, OperationVariables, useQuery } from '@apollo/client';
-import { Button, Flex, Grid, Group, Rating, Skeleton, Stack, Text, Textarea } from '@mantine/core';
+import { Button, Divider, Flex, Grid, Group, Rating, Stack, Text, Textarea } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { Book, Review as ReviewType } from '@/generated/graphql';
 import { GET_BOOKS_REVIEWS } from '@/graphql/queries/reviews';
@@ -20,6 +20,8 @@ const Reviews = ({ book, updateAvgRating }: ReviewProps) => {
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
   const [page, setPage] = useState(0);
+  const [isLastPage, setLastPage] = useState(true);
+
   const [displayReviews, setDisplayReviews] = useState<ReviewType[]>([]);
 
   const UUID: string = useUser().info.UUID;
@@ -34,7 +36,11 @@ const Reviews = ({ book, updateAvgRating }: ReviewProps) => {
   const { submitReview, updatedRating: updatedRatingNR, loading: yourReviewLoading } = makeReview();
 
   // For updating reviews (UR = updated review)
-  const { submitUpdate, updatedRating: updatedRatingUR, loading: l, error: e } = updateReview();
+  const {
+    submitUpdate,
+    updatedRating: updatedRatingUR,
+    loading: loadingUpdateReview,
+  } = updateReview();
 
   // Toggle the review
   const toggleReviewDisplay = () => {
@@ -82,14 +88,18 @@ const Reviews = ({ book, updateAvgRating }: ReviewProps) => {
     variables: { bookID: book.id, limit: 3, offset: page, userUUID: UUID },
     onCompleted: (data) => {
       setDisplayReviews((old) => [...old, ...data.bookReviews.reviews]);
+      setLastPage(data.bookReviews.pagination.isLastPage);
     },
   });
 
   const loadMoreReviews = () => {
-    fetchMore({
-      variables: { offset: page + 1 },
-    });
-    setPage((currentPage) => currentPage + 1);
+    // Disable loading more when waiting for other reviews
+    if (!loadingDisplayReviews) {
+      fetchMore({
+        variables: { offset: page + 1 },
+      });
+      setPage((currentPage) => currentPage + 1);
+    }
   };
 
   // Update rating + refetch your rating
@@ -136,8 +146,8 @@ const Reviews = ({ book, updateAvgRating }: ReviewProps) => {
         {!visible ? (
           <Grid justify="Space-between">
             <Grid.Col span="auto">
-              {!yourReviewLoading ? (
-                <Button variant="filled" color="red" onClick={toggleReviewDisplay}>
+              {!yourReviewLoading && !loadingUpdateReview ? (
+                <Button variant="filled" onClick={toggleReviewDisplay}>
                   {!yourReview ? 'Give Review' : 'Edit Review'}
                 </Button>
               ) : (
@@ -169,11 +179,11 @@ const Reviews = ({ book, updateAvgRating }: ReviewProps) => {
                 Cancel
               </Button>
               {yourReview ? (
-                <Button variant="filled" color="red" onClick={update}>
+                <Button variant="filled" onClick={update}>
                   Update Review
                 </Button>
               ) : (
-                <Button variant="filled" color="red" onClick={submit}>
+                <Button variant="filled" onClick={submit}>
                   Submit Review
                 </Button>
               )}
@@ -183,52 +193,47 @@ const Reviews = ({ book, updateAvgRating }: ReviewProps) => {
           <></>
         )}
 
-        {yourReviewLoading ? <Skeleton height={100} mt={6} radius="xl" /> : <></>}
-        {loadingDisplayReviews ? (
+        {!visible && yourReview ? (
           <>
-            <Skeleton height={100} mt={6} radius="xl" />
-            <Skeleton height={100} mt={6} radius="xl" />
-            <Skeleton height={100} mt={6} radius="xl" />
+            <ReviewStack
+              reviews={[
+                {
+                  UUID: yourReview.UUID,
+                  at: yourReview.at,
+                  rating: yourReview.rating,
+                  description: yourReview.description,
+                  user: {
+                    name: 'Your review',
+                    UUID: UUID,
+                  },
+                },
+              ]}
+              type={'yourReview'}
+            />
+            <Divider size="xs" label="Other reviews" labelPosition="center" />
           </>
         ) : (
           <></>
         )}
 
-        {!visible && yourReview ? (
-          <ReviewStack
-            reviews={[
-              {
-                UUID: yourReview.UUID,
-                at: yourReview.at,
-                rating: yourReview.rating,
-                description: yourReview.description,
-                user: {
-                  name: 'Your review',
-                  UUID: UUID,
-                },
-              },
-            ]}
-            type={'you'}
-          />
-        ) : (
-          <></>
-        )}
+        <ReviewStack reviews={displayReviews} type={'profileReview'} />
 
-        <ReviewStack reviews={displayReviews as ReviewType[]} type={'pfp'} />
-
-        {data && !data.bookReviews.pagination.isLastPage ? (
-          <Flex justify="center" align="center">
-            <Button variant="filled" color="red" onClick={loadMoreReviews}>
+        <Flex justify="center" align="center" gap="lg">
+          {!isLastPage ? (
+            <Button variant="filled" onClick={loadMoreReviews}>
               Load more
             </Button>
-          </Flex>
-        ) : (
-          <Flex justify="center" align="center">
-            <Button variant="filled" color="red" onClick={scrollToTop}>
+          ) : (
+            <></>
+          )}
+          {displayReviews.length > 5 ? (
+            <Button variant="filled" onClick={scrollToTop}>
               Scroll to top
             </Button>
-          </Flex>
-        )}
+          ) : (
+            <></>
+          )}
+        </Flex>
       </Stack>
     </Group>
   );

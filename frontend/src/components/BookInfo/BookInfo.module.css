@@ -1,9 +1,9 @@
 .titleContainer {
-  width: 95%;
+  width: auto;
 }
 
-@media screen and (max-width: $mantine-breakpoint-sm) {
+@media screen and (min-width: $mantine-breakpoint-sm) {
   .titleContainer {
-    width: auto;
+    width: 95%;
   }
 }
