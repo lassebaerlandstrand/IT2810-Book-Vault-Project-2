@@ -8,6 +8,7 @@ import LoadingCircle from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import ReviewStack from '@/components/ReviewStack/ReviewStack';
 import { useUser } from '@/contexts/UserFunctions';
+import { Review } from '@/generated/graphql';
 import { useYourBookReviews } from '@/hooks/useYourBookReviews';
 import { getPaginationParams } from '@/utils/pagination';
 import { isValidUrlParams } from '@/utils/validateUrlParams';
@@ -51,6 +52,16 @@ export function ReviewsList() {
     );
   }
 
+  if (reviewsError) {
+    return (
+      <Error404
+        title="Error fetching reviews"
+        description="Something went wrong fetching reviews."
+        link="/books"
+      />
+    );
+  }
+
   if (isDesktop == null || reviewsLoading) {
     return <LoadingCircle />;
   }
@@ -64,7 +75,7 @@ export function ReviewsList() {
 
       <Flex gap="lg" my="lg">
         <Container flex={1} px={0}>
-          <ReviewStack reviews={reviews} type="book" />
+          <ReviewStack reviews={reviews as Review} type="bookReview" />
         </Container>
       </Flex>
 
