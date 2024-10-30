@@ -75,7 +75,7 @@ export function ReviewsList() {
 
       <Flex gap="lg" my="lg">
         <Container flex={1} px={0}>
-          <ReviewStack reviews={reviews as Review} type="bookReview" />
+          <ReviewStack reviews={reviews as Review[]} type="bookReview" />
         </Container>
       </Flex>
 

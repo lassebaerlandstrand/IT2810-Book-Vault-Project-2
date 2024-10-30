@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from 'react';
+import { createContext, ReactNode } from 'react';
 import { Flex, Loader, Stack, Text } from '@mantine/core';
 import { User } from '@/generated/graphql';
 import { makeUser } from '@/hooks/makeUser';
@@ -11,7 +11,7 @@ interface UserContextProps {
 
 export const UserContext = createContext<UserContextProps | undefined>(undefined);
 
-export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const UserProvider = ({ children }: { children: ReactNode }) => {
   const userFunction = () => {
     const UUID = localStorage.getItem('userID');
     if (UUID) {
