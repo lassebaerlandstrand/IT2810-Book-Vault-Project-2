@@ -47,7 +47,7 @@ const Reviews = ({ book, updateAvgRating }: ReviewProps) => {
       setRating(yourReview.rating);
       setText(yourReview.description);
     }
-    toggleReviewDisplay();
+    setVisible(false);
   };
 
   // Update review

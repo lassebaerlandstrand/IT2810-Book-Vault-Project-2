@@ -17,13 +17,7 @@ export const GET_BOOKS_REVIEWS = gql(`
       }
       pagination 
       {
-        totalPages
-        currentPage
         isLastPage
-      }
-      summary 
-      {
-        total
       }
     }
   }

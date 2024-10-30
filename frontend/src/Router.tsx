@@ -44,10 +44,3 @@ const router = createBrowserRouter(
 export function Router() {
   return <RouterProvider router={router} />;
 }
-
-/*
-{
-  path: '/myRatings',
-  element: <MyRatings />,
-},
-*/

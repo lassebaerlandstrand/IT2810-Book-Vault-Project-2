@@ -17,7 +17,7 @@ exports[`BookInfo component > matches snapshot 1`] = `
     style="--group-gap: var(--mantine-spacing-lg); --group-align: center; --group-justify: center; --group-wrap: wrap;"
   >
     <div
-      class="m_7485cace mantine-Container-root"
+      class="_titleContainer_618ae0 m_7485cace mantine-Container-root"
     >
       <h1
         class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -34,560 +34,600 @@ exports[`BookInfo component > matches snapshot 1`] = `
         A name 
       </p>
     </div>
-    <div
-      class="m_8bffd616 mantine-Flex-root __m__-r2r"
-      style="gap: var(--mantine-spacing-sm); align-items: center; justify-content: center; flex-wrap: wrap; flex-direction: row;"
+    <style
+      data-mantine-styles="inline"
     >
-      <img
-        alt="Cover image for A title"
-        class="m_9e117634 mantine-Image-root"
-        sizes="xs"
-        src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
-        style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain;"
-      />
+      .__m__-r31{--grid-gutter:var(--mantine-spacing-md);}
+    </style>
+    <div
+      class="m_410352e9 mantine-Grid-root __m__-r31"
+      style="--grid-justify: left; --grid-align: top;"
+    >
       <div
-        class="m_8bffd616 mantine-Flex-root __m__-r2u"
-        style="gap: var(--mantine-spacing-sm); align-items: center; justify-content: center; flex-wrap: wrap; flex-direction: row;"
-      >
-        <div
-          class="m_7485cace mantine-Container-root"
-          data-size="sm"
-          style="--container-size: 48em;"
-        >
-          <p
-            class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-          >
-            A genre
-          </p>
-          <div
-            class="m_8bffd616 mantine-Flex-root __m__-r32"
-            style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
-          >
-            <div
-              class="m_f8d312f2 mantine-Rating-root"
-              data-size="sm"
-              style="--rating-size: var(--rating-size-sm); --rating-color: var(--mantine-color-yellow-filled);"
-            >
-              <div
-                class="m_61734bb7 mantine-Rating-symbolGroup"
-              >
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                  style="--rating-item-z-index: 0;"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                    style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      data-filled="true"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                  style="--rating-item-z-index: 0;"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                    style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      data-filled="true"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      data-filled="true"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="m_61734bb7 mantine-Rating-symbolGroup"
-              >
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                  style="--rating-item-z-index: 0;"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                    style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      data-filled="true"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      data-filled="true"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="m_61734bb7 mantine-Rating-symbolGroup"
-              >
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                  style="--rating-item-z-index: 0;"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                    style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      data-filled="true"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      data-filled="true"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="m_61734bb7 mantine-Rating-symbolGroup"
-              >
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                  style="--rating-item-z-index: 2;"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                    style="--rating-symbol-clip-path: inset(0 50% 0 0);"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      data-filled="true"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="m_61734bb7 mantine-Rating-symbolGroup"
-              >
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                  style="--rating-item-z-index: 0;"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                    style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div
-                  class="m_21342ee4 mantine-Rating-label"
-                  data-read-only="true"
-                >
-                  <div
-                    class="m_fae05d6a mantine-Rating-symbolBody"
-                  >
-                    <svg
-                      class="m_5662a89a mantine-Rating-starSymbol"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p
-              class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-              style="font-weight: 500;"
-            >
-              3.6
-            </p>
-          </div>
-        </div>
-        <p
-          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-        >
-          A deep book about deep topics
-        </p>
-      </div>
-      <div
-        class="_paperBackground_e10025 m_1b7284a3 mantine-Paper-root"
-        style="--paper-radius: var(--mantine-radius-md); --paper-shadow: var(--mantine-shadow-sm); margin-block: var(--mantine-spacing-xl);"
+        class="m_dee7bd2f mantine-Grid-inner"
       >
         <style
           data-mantine-styles="inline"
         >
-          .__m__-r40{--grid-gutter:var(--mantine-spacing-md);}
+          .__m__-r33{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 30em){.__m__-r33{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}}@media(min-width: 48em){.__m__-r33{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 64em){.__m__-r33{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 75em){.__m__-r33{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 90em){.__m__-r33{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}
         </style>
         <div
-          class="m_410352e9 mantine-Grid-root __m__-r40"
+          class="m_96bdd299 mantine-Grid-col __m__-r33"
+        >
+          <img
+            alt="Cover image for A title"
+            class="m_9e117634 mantine-Image-root"
+            sizes="xs"
+            src="https://placehold.co/200x300?text=Cover%20image%20for%20book"
+            style="--image-radius: var(--mantine-radius-lg); --image-object-fit: contain; margin: auto; max-width: 100%; max-height: 100%;"
+          />
+        </div>
+        <style
+          data-mantine-styles="inline"
+        >
+          .__m__-r36{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        </style>
+        <div
+          class="m_96bdd299 mantine-Grid-col __m__-r36"
         >
           <div
-            class="m_dee7bd2f mantine-Grid-inner"
+            class="m_8bffd616 mantine-Flex-root __m__-r38"
+            style="gap: var(--mantine-spacing-sm); align-items: center; justify-content: center; flex-wrap: wrap; flex-direction: row;"
           >
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r42{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
             <div
-              class="m_96bdd299 mantine-Grid-col __m__-r42"
+              class="m_7485cace mantine-Container-root"
+              data-size="sm"
+              style="--container-size: 48em;"
             >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
-              >
-                Title
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-              >
-                A title
-              </p>
-            </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r46{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
-            <div
-              class="m_96bdd299 mantine-Grid-col __m__-r46"
-            >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
-              >
-                Author
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-              >
-                A name
-              </p>
-            </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r4a{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
-            <div
-              class="m_96bdd299 mantine-Grid-col __m__-r4a"
-            >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
-              >
-                Publisher
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-              >
-                A publisher
-              </p>
-            </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r4e{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
-            <div
-              class="m_96bdd299 mantine-Grid-col __m__-r4e"
-            >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
-              >
-                Genres
-              </p>
               <p
                 class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
               >
                 A genre
               </p>
+              <div
+                class="m_8bffd616 mantine-Flex-root __m__-r3c"
+                style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
+              >
+                <div
+                  class="m_f8d312f2 mantine-Rating-root"
+                  data-size="sm"
+                  style="--rating-size: var(--rating-size-sm); --rating-color: var(--mantine-color-yellow-filled);"
+                >
+                  <div
+                    class="m_61734bb7 mantine-Rating-symbolGroup"
+                  >
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                      style="--rating-item-z-index: 0;"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                        style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          data-filled="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                      style="--rating-item-z-index: 0;"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                        style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          data-filled="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          data-filled="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="m_61734bb7 mantine-Rating-symbolGroup"
+                  >
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                      style="--rating-item-z-index: 0;"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                        style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          data-filled="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          data-filled="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="m_61734bb7 mantine-Rating-symbolGroup"
+                  >
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                      style="--rating-item-z-index: 0;"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                        style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          data-filled="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          data-filled="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="m_61734bb7 mantine-Rating-symbolGroup"
+                  >
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                      style="--rating-item-z-index: 2;"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                        style="--rating-symbol-clip-path: inset(0 50% 0 0);"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          data-filled="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="m_61734bb7 mantine-Rating-symbolGroup"
+                  >
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                      style="--rating-item-z-index: 0;"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                        style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      class="m_21342ee4 mantine-Rating-label"
+                      data-read-only="true"
+                    >
+                      <div
+                        class="m_fae05d6a mantine-Rating-symbolBody"
+                      >
+                        <svg
+                          class="m_5662a89a mantine-Rating-starSymbol"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 500;"
+                >
+                  3.6
+                </p>
+              </div>
             </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r4i{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
             <div
-              class="m_96bdd299 mantine-Grid-col __m__-r4i"
+              class="m_559cce2d mantine-Spoiler-root"
             >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
+              <div
+                class="m_b912df4e mantine-Spoiler-content"
+                data-reduce-motion="true"
+                role="region"
+                style="max-height: calc(15.625rem * var(--mantine-scale));"
               >
-                Rating
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-              >
-                3.6
-              </p>
+                <div>
+                  <p
+                    class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  >
+                    A deep book about deep topics
+                  </p>
+                </div>
+              </div>
             </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r4m{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
+          </div>
+        </div>
+        <div
+          class="_paperBackground_e10025 m_1b7284a3 mantine-Paper-root"
+          style="--paper-radius: var(--mantine-radius-md); --paper-shadow: var(--mantine-shadow-sm); margin-block: var(--mantine-spacing-xl);"
+        >
+          <style
+            data-mantine-styles="inline"
+          >
+            .__m__-r4c{--grid-gutter:var(--mantine-spacing-md);}
+          </style>
+          <div
+            class="m_410352e9 mantine-Grid-root __m__-r4c"
+          >
             <div
-              class="m_96bdd299 mantine-Grid-col __m__-r4m"
+              class="m_dee7bd2f mantine-Grid-inner"
             >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
+              <style
+                data-mantine-styles="inline"
               >
-                Pages
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                .__m__-r4e{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r4e"
               >
-                1000
-              </p>
-            </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r4q{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
-            <div
-              class="m_96bdd299 mantine-Grid-col __m__-r4q"
-            >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Title
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  A title
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
               >
-                Format
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                .__m__-r4i{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r4i"
               >
-                Paper
-              </p>
-            </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r4u{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
-            <div
-              class="m_96bdd299 mantine-Grid-col __m__-r4u"
-            >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Author
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  A name
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
               >
-                Characters
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                .__m__-r4m{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r4m"
               >
-                A character
-              </p>
-            </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r52{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
-            <div
-              class="m_96bdd299 mantine-Grid-col __m__-r52"
-            >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Publisher
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  A publisher
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
               >
-                ISBN
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                .__m__-r4q{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r4q"
               >
-                999999999
-              </p>
-            </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r56{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
-            <div
-              class="m_96bdd299 mantine-Grid-col __m__-r56"
-            >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Genres
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  A genre
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
               >
-                Language
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                .__m__-r4u{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r4u"
               >
-                Swedish
-              </p>
-            </div>
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-r5a{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
-            </style>
-            <div
-              class="m_96bdd299 mantine-Grid-col __m__-r5a"
-            >
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                style="font-weight: 700;"
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Rating
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  3.6
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
               >
-                Series
-              </p>
-              <p
-                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                .__m__-r52{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r52"
               >
-                Title #1
-              </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Pages
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  1000
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
+              >
+                .__m__-r56{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r56"
+              >
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Format
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  Paper
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
+              >
+                .__m__-r5a{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r5a"
+              >
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Characters
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  A character
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
+              >
+                .__m__-r5e{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r5e"
+              >
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  ISBN
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  999999999
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
+              >
+                .__m__-r5i{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r5i"
+              >
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Language
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  Swedish
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
+              >
+                .__m__-r5m{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r5m"
+              >
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Series
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  Title #1
+                </p>
+              </div>
             </div>
           </div>
         </div>
