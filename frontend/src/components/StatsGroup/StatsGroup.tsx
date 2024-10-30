@@ -42,7 +42,7 @@ export const StatsGroup = () => {
       title: 'Number of ratings',
       stats: getField(stats, 'totalRatings', loading, error),
       description:
-        'With a massive collection of ratings, you have the insights you need to discover your next favorite book.',
+        'With a massive collection of ratings, you have the insights you need to discover your next must-read.',
     },
   ];
 

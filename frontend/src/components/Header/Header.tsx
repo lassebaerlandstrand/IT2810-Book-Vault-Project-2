@@ -65,6 +65,7 @@ export function Header() {
       to={link.link}
       className={`${styles.link} ${styles.removeLinkStyling}`}
       onClick={handleClick}
+      aria-label="Home page"
     >
       {link.label}
     </Link>
@@ -101,7 +102,12 @@ export function Header() {
       </Group>
 
       {/* Mobile */}
-      <Burger opened={opened} onClick={toggle} className={styles.burgerIcon} />
+      <Burger
+        opened={opened}
+        onClick={toggle}
+        className={styles.burgerIcon}
+        aria-label="Hamburger menu"
+      />
 
       <Transition mounted={opened} transition="scale-y" duration={300} timingFunction="ease">
         {(transition) => (

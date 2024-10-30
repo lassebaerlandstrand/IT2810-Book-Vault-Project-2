@@ -25,6 +25,7 @@
   color: var(--mantine-color-blue-0);
   font-size: var(--mantine-font-size-sm);
   display: none;
+  margin-top: rem(4px);
 }
 
 .stat {
