@@ -3,12 +3,12 @@
 }
 
 .img {
-  display: show;
+  display: none;
 }
 
-@media screen and (max-width: $mantine-breakpoint-sm) {
+@media screen and (min-width: $mantine-breakpoint-sm) {
   .img {
-    display: none;
+    display: initial;
   }
 }
 

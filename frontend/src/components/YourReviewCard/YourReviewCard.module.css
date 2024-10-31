@@ -2,16 +2,6 @@
   height: 100%;
 }
 
-.img {
-  display: show;
-}
-
-@media screen and (max-width: $mantine-breakpoint-sm) {
-  .img {
-    display: none;
-  }
-}
-
 .textSection {
   text-overflow: ellipsis;
   overflow-wrap: break-word;
