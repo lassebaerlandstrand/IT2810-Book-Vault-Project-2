@@ -182,6 +182,13 @@ const resolvers = {
     async stats() {
       return {}; // Uses the resolver in Stats, this makes it so if a field is not requested, then it is not calculated
     },
+
+    async randomBook() {
+      return await db
+        .collection('books')
+        .aggregate([{ $sample: { size: 1 } }])
+        .next();
+    },
   },
 
   Stats: {

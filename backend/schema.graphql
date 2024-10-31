@@ -111,6 +111,9 @@ type Query {
 
   "Retrieve statistics about the website"
   stats: Stats!
+
+  "Returns a random book"
+  randomBook: Book!
 }
 
 enum SortOrder {

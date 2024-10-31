@@ -53,6 +53,14 @@ export const GET_BOOK = gql(`
   }
 `);
 
+export const GET_RANDOM_BOOK = gql(`
+  query GetRandomBook {
+    randomBook {
+      id
+    }
+  }
+`);
+
 // TODO: Update with only authors on books satisfying the filters
 export const GET_AUTHORS = gql(`
   query GetAuthors {
