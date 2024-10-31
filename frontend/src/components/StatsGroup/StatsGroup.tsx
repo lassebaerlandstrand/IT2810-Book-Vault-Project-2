@@ -49,7 +49,7 @@ export const StatsGroup = () => {
   return (
     <Box className={styles.wrapper}>
       {data.map((stat, i) => (
-        <Container key={i} className={styles.stat}>
+        <Container key={i} className={styles.stat} aria-live="polite">
           <Text className={styles.count}>{stat.stats}</Text>
           <Text className={styles.title}>{stat.title}</Text>
           <Text className={styles.description}>{stat.description}</Text>

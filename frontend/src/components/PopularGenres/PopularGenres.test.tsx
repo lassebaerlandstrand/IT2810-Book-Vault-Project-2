@@ -1,18 +1,12 @@
 import { render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
-import BookCategories from './BookCategories';
+import PopularGenres from './PopularGenres';
 
-const categories = [
-  { name: 'Drama', icon: <svg />, link: '/books/drama' },
-  { name: 'Fantasy', icon: <svg />, link: '/books/fantasy' },
-  { name: 'Science Fiction', icon: <svg />, link: '/books/scifi' },
-];
-
-describe('BookCategories component', () => {
+describe('PopularGenres component', () => {
   it('renders correctly', () => {
     const { asFragment } = render(
       <MemoryRouter>
-        <BookCategories categories={categories} typeOfCategory="Genres" />
+        <PopularGenres />
       </MemoryRouter>
     );
 
@@ -22,21 +16,39 @@ describe('BookCategories component', () => {
   it('displays the correct category names', () => {
     render(
       <MemoryRouter>
-        <BookCategories categories={categories} typeOfCategory="Genres" />
+        <PopularGenres />
       </MemoryRouter>
     );
 
+    const categories = [
+      'Drama',
+      'Historical',
+      'Geography',
+      'Fantasy/Fiction',
+      'Action/Adventure',
+      'Literature',
+    ];
+
     categories.forEach((category) => {
-      expect(screen.getByText(category.name)).toBeInTheDocument();
+      expect(screen.getByText(category)).toBeInTheDocument();
     });
   });
 
   it('has the correct links for each category', () => {
     render(
       <MemoryRouter>
-        <BookCategories categories={categories} typeOfCategory="Genres" />
+        <PopularGenres />
       </MemoryRouter>
     );
+
+    const categories = [
+      { name: 'Drama', link: '/books' },
+      { name: 'Historical', link: '/books' },
+      { name: 'Geography', link: '/books' },
+      { name: 'Fantasy/Fiction', link: '/books' },
+      { name: 'Action/Adventure', link: '/books' },
+      { name: 'Literature', link: '/books' },
+    ];
 
     categories.forEach((category) => {
       const linkElement = screen.getByText(category.name).closest('a');

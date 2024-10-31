@@ -20,7 +20,7 @@ exports[`HeroHeader component > renders correctly 1`] = `
     >
       <img
         class="_logo_62bb53 m_9e117634 mantine-Image-root"
-        src="/project2/src/assets/ReadingBook.png"
+        src="/project2/src/assets/ReadingBook.webp"
       />
       <div
         class="_textContainer_62bb53 m_6d731127 mantine-Stack-root"
@@ -47,23 +47,21 @@ exports[`HeroHeader component > renders correctly 1`] = `
           Browse, review, and discover your next favorite book in our expansive catalog!
         </p>
         <a
+          aria-label="Go to a random book"
+          class="mantine-focus-auto mantine-active _button_62bb53 m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
+          data-testid="random-book-button"
           href="/book/1"
+          style="--button-color: var(--mantine-color-white);"
         >
-          <button
-            class="mantine-focus-auto mantine-active _button_62bb53 m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
-            style="--button-color: var(--mantine-color-white);"
-            type="button"
+          <span
+            class="m_80f1301b mantine-Button-inner"
           >
             <span
-              class="m_80f1301b mantine-Button-inner"
+              class="m_811560b9 mantine-Button-label"
             >
-              <span
-                class="m_811560b9 mantine-Button-label"
-              >
-                Try your luck with a random book
-              </span>
+              Try your luck with a random book
             </span>
-          </button>
+          </span>
         </a>
       </div>
     </div>

@@ -27,11 +27,16 @@ export const HeroHeader = () => {
           </Text>
 
           {!error && (
-            <Link to={id ? `/book/${id}` : '/'}>
-              <Button className={styles.button} loading={loading}>
-                Try your luck with a random book
-              </Button>
-            </Link>
+            <Button
+              component={Link}
+              to={id ? `/book/${id}` : '/'}
+              className={styles.button}
+              loading={loading}
+              aria-label="Go to a random book"
+              data-testid="random-book-button"
+            >
+              Try your luck with a random book
+            </Button>
           )}
         </Stack>
       </Flex>

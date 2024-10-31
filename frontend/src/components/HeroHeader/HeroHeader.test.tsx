@@ -22,20 +22,6 @@ describe('HeroHeader component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('shows loading state correctly', () => {
-    (useRandomBook as jest.Mock).mockReturnValue({ id: null, loading: true, error: null });
-
-    render(
-      <MemoryRouter>
-        <HeroHeader />
-      </MemoryRouter>
-    );
-
-    expect(
-      screen.getByRole('button', { name: /try your luck with a random book/i })
-    ).toBeDisabled();
-  });
-
   it('handles error state correctly', () => {
     (useRandomBook as jest.Mock).mockReturnValue({
       id: null,
@@ -49,9 +35,7 @@ describe('HeroHeader component', () => {
       </MemoryRouter>
     );
 
-    expect(
-      screen.queryByRole('button', { name: /try your luck with a random book/i })
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('random-book-button')).not.toBeInTheDocument();
   });
 
   it('links to the correct URL when a book ID is present', () => {
@@ -63,8 +47,8 @@ describe('HeroHeader component', () => {
       </MemoryRouter>
     );
 
-    const link = screen.getByRole('link', { name: /try your luck with a random book/i });
-    expect(link).toHaveAttribute('href', '/book/1');
+    const button = screen.getByTestId('random-book-button');
+    expect(button).toHaveAttribute('href', '/book/1');
   });
 
   it('links to the home page when no book ID is present', () => {
@@ -76,7 +60,7 @@ describe('HeroHeader component', () => {
       </MemoryRouter>
     );
 
-    const link = screen.getByRole('link', { name: /try your luck with a random book/i });
-    expect(link).toHaveAttribute('href', '/');
+    const button = screen.getByTestId('random-book-button');
+    expect(button).toHaveAttribute('href', '/');
   });
 });

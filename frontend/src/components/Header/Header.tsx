@@ -3,6 +3,7 @@ import { IconMoon, IconSunFilled, IconUserCircle } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import {
   ActionIcon,
+  Box,
   Burger,
   Button,
   Container,
@@ -74,9 +75,11 @@ export function Header() {
   return (
     <Container className={styles.wrapper}>
       {/* Left */}
-      <Link to="/" className={`${styles.item} ${styles.logo}`}>
-        <LogoFull />
-      </Link>
+      <Box className={styles.item}>
+        <Link to="/" className={styles.logo}>
+          <LogoFull />
+        </Link>
+      </Box>
 
       {/* Centered */}
       <Group gap="sm" className={`${styles.item} ${styles.showOnlyOnDesktop}`}>
