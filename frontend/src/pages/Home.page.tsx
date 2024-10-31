@@ -29,7 +29,7 @@ export function HomePage() {
       <Stack gap="xl">
         <HeroHeader />
         <StatsGroup />
-        <BookCategories categories={popularCategories} />
+        <BookCategories categories={popularCategories} typeOfCategory="Genres" />
       </Stack>
     </>
   );

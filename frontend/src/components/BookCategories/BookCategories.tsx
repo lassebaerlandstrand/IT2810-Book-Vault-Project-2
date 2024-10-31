@@ -9,7 +9,7 @@ type BookCategoryProps = {
   link: string;
 };
 
-type BookCategoriesProps = { categories: BookCategoryProps[] };
+type BookCategoriesProps = { categories: BookCategoryProps[]; typeOfCategory: string };
 
 const BookCategory = ({ name, icon, link }: BookCategoryProps) => {
   return (
@@ -22,11 +22,11 @@ const BookCategory = ({ name, icon, link }: BookCategoryProps) => {
   );
 };
 
-const BookCategories = ({ categories }: BookCategoriesProps) => {
+const BookCategories = ({ categories, typeOfCategory }: BookCategoriesProps) => {
   return (
     <Box my="xl">
       <Title order={3} fw={600} mb="sm">
-        Popular Categories
+        Popular {typeOfCategory}
       </Title>
       <ScrollArea w="100%" type="auto" offsetScrollbars="x" scrollbarSize={6}>
         <Flex justify="space-between" gap="md" py="xs">
