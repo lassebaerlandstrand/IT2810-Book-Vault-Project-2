@@ -1,13 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import { ApolloQueryResult, OperationVariables, useQuery } from '@apollo/client';
-import { Button, Divider, Flex, Grid, Group, Rating, Stack, Text, Textarea } from '@mantine/core';
-import { useUser } from '@/contexts/UserFunctions';
-import { Book, Review as ReviewType } from '@/generated/graphql';
-import { GET_BOOKS_REVIEWS } from '@/graphql/queries/reviews';
-import { makeReview } from '@/hooks/makeReview';
-import { updateReview } from '@/hooks/updateReview';
-import { useYourBookReview } from '@/hooks/useYourBookReview';
-import ReviewStack from '../ReviewStack/ReviewStack';
+import { useRef } from 'react';
+import { ApolloQueryResult, OperationVariables } from '@apollo/client';
+import { Flex, Grid, Group, Rating, Stack, Text } from '@mantine/core';
+import { Book } from '@/generated/graphql';
+import BookReviews from '../BookReviews/BookReviews';
+import YourReviewHandler from '../YourReviewHandler/YourReviewHandler';
 import styles from './Reviews.module.css';
 
 type ReviewProps = {
@@ -16,224 +12,29 @@ type ReviewProps = {
 };
 
 const Reviews = ({ book, updateAvgRating }: ReviewProps) => {
-  const [visible, setVisible] = useState(false);
-  const [rating, setRating] = useState(1);
-  const [text, setText] = useState('');
-  const [page, setPage] = useState(0);
-  const [isLastPage, setLastPage] = useState(true);
-
-  const [displayReviews, setDisplayReviews] = useState<ReviewType[]>([]);
-
-  const UUID: string = useUser().info.UUID;
-
-  // Fetch your review of the book (if it exists)
-  const { review: yourReview, refetch: refetchYourReview } = useYourBookReview({
-    bookID: book.id,
-    userUUID: UUID,
-  });
-
-  // For submitting a review (NR = new review)
-  const { submitReview, updatedRating: updatedRatingNR, loading: yourReviewLoading } = makeReview();
-
-  // For updating reviews (UR = updated review)
-  const {
-    submitUpdate,
-    updatedRating: updatedRatingUR,
-    loading: loadingUpdateReview,
-  } = updateReview();
-
-  // Toggle the review
-  const toggleReviewDisplay = () => {
-    setVisible((prev) => !prev);
-  };
-
-  // Cancel update to review
-  const cancel = () => {
-    if (yourReview) {
-      setRating(yourReview.rating);
-      setText(yourReview.description);
-    }
-    setVisible(false);
-  };
-
-  // Update review
-  const update = () => {
-    if (yourReview) {
-      setVisible(false);
-
-      submitUpdate({
-        reviewUUID: yourReview.UUID,
-        description: text,
-        rating: rating,
-      });
-    }
-  };
-
-  // Submit review
-  const submit = () => {
-    setVisible(false);
-    submitReview({
-      userUUID: UUID,
-      bookID: book.id,
-      description: text,
-      rating: rating,
-    });
-  };
-
-  const {
-    data,
-    loading: loadingDisplayReviews,
-    fetchMore,
-  } = useQuery(GET_BOOKS_REVIEWS, {
-    variables: { bookID: book.id, limit: 3, offset: page, userUUID: UUID },
-    onCompleted: (data) => {
-      setDisplayReviews((old) => [...old, ...data.bookReviews.reviews]);
-      setLastPage(data.bookReviews.pagination.isLastPage);
-    },
-  });
-
-  const loadMoreReviews = () => {
-    // Disable loading more when waiting for other reviews
-    if (!loadingDisplayReviews) {
-      fetchMore({
-        variables: { offset: page + 1 },
-      });
-      setPage((currentPage) => currentPage + 1);
-    }
-  };
-
-  // Update rating + refetch your rating
-  const updateRating = (updatedRating: number) => {
-    if (!updatedRating) return;
-    refetchYourReview();
-    if (updatedRating != -1) updateAvgRating();
-  };
-
-  // Refetch your review after either posting one or updating it
-  useEffect(() => {
-    updateRating(updatedRatingNR);
-  }, [updatedRatingNR]);
-
-  useEffect(() => {
-    updateRating(updatedRatingUR);
-  }, [updatedRatingUR]);
-
-  // For updating reviews
-  useEffect(() => {
-    if (yourReview) {
-      setRating(yourReview.rating);
-      setText(yourReview.description);
-    }
-  }, [yourReview]);
-
   // For scrolling to top when reaching bottom
   const topOfReviews = useRef<HTMLDivElement>(null);
-
-  const scrollToTop = () => {
-    if (topOfReviews.current)
-      window.scrollTo({
-        top: topOfReviews.current.offsetTop,
-        behavior: 'smooth',
-      });
-  };
 
   return (
     <Group justify="left" gap="lg" ref={topOfReviews}>
       <Stack gap="sm" className={styles.gridWidth}>
-        <Text size="xl" fw={700}>
-          Reviews
-        </Text>
-        {!visible ? (
-          <Grid justify="Space-between">
-            <Grid.Col span="auto">
-              {!yourReviewLoading && !loadingUpdateReview ? (
-                <Button variant="filled" onClick={toggleReviewDisplay}>
-                  {!yourReview ? 'Give Review' : 'Edit Review'}
-                </Button>
-              ) : (
-                <></>
-              )}
-            </Grid.Col>
-            <Grid.Col span="auto">
-              <Flex justify="right" align="center" gap={7} mt="xs">
-                <Rating value={Math.round(book.rating * 2) / 2} fractions={2} readOnly />
-                <Text fw={500}>{book.rating.toFixed(1)}</Text>
-              </Flex>
-            </Grid.Col>
-          </Grid>
-        ) : (
-          <></>
-        )}
-
-        {visible ? (
-          <>
-            <Text size="sm">Your rating</Text>
-            <Rating size="xl" value={rating} onChange={setRating} />
-
-            <Text size="sm">Your review</Text>
-
-            <Textarea value={text} onChange={(event) => setText(event.currentTarget.value)} />
-
-            <Flex justify="Right" gap="lg">
-              <Button variant="filled" color="gray" onClick={cancel}>
-                Cancel
-              </Button>
-              {yourReview ? (
-                <Button variant="filled" onClick={update}>
-                  Update Review
-                </Button>
-              ) : (
-                <Button variant="filled" onClick={submit}>
-                  Submit Review
-                </Button>
-              )}
+        <Grid justify="Space-between">
+          <Grid.Col span="auto">
+            <Text size="xl" fw={700}>
+              Reviews
+            </Text>
+          </Grid.Col>
+          <Grid.Col span="auto">
+            <Flex justify="right" align="center" gap={7} mt="xs">
+              <Rating value={Math.round(book.rating * 2) / 2} fractions={2} readOnly />
+              <Text fw={500}>{book.rating.toFixed(1)}</Text>
             </Flex>
-          </>
-        ) : (
-          <></>
-        )}
+          </Grid.Col>
+        </Grid>
 
-        {!visible && yourReview ? (
-          <>
-            <ReviewStack
-              reviews={[
-                {
-                  UUID: yourReview.UUID,
-                  at: yourReview.at,
-                  rating: yourReview.rating,
-                  description: yourReview.description,
-                  user: {
-                    name: 'Your review',
-                    UUID: UUID,
-                  },
-                },
-              ]}
-              type={'yourReview'}
-            />
-            <Divider size="xs" label="Other reviews" labelPosition="center" />
-          </>
-        ) : (
-          <></>
-        )}
+        <YourReviewHandler book={book} updateAvgRating={updateAvgRating} />
 
-        <ReviewStack reviews={displayReviews} type={'profileReview'} />
-
-        <Flex justify="center" align="center" gap="lg">
-          {!isLastPage ? (
-            <Button variant="filled" onClick={loadMoreReviews}>
-              Load more
-            </Button>
-          ) : (
-            <></>
-          )}
-          {displayReviews.length > 5 ? (
-            <Button variant="filled" onClick={scrollToTop}>
-              Scroll to top
-            </Button>
-          ) : (
-            <></>
-          )}
-        </Flex>
+        <BookReviews bookId={book.id} top={topOfReviews} />
       </Stack>
     </Group>
   );
