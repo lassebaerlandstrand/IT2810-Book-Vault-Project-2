@@ -36,25 +36,25 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     );
   }
 
-  if (user) {
+  if (!user || error) {
     return (
-      <UserContext.Provider
-        value={{
-          info: user,
-        }}
-      >
-        {children}
-      </UserContext.Provider>
+      <Flex justify="center" align="center" className={styles.centeredOnPage}>
+        <Stack align="center">
+          <Text c="red" size="lg">
+            Error fetching user data
+          </Text>
+        </Stack>
+      </Flex>
     );
   }
 
   return (
-    <Flex justify="center" align="center" className={styles.centeredOnPage}>
-      <Stack align="center">
-        <Text c="red" size="lg">
-          Error fetching user data
-        </Text>
-      </Stack>
-    </Flex>
+    <UserContext.Provider
+      value={{
+        info: user as User,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
   );
 };
