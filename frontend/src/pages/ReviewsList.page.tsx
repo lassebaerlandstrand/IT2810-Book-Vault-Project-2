@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Container, Flex, Text, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
@@ -37,10 +36,6 @@ export function ReviewsList() {
 
   const formattedTotalReviews =
     totalReviews != null ? formatNumberWithSpaces(totalReviews.toString()) : '';
-
-  useEffect(() => {
-    close();
-  }, [isDesktop]);
 
   if (!isValidUrlParams(searchParams)) {
     return (
