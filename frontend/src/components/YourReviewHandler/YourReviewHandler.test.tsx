@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client';
 import { MockedProvider } from '@apollo/client/testing';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -13,11 +12,6 @@ import YourReviewHandler from './YourReviewHandler';
 
 vi.mock('@/contexts/UserFunctions', () => ({
   useUser: vi.fn(),
-}));
-
-vi.mock('@apollo/client', () => ({
-  ...vi.importActual('@apollo/client'),
-  useQuery: vi.fn(),
 }));
 
 vi.mock('@/hooks/makeReview', () => ({
@@ -46,15 +40,6 @@ const dummyReview = {
   at: '2023-10-30T12:00:00Z',
 };
 
-const mockData = {
-  bookReviews: {
-    reviews: undefined,
-    pagination: {
-      isLastPage: false,
-    },
-  },
-};
-
 const customRender = () => {
   return render(
     <MockedProvider addTypename={false}>
@@ -70,11 +55,6 @@ const customRender = () => {
 describe('YourReviewHandler Component', () => {
   beforeEach(() => {
     (useUser as jest.Mock).mockReturnValue(dummyUser);
-    (useQuery as jest.Mock).mockReturnValue({
-      data: mockData,
-      loading: false,
-      fetchMore: vi.fn(),
-    });
     (makeReview as jest.Mock).mockReturnValue({
       submitReview: vi.fn(),
       updatedRating: undefined,

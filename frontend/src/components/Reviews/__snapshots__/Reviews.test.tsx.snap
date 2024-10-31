@@ -23,10 +23,10 @@ exports[`Reviews Component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r1h{--grid-gutter:var(--mantine-spacing-md);}
+        .__m__-r17{--grid-gutter:var(--mantine-spacing-md);}
       </style>
       <div
-        class="m_410352e9 mantine-Grid-root __m__-r1h"
+        class="m_410352e9 mantine-Grid-root __m__-r17"
         style="--grid-justify: Space-between;"
       >
         <div
@@ -35,10 +35,10 @@ exports[`Reviews Component > matches snapshot 1`] = `
           <style
             data-mantine-styles="inline"
           >
-            .__m__-r1j{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+            .__m__-r19{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
           </style>
           <div
-            class="m_96bdd299 mantine-Grid-col __m__-r1j"
+            class="m_96bdd299 mantine-Grid-col __m__-r19"
           >
             <p
               class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -51,13 +51,13 @@ exports[`Reviews Component > matches snapshot 1`] = `
           <style
             data-mantine-styles="inline"
           >
-            .__m__-r1m{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+            .__m__-r1c{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
           </style>
           <div
-            class="m_96bdd299 mantine-Grid-col __m__-r1m"
+            class="m_96bdd299 mantine-Grid-col __m__-r1c"
           >
             <div
-              class="m_8bffd616 mantine-Flex-root __m__-r1o"
+              class="m_8bffd616 mantine-Flex-root __m__-r1e"
               style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: right;"
             >
               <div
@@ -335,85 +335,12 @@ exports[`Reviews Component > matches snapshot 1`] = `
           </div>
         </div>
       </div>
-      <style
-        data-mantine-styles="inline"
-      >
-        .__m__-r2k{--grid-gutter:var(--mantine-spacing-md);}
-      </style>
-      <div
-        class="m_410352e9 mantine-Grid-root __m__-r2k"
-      >
-        <div
-          class="m_dee7bd2f mantine-Grid-inner"
-        >
-          <style
-            data-mantine-styles="inline"
-          >
-            .__m__-r2m{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
-          </style>
-          <div
-            class="m_96bdd299 mantine-Grid-col __m__-r2m"
-          >
-            <button
-              class="mantine-focus-auto mantine-active m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
-              data-variant="filled"
-              style="--button-bg: var(--mantine-color-blue-filled); --button-hover: var(--mantine-color-blue-filled-hover); --button-color: var(--mantine-color-white); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
-              type="button"
-            >
-              <span
-                class="m_80f1301b mantine-Button-inner"
-              >
-                <span
-                  class="m_811560b9 mantine-Button-label"
-                >
-                  Give Review
-                </span>
-              </span>
-            </button>
-          </div>
-        </div>
+      <div>
+        YourReviewHandler mock
       </div>
-      <div
-        class="_noResultWrapper_8d4f85 m_4081bf90 mantine-Group-root"
-        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: center; --group-wrap: wrap;"
-      >
-        <svg
-          class="tabler-icon tabler-icon-stars-off "
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M17.373 13.371l.076 -.154a.392 .392 0 0 1 .702 0l.907 1.831m.367 .39c.498 .071 1.245 .18 2.24 .324a.39 .39 0 0 1 .217 .665c-.326 .316 -.57 .553 -.732 .712m-.611 3.405a.39 .39 0 0 1 -.567 .411l-2.172 -1.138l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l1.601 -.232"
-          />
-          <path
-            d="M6.2 19.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z"
-          />
-          <path
-            d="M9.557 5.556l1 -.146l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.014 .187m-4.153 -.166l-.744 .39a.392 .392 0 0 1 -.568 -.41l.188 -1.093"
-          />
-          <path
-            d="M3 3l18 18"
-          />
-        </svg>
-        <p
-          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-          data-size="xl"
-          style="--text-fz: var(--mantine-font-size-xl); --text-lh: var(--mantine-line-height-xl); margin-block: var(--mantine-spacing-xl); font-weight: 700;"
-        >
-          No reviews found
-        </p>
+      <div>
+        BookReview mock
       </div>
-      <div
-        class="m_8bffd616 mantine-Flex-root __m__-r2s"
-        style="gap: var(--mantine-spacing-lg); align-items: center; justify-content: center;"
-      />
     </div>
   </div>
 </DocumentFragment>
