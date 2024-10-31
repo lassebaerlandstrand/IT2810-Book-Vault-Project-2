@@ -33,7 +33,7 @@ const BookCategory = ({ name, icon, link }: BookCategoryProps) => {
 const BookCategories = ({ categories, typeOfCategory }: BookCategoriesProps) => {
   return (
     <Box my="xl">
-      <Title order={3} fw={600} mb="sm">
+      <Title order={2} fw={600} mb="sm" size="h3">
         Popular {typeOfCategory}
       </Title>
       <ScrollArea w="100%" type="auto" offsetScrollbars="x" scrollbarSize={6}>

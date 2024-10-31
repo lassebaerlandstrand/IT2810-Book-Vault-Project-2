@@ -12,7 +12,12 @@ export const HeroHeader = () => {
   return (
     <Paper className={styles.paperMain}>
       <Flex className={styles.wrapper}>
-        <Image src={ReadingBookWebP} fallbackSrc={ReadingBookPNG} className={styles.logo} />
+        <Image
+          src={ReadingBookWebP}
+          fallbackSrc={ReadingBookPNG}
+          className={styles.vectorImage}
+          alt="Person reading a book"
+        />
 
         <Stack className={styles.textContainer}>
           <Box className={styles.titleContainer}>

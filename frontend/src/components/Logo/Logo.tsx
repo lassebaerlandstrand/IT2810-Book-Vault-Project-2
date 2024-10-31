@@ -30,5 +30,5 @@ export const LogoText = (props: SVGProps<SVGSVGElement>) => {
 
 /** Return the logo text as an image. This is useful if you want the text to be highlightable */
 export const LogoTextImage = (props: ImageProps) => {
-  return <Image src={BookVaultTextImage} {...props} />;
+  return <Image src={BookVaultTextImage} alt="The Book Vault" {...props} />;
 };

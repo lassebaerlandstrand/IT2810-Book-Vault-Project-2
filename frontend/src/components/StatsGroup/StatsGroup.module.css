@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   background-image: linear-gradient(
-    -60deg,
-    var(--mantine-color-blue-7) 0%,
-    var(--mantine-color-blue-4) 100%
+    -45deg,
+    var(--mantine-color-blue-9) 0%,
+    var(--mantine-color-blue-6) 100%
   );
   padding: var(--mantine-spacing-xl);
   border-radius: var(--mantine-radius-md);
