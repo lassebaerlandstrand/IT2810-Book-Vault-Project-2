@@ -97,7 +97,7 @@ export function Header() {
         >
           {computedColorScheme === 'dark' ? <IconSunFilled /> : <IconMoon />}
         </ActionIcon>
-        <Link to={''} className={styles.removeLinkStyling}>
+        <Link to="" className={styles.removeLinkStyling}>
           <ActionIcon variant="subtle" size="lg" aria-label="Go to profile page" color="light">
             <IconUserCircle />
           </ActionIcon>

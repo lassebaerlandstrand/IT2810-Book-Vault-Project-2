@@ -43,6 +43,7 @@
 
 [data-mantine-color-scheme='dark'] .titleContainer {
   color: white;
+
   img {
     filter: invert(1);
   }
