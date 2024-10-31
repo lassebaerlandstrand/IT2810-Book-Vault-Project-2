@@ -9,7 +9,12 @@ import styles from './Logo.module.css';
 export const LogoFull = (props: GroupProps) => {
   return (
     <>
-      <Group component="figure" {...props} className={`${styles.wrapper} ${props.className ?? ''}`}>
+      <Group
+        component="figure"
+        {...props}
+        className={`${styles.wrapper} ${props.className ?? ''}`}
+        aria-label="Logo"
+      >
         <LogoIcon />
         <LogoText />
       </Group>

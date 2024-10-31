@@ -76,7 +76,7 @@ export function Header() {
     <Container className={styles.wrapper}>
       {/* Left */}
       <Box className={styles.item}>
-        <Link to="/" className={styles.logo}>
+        <Link to="/" className={styles.logo} aria-label="Go to home page">
           <LogoFull />
         </Link>
       </Box>
@@ -97,8 +97,8 @@ export function Header() {
         >
           {computedColorScheme === 'dark' ? <IconSunFilled /> : <IconMoon />}
         </ActionIcon>
-        <Link to="" className={styles.removeLinkStyling}>
-          <ActionIcon variant="subtle" size="lg" aria-label="Go to profile page" color="light">
+        <Link to="" className={styles.removeLinkStyling} aria-label="Go to profile page">
+          <ActionIcon variant="subtle" size="lg" color="light" tabIndex={-1}>
             <IconUserCircle />
           </ActionIcon>
         </Link>
@@ -119,7 +119,7 @@ export function Header() {
               {items}
               {mobileItems}
               <Divider />
-              <Button onClick={toggleColorScheme}>
+              <Button onClick={toggleColorScheme} aria-label="Change color theme">
                 Change to {computedColorScheme === 'dark' ? 'light' : 'dark'} mode
               </Button>
             </Stack>
