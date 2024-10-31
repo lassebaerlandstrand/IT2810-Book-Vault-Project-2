@@ -16,8 +16,8 @@ export const useYourBookReviews = ({ limit, page, userUUID }: UseYourBookReviews
   });
 
   return {
-    reviews: data?.getYourBookReviews.reviews,
-    totalReviews: data?.getYourBookReviews.summary.total,
+    reviews: data?.bookReviews.reviews,
+    totalReviews: data?.bookReviews.summary.total,
     loading,
     error,
   };

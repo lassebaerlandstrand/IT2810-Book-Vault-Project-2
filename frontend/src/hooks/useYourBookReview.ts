@@ -12,7 +12,7 @@ export const useYourBookReview = ({ bookID, userUUID }: UseBooksReviewsArgs) => 
   });
 
   return {
-    review: data?.getYourBookReview,
+    review: data?.bookReview || undefined,
     loading,
     error,
     refetch,

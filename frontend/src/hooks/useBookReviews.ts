@@ -4,19 +4,18 @@ import { GET_BOOKS_REVIEWS } from '@/graphql/queries/reviews';
 type UseBooksReviewsArgs = {
   bookID: string;
   limit: number;
-  offset: number;
+  page: number;
   userUUID: string;
 };
 
-export const useBookReviews = ({ bookID, limit, offset, userUUID }: UseBooksReviewsArgs) => {
+export const useBookReviews = ({ bookID, limit, page, userUUID }: UseBooksReviewsArgs) => {
   const { data, loading, error, refetch } = useQuery(GET_BOOKS_REVIEWS, {
-    variables: { bookID: bookID, limit: limit, offset: offset, userUUID: userUUID },
+    variables: { bookID: bookID, limit: limit, offset: page - 1, userUUID: userUUID },
   });
 
   return {
     reviews: data?.bookReviews.reviews,
     pagination: data?.bookReviews.pagination,
-    total: data?.bookReviews.summary.total,
     loading,
     error,
     refetch,

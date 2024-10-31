@@ -4,7 +4,7 @@ import { gql } from '@/generated';
 
 export const GET_BOOKS_REVIEWS = gql(`
   query GetBooksReviews($bookID: String!, $limit: Int!, $offset: Int!, $userUUID: String!) {
-    bookReviews(bookID: $bookID, limit: $limit, offset: $offset, userUUID: $userUUID) {
+    bookReviews(bookID: $bookID, limit: $limit, offset: $offset, avoidUserUUID: $userUUID) {
       reviews {
         UUID
         description
@@ -25,7 +25,7 @@ export const GET_BOOKS_REVIEWS = gql(`
 
 export const GET_YOUR_BOOK_REVIEW = gql(`
   query GetYourBookReview($bookID: String!, $userUUID: String!) {
-    getYourBookReview(bookID: $bookID, userUUID: $userUUID) {
+    bookReview(bookID: $bookID, userUUID: $userUUID) {
       UUID
       description
       rating
@@ -37,7 +37,7 @@ export const GET_YOUR_BOOK_REVIEW = gql(`
 
 export const GET_YOUR_BOOK_REVIEWS = gql(`
   query GetYourBookReviews($limit: Int!, $offset: Int!, $userUUID: String!) {
-    getYourBookReviews(limit: $limit, offset: $offset, userUUID: $userUUID) {
+    bookReviews(limit: $limit, offset: $offset, focusUserUUID: $userUUID) {
       reviews {
         UUID
         description

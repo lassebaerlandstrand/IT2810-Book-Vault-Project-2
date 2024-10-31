@@ -21,7 +21,7 @@ const BookReviews = ({ bookId, top }: BookReviewsProps) => {
   const { loading: loadingDisplayReviews, fetchMore } = useQuery(GET_BOOKS_REVIEWS, {
     variables: { bookID: bookId, limit: 3, offset: page, userUUID: UUID },
     onCompleted: (data) => {
-      setDisplayReviews((old) => [...old, ...data.bookReviews.reviews]);
+      setDisplayReviews((old) => [...old, ...(data.bookReviews.reviews as ReviewType[])]);
       setLastPage(data.bookReviews.pagination.isLastPage);
     },
   });

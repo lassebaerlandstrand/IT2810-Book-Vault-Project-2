@@ -71,14 +71,6 @@ type User {
   haveRead: [String]!
 }
 
-type UnstrictUser {
-  UUID: ID
-  name: String!
-  at: Date
-  wantToRead: [String]
-  haveRead: [String]
-}
-
 type Author {
   "Name of the author"
   name: ID!
@@ -100,7 +92,7 @@ type Review {
   description: String!
   rating: Float!
   at: Date!
-  user: UnstrictUser
+  user: User
   book: Book
 }
 
@@ -133,12 +125,16 @@ type Query {
 
   user(UUID: String!): User!
 
-  "Retrieve reviews for book"
-  bookReviews(bookID: String!, limit: Int!, offset: Int!, userUUID: String!): ReviewPagination!
+  "Retrieve book reviews"
+  bookReviews(
+    bookID: String
+    limit: Int!
+    offset: Int!
+    avoidUserUUID: String
+    focusUserUUID: String
+  ): ReviewPagination!
 
-  getYourBookReview(bookID: String!, userUUID: String!): Review!
-
-  getYourBookReviews(limit: Int!, offset: Int!, userUUID: String!): ReviewPagination!
+  bookReview(bookID: String!, userUUID: String!): Review
 
   "Retrieve a list of authors"
   authors: [Author!]!

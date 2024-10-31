@@ -55,6 +55,7 @@ export const GET_BOOK = gql(`
 export const GET_BOOK_RATING = gql(`
   query GetBookRating($bookId: String!) {
     book(id: $bookId) {
+      id
       rating
     }
   }

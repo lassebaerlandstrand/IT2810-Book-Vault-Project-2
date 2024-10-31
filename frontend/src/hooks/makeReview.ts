@@ -12,12 +12,12 @@ export const makeReview = () => {
   // Return the mutation and its states (data, loading, error)
   const [createReview, { data, loading, error }] = useMutation(CREATE_REVIEW, {
     update(cache) {
-      // On update remove the getYourBookReviews queries from cache as
+      // On update remove the bookReviews "focusUserUUID" queries from cache as
       // they are now stale
       const allKeys = cache.extract().ROOT_QUERY;
 
       Object.keys(allKeys).forEach((key) => {
-        if (key.startsWith('getYourBookReviews')) {
+        if (key.startsWith('bookReviews({"focusUserUUID"')) {
           cache.evict({
             id: cache.identify({
               __typename: 'Query',

@@ -43,7 +43,8 @@ interface BookReviewsQueryArgs {
   bookID: string;
   limit: number;
   offset: number;
-  userUUID: string;
+  avoidUserUUID: string;
+  focusUserUUID: string;
 }
 
 interface SingleBookReviewQueryArgs {
@@ -201,57 +202,110 @@ const resolvers = {
       return await db.collection('users').findOne({ UUID: UUID });
     },
 
-    async bookReviews(_, { bookID, limit, offset, userUUID }: BookReviewsQueryArgs) {
-      const total = await db
-        .collection('reviews')
-        .countDocuments({ bookID: bookID, userUUID: { $ne: userUUID } });
+    async bookReviews(
+      _,
+      { bookID, limit, offset, avoidUserUUID, focusUserUUID }: BookReviewsQueryArgs,
+    ) {
+      if (avoidUserUUID && bookID) {
+        const total = await db
+          .collection('reviews')
+          .countDocuments({ bookID: bookID, userUUID: { $ne: avoidUserUUID } });
 
-      const totalPages = Math.ceil(total / limit);
-      const currentPage = Math.floor((offset * limit) / limit) + 1;
-      const isLastPage = currentPage >= totalPages;
-      const skip = offset * limit;
+        const totalPages = Math.ceil(total / limit);
+        const currentPage = offset + 1;
+        const isLastPage = currentPage >= totalPages;
+        const skip = offset * limit;
 
-      const reviews = await db
-        .collection('reviews')
-        .aggregate([
-          { $match: { bookID: bookID, userUUID: { $ne: userUUID } } },
-          { $sort: { at: -1 } },
-          { $skip: skip },
-          { $limit: limit },
-        ])
-        .toArray();
+        const reviews = await db
+          .collection('reviews')
+          .aggregate([
+            { $match: { bookID: bookID, userUUID: { $ne: avoidUserUUID } } },
+            { $sort: { at: -1 } },
+            { $skip: skip },
+            { $limit: limit },
+          ])
+          .toArray();
 
-      const finishedReviews = [];
-      for (let i = 0; i < reviews.length; i++) {
-        const review = reviews[i];
-        const user = await db.collection('users').findOne({ UUID: review.userUUID });
+        const finishedReviews = [];
+        for (let i = 0; i < reviews.length; i++) {
+          const review = reviews[i];
+          const user = await db.collection('users').findOne({ UUID: review.userUUID });
 
-        finishedReviews.push({
-          UUID: review.UUID,
-          description: review.description,
-          rating: review.rating,
-          at: new Date(review.at),
-          user: {
-            name: user.name,
-            UUID: user.UUID,
+          finishedReviews.push({
+            UUID: review.UUID,
+            description: review.description,
+            rating: review.rating,
+            at: new Date(review.at),
+            user: {
+              name: user.name,
+              UUID: user.UUID,
+            },
+          });
+        }
+
+        return {
+          reviews: finishedReviews,
+          pagination: {
+            totalPages,
+            currentPage,
+            isLastPage,
           },
-        });
+          summary: {
+            total,
+          },
+        };
       }
 
-      return {
-        reviews: finishedReviews,
-        pagination: {
-          totalPages,
-          currentPage,
-          isLastPage,
-        },
-        summary: {
-          total,
-        },
-      };
+      if (focusUserUUID) {
+        const total = await db.collection('reviews').countDocuments({ userUUID: focusUserUUID });
+
+        const totalPages = Math.ceil(total / limit);
+        const currentPage = offset + 1;
+        const isLastPage = currentPage >= totalPages;
+        const skip = offset * limit;
+
+        const reviews = await db
+          .collection('reviews')
+          .aggregate([
+            { $match: { userUUID: focusUserUUID } },
+            { $sort: { at: -1 } },
+            { $skip: skip },
+            { $limit: limit },
+          ])
+          .toArray();
+
+        const user = await db.collection('users').findOne({ UUID: focusUserUUID });
+
+        const finishedReviews = [];
+        for (let i = 0; i < reviews.length; i++) {
+          const review = reviews[i];
+          const book = await db.collection('books').findOne({ id: review.bookID });
+
+          finishedReviews.push({
+            UUID: review.UUID,
+            description: review.description,
+            rating: review.rating,
+            at: new Date(review.at),
+            book: book,
+            user: user,
+          });
+        }
+
+        return {
+          reviews: finishedReviews,
+          pagination: {
+            totalPages,
+            currentPage,
+            isLastPage,
+          },
+          summary: {
+            total,
+          },
+        };
+      }
     },
 
-    async getYourBookReview(_, { bookID, userUUID }: SingleBookReviewQueryArgs) {
+    async bookReview(_, { bookID, userUUID }: SingleBookReviewQueryArgs) {
       const review = await db.collection('reviews').findOne({ bookID: bookID, userUUID: userUUID });
 
       return {
@@ -259,55 +313,6 @@ const resolvers = {
         description: review.description,
         rating: review.rating,
         at: new Date(review.at),
-      };
-    },
-
-    async getYourBookReviews(_, { limit, offset, userUUID }: BookReviewsQueryArgs) {
-      const total = await db.collection('reviews').countDocuments({ userUUID: userUUID });
-
-      const totalPages = Math.ceil(total / limit);
-      const currentPage = Math.floor(offset / limit) + 1;
-      const isLastPage = currentPage >= totalPages;
-      const skip = offset * limit;
-
-      const reviews = await db
-        .collection('reviews')
-        .aggregate([
-          { $match: { userUUID: userUUID } },
-          { $sort: { at: -1 } },
-          { $skip: skip },
-          { $limit: limit },
-        ])
-        .toArray();
-
-      const finishedReviews = [];
-      for (let i = 0; i < reviews.length; i++) {
-        const review = reviews[i];
-        const book = await db.collection('books').findOne({ id: review.bookID });
-
-        finishedReviews.push({
-          UUID: review.UUID,
-          description: review.description,
-          rating: review.rating,
-          at: new Date(review.at),
-          book: {
-            title: book.title,
-            coverImg: book.coverImg,
-            id: book.id,
-          },
-        });
-      }
-
-      return {
-        reviews: finishedReviews,
-        pagination: {
-          totalPages,
-          currentPage,
-          isLastPage,
-        },
-        summary: {
-          total,
-        },
       };
     },
 
