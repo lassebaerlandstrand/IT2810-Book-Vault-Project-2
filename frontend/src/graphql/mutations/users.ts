@@ -6,8 +6,12 @@ export const CREATE_USER = gql(`
       UUID
       name
       at
-      wantToRead
-      haveRead
+      wantToRead {
+        id
+      }
+      haveRead {
+        id
+      }
     }
   }
 `);
