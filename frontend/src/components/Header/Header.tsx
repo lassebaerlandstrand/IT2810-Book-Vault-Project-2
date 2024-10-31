@@ -97,11 +97,18 @@ export function Header() {
         >
           {computedColorScheme === 'dark' ? <IconSunFilled /> : <IconMoon />}
         </ActionIcon>
-        <Link to="" className={styles.removeLinkStyling} aria-label="Go to profile page">
-          <ActionIcon variant="subtle" size="lg" color="light" tabIndex={-1}>
-            <IconUserCircle />
-          </ActionIcon>
-        </Link>
+
+        <ActionIcon
+          component={Link}
+          to=""
+          variant="subtle"
+          size="lg"
+          color="light"
+          className={styles.removeLinkStyling}
+          aria-label="Go to profile page"
+        >
+          <IconUserCircle />
+        </ActionIcon>
       </Group>
 
       {/* Mobile */}
