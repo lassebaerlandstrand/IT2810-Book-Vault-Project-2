@@ -1,13 +1,8 @@
 //UPDATE_REVIEW
 
 import { useMutation } from '@apollo/client';
+import { UpdateReviewInput } from '@/generated/graphql';
 import { UPDATE_REVIEW } from '@/graphql/mutations/reviews';
-
-type UpdateReviewArgs = {
-  reviewUUID: string;
-  description: string;
-  rating: number;
-};
 
 export const updateReview = () => {
   const [update, { data, loading, error }] = useMutation(UPDATE_REVIEW, {
@@ -32,10 +27,10 @@ export const updateReview = () => {
     },
   });
 
-  const submitUpdate = async ({ reviewUUID, description, rating }: UpdateReviewArgs) => {
+  const submitUpdate = async (input: UpdateReviewInput) => {
     try {
       await update({
-        variables: { reviewUUID, description, rating },
+        variables: { input },
       });
     } catch (e) {
       console.error('Error during update:', e);

@@ -66,9 +66,9 @@ type Book {
 type User {
   UUID: ID!
   name: String!
-  at: Date!
-  wantToRead: [Book]!
-  haveRead: [Book]!
+  at: Date
+  wantToRead: [Book]
+  haveRead: [Book]
 }
 
 type Author {
@@ -146,17 +146,25 @@ type Query {
   publishers: [Publisher!]!
 }
 
+input CreateReviewInput {
+  userUUID: String!
+  bookID: String!
+  description: String!
+  rating: Float!
+}
+
+input UpdateReviewInput {
+  reviewUUID: String!
+  description: String!
+  rating: Float!
+}
+
 type Mutation {
   createUser: User!
 
-  createReview(
-    userUUID: String!
-    bookID: String!
-    description: String!
-    rating: Float!
-  ): updatedRating!
+  createReview(input: CreateReviewInput!): updatedRating!
 
-  updateReview(reviewUUID: String!, description: String!, rating: Float!): updatedRating
+  updateReview(input: UpdateReviewInput!): updatedRating
 }
 
 enum SortOrder {

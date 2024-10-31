@@ -428,7 +428,9 @@ const resolvers = {
       return newUser; // Return the created user
     },
 
-    async createReview(_, { userUUID, bookID, description, rating }: BookReviewMutationArgs) {
+    async createReview(_, { input }: { input: BookReviewMutationArgs }) {
+      const { userUUID, bookID, description, rating } = input;
+
       const newReview = {
         UUID: uuidv4(),
         description: description,
@@ -477,7 +479,9 @@ const resolvers = {
       return { rating: weightedSum / numRatings };
     },
 
-    async updateReview(_, { reviewUUID, description, rating }: UpdateBookReviewMutationArgs) {
+    async updateReview(_, { input }: { input: UpdateBookReviewMutationArgs }) {
+      const { reviewUUID, description, rating } = input;
+
       const oldReview = await db.collection('reviews').findOneAndUpdate(
         { UUID: reviewUUID },
         {

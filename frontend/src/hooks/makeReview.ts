@@ -1,12 +1,6 @@
 import { useMutation } from '@apollo/client';
+import { CreateReviewInput } from '@/generated/graphql';
 import { CREATE_REVIEW } from '@/graphql/mutations/reviews';
-
-type MakeReviewArgs = {
-  userUUID: string;
-  bookID: string;
-  description: string;
-  rating: number;
-};
 
 export const makeReview = () => {
   // Return the mutation and its states (data, loading, error)
@@ -32,10 +26,10 @@ export const makeReview = () => {
     },
   });
 
-  const submitReview = async ({ userUUID, bookID, description, rating }: MakeReviewArgs) => {
+  const submitReview = async (input: CreateReviewInput) => {
     try {
       await createReview({
-        variables: { userUUID, bookID, description, rating },
+        variables: { input },
       });
     } catch (e) {
       console.error('Error during review creation:', e);
