@@ -98,7 +98,6 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
 
   // For updating reviews
   useEffect(() => {
-    console.log(yourReview);
     if (yourReview) {
       setRating(yourReview.rating);
       setText(yourReview.description);
