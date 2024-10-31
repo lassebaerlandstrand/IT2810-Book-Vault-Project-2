@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Box, Button, Flex, Image, Paper, Stack, Text, Title } from '@mantine/core';
 import { useRandomBook } from '@/hooks/useRandomBook';
-import ReadingBook from '../../assets/ReadingBook.png';
+import ReadingBookPNG from '../../assets/ReadingBook.png';
+import ReadingBookWebP from '../../assets/ReadingBook.webp';
 import { LogoTextImage } from '../Logo/Logo';
 import styles from './HeroHeader.module.css';
 
@@ -11,7 +12,7 @@ export const HeroHeader = () => {
   return (
     <Paper className={styles.paperMain}>
       <Flex className={styles.wrapper}>
-        <Image src={ReadingBook} className={styles.logo} />
+        <Image src={ReadingBookWebP} fallbackSrc={ReadingBookPNG} className={styles.logo} />
 
         <Stack className={styles.textContainer}>
           <Box className={styles.titleContainer}>
