@@ -20,20 +20,13 @@ exports[`Reviews Component > matches snapshot 1`] = `
       class="_gridWidth_8ec61a m_6d731127 mantine-Stack-root"
       style="--stack-gap: var(--mantine-spacing-sm); --stack-align: stretch; --stack-justify: flex-start;"
     >
-      <p
-        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-        data-size="xl"
-        style="--text-fz: var(--mantine-font-size-xl); --text-lh: var(--mantine-line-height-xl); font-weight: 700;"
-      >
-        Reviews
-      </p>
       <style
         data-mantine-styles="inline"
       >
-        .__m__-rj1{--grid-gutter:var(--mantine-spacing-md);}
+        .__m__-r1h{--grid-gutter:var(--mantine-spacing-md);}
       </style>
       <div
-        class="m_410352e9 mantine-Grid-root __m__-rj1"
+        class="m_410352e9 mantine-Grid-root __m__-r1h"
         style="--grid-justify: Space-between;"
       >
         <div
@@ -42,38 +35,29 @@ exports[`Reviews Component > matches snapshot 1`] = `
           <style
             data-mantine-styles="inline"
           >
-            .__m__-rj3{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+            .__m__-r1j{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
           </style>
           <div
-            class="m_96bdd299 mantine-Grid-col __m__-rj3"
+            class="m_96bdd299 mantine-Grid-col __m__-r1j"
           >
-            <button
-              class="mantine-focus-auto mantine-active m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
-              data-variant="filled"
-              style="--button-bg: var(--mantine-color-red-filled); --button-hover: var(--mantine-color-red-filled-hover); --button-color: var(--mantine-color-white); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
-              type="button"
+            <p
+              class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+              data-size="xl"
+              style="--text-fz: var(--mantine-font-size-xl); --text-lh: var(--mantine-line-height-xl); font-weight: 700;"
             >
-              <span
-                class="m_80f1301b mantine-Button-inner"
-              >
-                <span
-                  class="m_811560b9 mantine-Button-label"
-                >
-                  Give Review
-                </span>
-              </span>
-            </button>
+              Reviews
+            </p>
           </div>
           <style
             data-mantine-styles="inline"
           >
-            .__m__-rj7{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+            .__m__-r1m{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
           </style>
           <div
-            class="m_96bdd299 mantine-Grid-col __m__-rj7"
+            class="m_96bdd299 mantine-Grid-col __m__-r1m"
           >
             <div
-              class="m_8bffd616 mantine-Flex-root __m__-rj9"
+              class="m_8bffd616 mantine-Flex-root __m__-r1o"
               style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: right;"
             >
               <div
@@ -351,12 +335,50 @@ exports[`Reviews Component > matches snapshot 1`] = `
           </div>
         </div>
       </div>
+      <style
+        data-mantine-styles="inline"
+      >
+        .__m__-r2k{--grid-gutter:var(--mantine-spacing-md);}
+      </style>
+      <div
+        class="m_410352e9 mantine-Grid-root __m__-r2k"
+      >
+        <div
+          class="m_dee7bd2f mantine-Grid-inner"
+        >
+          <style
+            data-mantine-styles="inline"
+          >
+            .__m__-r2m{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+          </style>
+          <div
+            class="m_96bdd299 mantine-Grid-col __m__-r2m"
+          >
+            <button
+              class="mantine-focus-auto mantine-active m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
+              data-variant="filled"
+              style="--button-bg: var(--mantine-color-blue-filled); --button-hover: var(--mantine-color-blue-filled-hover); --button-color: var(--mantine-color-white); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
+              type="button"
+            >
+              <span
+                class="m_80f1301b mantine-Button-inner"
+              >
+                <span
+                  class="m_811560b9 mantine-Button-label"
+                >
+                  Give Review
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
       <div
         class="_noResultWrapper_8d4f85 m_4081bf90 mantine-Group-root"
         style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: center; --group-wrap: wrap;"
       >
         <svg
-          class="tabler-icon tabler-icon-book-off "
+          class="tabler-icon tabler-icon-stars-off "
           fill="none"
           height="24"
           stroke="currentColor"
@@ -368,19 +390,13 @@ exports[`Reviews Component > matches snapshot 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 5.899 -1.096"
+            d="M17.373 13.371l.076 -.154a.392 .392 0 0 1 .702 0l.907 1.831m.367 .39c.498 .071 1.245 .18 2.24 .324a.39 .39 0 0 1 .217 .665c-.326 .316 -.57 .553 -.732 .712m-.611 3.405a.39 .39 0 0 1 -.567 .411l-2.172 -1.138l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l1.601 -.232"
           />
           <path
-            d="M3 6a9 9 0 0 1 2.114 -.884m3.8 -.21c1.07 .17 2.116 .534 3.086 1.094a9 9 0 0 1 9 0"
+            d="M6.2 19.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z"
           />
           <path
-            d="M3 6v13"
-          />
-          <path
-            d="M12 6v2m0 4v7"
-          />
-          <path
-            d="M21 6v11"
+            d="M9.557 5.556l1 -.146l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.014 .187m-4.153 -.166l-.744 .39a.392 .392 0 0 1 -.568 -.41l.188 -1.093"
           />
           <path
             d="M3 3l18 18"
@@ -395,26 +411,9 @@ exports[`Reviews Component > matches snapshot 1`] = `
         </p>
       </div>
       <div
-        class="m_8bffd616 mantine-Flex-root __m__-rk7"
-        style="align-items: center; justify-content: center;"
-      >
-        <button
-          class="mantine-focus-auto mantine-active m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
-          data-variant="filled"
-          style="--button-bg: var(--mantine-color-red-filled); --button-hover: var(--mantine-color-red-filled-hover); --button-color: var(--mantine-color-white); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
-          type="button"
-        >
-          <span
-            class="m_80f1301b mantine-Button-inner"
-          >
-            <span
-              class="m_811560b9 mantine-Button-label"
-            >
-              Load more
-            </span>
-          </span>
-        </button>
-      </div>
+        class="m_8bffd616 mantine-Flex-root __m__-r2s"
+        style="gap: var(--mantine-spacing-lg); align-items: center; justify-content: center;"
+      />
     </div>
   </div>
 </DocumentFragment>

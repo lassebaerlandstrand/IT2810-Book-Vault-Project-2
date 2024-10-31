@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { MockedProvider } from '@apollo/client/testing';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
@@ -9,7 +9,7 @@ import { updateReview } from '@/hooks/updateReview';
 import { useYourBookReview } from '@/hooks/useYourBookReview';
 import { theme } from '@/theme';
 import { dummyBook } from '../../../test-utils/testVars';
-import Reviews from './Reviews';
+import YourReviewHandler from './YourReviewHandler';
 
 vi.mock('@/contexts/UserFunctions', () => ({
   useUser: vi.fn(),
@@ -60,14 +60,14 @@ const customRender = () => {
     <MockedProvider addTypename={false}>
       <MantineProvider theme={theme}>
         <MemoryRouter>
-          <Reviews book={dummyBook} updateAvgRating={vi.fn()} />
+          <YourReviewHandler book={dummyBook} updateAvgRating={vi.fn()} />
         </MemoryRouter>
       </MantineProvider>
     </MockedProvider>
   );
 };
 
-describe('Reviews Component', () => {
+describe('YourReviewHandler Component', () => {
   beforeEach(() => {
     (useUser as jest.Mock).mockReturnValue(dummyUser);
     (useQuery as jest.Mock).mockReturnValue({
@@ -98,11 +98,74 @@ describe('Reviews Component', () => {
     vi.clearAllMocks();
   });
 
-  test('header and average rating renders properly', async () => {
+  test('that "Give Review" and "Cancel" buttons work', async () => {
     customRender();
 
-    expect(screen.getByText('Reviews')).toBeInTheDocument();
-    expect(screen.getByText(dummyBook.rating.toFixed(1))).toBeInTheDocument();
+    // Check that clicking the Give Review and cancel works properly
+    expect(screen.getByText('Give Review')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Give Review'));
+
+    expect(screen.getByText('Submit Review')).toBeInTheDocument();
+    expect(screen.getByText('Cancel')).toBeInTheDocument();
+    expect(screen.getByText('Your rating')).toBeInTheDocument();
+    expect(screen.getByText('Your review')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Cancel'));
+    expect(screen.getByText('Give Review')).toBeInTheDocument();
+  });
+
+  test('"Edit Review" option shows up when you have made a review', async () => {
+    (useYourBookReview as jest.Mock).mockReturnValue({
+      review: dummyReview,
+      refetch: vi.fn(),
+      loading: false,
+      error: undefined,
+    });
+
+    customRender();
+
+    expect(screen.getByText('Edit Review')).toBeInTheDocument();
+  });
+
+  test('"Cancel" reverts changes you made', async () => {
+    (useYourBookReview as jest.Mock).mockReturnValue({
+      review: dummyReview,
+      refetch: vi.fn(),
+      loading: false,
+      error: undefined,
+    });
+
+    customRender();
+
+    expect(screen.getByText('Edit Review')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Edit Review'));
+
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Updated review text' } });
+
+    expect(screen.getByText('Cancel')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Cancel'));
+    expect(screen.getByText(dummyReview.description)).toBeInTheDocument();
+  });
+
+  test('submits a new review', async () => {
+    const submitReviewMock = vi.fn();
+    (makeReview as jest.Mock).mockReturnValue({ submitReview: submitReviewMock, loading: false });
+
+    customRender();
+
+    fireEvent.click(screen.getByText('Give Review'));
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'A great one!' } });
+    fireEvent.click(screen.getByText('Submit Review'));
+
+    await waitFor(() => {
+      expect(submitReviewMock).toHaveBeenCalledWith({
+        userUUID: dummyUser.info.UUID,
+        bookID: dummyBook.id,
+        description: 'A great one!',
+        rating: 1,
+      });
+    });
   });
 
   it('matches snapshot', () => {

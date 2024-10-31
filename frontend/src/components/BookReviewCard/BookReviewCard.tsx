@@ -8,7 +8,7 @@ type ReviewProps = {
 
 const BookReviewCard = ({ review }: ReviewProps) => {
   if (!review.book) {
-    return <Text>Type of ReviewCard is set to profileReview, but user not set</Text>;
+    return <Text>Type of ReviewCard is set to bookReview, but user not set</Text>;
   }
 
   return (
