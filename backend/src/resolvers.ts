@@ -226,6 +226,8 @@ const resolvers = {
           ])
           .toArray();
 
+        const book = await db.collection('books').findOne({ id: bookID });
+
         const finishedReviews = [];
         for (let i = 0; i < reviews.length; i++) {
           const review = reviews[i];
@@ -236,10 +238,8 @@ const resolvers = {
             description: review.description,
             rating: review.rating,
             at: new Date(review.at),
-            user: {
-              name: user.name,
-              UUID: user.UUID,
-            },
+            user: user,
+            book: book,
           });
         }
 
@@ -303,6 +303,46 @@ const resolvers = {
           },
         };
       }
+
+      const total = await db.collection('reviews').countDocuments();
+
+      const totalPages = Math.ceil(total / limit);
+      const currentPage = offset + 1;
+      const isLastPage = currentPage >= totalPages;
+      const skip = offset * limit;
+
+      const reviews = await db
+        .collection('reviews')
+        .aggregate([{ $sort: { at: -1 } }, { $skip: skip }, { $limit: limit }])
+        .toArray();
+
+      const finishedReviews = [];
+      for (let i = 0; i < reviews.length; i++) {
+        const review = reviews[i];
+        const user = await db.collection('users').findOne({ UUID: review.userUUID });
+        const book = await db.collection('books').findOne({ id: review.bookID });
+
+        finishedReviews.push({
+          UUID: review.UUID,
+          description: review.description,
+          rating: review.rating,
+          at: new Date(review.at),
+          book: book,
+          user: user,
+        });
+      }
+
+      return {
+        reviews: finishedReviews,
+        pagination: {
+          totalPages,
+          currentPage,
+          isLastPage,
+        },
+        summary: {
+          total,
+        },
+      };
     },
 
     async bookReview(_, { bookID, userUUID }: SingleBookReviewQueryArgs) {

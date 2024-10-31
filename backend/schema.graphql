@@ -67,8 +67,8 @@ type User {
   UUID: ID!
   name: String!
   at: Date!
-  wantToRead: [String]!
-  haveRead: [String]!
+  wantToRead: [Book]!
+  haveRead: [Book]!
 }
 
 type Author {
