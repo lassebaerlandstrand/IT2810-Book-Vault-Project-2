@@ -28,7 +28,7 @@ const YourReviewCard = ({ review }: ReviewProps) => {
                 <Text fw={500}>{review.rating.toFixed(1)}</Text>
               </Flex>
             </Grid.Col>
-            {review.description && review.description != '' ? (
+            {review.description && review.description !== '' ? (
               <Grid.Col span={12}>
                 <Text>{review.description}</Text>
               </Grid.Col>

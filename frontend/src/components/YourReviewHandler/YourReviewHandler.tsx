@@ -58,7 +58,7 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
       submitUpdate({
         reviewUUID: yourReview.UUID,
         description: text,
-        rating: rating,
+        rating,
       });
     }
   };
@@ -70,15 +70,19 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
       userUUID: UUID,
       bookID: book.id,
       description: text,
-      rating: rating,
+      rating,
     });
   };
 
   // Update rating + refetch your rating
   const updateRating = (updatedRating: number) => {
-    if (!updatedRating) return;
+    if (!updatedRating) {
+      return;
+    }
     refetchYourReview();
-    if (updatedRating != -1) updateAvgRating();
+    if (updatedRating !== -1) {
+      updateAvgRating();
+    }
   };
 
   // Refetch your review after either posting one or updating it
@@ -151,11 +155,11 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
                 description: yourReview.description,
                 user: {
                   name: 'Your review',
-                  UUID: UUID,
+                  UUID,
                 },
               },
             ]}
-            type={'yourReview'}
+            type="yourReview"
           />
           <Divider size="xs" label="Other reviews" labelPosition="center" />
         </>

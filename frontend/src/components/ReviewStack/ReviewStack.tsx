@@ -27,7 +27,7 @@ const ReviewStack = ({ reviews, type }: ReviewProps) => {
       <Grid my="xs" gutter="md">
         {reviews.map((review, index) => (
           <Grid.Col key={index} span={{ base: 12 }}>
-            {type == 'bookReview' ? (
+            {type === 'bookReview' ? (
               <Link to={`/book/${review.book?.id}`} className={styles.link}>
                 <ReviewCard review={review} type={type} />
               </Link>

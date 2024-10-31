@@ -51,7 +51,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
               </Flex>
             </Container>
 
-            <Spoiler maxHeight={250} hideLabel={'Show less'} showLabel={'Show more'}>
+            <Spoiler maxHeight={250} hideLabel="Show less" showLabel="Show more">
               <Text>{book.description}</Text>
             </Spoiler>
           </Flex>

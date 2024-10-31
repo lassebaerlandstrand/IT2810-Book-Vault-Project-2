@@ -46,7 +46,7 @@ describe('BookReviewCard Component', () => {
     render(
       <MantineProvider theme={theme}>
         <MemoryRouter>
-          <ReviewStack reviews={[]} type={'profileReview'} />
+          <ReviewStack reviews={[]} type="profileReview" />
         </MemoryRouter>
       </MantineProvider>
     );
@@ -57,19 +57,19 @@ describe('BookReviewCard Component', () => {
     render(
       <MantineProvider theme={theme}>
         <MemoryRouter>
-          <ReviewStack reviews={dummyReviews} type={'profileReview'} />
+          <ReviewStack reviews={dummyReviews} type="profileReview" />
         </MemoryRouter>
       </MantineProvider>
     );
     expect(screen.getByText(dummyReviews[0].user.name)).toBeInTheDocument();
-    expect(screen.queryByText('Review of ' + dummyReviews[0].book.title)).toBeNull();
+    expect(screen.queryByText(`Review of ${dummyReviews[0].book.title}`)).toBeNull();
   });
 
   test('yourReview show up properly', async () => {
     render(
       <MantineProvider theme={theme}>
         <MemoryRouter>
-          <ReviewStack reviews={dummyReviews} type={'yourReview'} />
+          <ReviewStack reviews={dummyReviews} type="yourReview" />
         </MemoryRouter>
       </MantineProvider>
     );
@@ -80,19 +80,19 @@ describe('BookReviewCard Component', () => {
     render(
       <MantineProvider theme={theme}>
         <MemoryRouter>
-          <ReviewStack reviews={dummyReviews} type={'bookReview'} />
+          <ReviewStack reviews={dummyReviews} type="bookReview" />
         </MemoryRouter>
       </MantineProvider>
     );
     expect(screen.queryByText(dummyReviews[0].user.name)).toBeNull();
-    expect(screen.getAllByText('Review of ' + dummyReviews[0].book.title)).toHaveLength(3);
+    expect(screen.getAllByText(`Review of ${dummyReviews[0].book.title}`)).toHaveLength(3);
   });
 
   it('matches snapshot', () => {
     const { asFragment } = render(
       <MantineProvider theme={theme}>
         <MemoryRouter>
-          <ReviewStack reviews={dummyReviews} type={'profileReview'} />
+          <ReviewStack reviews={dummyReviews} type="profileReview" />
         </MemoryRouter>
       </MantineProvider>
     );

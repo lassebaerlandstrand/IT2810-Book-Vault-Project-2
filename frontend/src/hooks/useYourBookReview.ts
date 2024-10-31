@@ -8,7 +8,7 @@ type UseBooksReviewsArgs = {
 
 export const useYourBookReview = ({ bookID, userUUID }: UseBooksReviewsArgs) => {
   const { data, loading, error, refetch } = useQuery(GET_YOUR_BOOK_REVIEW, {
-    variables: { bookID: bookID, userUUID: userUUID },
+    variables: { bookID, userUUID },
   });
 
   return {

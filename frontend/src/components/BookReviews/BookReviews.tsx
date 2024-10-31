@@ -37,16 +37,17 @@ const BookReviews = ({ bookId, top }: BookReviewsProps) => {
   };
 
   const scrollToTop = () => {
-    if (top.current)
+    if (top.current) {
       window.scrollTo({
         top: top.current.offsetTop,
         behavior: 'smooth',
       });
+    }
   };
 
   return (
     <>
-      <ReviewStack reviews={displayReviews} type={'profileReview'} />
+      <ReviewStack reviews={displayReviews} type="profileReview" />
 
       <Flex justify="center" align="center" gap="lg">
         {!isLastPage ? (

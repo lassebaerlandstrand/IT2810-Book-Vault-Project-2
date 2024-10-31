@@ -30,6 +30,7 @@ describe('ProfileReviewCard Component', () => {
             ...dummyReview,
             user: {
               name: 'A name',
+              UUID: 'UUID',
             },
           }}
         />

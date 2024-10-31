@@ -43,8 +43,8 @@ const Book = () => {
   return (
     <Group justify="center">
       <Container>
-        <BookInfo book={{ ...book, rating: rating }} />
-        <Reviews book={{ ...book, rating: rating }} updateAvgRating={updateRating} />
+        <BookInfo book={{ ...book, rating }} />
+        <Reviews book={{ ...book, rating }} updateAvgRating={updateRating} />
       </Container>
     </Group>
   );

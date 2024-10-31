@@ -33,7 +33,7 @@ const BookReviewCard = ({ review }: ReviewProps) => {
             <Grid.Col span="content">
               <Stack gap={0}>
                 <Text fw={600} component="h4" lineClamp={2} className={styles.bookTitle}>
-                  {'Review of ' + review.book.title}
+                  {`Review of ${review.book.title}`}
                 </Text>
                 <Text fw={500} size="sm" fs="italic" lineClamp={2}>
                   {new Date(review.at).toDateString()}
@@ -46,7 +46,7 @@ const BookReviewCard = ({ review }: ReviewProps) => {
                 <Text fw={500}>{review.rating.toFixed(1)}</Text>
               </Flex>
             </Grid.Col>
-            {review.description && review.description != '' ? (
+            {review.description && review.description !== '' ? (
               <Grid.Col span={12}>
                 <Text lineClamp={5}>{review.description}</Text>
               </Grid.Col>

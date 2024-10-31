@@ -17,11 +17,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     if (UUID) {
       const oldUser = useUserHook({ UUID });
       return oldUser;
-    } else {
-      const newUser = makeUser();
-      if (newUser.user) localStorage.setItem('userID', newUser.user.UUID);
-      return newUser;
     }
+    const newUser = makeUser();
+    if (newUser.user) {
+      localStorage.setItem('userID', newUser.user.UUID);
+    }
+    return newUser;
   };
   const { user, loading, error } = userFunction();
 

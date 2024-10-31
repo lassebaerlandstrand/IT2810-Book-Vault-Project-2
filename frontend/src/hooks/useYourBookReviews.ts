@@ -12,7 +12,7 @@ type UseYourBookReviewsArgs = {
 
 export const useYourBookReviews = ({ limit, page, userUUID }: UseYourBookReviewsArgs) => {
   const { data, loading, error } = useQuery(GET_YOUR_BOOK_REVIEWS, {
-    variables: { limit, offset: page - 1, userUUID: userUUID },
+    variables: { limit, offset: page - 1, userUUID },
   });
 
   return {

@@ -9,15 +9,15 @@ type ReviewProps = {
 };
 
 const ReviewCard = ({ review, type }: ReviewProps) => {
-  if (type == 'yourReview') {
+  if (type === 'yourReview') {
     return <YourReviewCard review={review} />;
   }
 
-  if (type == 'profileReview') {
+  if (type === 'profileReview') {
     return <ProfileReviewCard review={review} />;
   }
 
-  if (type == 'bookReview' && review.book) {
+  if (type === 'bookReview' && review.book) {
     return <BookReviewCard review={review} />;
   }
 };
