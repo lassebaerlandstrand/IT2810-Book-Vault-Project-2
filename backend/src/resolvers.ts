@@ -373,10 +373,11 @@ const resolvers = {
     },
 
     async randomBook() {
-      return await db
+      const randomBook = await db
         .collection('books')
         .aggregate([{ $sample: { size: 1 } }])
-        .next();
+        .toArray();
+      return randomBook[0] || null;
     },
   },
 

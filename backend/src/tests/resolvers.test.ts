@@ -199,4 +199,55 @@ describe('resolvers', () => {
       expect(result).toEqual({ name: 'Publisher 1' });
     });
   });
+
+  describe('randomBook', () => {
+    it('should return a random book', async () => {
+      const mockBooks = [
+        { _id: new ObjectId(), title: 'Book 1' },
+        { _id: new ObjectId(), title: 'Book 2' },
+      ];
+
+      db.collection = vi.fn().mockReturnValue({
+        aggregate: vi.fn().mockReturnValue({ toArray: vi.fn().mockResolvedValue([mockBooks[0]]) }),
+      });
+
+      const result = await resolvers.Query.randomBook();
+
+      expect(result).toEqual(mockBooks[0]);
+    });
+  });
+
+  describe('Stats', () => {
+    it('should return total number of books', async () => {
+      const mockCount = 10;
+      db.collection = vi.fn().mockReturnValue({
+        countDocuments: vi.fn().mockResolvedValue(mockCount),
+      });
+
+      const result = await resolvers.Stats.totalBooks();
+      expect(result).toEqual(mockCount);
+    });
+
+    it('should return total number of authors', async () => {
+      const mockAuthors = ['Author 1', 'Author 2'];
+      db.collection = vi.fn().mockReturnValue({
+        distinct: vi.fn().mockResolvedValue(mockAuthors),
+      });
+
+      const result = await resolvers.Stats.totalAuthors();
+      expect(result).toEqual(mockAuthors.length);
+    });
+
+    it('should return total number of ratings', async () => {
+      const mockTotalRatings = [{ _id: null, totalRatings: 15 }];
+      db.collection = vi.fn().mockReturnValue({
+        aggregate: vi
+          .fn()
+          .mockReturnValue({ toArray: vi.fn().mockResolvedValue(mockTotalRatings) }),
+      });
+
+      const result = await resolvers.Stats.totalRatings();
+      expect(result).toEqual(mockTotalRatings[0].totalRatings);
+    });
+  });
 });
