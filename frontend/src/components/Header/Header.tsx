@@ -27,6 +27,9 @@ const mainLinks = [
   { link: '/testing', label: 'Testing' },
 ];
 
+// Links that should show on the mobile drop down, but has an alternate display style on desktop
+const mobileLinks = [{ link: '/', label: 'Profile' }];
+
 export function Header() {
   const [opened, { toggle, close }] = useDisclosure(false);
   const { setColorScheme } = useMantineColorScheme();
@@ -54,6 +57,18 @@ export function Header() {
       to={link.link}
       className={`${styles.link} ${styles.removeLinkStyling}`}
       onClick={handleClick}
+    >
+      {link.label}
+    </Link>
+  ));
+
+  const mobileItems = mobileLinks.map((link) => (
+    <Link
+      key={link.label}
+      to={link.link}
+      className={`${styles.link} ${styles.removeLinkStyling}`}
+      onClick={handleClick}
+      aria-label="Home page"
     >
       {link.label}
     </Link>
@@ -87,7 +102,7 @@ export function Header() {
 
         <ActionIcon
           component={Link}
-          to="/profile" // Navigate to profile page
+          to="/profile"
           variant="subtle"
           size="lg"
           color="light"
@@ -111,6 +126,7 @@ export function Header() {
           <Paper className={styles.mobileMenu} style={transition}>
             <Stack gap="lg">
               {items}
+              {mobileItems}
               <Divider />
               <Button onClick={toggleColorScheme} aria-label="Change color theme">
                 Change to {computedColorScheme === 'dark' ? 'light' : 'dark'} mode

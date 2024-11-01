@@ -5,7 +5,6 @@ import { useUser } from '@/contexts/UserFunctions';
 import { Review } from '@/generated/graphql';
 import { useYourBookReviews } from '@/hooks/useYourBookReviews';
 import ReviewStack from '../components/ReviewStack/ReviewStack';
-import styles from './Profile.module.css';
 
 export function ProfilePage() {
   const { info, setUser } = useUser();
@@ -30,15 +29,15 @@ export function ProfilePage() {
   };
 
   return (
-    <Container size="sm" my="xl" className={styles.profileContainer}>
-      <Stack>
-        <Avatar size={100} radius="xl" className={styles.avatar}>
+    <Container size="sm" my="xl">
+      <Stack align="center">
+        <Avatar size={100} radius="xl" color="dark">
           {newName
             .split(' ')
             .map((n) => n[0])
             .join('')}
         </Avatar>
-        <Text ta="center" size="lg" className={styles.userName}>
+        <Text ta="center" size="lg" mt="sm">
           {info.name}
         </Text>
 
@@ -48,10 +47,10 @@ export function ProfilePage() {
               value={newName}
               onChange={(event) => setNewName(event.target.value)}
               placeholder="Enter new name"
-              className={styles.input}
               autoFocus
+              mb="md"
             />
-            <Button fullWidth radius="md" onClick={handleNameChange} className={styles.saveButton}>
+            <Button fullWidth radius="md" onClick={handleNameChange} mt="md">
               Save
             </Button>
           </>
@@ -62,13 +61,13 @@ export function ProfilePage() {
             size="md"
             variant="default"
             onClick={() => setIsEditing(true)}
-            className={styles.editButton}
+            mt="md"
           >
             Edit Name
           </Button>
         )}
 
-        <Title order={2} className={styles.sectionTitle}>
+        <Title order={2} mt="lg">
           Your Reviews
         </Title>
         {loading ? (
@@ -81,8 +80,8 @@ export function ProfilePage() {
           <>
             <ReviewStack reviews={reviews as Review[]} type="bookReview" />
             {reviews && reviews.length >= 3 && (
-              <Link to="/myReviews" className={styles.viewMoreLink}>
-                <Button fullWidth radius="md" variant="outline">
+              <Link to="/myReviews">
+                <Button fullWidth radius="md" variant="outline" mt="md">
                   View All Reviews
                 </Button>
               </Link>
