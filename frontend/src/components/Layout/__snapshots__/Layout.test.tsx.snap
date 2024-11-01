@@ -83,13 +83,13 @@ exports[`Layout > matches snapshot 1`] = `
             class="_link_63c2ea _removeLinkStyling_63c2ea"
             href="/myReviews"
           >
-            REVIEWS
+            Reviews
           </a>
           <a
             class="_link_63c2ea _removeLinkStyling_63c2ea"
             href="/testing"
           >
-            TESTING
+            Testing
           </a>
         </div>
         <div
