@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, ScrollRestoration } from 'react-router-dom';
 import { ErrorPage } from './components/ErrorPage/ErrorPage';
 import Layout from './components/Layout/Layout';
 import Book from './pages/Book.page';
@@ -15,23 +15,48 @@ const router = createBrowserRouter(
       children: [
         {
           path: '/',
-          element: <HomePage />,
+          element: (
+            <>
+              <ScrollRestoration />
+              <HomePage />
+            </>
+          ),
         },
         {
           path: '/books',
-          element: <BookList />,
+          element: (
+            <>
+              <ScrollRestoration />
+              <BookList />
+            </>
+          ),
         },
         {
           path: '/book/:bookId',
-          element: <Book />,
+          element: (
+            <>
+              <ScrollRestoration />
+              <Book />
+            </>
+          ),
         },
         {
           path: 'testing',
-          element: <Testing />,
+          element: (
+            <>
+              <ScrollRestoration />
+              <Testing />
+            </>
+          ),
         },
         {
           path: '/myReviews',
-          element: <ReviewsList />,
+          element: (
+            <>
+              <ScrollRestoration />
+              <ReviewsList />
+            </>
+          ),
         },
       ],
     },
