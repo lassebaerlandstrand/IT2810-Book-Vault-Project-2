@@ -50,7 +50,7 @@ npm run test
 
 ## Backend
 
-TODO: Backend is not implemented yet.
+See [the README in the backend](./backend/README.md) for more information on how to run the backend.
 
 ## Workflow
 

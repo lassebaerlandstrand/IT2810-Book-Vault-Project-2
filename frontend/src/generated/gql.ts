@@ -1,4 +1,4 @@
- 
+/* eslint-disable */
 import * as types from './graphql';
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 
@@ -18,6 +18,7 @@ const documents = {
     "\n  mutation CreateUser {\n    createUser {\n      UUID\n      name\n      at\n      wantToRead {\n        id\n      }\n      haveRead {\n        id\n      }\n    }\n  }\n": types.CreateUserDocument,
     "\n  query GetBooks($limit: Int, $offset: Int, $search: String, $sortInput: SortInput, $authors: [String!], $genres: [String!], $publishers: [String!]) {\n    books(limit: $limit, offset: $offset, search: $search, sortInput: $sortInput, authors: $authors, genres: $genres, publishers: $publishers) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n": types.GetBooksDocument,
     "\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      numRatings\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n": types.GetBookDocument,
+    "\n  query GetRandomBook {\n    randomBook {\n      id\n    }\n  }\n": types.GetRandomBookDocument,
     "\n  query GetBookRating($bookId: String!) {\n    book(id: $bookId) {\n      id\n      rating\n    }\n  }\n": types.GetBookRatingDocument,
     "\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n": types.GetAuthorsDocument,
     "\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n": types.GetGenresDocument,
@@ -25,6 +26,7 @@ const documents = {
     "\n  query GetBooksReviews($bookID: String!, $limit: Int!, $offset: Int!, $userUUID: String!) {\n    bookReviews(bookID: $bookID, limit: $limit, offset: $offset, avoidUserUUID: $userUUID) {\n      reviews {\n        UUID\n        description\n        rating\n        at\n        user {\n          name\n          UUID\n        }\n      }\n      pagination \n      {\n        isLastPage\n      }\n    }\n  }\n": types.GetBooksReviewsDocument,
     "\n  query GetYourBookReview($bookID: String!, $userUUID: String!) {\n    bookReview(bookID: $bookID, userUUID: $userUUID) {\n      UUID\n      description\n      rating\n      at\n    }\n  }\n\n": types.GetYourBookReviewDocument,
     "\n  query GetYourBookReviews($limit: Int!, $offset: Int!, $userUUID: String!) {\n    bookReviews(limit: $limit, offset: $offset, focusUserUUID: $userUUID) {\n      reviews {\n        UUID\n        description\n        rating\n        at\n        book {\n          id\n          title\n          coverImg\n        }\n      }\n      pagination \n      {\n        totalPages\n        currentPage\n        isLastPage\n      }\n      summary \n      {\n        total\n      }\n    }\n  }\n\n": types.GetYourBookReviewsDocument,
+    "\n  query Query {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n": types.QueryDocument,
     "\n  query GetUser($UUID: String!) {\n    user(UUID: $UUID) {\n      UUID\n      name\n      at\n      wantToRead {\n        id\n      }\n      haveRead {\n        id\n      }\n    }\n  }\n": types.GetUserDocument,
 };
 
@@ -65,6 +67,10 @@ export function gql(source: "\n  query GetBook($bookId: String!) {\n    book(id:
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "\n  query GetRandomBook {\n    randomBook {\n      id\n    }\n  }\n"): (typeof documents)["\n  query GetRandomBook {\n    randomBook {\n      id\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "\n  query GetBookRating($bookId: String!) {\n    book(id: $bookId) {\n      id\n      rating\n    }\n  }\n"): (typeof documents)["\n  query GetBookRating($bookId: String!) {\n    book(id: $bookId) {\n      id\n      rating\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -90,6 +96,10 @@ export function gql(source: "\n  query GetYourBookReview($bookID: String!, $user
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GetYourBookReviews($limit: Int!, $offset: Int!, $userUUID: String!) {\n    bookReviews(limit: $limit, offset: $offset, focusUserUUID: $userUUID) {\n      reviews {\n        UUID\n        description\n        rating\n        at\n        book {\n          id\n          title\n          coverImg\n        }\n      }\n      pagination \n      {\n        totalPages\n        currentPage\n        isLastPage\n      }\n      summary \n      {\n        total\n      }\n    }\n  }\n\n"): (typeof documents)["\n  query GetYourBookReviews($limit: Int!, $offset: Int!, $userUUID: String!) {\n    bookReviews(limit: $limit, offset: $offset, focusUserUUID: $userUUID) {\n      reviews {\n        UUID\n        description\n        rating\n        at\n        book {\n          id\n          title\n          coverImg\n        }\n      }\n      pagination \n      {\n        totalPages\n        currentPage\n        isLastPage\n      }\n      summary \n      {\n        total\n      }\n    }\n  }\n\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query Query {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n"): (typeof documents)["\n  query Query {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

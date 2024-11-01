@@ -52,6 +52,14 @@ export const GET_BOOK = gql(`
   }
 `);
 
+export const GET_RANDOM_BOOK = gql(`
+  query GetRandomBook {
+    randomBook {
+      id
+    }
+  }
+`);
+
 export const GET_BOOK_RATING = gql(`
   query GetBookRating($bookId: String!) {
     book(id: $bookId) {
