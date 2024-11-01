@@ -105,9 +105,22 @@ type Publisher {
   name: ID!
 }
 
+type DateSpan {
+  "Earliest publish date"
+  earliest: Date!
+  "Latest publish date"
+  latest: Date!
+}
+
+type PageSpan {
+  "Minimum number of pages"
+  least: Int!
+  "Maximum number of pages"
+  most: Int!
+}
+
 input FilterInput {
   search: String
-  sortInput: SortInput
   beforeDate: Date
   afterDate: Date
   authors: [String!] # String instead of ID, because when storing the author string in the URL, we lose the object ID
@@ -120,7 +133,7 @@ input FilterInput {
 
 type Query {
   "Retrieve a list of books with optional filters"
-  books(input: FilterInput, offset: Int = 0, limit: Int = 10): BookPagination!
+  books(input: FilterInput, sortInput: SortInput, offset: Int = 0, limit: Int = 10): BookPagination!
 
   "Retrieve the amount of books meeting current filters and the new one"
   filterCount(input: FilterInput): FilterCountResult!
@@ -136,6 +149,12 @@ type Query {
 
   "Retrieve a list of publishers"
   publishers: [Publisher!]!
+
+  "Retrieve the span of publish dates"
+  dateSpan: DateSpan!
+
+  "Retrieve the span of number of pages"
+  pageSpan: PageSpan!
 }
 
 enum SortOrder {

@@ -28,7 +28,18 @@ export function BookList() {
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
 
-  const { sortBy, sortOrder, genres, authors, publishers } = getFilterParams(searchParams);
+  const {
+    sortBy,
+    sortOrder,
+    genres,
+    authors,
+    publishers,
+    beforeDate,
+    afterDate,
+    minPages,
+    maxPages,
+    minRating,
+  } = getFilterParams(searchParams);
   const { page, limit } = getPaginationParams(searchParams);
   const { searchValue } = getSearchParams(searchParams);
 
@@ -51,9 +62,14 @@ export function BookList() {
     search: searchValue,
     sortBy,
     sortOrder,
+    beforeDate,
+    afterDate,
     authors,
     genres,
     publishers,
+    minPages,
+    maxPages,
+    minRating,
   });
 
   const formattedTotalBooks =

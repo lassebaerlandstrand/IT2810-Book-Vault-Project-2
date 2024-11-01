@@ -8,11 +8,14 @@ type UseBooksArgs = {
   sortBy: SortBy;
   sortOrder: SortOrder;
   search?: string;
-  _beforeDate?: Date;
-  _afterDate?: Date;
+  beforeDate?: Date;
+  afterDate?: Date;
   authors?: string[];
   genres?: string[];
   publishers?: string[];
+  minPages?: number;
+  maxPages?: number;
+  minRating?: number;
   onCompleted?: () => void;
 };
 
@@ -22,17 +25,20 @@ export const useBooks = ({
   search,
   sortBy,
   sortOrder,
-  _beforeDate, // TODO: Underlined because unused, to satisfy eslint
-  _afterDate,
+  beforeDate,
+  afterDate,
   authors,
   genres,
   publishers,
+  minPages,
+  maxPages,
+  minRating,
 }: UseBooksArgs) => {
   const sortInput: SortInput = { sortBy, sortOrder };
-  const filterInput = { search, sortInput, authors, genres, publishers };
+  const filterInput = { search, beforeDate, afterDate, authors, genres, publishers, minPages, maxPages, minRating };
 
   const { data, loading, error } = useQuery(GET_BOOKS, {
-    variables: { limit, offset: page - 1, input: filterInput },
+    variables: { limit, offset: page - 1, input: filterInput, sort: sortInput },
   });
 
   return {

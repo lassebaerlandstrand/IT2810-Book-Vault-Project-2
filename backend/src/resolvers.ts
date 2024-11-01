@@ -32,8 +32,13 @@ interface FilterInput {
   minRating?: number;
 }
 
+interface FilterCountInput {
+  input?: FilterInput;
+}
+
 interface BooksQueryArgs {
   input?: FilterInput;
+  sortInput?: SortInput;
   offset: number;
   limit: number;
 }
@@ -58,22 +63,61 @@ const mapCounts = (counts: Document, keyName: string, valueName = 'count') =>
     [valueName]: value,
   }));
 
-const filterBooks = async ({
+const filterBooks = async (input: FilterInput) => {
+  const basePipeline: Document[] = buildPipelineWithoutSpecificFilters(input);
+  const baseBooks = await db.collection('books').aggregate(basePipeline).toArray();
+
+  const exclusionDictionaries: {
+    genresExcluded?: Document[];
+    minRatingExcluded?: Document[];
+    allExcluded?: Document[];
+    // Add other exclusions as needed
+  } = {};
+
+  const applyExclusionFilter = (excludeFilter: null | keyof FilterInput) => {
+    if (!exclusionDictionaries[`${excludeFilter ?? 'all'}Excluded`]) {
+      exclusionDictionaries[`${excludeFilter ?? 'all'}Excluded`] = baseBooks.filter((book) => {
+        const meetsCriteria = {
+          genres:
+            excludeFilter === 'genres' ||
+            !input.genres ||
+            input.genres.length === 0 ||
+            input.genres.some((genre) => book.genres.includes(genre)),
+          minRating:
+            excludeFilter === 'minRating' ||
+            !input.minRating ||
+            book.roundedAverageRating >= input.minRating,
+          // Add any future filters here in the same pattern
+        };
+
+        return Object.values(meetsCriteria).every(Boolean);
+      });
+    }
+    return exclusionDictionaries[`${excludeFilter ?? 'all'}Excluded`];
+  };
+
+  applyExclusionFilter('genres');
+  applyExclusionFilter('minRating');
+  applyExclusionFilter(null);
+
+  return {
+    exclusionDictionaries,
+  };
+};
+
+const buildPipelineWithoutSpecificFilters = ({
   search,
   sortInput,
   beforeDate,
   afterDate,
   authors,
-  genres,
   publishers,
   minPages,
   maxPages,
-  minRating,
 }: FilterInput) => {
   const filters: MongoBookFilters = {};
 
   if (search) {
-    // Does a case-insensitive search on the title and description fields
     const searchRegexSubString = new RegExp(search, 'i');
     const searchRegexWholeWords = new RegExp(`\\b${search}\\b`, 'i');
     filters.$or = [
@@ -94,9 +138,6 @@ const filterBooks = async ({
   if (authors && authors.length > 0) {
     filters.authors = { $in: authors };
   }
-  if (genres && genres.length > 0) {
-    filters.genres = { $in: genres };
-  }
   if (publishers && publishers.length > 0) {
     filters.publisher = { $in: publishers };
   }
@@ -108,28 +149,23 @@ const filterBooks = async ({
     filters.pages = { $lte: maxPages };
   }
 
-  let filterAggregations: Document[] = [{ $match: filters }];
-  filterAggregations.push(...mongoCalculateAverageRatingAggregationPipeline, {
-    $addFields: {
-      roundedAverageRating: { $round: ['$averageRating', 0] },
-    },
-  });
-  if (minRating) {
-    filterAggregations.push({
-      $match: {
-        roundedAverageRating: { $gte: minRating },
-      },
-    });
-  }
+  const pipeline: Document[] = [{ $match: filters }];
 
-  const pipeline: Document[] = [...filterAggregations];
+  pipeline.push(
+    ...mongoCalculateAverageRatingAggregationPipeline,
+    {
+      $addFields: {
+        roundedAverageRating: { $round: ['$averageRating', 0] },
+      },
+    },
+  );
 
   if (sortInput) {
-    const sortOrder = sortInput.sortOrder == SortOrder.Ascending ? 1 : -1;
+    const sortOrder = sortInput.sortOrder === SortOrder.Ascending ? 1 : -1;
     switch (sortInput.sortBy) {
       case SortBy.Book:
         pipeline.push({
-          $sort: { title: sortOrder, _id: 1 }, // Secondary sort by _id to ensure consistent ordering
+          $sort: { title: sortOrder, _id: 1 },
         });
         break;
       case SortBy.Author:
@@ -145,9 +181,7 @@ const filterBooks = async ({
     }
   }
 
-  const collection = db.collection('books');
-
-  return await collection.aggregate(pipeline).toArray();
+  return pipeline;
 };
 
 const resolvers = {
@@ -174,11 +208,10 @@ const resolvers = {
 
   Query: {
     async books(_, args: BooksQueryArgs) {
-      const filteredBooks = await filterBooks(args.input);
+      const filteredBooks = (await filterBooks(args.input ?? {})).exclusionDictionaries.allExcluded;
 
       const totalBooks = filteredBooks.length;
       const skip = args.offset * args.limit;
-
       const books = filteredBooks.slice(skip, skip + args.limit);
 
       return {
@@ -189,9 +222,12 @@ const resolvers = {
       };
     },
 
-    async filterCount(_, input: FilterInput) {
+    async filterCount(_, args: FilterCountInput) {
+      const { exclusionDictionaries } = await filterBooks(args.input ?? {});
       return {
-        books: await filterBooks(input),
+        books: exclusionDictionaries.allExcluded ?? [],
+        minRatingBooks: exclusionDictionaries.minRatingExcluded ?? [],
+        genresBooks: exclusionDictionaries.genresExcluded ?? [],
       };
     },
 
@@ -213,6 +249,24 @@ const resolvers = {
       return (await db.collection('books').distinct('publisher')).map((publisher) => ({
         name: publisher,
       }));
+    },
+
+    async dateSpan() {
+      const minDate = await db.collection('books').find().sort({ publishDate: 1 }).limit(1).next();
+      const maxDate = await db.collection('books').find().sort({ publishDate: -1 }).limit(1).next();
+      return {
+        earliest: minDate?.publishDate,
+        latest: maxDate?.publishDate,
+      };
+    },
+
+    async pageSpan() {
+      const minPages = await db.collection('books').find().sort({ pages: 1 }).limit(1).next();
+      const maxPages = await db.collection('books').find().sort({ pages: -1 }).limit(1).next();
+      return {
+        least: minPages?.pages,
+        most: maxPages?.pages,
+      };
     },
   },
 
@@ -258,8 +312,8 @@ const resolvers = {
       return mapCounts(authorCounts, 'name');
     },
 
-    genres: async (filterCounts: { books: Document[] }) => {
-      const genreCounts = filterCounts.books.reduce((acc, book) => {
+    genres: async (filterCounts: { genresBooks: Document[] }) => {
+      const genreCounts = filterCounts.genresBooks.reduce((acc, book) => {
         book.genres.forEach((genre) => {
           acc[genre] = (acc[genre] || 0) + 1;
         });
@@ -293,9 +347,11 @@ const resolvers = {
       return mapCounts(pageCounts, 'pages');
     },
 
-    ratings: async (filterCounts: { books: Document[] }) => {
-      const ratingCounts = filterCounts.books.reduce((acc, book) => {
-        acc[book.roundedAverageRating] = (acc[book.roundedAverageRating] || 0) + 1;
+    ratings: async (filterCounts: { minRatingBooks: Document[] }) => {
+      const ratingCounts = filterCounts.minRatingBooks.reduce((acc, book) => {
+        Object.entries(book.ratingsByStars).forEach(([rating, count]) => {
+          if (rating <= book.roundedAverageRating) acc[rating] = (acc[rating] || 0) + 1;
+        });
         return acc;
       }, {});
       return mapCounts(ratingCounts, 'rating');
