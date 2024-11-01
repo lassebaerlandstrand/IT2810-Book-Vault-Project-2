@@ -146,35 +146,6 @@ type updatedRating {
   rating: Float!
 }
 
-type Stats {
-  "Total number of books"
-  totalBooks: Int!
-  "Total number of authors"
-  totalAuthors: Int!
-  "Total number of ratings"
-  totalRatings: Int!
-}
-
-type Review {
-  "id for review"
-  UUID: ID!
-  description: String!
-  rating: Float!
-  at: Date!
-  user: User
-  book: Book
-}
-
-type ReviewPagination {
-  reviews: [Review!]!
-  pagination: PaginationInfo!
-  summary: ReviewSummary!
-}
-
-type updatedRating {
-  rating: Float!
-}
-
 type DateSpan {
   "Earliest publish date"
   earliest: Date!
