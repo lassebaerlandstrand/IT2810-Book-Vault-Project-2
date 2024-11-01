@@ -31,7 +31,6 @@ export const GET_BOOK = gql(`
       language
       isbn
       coverImg
-      rating
       numRatings
       characters
       bookFormat
@@ -49,6 +48,15 @@ export const GET_BOOK = gql(`
         name
       }
       description
+    }
+  }
+`);
+
+export const GET_BOOK_RATING = gql(`
+  query GetBookRating($bookId: String!) {
+    book(id: $bookId) {
+      id
+      rating
     }
   }
 `);
