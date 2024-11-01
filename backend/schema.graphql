@@ -86,6 +86,15 @@ type Publisher {
   name: ID!
 }
 
+type Stats {
+  "Total number of books"
+  totalBooks: Int!
+  "Total number of authors"
+  totalAuthors: Int!
+  "Total number of ratings"
+  totalRatings: Int!
+}
+
 type Review {
   "id for review"
   UUID: ID!
@@ -144,6 +153,12 @@ type Query {
 
   "Retrieve a list of publishers"
   publishers: [Publisher!]!
+
+  "Retrieve statistics about the website"
+  stats: Stats!
+
+  "Returns a random book"
+  randomBook: Book!
 }
 
 input CreateReviewInput {
