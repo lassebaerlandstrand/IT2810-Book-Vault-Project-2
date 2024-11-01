@@ -8,23 +8,23 @@ import ReviewStack from '../components/ReviewStack/ReviewStack';
 import styles from './Profile.module.css';
 
 export function ProfilePage() {
-  const { user, setUser } = useUser();
-  const [newName, setNewName] = useState(user.name || '');
+  const { info, setUser } = useUser();
+  const [newName, setNewName] = useState(info.name || '');
   const [isEditing, setIsEditing] = useState(false);
 
   const { reviews, loading, error } = useYourBookReviews({
     limit: 3,
     page: 1,
-    userUUID: user.UUID,
+    userUUID: info.UUID,
   });
 
   useEffect(() => {
-    setNewName(user.name || '');
-  }, [user.name]);
+    setNewName(info.name || '');
+  }, [info.name]);
 
   const handleNameChange = () => {
     if (newName.trim()) {
-      setUser({ ...user, name: newName });
+      setUser({ ...info, name: newName });
       setIsEditing(false);
     }
   };
@@ -39,7 +39,7 @@ export function ProfilePage() {
             .join('')}
         </Avatar>
         <Text ta="center" size="lg" className={styles.userName}>
-          {user.name}
+          {info.name}
         </Text>
 
         {isEditing ? (

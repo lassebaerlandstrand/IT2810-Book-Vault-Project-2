@@ -7,7 +7,6 @@ import styles from './userContext.module.css';
 
 interface UserContextProps {
   info: User;
-  user: User;
   setUser: (user: User) => void;
 }
 
@@ -52,12 +51,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     );
   }
 
-  const setUser = (updatedUser: User) => {
-    // Logic to update user state (e.g., storing in local state or localStorage)
-    // Update this logic as per your app's needs
-  };
+  const setUser = () => {};
 
   return (
-    <UserContext.Provider value={{ user, setUser, info: user }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ info: user as User, setUser }}>{children}</UserContext.Provider>
   );
 };
