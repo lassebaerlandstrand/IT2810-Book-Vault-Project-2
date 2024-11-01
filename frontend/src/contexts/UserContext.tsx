@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 import { Flex, Loader, Stack, Text } from '@mantine/core';
 import { User } from '@/generated/graphql';
 import { makeUser } from '@/hooks/makeUser';
@@ -6,10 +6,19 @@ import { useUserHook } from '@/hooks/useUserHook';
 import styles from './userContext.module.css';
 
 interface UserContextProps {
-  info: User;
+  user: User;
+  setUser: (user: User) => void;
 }
 
 export const UserContext = createContext<UserContextProps | undefined>(undefined);
+
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useUser must be used within a UserProvider');
+  }
+  return context;
+};
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const userFunction = () => {
@@ -41,7 +50,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     return (
       <Flex justify="center" align="center" className={styles.centeredOnPage}>
         <Stack align="center">
-          <Text c="red" size="lg">
+          <Text color="red" size="lg">
             Error fetching user data
           </Text>
         </Stack>
@@ -49,13 +58,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     );
   }
 
-  return (
-    <UserContext.Provider
-      value={{
-        info: user as User,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
+  const setUser = (updatedUser: User) => {
+    // Logic to update user state (e.g., storing in local state or localStorage)
+    // Update this logic as per your app's needs
+  };
+
+  return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
 };

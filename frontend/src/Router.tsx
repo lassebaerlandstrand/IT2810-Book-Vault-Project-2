@@ -6,6 +6,7 @@ import { BookList } from './pages/BookList.page';
 import { HomePage } from './pages/Home.page';
 import { ReviewsList } from './pages/ReviewsList.page';
 import Testing from './pages/Testing.page';
+import UserProfile from './pages/UserProfile.page'; // Import the profile page
 
 const router = createBrowserRouter(
   [
@@ -32,6 +33,10 @@ const router = createBrowserRouter(
         {
           path: '/myReviews',
           element: <ReviewsList />,
+        },
+        {
+          path: '/profile',
+          element: <UserProfile />,
         },
       ],
     },

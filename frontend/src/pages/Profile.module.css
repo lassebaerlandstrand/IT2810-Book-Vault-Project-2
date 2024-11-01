@@ -1,0 +1,65 @@
+.profileContainer {
+  text-align: center;
+  padding: 0 10px;
+}
+
+.avatar {
+  margin: 20px auto;
+  color: var(--mantine-color-dark-6);
+  transition: transform 0.2s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.userName {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.saveButton,
+.editButton {
+  margin-top: 20px;
+}
+
+.sectionTitle {
+  margin-top: 30px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.gridContainer {
+  margin-top: 1rem;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.personAvatar {
+  margin: 0 auto;
+}
+
+.personName {
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .profileContainer {
+    padding: 0 10px;
+  }
+
+  .input,
+  .personName {
+    font-size: 0.9rem;
+  }
+}
