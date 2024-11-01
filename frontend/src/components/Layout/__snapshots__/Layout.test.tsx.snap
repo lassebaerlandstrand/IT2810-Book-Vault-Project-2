@@ -81,12 +81,6 @@ exports[`Layout > matches snapshot 1`] = `
           </a>
           <a
             class="_link_63c2ea _removeLinkStyling_63c2ea"
-            href="/myReviews"
-          >
-            Reviews
-          </a>
-          <a
-            class="_link_63c2ea _removeLinkStyling_63c2ea"
             href="/testing"
           >
             Testing

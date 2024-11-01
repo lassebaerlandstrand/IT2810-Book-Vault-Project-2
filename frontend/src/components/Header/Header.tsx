@@ -23,12 +23,11 @@ import styles from './Header.module.css';
 const mainLinks = [
   { link: '/', label: 'Home' },
   { link: '/books', label: 'Books' },
-  { link: '/myReviews', label: 'Reviews' },
   { link: '/testing', label: 'Testing' },
 ];
 
 // Links that should show on the mobile drop down, but has an alternate display style on desktop
-const mobileLinks = [{ link: '/', label: 'Profile' }];
+const mobileLinks = [{ link: '/profile', label: 'Profile' }];
 
 export function Header() {
   const [opened, { toggle, close }] = useDisclosure(false);
