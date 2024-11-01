@@ -1,9 +1,14 @@
 .paperMain {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  margin-bottom: rem(40px);
 
   padding: var(--mantine-spacing-xl);
   border-radius: var(--mantine-radius-lg);
+}
+
+[data-mantine-color-scheme='dark'] .paperMain {
+  background-color: var(--mantine-color-dark-6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .wrapper {
