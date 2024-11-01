@@ -93,8 +93,6 @@ df['id'] = df.index
 df['genres'] = df['genres'].apply(lambda x: [genre for genre in x if isinstance(x, list) and genre not in ['Audiobook', 'Mira', "Hugo Awards", "Esp", "Apple", "Human Resources", "London Underground"]])
 
 firstLayerTranslations = {
-
-
  "Young Adult": "Fiction" ,
  "Teen": "Fiction" ,
  "Middle Grade": "Fiction" ,
@@ -1099,7 +1097,8 @@ def map_genres(specific_genres):
     broader_genres = {secondLayerTranslations[firstLayerTranslations[genre]] for genre in specific_genres}
     return list(broader_genres)
 
-df['broadGenres'] = df['genres'].apply(map_genres)
+# TODO: This can be changed to broadGenres and we could modify the resolvers somehow to account for broudGenres and genres
+df['genres'] = df['genres'].apply(map_genres)
 
 print(df.iloc[0, :])
 
