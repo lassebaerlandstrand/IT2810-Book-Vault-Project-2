@@ -3,8 +3,8 @@
 import { gql } from '@/generated';
 
 export const GET_BOOKS = gql(`
-  query GetBooks($limit: Int, $offset: Int, $input: FilterInput, $sort: SortInput) {
-    books(limit: $limit, offset: $offset, input: $input, sortInput: $sort) {
+  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {
+    books(limit: $limit, offset: $offset, input: $input) {
       books {
         id
         title

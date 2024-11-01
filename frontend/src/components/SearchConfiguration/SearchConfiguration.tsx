@@ -8,8 +8,8 @@ import {
 } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import {
+  ActionIcon,
   Box,
-  Center,
   Checkbox,
   ComboboxItem,
   Drawer,
@@ -20,7 +20,7 @@ import {
   MultiSelectProps,
   Radio,
   RangeSlider,
-  SegmentedControl,
+  Select,
   SimpleGrid,
   Text,
 } from '@mantine/core';
@@ -198,53 +198,44 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
   } else {
     content = (
       <Box pos="relative">
-        <LoadingOverlay
+        {/* <LoadingOverlay
           visible={filterCountLoading}
           zIndex={90}
           overlayProps={{ radius: 'sm', blur: 2 }}
-        />
-        <InputLabel>Sort by:</InputLabel>
-        <SegmentedControl
-          classNames={{ innerLabel: styles.innerLabel }}
-          data={[
-            { label: 'Book name', value: SortBy.BookName },
-            { label: 'Author name', value: SortBy.AuthorName },
-            { label: 'Publisher name', value: SortBy.PublisherName },
-          ]}
-          value={sortBy}
-          onChange={(value) => {
-            setSortBy(value as SortBy);
-            handleParamsChange('sortBy', value);
-          }}
-          fullWidth
-        />
-        <SegmentedControl
-          classNames={{ innerLabel: styles.innerLabel }}
-          data={[
-            {
-              value: SortOrder.Asc,
-              label: (
-                <Center>
-                  <IconSortAscending /> Ascending
-                </Center>
-              ),
-            },
-            {
-              value: SortOrder.Desc,
-              label: (
-                <Center>
-                  <IconSortDescending /> Descending
-                </Center>
-              ),
-            },
-          ]}
-          value={sortOrder}
-          onChange={(value) => {
-            setSortOrder(value as SortOrder);
-            handleParamsChange('sortOrder', value);
-          }}
-          fullWidth
-        />
+        /> */}
+        <InputLabel>Sort by</InputLabel>
+        <Group gap="sm" wrap="nowrap">
+          <Select
+            data={[
+              { label: 'Book name', value: SortBy.BookName },
+              { label: 'Author name', value: SortBy.AuthorName },
+              { label: 'Publisher name', value: SortBy.PublisherName },
+            ]}
+            value={sortBy}
+            onChange={(value) => {
+              setSortBy(value as SortBy);
+              handleParamsChange('sortBy', value as string);
+            }}
+            allowDeselect={false}
+          />
+          <ActionIcon
+            onClick={() => {
+              const newSortOrder = sortOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc;
+              setSortOrder(newSortOrder);
+              handleParamsChange('sortOrder', newSortOrder);
+            }}
+            size="lg"
+          >
+            <IconSortAscending
+              display={sortOrder === SortOrder.Asc ? 'inline' : 'none'}
+              size="75%"
+            />
+            <IconSortDescending
+              display={sortOrder === SortOrder.Desc ? 'inline' : 'none'}
+              size="75%"
+            />
+          </ActionIcon>
+        </Group>
         <MultiSelect
           classNames={{ root: styles.multiSelect }}
           label="Publisher"
@@ -285,19 +276,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           clearable
           nothingFoundMessage="No author matches your search"
         />
-        <InputLabel mt={10}>Genres</InputLabel>
-        <SimpleGrid cols={2} mt="xs">
-          {genres.map((genre) => (
-            <Checkbox
-              value={genre.name}
-              label={genre.name}
-              checked={selectedGenres.includes(genre.name)}
-              description={genresData?.[genre.name] != null ? `${genresData[genre.name]}` : '0'}
-              onChange={(event) => handleGenreChange(genre.name, event.target.checked)}
-              disabled={(genresData?.[genre.name] ?? 0) === 0}
-            />
-          ))}
-        </SimpleGrid>
+
         <Radio.Group
           mt={10}
           name="Minimum rating"
@@ -380,12 +359,15 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             step={1}
             marks={[
               { value: leastPages, label: `${leastPages}` },
-              { value: Math.floor(mostPages / 3), label: `${Math.floor(mostPages / 3)}` },
+              {
+                value: Math.floor(mostPages / 3),
+                label: Math.floor(mostPages / 3),
+              },
               {
                 value: Math.floor((mostPages * 2) / 3),
-                label: `${Math.floor((mostPages * 2) / 3)}`,
+                label: Math.floor((mostPages * 2) / 3),
               },
-              { value: mostPages, label: `${mostPages}` },
+              { value: mostPages, label: mostPages },
             ]}
             defaultValue={[leastPages, mostPages]}
             onChangeEnd={(value) => {
@@ -396,6 +378,23 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             }}
           />
         </Box>
+        <InputLabel mt={30}>Genres</InputLabel>
+        <SimpleGrid cols={2} mt="xs">
+          {genres.map((genre) => (
+            <Checkbox
+              value={genre.name}
+              label={genre.name}
+              checked={selectedGenres.includes(genre.name)}
+              description={
+                genresData?.[genre.name] != null
+                  ? getFormattedFilterCount(genresData[genre.name])
+                  : '0'
+              }
+              onChange={(event) => handleGenreChange(genre.name, event.target.checked)}
+              disabled={(genresData?.[genre.name] ?? 0) === 0}
+            />
+          ))}
+        </SimpleGrid>
       </Box>
     );
   }

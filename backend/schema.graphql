@@ -162,6 +162,7 @@ type PageSpan {
 
 input FilterInput {
   search: String
+  sortInput: SortInput
   beforeDate: Date
   afterDate: Date
   authors: [String!] # String instead of ID, because when storing the author string in the URL, we lose the object ID
@@ -174,7 +175,7 @@ input FilterInput {
 
 type Query {
   "Retrieve a list of books with optional filters"
-  books(input: FilterInput, sortInput: SortInput, offset: Int = 0, limit: Int = 10): BookPagination!
+  books(input: FilterInput, offset: Int = 0, limit: Int = 10): BookPagination!
 
   "Retrieve the amount of books meeting current filters and the new one"
   filterCount(input: FilterInput): FilterCountResult!

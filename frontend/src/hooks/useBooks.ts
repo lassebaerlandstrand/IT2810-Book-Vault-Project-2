@@ -37,6 +37,7 @@ export const useBooks = ({
   const sortInput: SortInput = { sortBy, sortOrder };
   const filterInput = {
     search,
+    sortInput,
     beforeDate,
     afterDate,
     authors,
@@ -48,7 +49,7 @@ export const useBooks = ({
   };
 
   const { data, loading, error } = useQuery(GET_BOOKS, {
-    variables: { limit, offset: page - 1, input: filterInput, sort: sortInput },
+    variables: { limit, offset: page - 1, input: filterInput },
   });
 
   return {
