@@ -77,6 +77,10 @@ export function BookList() {
     close();
   }, [isDesktop]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+
   if (!isValidUrlParams(searchParams)) {
     return (
       <Error404
