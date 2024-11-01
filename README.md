@@ -14,11 +14,37 @@ You'll have the opportunity to keep track of books you have read, and which you 
 
 ### Home page
 
+This is our home page. From this page you can navigate to all others.
+
 ### Booklist page
+
+On this page you can browse books.
 
 ### Book-info page
 
+On this page you can view more info about a book, like average rating, description, genres, ...
+
+You can also leave a review of the book, as well as view other peoples reviews.
+
+| ![Book-info page](/media/bookinfo.png) |
+| :------------------------------------: |
+|           The book-info page           |
+
 ### Reviews page
+
+Here you can view all the reviews you have left on books. The reviews will however be shortened down if they are too long. To read the full reviews you have to click on them and read them on their respective book-info pages.
+
+| ![Reviews page without reviews](/media/noreviewspage.png) |
+| :-------------------------------------------------------: |
+|           The reviews page without any reviews            |
+
+| ![Reviews page with reviews](/media/reviewspage.png) |
+| :--------------------------------------------------: |
+|            The reviews page with reviews             |
+
+### User page
+
+Information about user
 
 ### Testing page
 
