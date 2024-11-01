@@ -182,27 +182,6 @@ type Mutation {
   updateReview(input: UpdateReviewInput!): updatedRating
 }
 
-input CreateReviewInput {
-  userUUID: String!
-  bookID: String!
-  description: String!
-  rating: Float!
-}
-
-input UpdateReviewInput {
-  reviewUUID: String!
-  description: String!
-  rating: Float!
-}
-
-type Mutation {
-  createUser: User!
-
-  createReview(input: CreateReviewInput!): updatedRating!
-
-  updateReview(input: UpdateReviewInput!): updatedRating
-}
-
 enum SortOrder {
   "Sort in ascending order"
   asc
