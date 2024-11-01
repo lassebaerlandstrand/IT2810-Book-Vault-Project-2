@@ -6,7 +6,7 @@ print("Connecting to client...")
 client = MongoClient('mongodb://localhost:27017/')
 db = client['bookvault']
 
-print("Dopping collections...")
+print("Dropping collections...")
 db.drop_collection('authors')
 db.drop_collection('genres')
 db.drop_collection('publishers')
