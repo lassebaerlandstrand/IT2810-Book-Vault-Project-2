@@ -60,8 +60,6 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
         description: text,
         rating,
       });
-
-      refetchYourReview();
     }
   };
 
@@ -74,7 +72,6 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
       description: text,
       rating,
     });
-    refetchYourReview();
   };
 
   // Update rating + refetch your rating
@@ -95,6 +92,10 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
   useEffect(() => {
     updateRating(updatedRatingUR);
   }, [updatedRatingUR]);
+
+  useEffect(() => {
+    if (!yourReviewLoading && !loadingUpdateReview) refetchYourReview();
+  }, [yourReviewLoading, loadingUpdateReview]);
 
   // For updating reviews
   useEffect(() => {
