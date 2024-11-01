@@ -38,6 +38,10 @@ npm install
 npm run dev
 ```
 
+### Backend
+
+[Click here to go to the tutorial on how to run the backend locally](/backend/README.md)
+
 ## Virtual Machine
 
 The application is running on a VM at [http://it2810-05.idi.ntnu.no/project2](http://it2810-05.idi.ntnu.no/project2)
