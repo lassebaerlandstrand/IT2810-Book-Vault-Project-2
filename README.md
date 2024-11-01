@@ -1,6 +1,18 @@
-![navbar](/media/navbar.png)
-
 # Book Vault
+
+## Table of Contents
+
+1. [Description](#description)
+2. [Folder structure](#folder-structure)
+3. [How to run](#how-to-run)
+4. [Pages](#pages)
+5. [Design](#design)
+6. [Dataset](#dataset)
+7. [Testing](#testing)
+8. [Tech stack](#tech-stack)
+9. [How to contribute](#how-to-contribute)
+
+## Description
 
 _Done_
 
@@ -10,15 +22,43 @@ _ToDo_
 
 You'll have the opportunity to keep track of books you have read, and which you want to read. You will also be able to keep track of your friends literary journeys by following them
 
+## Folder structure
+
+We are using a monorepo structure with both frontend and backend in the same repository.
+
+## How to run
+
+### Frontend
+
+To start with the frontend, you need to run the following commands:
+
+```
+cd frontend
+npm install
+npm run dev
+```
+
+## Virtual Machine
+
+The application is running on a VM at [http://it2810-05.idi.ntnu.no/project2](http://it2810-05.idi.ntnu.no/project2)
+
 ## Pages
 
 ### Home page
 
-This is our home page. From this page you can navigate to all others.
+This is our home page. From this page you can navigate to all other pages, as well as view a random book.
+
+| ![Homepage](/media/homepage.png) |
+| :------------------------------: |
+|          The home-page           |
 
 ### Booklist page
 
-On this page you can browse books.
+On this page you can browse and filter books.
+
+| ![Booklist page](/media/bookbrowsing.png) |
+| :---------------------------------------: |
+|             The booklistpage              |
 
 ### Book-info page
 
@@ -60,34 +100,6 @@ This page will only be available during development of the website. It can be us
 | :----------------------------------: |
 |           The testing page           |
 
-## Folder structure
-
-We are using a monorepo structure with both frontend and backend in the same repository.
-
-## How to run
-
-### Frontend
-
-To start with the frontend, you need to run the following commands:
-
-```
-cd frontend
-npm install
-npm run dev
-```
-
-## Virtual Machine
-
-The application is running on a VM at [http://it2810-05.idi.ntnu.no/project2](http://it2810-05.idi.ntnu.no/project2)
-
-## Dataset
-
-Read about how we got the dataset [here](./preprocessing/README.md)
-
-## How to contribute
-
-Please read the [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) to learn how you can contribute to the project.
-
 ## Design
 
 ### Theme
@@ -102,6 +114,32 @@ Therefore, we experimented with several new themes, including a beige color sche
 
 We also support a light theme and a dark theme. The default theme is based on the user's system preferences, but the user can change the theme manually. Sine we support both themes, we have been careful to use colors that work well in both themes and adhere to WCAG guidelines.
 
+### Accessibility
+
+**TODO**
+
 ### Images
 
 The images used on this website were created using DALL-E 3 and Bing Image Creator. These tools generate images that are not subject to copyright restrictions and can be used freely. Since the generated images were not perfect, we utilized the GIMP image editor to adjust them to better fit our website's design. Additionally, to adhere to sustainable web design principles, we compressed the images using the WebP format, with PNG as a fallback for browsers that do not support WebP.
+
+## Sustainability
+
+**TODO**
+
+## Dataset
+
+Read about how we got the dataset [here](./preprocessing/README.md)
+
+## Testing
+
+**TODO**
+
+## Tech stack
+
+**TODO**
+
+## How to contribute
+
+Please read the [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) to learn how you can contribute to the project.
+
+[Go to top](#book-vault)
