@@ -7,6 +7,7 @@ import styles from './userContext.module.css';
 
 interface UserContextProps {
   info: User;
+  setUser: (user: User) => void;
 }
 
 export const UserContext = createContext<UserContextProps | undefined>(undefined);
@@ -24,6 +25,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
     return newUser;
   };
+
   const { user, loading, error } = userFunction();
 
   if (loading) {
@@ -41,7 +43,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     return (
       <Flex justify="center" align="center" className={styles.centeredOnPage}>
         <Stack align="center">
-          <Text c="red" size="lg">
+          <Text color="red" size="lg">
             Error fetching user data
           </Text>
         </Stack>
@@ -49,13 +51,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     );
   }
 
+  const setUser = () => {};
+
   return (
-    <UserContext.Provider
-      value={{
-        info: user as User,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={{ info: user as User, setUser }}>{children}</UserContext.Provider>
   );
 };

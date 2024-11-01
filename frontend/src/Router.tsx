@@ -4,8 +4,8 @@ import Layout from './components/Layout/Layout';
 import Book from './pages/Book.page';
 import { BookList } from './pages/BookList.page';
 import { HomePage } from './pages/Home.page';
-import { ReviewsList } from './pages/ReviewsList.page';
 import Testing from './pages/Testing.page';
+import UserProfile from './pages/UserProfile.page'; 
 
 const router = createBrowserRouter(
   [
@@ -50,13 +50,9 @@ const router = createBrowserRouter(
           ),
         },
         {
-          path: '/myReviews',
-          element: (
-            <>
-              <ScrollRestoration />
-              <ReviewsList />
-            </>
-          ),
+          path: '/profile',
+          element: <UserProfile />,
+
         },
       ],
     },
