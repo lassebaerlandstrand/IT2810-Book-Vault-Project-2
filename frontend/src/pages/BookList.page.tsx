@@ -15,12 +15,11 @@ import { useBooks } from '@/hooks/useBooks';
 import { useGenres } from '@/hooks/useGenres';
 import { usePublishers } from '@/hooks/usePublishers';
 import { getFilterParams } from '@/utils/filters';
+import { formatNumberWithSpaces } from '@/utils/formatting';
 import { getPaginationParams } from '@/utils/pagination';
 import { getSearchParams } from '@/utils/search';
 import { isValidUrlParams } from '@/utils/validateUrlParams';
 import styles from './BookList.module.css';
-
-const formatNumberWithSpaces = (number: string) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
 export function BookList() {
   const [searchParams] = useSearchParams();
@@ -72,8 +71,7 @@ export function BookList() {
     minRating,
   });
 
-  const formattedTotalBooks =
-    totalBooks != null ? formatNumberWithSpaces(totalBooks.toString()) : '';
+  const formattedTotalBooks = totalBooks != null ? formatNumberWithSpaces(totalBooks) : '';
 
   useEffect(() => {
     close();

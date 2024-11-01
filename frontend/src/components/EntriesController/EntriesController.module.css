@@ -1,5 +1,6 @@
 .select {
   max-width: 5rem;
+  z-index: 90; /* 100 is the header */
 
   label {
     font-size: 0.75rem;

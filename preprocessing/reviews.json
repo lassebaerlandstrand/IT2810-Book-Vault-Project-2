@@ -1,0 +1,82 @@
+[
+  {
+    "UUID": "47dd9f7d-ff62-4317-bd91-3083aefa7d58",
+    "description": "Great book! All though Im sure it could have been better ;)",
+    "rating": 4,
+    "at": {
+      "$date": "2024-10-24T11:55:40.887Z"
+    },
+    "userUUID": "294f3890-e86e-4b98-9cb3-08f70adcb2f4",
+    "bookID": "2767052-the-hunger-games"
+  },
+  {
+    "UUID": "6cad6db6-3b47-4649-b078-3e1033cb67fc",
+    "description": "This book makes me so hungry! I cannot seem to get past the first page );",
+    "rating": 1,
+    "at": {
+      "$date": "2024-10-24T11:56:42.377Z"
+    },
+    "userUUID": "58bb92ee-ffb8-4523-b983-27d8cd7926c1",
+    "bookID": "2767052-the-hunger-games"
+  },
+  {
+    "UUID": "7d103c3b-026a-4687-9db6-2cab6ece7d12",
+    "description": "Read this with my fam every christmas! Gotta love some murder!",
+    "rating": 5,
+    "at": {
+      "$date": "2024-10-24T11:57:50.357Z"
+    },
+    "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
+    "bookID": "2767052-the-hunger-games"
+  },
+  {
+    "UUID": "cc97bd55-e93d-4a93-8a81-e8c39bba9b3a",
+    "description": "Once upon a time in a galaxy far way... oh wait this isnt star wars!! ):< I got scammed",
+    "rating": 1,
+    "at": {
+      "$date": "2024-10-24T11:58:34.106Z"
+    },
+    "userUUID": "01b9552c-bd73-465e-ac73-99b1e465087d",
+    "bookID": "2767052-the-hunger-games"
+  },
+  {
+    "UUID": "30d91855-b1a0-4c37-ae08-d25fdd97c1e6",
+    "description": "May god give me the strength I need to finish this sucky wucky book!",
+    "rating": 2,
+    "at": {
+      "$date": "2024-10-24T11:59:15.063Z"
+    },
+    "userUUID": "485c3374-b7fb-4418-826f-d195a16828cf",
+    "bookID": "2767052-the-hunger-games"
+  },
+  {
+    "UUID": "38ae7f4c-8643-4666-9447-990ff130b22b",
+    "description": "Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! Not worthy of your time! ",
+    "rating": 1,
+    "at": {
+      "$date": "2024-10-24T12:00:06.427Z"
+    },
+    "userUUID": "96ae7735-8f35-42b0-8560-1602cbdaad93",
+    "bookID": "2767052-the-hunger-games"
+  },
+  {
+    "UUID": "e0c91454-b820-4581-9db8-a7bb0f1324b6",
+    "description": "Lovely book!",
+    "rating": 5,
+    "at": {
+      "$date": "2024-10-24T12:00:34.704Z"
+    },
+    "userUUID": "fe041395-df6e-4c10-a193-8fc25630d25f",
+    "bookID": "2767052-the-hunger-games"
+  },
+  {
+    "UUID": "4f31559f-051d-4723-8dec-eff13e4ffed1",
+    "description": "Almost perfect!",
+    "rating": 4,
+    "at": {
+      "$date": "2024-10-24T12:00:55.588Z"
+    },
+    "userUUID": "35ebe2f4-473f-4c6b-94e8-30e112946597",
+    "bookID": "2767052-the-hunger-games"
+  }
+]
