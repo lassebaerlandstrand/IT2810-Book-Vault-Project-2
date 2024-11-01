@@ -1,6 +1,6 @@
 .wrapper {
   height: 100%;
-  color: light-dark(var(--mantine-color-logo-theme-7), var(--mantine-color-logo-theme-0));
+  color: light-dark(black, white);
 
   img {
     height: 100%;

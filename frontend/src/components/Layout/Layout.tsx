@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import useScrollbarSize from 'react-scrollbar-size';
 import { AppShell, MantineStyleProp } from '@mantine/core';
-import { HeaderSimple } from '../HeaderSimple/HeaderSimple';
+import { Header } from '../Header/Header';
 import styles from './Layout.module.css';
 
 const Layout = () => {
@@ -19,9 +19,14 @@ const Layout = () => {
   };
 
   return (
-    <AppShell padding="xl" header={{ height: 56 }} style={reserveScrollbarByReducingWidth}>
+    <AppShell
+      padding="xl"
+      header={{ height: 56 }}
+      style={reserveScrollbarByReducingWidth}
+      className={styles.background}
+    >
       <AppShell.Header className={styles.header} style={reserveScrollbarWithPadding}>
-        <HeaderSimple />
+        <Header />
       </AppShell.Header>
       <AppShell.Main className={styles.wrapper}>
         <Outlet />
