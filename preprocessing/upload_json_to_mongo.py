@@ -59,7 +59,9 @@ for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json', 'no
             case 'adjectives.json':
                 adjectives.insert_many(data)
             case 'users.json':
-                users.insert_many(data, upsert=True)
+                for user in data:
+                    if users.find_one({'UUID': user['UUID']}) is None:
+                        users.insert_one(user)
             case 'reviews.json':
                 reviews.insert_many(data)
 client.close()
