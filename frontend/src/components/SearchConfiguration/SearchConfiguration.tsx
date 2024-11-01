@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import {
   IconBookOff,
+  IconRestore,
   IconSortAscending,
   IconSortDescending,
   IconStar,
   IconStarFilled,
 } from '@tabler/icons-react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   ActionIcon,
   Box,
+  Button,
   Checkbox,
   ComboboxItem,
   Drawer,
@@ -67,6 +69,8 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
   const [searchParams, setSearchParams] = useSearchParams();
   const { earliestDate, latestDate, loading: dateSpanLoading } = useDateSpan();
   const { leastPages, mostPages, loading: pageSpanLoading } = usePageSpan();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     sortBy: initialSortBy,
@@ -204,7 +208,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           overlayProps={{ radius: 'sm', blur: 2 }}
         /> */}
         <InputLabel>Sort by</InputLabel>
-        <Group gap="sm" wrap="nowrap">
+        <Group gap="sm" wrap="nowrap" className={styles.fullWidth}>
           <Select
             data={[
               { label: 'Book name', value: SortBy.BookName },
@@ -278,7 +282,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
         />
 
         <Radio.Group
-          mt={10}
+          mt={20}
           name="Minimum rating"
           label="Minimum rating"
           value={selectedMinRating?.toString()}
@@ -293,8 +297,8 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
               value={rating.toString()}
               disabled={(filterCount?.ratings.find((r) => r.rating === rating)?.count ?? 0) === 0}
               label={
-                <Group justify="space-between" className={styles.fullWidth}>
-                  <Group>
+                <Group wrap="nowrap" justify="space-between" className={styles.fullWidth}>
+                  <Group wrap="nowrap">
                     {Array.from({ length: rating }, (_, i) => (
                       <IconStarFilled key={i} color="gold" />
                     ))}
@@ -318,7 +322,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             zIndex={90}
             overlayProps={{ radius: 'sm', blur: 2 }}
           />
-          <InputLabel mt={10}>Year published</InputLabel>
+          <InputLabel mt={20}>Year published</InputLabel>
           <RangeSlider
             classNames={{ trackContainer: styles.trackContainer }}
             min={earliestDate}
@@ -351,7 +355,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             zIndex={90}
             overlayProps={{ radius: 'sm', blur: 2 }}
           />
-          <InputLabel mt={30}>Number of pages</InputLabel>
+          <InputLabel mt={40}>Number of pages</InputLabel>
           <RangeSlider
             classNames={{ trackContainer: styles.trackContainer }}
             min={leastPages}
@@ -378,7 +382,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             }}
           />
         </Box>
-        <InputLabel mt={30}>Genres</InputLabel>
+        <InputLabel mt={40}>Genres</InputLabel>
         <SimpleGrid cols={2} mt="xs">
           {genres.map((genre) => (
             <Checkbox
@@ -395,6 +399,15 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             />
           ))}
         </SimpleGrid>
+        <Button
+          leftSection={<IconRestore />}
+          variant="default"
+          onClick={() => {
+            navigate(location.pathname, { replace: false });
+          }}
+        >
+          Reset filters to default values
+        </Button>
       </Box>
     );
   }
