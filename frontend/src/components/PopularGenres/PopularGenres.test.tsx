@@ -41,6 +41,7 @@ describe('PopularGenres component', () => {
       </MemoryRouter>
     );
 
+    // TODO: Update links
     const categories = [
       { name: 'Drama', link: '/books' },
       { name: 'Historical', link: '/books' },
