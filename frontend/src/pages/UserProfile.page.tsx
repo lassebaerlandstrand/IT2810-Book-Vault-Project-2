@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Avatar, Button, Container, Grid, Input, Text, Title } from '@mantine/core';
-import { useUser } from '@/contexts/UserContext';
-import { useYourBookReviews } from '@/hooks/useYourBookReviews'; // Ensure the path is correct
-import BookCard from '../components/BookCard/BookCard';
+import { Avatar, Button, Container, Input, Text, Title } from '@mantine/core';
+import { useUser } from '@/contexts/UserFunctions';
+import { useYourBookReviews } from '@/hooks/useYourBookReviews';
+import ReviewStack from '../components/ReviewStack/ReviewStack';
 import styles from './Profile.module.css';
 
 export function ProfilePage() {
@@ -11,7 +11,7 @@ export function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
 
   const { reviews, loading, error } = useYourBookReviews({
-    limit: 5, // Fetch a limited number of reviews, can be adjusted
+    limit: 3,
     page: 1,
     userUUID: user.UUID,
   });
@@ -29,13 +29,13 @@ export function ProfilePage() {
 
   return (
     <Container size="sm" my="xl" className={styles.profileContainer}>
-      <Avatar size={80} radius="xl" className={styles.avatar}>
+      <Avatar size={100} radius="xl" className={styles.avatar}>
         {newName
           .split(' ')
           .map((n) => n[0])
           .join('')}
       </Avatar>
-      <Text align="center" size="lg" weight={500} className={styles.userName}>
+      <Text align="center" size="lg" weight={600} className={styles.userName}>
         {user.name}
       </Text>
 
@@ -68,34 +68,15 @@ export function ProfilePage() {
       <Title order={2} className={styles.sectionTitle}>
         Your Reviews
       </Title>
-      <Grid gutter="md" className={styles.gridContainer}>
-        {loading && <Text align="center">Loading reviews...</Text>}
-        {error && (
-          <Text align="center" color="red">
-            Error fetching reviews
-          </Text>
-        )}
-        {reviews?.length
-          ? reviews.map((review) => (
-              <Grid.Col key={review.UUID} span={6}>
-                <BookCard
-                  book={{
-                    id: review.book?.id || '',
-                    title: review.book?.title || 'Unknown',
-                    coverImg: review.book?.coverImg || '',
-                    authors: review.book?.authors || [],
-                    rating: review.book?.rating || 0,
-                  }}
-                  reviewContent={review.description}
-                />
-              </Grid.Col>
-            ))
-          : !loading && (
-              <Text align="center" color="dimmed">
-                No reviews available.
-              </Text>
-            )}
-      </Grid>
+      {loading ? (
+        <Text align="center">Loading reviews...</Text>
+      ) : error ? (
+        <Text align="center" color="red">
+          Error fetching reviews
+        </Text>
+      ) : (
+        <ReviewStack reviews={reviews} type="yourReview" />
+      )}
     </Container>
   );
 }

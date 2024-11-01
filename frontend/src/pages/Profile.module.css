@@ -1,6 +1,6 @@
 .profileContainer {
   text-align: center;
-  padding: 0 10px;
+  padding: 0 20px;
 }
 
 .avatar {
@@ -14,8 +14,9 @@
 }
 
 .userName {
-  margin-top: 10px;
-  font-weight: 500;
+  margin-top: 15px;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .input {
@@ -32,25 +33,12 @@
 
 .sectionTitle {
   margin-top: 30px;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.gridContainer {
-  margin-top: 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
 }
 
 .centerText {
   text-align: center;
-}
-
-.personAvatar {
-  margin: 0 auto;
-}
-
-.personName {
-  margin-top: 0.5rem;
-  font-weight: 500;
 }
 
 @media (max-width: 768px) {
@@ -58,8 +46,7 @@
     padding: 0 10px;
   }
 
-  .input,
-  .personName {
+  .input {
     font-size: 0.9rem;
   }
 }

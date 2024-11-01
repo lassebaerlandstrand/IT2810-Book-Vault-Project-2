@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, ReactNode } from 'react';
 import { Flex, Loader, Stack, Text } from '@mantine/core';
 import { User } from '@/generated/graphql';
 import { makeUser } from '@/hooks/makeUser';
@@ -6,19 +6,12 @@ import { useUserHook } from '@/hooks/useUserHook';
 import styles from './userContext.module.css';
 
 interface UserContextProps {
+  info: User;
   user: User;
   setUser: (user: User) => void;
 }
 
 export const UserContext = createContext<UserContextProps | undefined>(undefined);
-
-export const useUser = () => {
-  const context = useContext(UserContext);
-  if (!context) {
-    throw new Error('useUser must be used within a UserProvider');
-  }
-  return context;
-};
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const userFunction = () => {
@@ -33,6 +26,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
     return newUser;
   };
+
   const { user, loading, error } = userFunction();
 
   if (loading) {
@@ -63,5 +57,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     // Update this logic as per your app's needs
   };
 
-  return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, setUser, info: user }}>{children}</UserContext.Provider>
+  );
 };
