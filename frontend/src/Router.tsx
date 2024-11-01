@@ -52,7 +52,12 @@ const router = createBrowserRouter(
         },
         {
           path: '/profile',
-          element: <UserProfile />,
+          element: (
+            <>
+              <ScrollRestoration />
+              <UserProfile />
+            </>
+          ),
         },
         {
           path: '/myReviews',
