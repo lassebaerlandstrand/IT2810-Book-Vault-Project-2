@@ -23,6 +23,8 @@ import styles from './Header.module.css';
 const mainLinks = [
   { link: '/', label: 'Home' },
   { link: '/books', label: 'Books' },
+  { link: '/myReviews', label: 'REVIEWS' },
+  { link: '/testing', label: 'TESTING' },
 ];
 
 // Links that should show on the mobile drop down, but has an alternate display style on desktop

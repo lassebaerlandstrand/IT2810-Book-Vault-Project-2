@@ -11,6 +11,10 @@ type BookSummary {
   totalBooks: Int!
 }
 
+type ReviewSummary {
+  total: Int!
+}
+
 "Paginated list of books"
 type BookPagination {
   books: [Book!]!
@@ -59,6 +63,14 @@ type Book {
   numberInSeries: Int
 }
 
+type User {
+  UUID: ID!
+  name: String!
+  at: Date
+  wantToRead: [Book]
+  haveRead: [Book]
+}
+
 type Author {
   "Name of the author"
   name: ID!
@@ -83,6 +95,26 @@ type Stats {
   totalRatings: Int!
 }
 
+type Review {
+  "id for review"
+  UUID: ID!
+  description: String!
+  rating: Float!
+  at: Date!
+  user: User
+  book: Book
+}
+
+type ReviewPagination {
+  reviews: [Review!]!
+  pagination: PaginationInfo!
+  summary: ReviewSummary!
+}
+
+type updatedRating {
+  rating: Float!
+}
+
 type Query {
   "Retrieve a list of books with optional filters"
   books(
@@ -100,6 +132,19 @@ type Query {
   "Retrieve a specific book based on id"
   book(id: String!): Book!
 
+  user(UUID: String!): User!
+
+  "Retrieve book reviews"
+  bookReviews(
+    bookID: String
+    limit: Int!
+    offset: Int!
+    avoidUserUUID: String
+    focusUserUUID: String
+  ): ReviewPagination!
+
+  bookReview(bookID: String!, userUUID: String!): Review
+
   "Retrieve a list of authors"
   authors: [Author!]!
 
@@ -114,6 +159,48 @@ type Query {
 
   "Returns a random book"
   randomBook: Book!
+}
+
+input CreateReviewInput {
+  userUUID: String!
+  bookID: String!
+  description: String!
+  rating: Float!
+}
+
+input UpdateReviewInput {
+  reviewUUID: String!
+  description: String!
+  rating: Float!
+}
+
+type Mutation {
+  createUser: User!
+
+  createReview(input: CreateReviewInput!): updatedRating!
+
+  updateReview(input: UpdateReviewInput!): updatedRating
+}
+
+input CreateReviewInput {
+  userUUID: String!
+  bookID: String!
+  description: String!
+  rating: Float!
+}
+
+input UpdateReviewInput {
+  reviewUUID: String!
+  description: String!
+  rating: Float!
+}
+
+type Mutation {
+  createUser: User!
+
+  createReview(input: CreateReviewInput!): updatedRating!
+
+  updateReview(input: UpdateReviewInput!): updatedRating
 }
 
 enum SortOrder {

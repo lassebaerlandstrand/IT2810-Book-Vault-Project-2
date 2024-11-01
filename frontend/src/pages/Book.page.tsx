@@ -3,17 +3,25 @@ import { Container, Group } from '@mantine/core';
 import BookInfo from '@/components/BookInfo/BookInfo';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
 import Loading from '@/components/Loading/Loading';
+import Reviews from '@/components/Reviews/Reviews';
 import { useBook } from '@/hooks/useBook';
+import { useBookRating } from '@/hooks/useBookRating';
 
 const Book = () => {
   const { bookId } = useParams<{ bookId: string }>();
-  const { book, loading, error } = useBook({ bookId });
+  const { book, loading: loadingBook, error: errorBook } = useBook({ bookId });
+  const {
+    updateRating,
+    rating,
+    loading: loadingRating,
+    error: errorRating,
+  } = useBookRating({ bookId });
 
-  if (loading) {
+  if (loadingBook || loadingRating) {
     return <Loading />;
   }
 
-  if (error) {
+  if (errorBook || errorRating) {
     return (
       <Error404
         title="An error occurred"
@@ -22,7 +30,7 @@ const Book = () => {
     );
   }
 
-  if (!bookId || !book) {
+  if (!bookId || !book || !rating) {
     return (
       <Error404
         title="Not a valid book"
@@ -35,7 +43,8 @@ const Book = () => {
   return (
     <Group justify="center">
       <Container>
-        <BookInfo book={book} />
+        <BookInfo book={{ ...book, rating }} />
+        <Reviews book={{ ...book, rating }} updateAvgRating={updateRating} />
       </Container>
     </Group>
   );
