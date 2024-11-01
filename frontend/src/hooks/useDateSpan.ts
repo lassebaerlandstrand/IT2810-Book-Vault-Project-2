@@ -5,8 +5,8 @@ export const useDateSpan = () => {
   const { data, loading, error } = useQuery(GET_DATE_SPAN);
 
   return {
-    earliestDate: new Date(data?.dateSpan.earliest).getFullYear() ?? 1800,
-    latestDate: new Date(data?.dateSpan.latest).getFullYear() ?? 2024,
+    earliestDate: new Date(data?.dateSpan.earliest)?.getFullYear() ?? 1900,
+    latestDate: new Date(data?.dateSpan.latest)?.getFullYear() ?? 2024,
     loading,
     error,
   };
