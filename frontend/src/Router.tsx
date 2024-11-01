@@ -5,7 +5,7 @@ import Book from './pages/Book.page';
 import { BookList } from './pages/BookList.page';
 import { HomePage } from './pages/Home.page';
 import Testing from './pages/Testing.page';
-import UserProfile from './pages/UserProfile.page'; 
+import UserProfile from './pages/UserProfile.page';
 
 const router = createBrowserRouter(
   [
@@ -52,7 +52,6 @@ const router = createBrowserRouter(
         {
           path: '/profile',
           element: <UserProfile />,
-
         },
       ],
     },
