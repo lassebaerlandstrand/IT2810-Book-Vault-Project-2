@@ -317,10 +317,10 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
                 <Group justify="space-between" className={styles.fullWidth}>
                   <Group>
                     {Array.from({ length: rating }, (_, i) => (
-                      <IconStarFilled key={i} color='gold' />
+                      <IconStarFilled key={i} color="gold" />
                     ))}
                     {Array.from({ length: 5 - rating }, (_, i) => (
-                      <IconStar key={i} color='gold' />
+                      <IconStar key={i} color="gold" />
                     ))}
                   </Group>
                   <Text className={styles.description}>
@@ -347,8 +347,14 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             step={1}
             marks={[
               { value: earliestDate, label: `${earliestDate}` },
-              { value: Math.floor(earliestDate + (latestDate - earliestDate) / 3), label: `${Math.floor(earliestDate + (latestDate - earliestDate) / 3)}` },
-              { value: Math.floor(earliestDate + 2 * (latestDate - earliestDate) / 3), label: `${Math.floor(earliestDate + 2 * (latestDate - earliestDate) / 3)}` },
+              {
+                value: Math.floor(earliestDate + (latestDate - earliestDate) / 3),
+                label: `${Math.floor(earliestDate + (latestDate - earliestDate) / 3)}`,
+              },
+              {
+                value: Math.floor(earliestDate + (2 * (latestDate - earliestDate)) / 3),
+                label: `${Math.floor(earliestDate + (2 * (latestDate - earliestDate)) / 3)}`,
+              },
               { value: latestDate, label: `${latestDate}` },
             ]}
             defaultValue={[earliestDate, latestDate]}
@@ -374,8 +380,11 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             step={1}
             marks={[
               { value: leastPages, label: `${leastPages}` },
-              { value: Math.floor(mostPages/3), label: `${Math.floor(mostPages/3)}` },
-              { value: Math.floor(mostPages*2/3), label: `${Math.floor(mostPages*2/3)}` },
+              { value: Math.floor(mostPages / 3), label: `${Math.floor(mostPages / 3)}` },
+              {
+                value: Math.floor((mostPages * 2) / 3),
+                label: `${Math.floor((mostPages * 2) / 3)}`,
+              },
               { value: mostPages, label: `${mostPages}` },
             ]}
             defaultValue={[leastPages, mostPages]}

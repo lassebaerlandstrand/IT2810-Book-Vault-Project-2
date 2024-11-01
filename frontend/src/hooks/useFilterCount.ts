@@ -1,7 +1,7 @@
-import { ApolloError, useQuery } from '@apollo/client';
-import { GET_FILTER_COUNT } from '@/graphql/queries/books';
 import { useEffect, useState } from 'react';
+import { ApolloError, useQuery } from '@apollo/client';
 import { FilterCountResult } from '@/generated/graphql';
+import { GET_FILTER_COUNT } from '@/graphql/queries/books';
 
 type UseFilterCountArgs = {
   search?: string;
@@ -30,9 +30,23 @@ export const useFilterCount = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<ApolloError | null>(null);
 
-  const filterInput = { search, beforeDate, afterDate, authors, genres, publishers, minPages, maxPages, minRating };
+  const filterInput = {
+    search,
+    beforeDate,
+    afterDate,
+    authors,
+    genres,
+    publishers,
+    minPages,
+    maxPages,
+    minRating,
+  };
 
-  const { data, loading: queryLoading, error: queryError } = useQuery(GET_FILTER_COUNT, {
+  const {
+    data,
+    loading: queryLoading,
+    error: queryError,
+  } = useQuery(GET_FILTER_COUNT, {
     variables: { input: filterInput },
   });
 

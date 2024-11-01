@@ -35,7 +35,17 @@ export const useBooks = ({
   minRating,
 }: UseBooksArgs) => {
   const sortInput: SortInput = { sortBy, sortOrder };
-  const filterInput = { search, beforeDate, afterDate, authors, genres, publishers, minPages, maxPages, minRating };
+  const filterInput = {
+    search,
+    beforeDate,
+    afterDate,
+    authors,
+    genres,
+    publishers,
+    minPages,
+    maxPages,
+    minRating,
+  };
 
   const { data, loading, error } = useQuery(GET_BOOKS, {
     variables: { limit, offset: page - 1, input: filterInput, sort: sortInput },
