@@ -3,13 +3,13 @@ import db from './db/connection.js';
 import { Document } from 'mongodb';
 import { mongoCalculateAverageRatingAggregationPipeline } from './db/queries.js';
 
-enum SortBy {
+export enum SortBy {
   Book = 'bookName',
   Author = 'authorName',
   Publisher = 'publisherName',
 }
 
-enum SortOrder {
+export enum SortOrder {
   Ascending = 'asc',
   Descending = 'desc',
 }
