@@ -292,7 +292,9 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
         >
           {[1, 2, 3, 4, 5].map((rating) => (
             <Radio
+              classNames={{ body: styles.radioBody, label: styles.cursorPointer, radio: styles.cursorPointer }}
               radius="md"
+              key={rating}
               checked={rating === selectedMinRating}
               value={rating.toString()}
               disabled={(filterCount?.ratings.find((r) => r.rating === rating)?.count ?? 0) === 0}
@@ -303,7 +305,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
                       <IconStarFilled key={i} color="gold" />
                     ))}
                     {Array.from({ length: 5 - rating }, (_, i) => (
-                      <IconStar key={i} color="gold" />
+                      <IconStar key={5 + i} color="gold" />
                     ))}
                   </Group>
                   <Text className={styles.description}>
@@ -386,6 +388,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
         <SimpleGrid cols={2} mt="xs" w="max-content">
           {genres.map((genre) => (
             <Checkbox
+              key={genre.name}
               value={genre.name}
               label={genre.name}
               checked={selectedGenres.includes(genre.name)}

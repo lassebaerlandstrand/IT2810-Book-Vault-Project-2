@@ -16,3 +16,12 @@
   font-size: var(--mantine-font-size-xs);
   width: rem(30px);
 }
+
+.radioBody {
+  display: flex;
+  align-items: center;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
