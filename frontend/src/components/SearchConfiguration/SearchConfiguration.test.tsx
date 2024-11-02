@@ -1,112 +1,153 @@
-import { render, screen } from '@test-utils';
+import { render, screen, userEvent, waitFor } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
+import { Mock, vi } from 'vitest';
+import { Author, Genre, Publisher } from '@/generated/graphql';
+import { useDateSpan } from '@/hooks/useDateSpan';
+import { useFilterCount } from '@/hooks/useFilterCount';
+import { usePageSpan } from '@/hooks/usePageSpan';
+import { updateQueryParams } from '@/utils/queryParams';
 import SearchConfiguration from './SearchConfiguration';
 
-vi.mock('@/api/dummyApi');
+// Mock hooks and utils
+vi.mock('@/hooks/useFilterCount');
+vi.mock('@/hooks/useDateSpan');
+vi.mock('@/hooks/usePageSpan');
+vi.mock('@/utils/queryParams');
+
+// Mock data
+const mockGenres: Genre[] = [{ name: 'Fiction' }, { name: 'Non-Fiction' }];
+const mockPublishers: Publisher[] = [{ name: 'Penguin' }];
+const mockAuthors: Author[] = [{ name: 'John Doe' }];
+
+// Configure mocks
+beforeEach(() => {
+  (useFilterCount as Mock).mockReturnValue({
+    filterCount: {
+      authors: [{ name: 'John Doe', count: 5 }],
+      publishers: [{ name: 'Penguin', count: 3 }],
+      genres: [
+        { name: 'Fiction', count: 10 },
+        { name: 'Non-Fiction', count: 15 },
+      ],
+      ratings: [{ rating: 4, count: 8 }],
+    },
+    loading: false,
+    error: null,
+  });
+
+  (useDateSpan as Mock).mockReturnValue({
+    earliestDate: 2000,
+    latestDate: 2022,
+    loading: false,
+  });
+
+  (usePageSpan as Mock).mockReturnValue({
+    leastPages: 100,
+    mostPages: 1000,
+    loading: false,
+  });
+
+  (updateQueryParams as Mock).mockImplementation((setSearchParams, key, value) => {
+    setSearchParams({ [key]: value });
+  });
+});
+
+afterEach(() => {
+  vi.clearAllMocks();
+});
 
 describe('SearchConfiguration', () => {
-  const genres = [{ name: 'Fiction' }, { name: 'Non-Fiction' }];
-  const publishers = [{ name: 'Publisher1' }, { name: 'Publisher2' }];
-  const authors = [{ name: 'Author1' }, { name: 'Author2' }];
-
-  test('matches snapshot', () => {
-    const { asFragment } = render(
+  it('renders search filters correctly', () => {
+    render(
       <MemoryRouter>
-        <SearchConfiguration genres={[]} publishers={[]} authors={[]} useDrawer={false} />
+        <SearchConfiguration
+          genres={mockGenres}
+          publishers={mockPublishers}
+          authors={mockAuthors}
+          useDrawer={false}
+        />
       </MemoryRouter>
     );
-    const attributesToRemove = document.body.querySelectorAll('input, label'); // Because Mantine uses random ids which causes snapshots to fail
-    attributesToRemove.forEach((element) => {
-      element.removeAttribute('id');
-      element.removeAttribute('aria-controls');
-      element.removeAttribute('for');
-      element.removeAttribute('name');
+
+    // Verify rendered elements
+    expect(screen.getAllByText(/Sort by/i)[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Genres')[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/Authors/i)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/Publisher/i)[0]).toBeInTheDocument();
+  });
+
+  it('updates search params when changing filters', async () => {
+    render(
+      <MemoryRouter>
+        <SearchConfiguration
+          genres={mockGenres}
+          publishers={mockPublishers}
+          authors={mockAuthors}
+          useDrawer={false}
+        />
+      </MemoryRouter>
+    );
+
+    const sortBySelect = screen.getAllByLabelText(/Sort by/i)[0];
+    await userEvent.click(sortBySelect);
+    await userEvent.click(screen.getByRole('option', { name: /Author name/i }));
+
+    await waitFor(() => {
+      expect(updateQueryParams).toHaveBeenCalledWith(expect.any(Function), 'sortBy', 'authorName');
     });
-    expect(asFragment()).toMatchSnapshot();
   });
 
-  test('renders sort by options', () => {
+  it('resets filters to default values', async () => {
     render(
       <MemoryRouter>
         <SearchConfiguration
-          genres={genres}
-          publishers={publishers}
-          authors={authors}
+          genres={mockGenres}
+          publishers={mockPublishers}
+          authors={mockAuthors}
           useDrawer={false}
         />
       </MemoryRouter>
     );
 
-    expect(screen.getByText('Sort by:')).toBeInTheDocument();
-    expect(screen.getByText('Book name')).toBeInTheDocument();
-    expect(screen.getByText('Author name')).toBeInTheDocument();
-    expect(screen.getByText('Publisher name')).toBeInTheDocument();
+    // Simulate user changing a filter
+    const sortBySelect = screen.getAllByLabelText('Sort by')[0];
+    await userEvent.click(sortBySelect);
+    await userEvent.click(screen.getByRole('option', { name: /Publisher name/i }));
+    await waitFor(() => {
+      expect(updateQueryParams).toHaveBeenCalledWith(
+        expect.any(Function),
+        'sortBy',
+        'publisherName'
+      );
+    });
+
+    // Click reset button
+    await userEvent.click(screen.getByRole('button', { name: /Reset filters to default values/i }));
+
+    // Check that params were reset to defaults
+    await waitFor(() => {
+      expect(updateQueryParams).toHaveBeenCalledWith(expect.any(Function), 'sortBy', 'bookName');
+    });
   });
 
-  test('renders sort order options', () => {
+  it('displays error message when filterCount fails to load', async () => {
+    (useFilterCount as Mock).mockReturnValueOnce({
+      filterCount: null,
+      loading: false,
+      error: { message: 'Failed to load filters' },
+    });
+
     render(
       <MemoryRouter>
         <SearchConfiguration
-          genres={genres}
-          publishers={publishers}
-          authors={authors}
+          genres={mockGenres}
+          publishers={mockPublishers}
+          authors={mockAuthors}
           useDrawer={false}
         />
       </MemoryRouter>
     );
-
-    expect(screen.getByText('Ascending')).toBeInTheDocument();
-    expect(screen.getByText('Descending')).toBeInTheDocument();
-  });
-
-  test('renders genre options', () => {
-    render(
-      <MemoryRouter>
-        <SearchConfiguration
-          genres={genres}
-          publishers={publishers}
-          authors={authors}
-          useDrawer={false}
-        />
-      </MemoryRouter>
-    );
-
-    expect(screen.getByText('Genres')).toBeInTheDocument();
-    expect(screen.getByText('Fiction')).toBeInTheDocument();
-    expect(screen.getByText('Non-Fiction')).toBeInTheDocument();
-  });
-
-  test('renders publisher options', () => {
-    render(
-      <MemoryRouter>
-        <SearchConfiguration
-          genres={genres}
-          publishers={publishers}
-          authors={authors}
-          useDrawer={false}
-        />
-      </MemoryRouter>
-    );
-
-    expect(screen.getByText('Publisher')).toBeInTheDocument();
-    expect(screen.getByText('Publisher1')).toBeInTheDocument();
-    expect(screen.getByText('Publisher2')).toBeInTheDocument();
-  });
-
-  test('renders author options', () => {
-    render(
-      <MemoryRouter>
-        <SearchConfiguration
-          genres={genres}
-          publishers={publishers}
-          authors={authors}
-          useDrawer={false}
-        />
-      </MemoryRouter>
-    );
-
-    expect(screen.getByText('Authors')).toBeInTheDocument();
-    expect(screen.getByText('Author1')).toBeInTheDocument();
-    expect(screen.getByText('Author2')).toBeInTheDocument();
+    const error = await waitFor(() => screen.getByText(/Error fetching filters/i));
+    expect(error).toBeInTheDocument();
   });
 });

@@ -11,7 +11,8 @@ export const useDateSpan = () => {
       latestDate: new Date(data.dateSpan.latest).getFullYear(),
       loading,
       error,
-    }};
+    };
+  }
 
   return {
     earliestDate: DEFAULT_FILTERS.selectedAfterDate.getFullYear(),

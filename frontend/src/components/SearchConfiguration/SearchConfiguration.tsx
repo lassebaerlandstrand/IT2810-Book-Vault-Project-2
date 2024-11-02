@@ -201,9 +201,9 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
   } else {
     content = (
       <Box pos="relative">
-        <InputLabel>Sort by</InputLabel>
         <Group gap="sm" wrap="nowrap">
           <Select
+            label="Sort by"
             flex={1}
             data={[
               { label: 'Book name', value: SortBy.BookName },
@@ -218,6 +218,8 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             allowDeselect={false}
           />
           <ActionIcon
+            mt="auto"
+            aria-label="Sort order"
             onClick={() => {
               const newSortOrder = sortOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc;
               setSortOrder(newSortOrder);
@@ -226,10 +228,12 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             size="lg"
           >
             <IconSortAscendingLetters
+              aria-label="Ascending order"
               display={sortOrder === SortOrder.Asc ? 'inline' : 'none'}
               size="75%"
             />
             <IconSortDescendingLetters
+              aria-label="Descending order"
               display={sortOrder === SortOrder.Desc ? 'inline' : 'none'}
               size="75%"
             />

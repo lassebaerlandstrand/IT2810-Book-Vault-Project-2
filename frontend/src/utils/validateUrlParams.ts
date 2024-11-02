@@ -1,5 +1,5 @@
 import { SortBy, SortOrder } from '@/generated/graphql';
-import { DEFAULT_FILTERS } from './filters';
+import { getFilterParams } from './filters';
 import { getPaginationParams } from './pagination';
 
 const isValidFilters = (sortBy: SortBy, sortOrder: SortOrder): boolean => {
@@ -27,7 +27,8 @@ const isValidPagination = (page: number, limit: number, LIMIT_OPTIONS: string[])
 };
 
 export const isValidUrlParams = (searchParams: URLSearchParams): boolean => {
-  if (!isValidFilters(DEFAULT_FILTERS.sortBy, DEFAULT_FILTERS.sortOrder)) {
+  const { sortBy, sortOrder } = getFilterParams(searchParams);
+  if (!isValidFilters(sortBy, sortOrder)) {
     return false;
   }
 
