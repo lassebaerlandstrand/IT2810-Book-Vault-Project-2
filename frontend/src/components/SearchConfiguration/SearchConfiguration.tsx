@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react';
 import {
   IconBookOff,
   IconRestore,
-  IconSortAscending,
-  IconSortDescending,
+  IconSortAscendingLetters,
+  IconSortDescendingLetters,
   IconStar,
   IconStarFilled,
 } from '@tabler/icons-react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import {
   ActionIcon,
   Box,
   Button,
+  Center,
   Checkbox,
   ComboboxItem,
   Drawer,
@@ -30,7 +31,7 @@ import { Author, Genre, Publisher, SortBy, SortOrder } from '@/generated/graphql
 import { useDateSpan } from '@/hooks/useDateSpan';
 import { useFilterCount } from '@/hooks/useFilterCount';
 import { usePageSpan } from '@/hooks/usePageSpan';
-import { getFilterParams, getFormattedFilterCount } from '@/utils/filters';
+import { DEFAULT_FILTERS, getFilterParams, getFormattedFilterCount } from '@/utils/filters';
 import { DEFAULT_PAGE } from '@/utils/pagination';
 import { updateQueryParams } from '@/utils/queryParams';
 import { getSearchParams } from '@/utils/search';
@@ -69,8 +70,6 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
   const [searchParams, setSearchParams] = useSearchParams();
   const { earliestDate, latestDate, loading: dateSpanLoading } = useDateSpan();
   const { leastPages, mostPages, loading: pageSpanLoading } = usePageSpan();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const {
     sortBy: initialSortBy,
@@ -136,8 +135,8 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
     throw new Error('open and close functions must be provided when useDrawer is true');
   }
 
-  const handleParamsChange = (key: string, value: string | string[]) => {
-    setUpdates((current) => ({ ...current, [key]: value }));
+  const handleParamsChange = (key: string, value: undefined | string | string[]) => {
+    setUpdates((current) => ({ ...current, [key]: value ?? '' }));
     setShouldUpdateParams(true);
   };
 
@@ -202,14 +201,10 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
   } else {
     content = (
       <Box pos="relative">
-        {/* <LoadingOverlay
-          visible={filterCountLoading}
-          zIndex={90}
-          overlayProps={{ radius: 'sm', blur: 2 }}
-        /> */}
         <InputLabel>Sort by</InputLabel>
-        <Group gap="sm" wrap="nowrap" className={styles.fullWidth}>
+        <Group gap="sm" wrap="nowrap">
           <Select
+            flex={1}
             data={[
               { label: 'Book name', value: SortBy.BookName },
               { label: 'Author name', value: SortBy.AuthorName },
@@ -230,11 +225,11 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             }}
             size="lg"
           >
-            <IconSortAscending
+            <IconSortAscendingLetters
               display={sortOrder === SortOrder.Asc ? 'inline' : 'none'}
               size="75%"
             />
-            <IconSortDescending
+            <IconSortDescendingLetters
               display={sortOrder === SortOrder.Desc ? 'inline' : 'none'}
               size="75%"
             />
@@ -285,7 +280,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           mt={20}
           name="Minimum rating"
           label="Minimum rating"
-          value={selectedMinRating?.toString()}
+          value={selectedMinRating?.toString() ?? ''}
           onChange={(rating) => {
             setSelectedMinRating(parseInt(rating, 10));
             handleParamsChange('minRating', rating.toString());
@@ -294,6 +289,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           {[1, 2, 3, 4, 5].map((rating) => (
             <Radio
               radius="md"
+              checked={rating === selectedMinRating}
               value={rating.toString()}
               disabled={(filterCount?.ratings.find((r) => r.rating === rating)?.count ?? 0) === 0}
               label={
@@ -342,10 +338,10 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             ]}
             defaultValue={[earliestDate, latestDate]}
             onChangeEnd={(value) => {
-              setSelectedBeforeDate(new Date(value[1], 11, 31));
               setSelectedAfterDate(new Date(value[0], 0, 1));
-              handleParamsChange('beforeDate', new Date(value[1], 11, 31).toISOString());
+              setSelectedBeforeDate(new Date(value[1], 11, 31));
               handleParamsChange('afterDate', new Date(value[0], 0, 1).toISOString());
+              handleParamsChange('beforeDate', new Date(value[1], 11, 31).toISOString());
             }}
           />
         </Box>
@@ -383,7 +379,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           />
         </Box>
         <InputLabel mt={40}>Genres</InputLabel>
-        <SimpleGrid cols={2} mt="xs">
+        <SimpleGrid cols={2} mt="xs" w="max-content">
           {genres.map((genre) => (
             <Checkbox
               value={genre.name}
@@ -399,15 +395,39 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             />
           ))}
         </SimpleGrid>
-        <Button
-          leftSection={<IconRestore />}
-          variant="default"
-          onClick={() => {
-            navigate(location.pathname, { replace: false });
-          }}
-        >
-          Reset filters to default values
-        </Button>
+        <Center mt={10}>
+          <Button
+            leftSection={<IconRestore />}
+            variant="default"
+            onClick={() => {
+              setSortBy(DEFAULT_FILTERS.sortBy);
+              setSortOrder(DEFAULT_FILTERS.sortOrder);
+              setSelectedGenres(DEFAULT_FILTERS.selectedGenres);
+              setSelectedPublishers(DEFAULT_FILTERS.selectedPublishers);
+              setSelectedAuthors(DEFAULT_FILTERS.selectedAuthors);
+              setSelectedAfterDate(DEFAULT_FILTERS.selectedAfterDate);
+              setSelectedBeforeDate(DEFAULT_FILTERS.selectedBeforeDate);
+              setSelectedMinPages(DEFAULT_FILTERS.selectedMinPages);
+              setSelectedMaxPages(DEFAULT_FILTERS.selectedMaxPages);
+              setSelectedMinRating(DEFAULT_FILTERS.selectedMinRating);
+              setUpdates({
+                sortBy: DEFAULT_FILTERS.sortBy,
+                sortOrder: DEFAULT_FILTERS.sortOrder,
+                genres: DEFAULT_FILTERS.selectedGenres,
+                publishers: DEFAULT_FILTERS.selectedPublishers,
+                authors: DEFAULT_FILTERS.selectedAuthors,
+                beforeDate: DEFAULT_FILTERS.selectedBeforeDate.toISOString(),
+                afterDate: DEFAULT_FILTERS.selectedAfterDate.toISOString(),
+                minPages: DEFAULT_FILTERS.selectedMinPages ?? '',
+                maxPages: DEFAULT_FILTERS.selectedMaxPages ?? '',
+                minRating: DEFAULT_FILTERS.selectedMinRating ?? '',
+              });
+              setShouldUpdateParams(true);
+            }}
+          >
+            Reset filters to default values
+          </Button>
+        </Center>
       </Box>
     );
   }

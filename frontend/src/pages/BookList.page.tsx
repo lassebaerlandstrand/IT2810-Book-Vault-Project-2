@@ -142,9 +142,6 @@ export function BookList() {
       <Flex gap="lg" my="lg">
         {isDesktop && (
           <Container flex={0} px={0} className={styles.filterContainer}>
-            <Text component="h2" mt="xl" mb="md">
-              Configure your search
-            </Text>
             <SearchConfiguration
               genres={allGenres}
               authors={allAuthors}
