@@ -94,7 +94,9 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
   }, [updatedRatingUR]);
 
   useEffect(() => {
-    if (!yourReviewLoading && !loadingUpdateReview) refetchYourReview();
+    if (!yourReviewLoading && !loadingUpdateReview) {
+      refetchYourReview();
+    }
   }, [yourReviewLoading, loadingUpdateReview]);
 
   // For updating reviews
