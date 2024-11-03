@@ -81,12 +81,6 @@ exports[`Layout > matches snapshot 1`] = `
           </a>
           <a
             class="_link_63c2ea _removeLinkStyling_63c2ea"
-            href="/myReviews"
-          >
-            Reviews
-          </a>
-          <a
-            class="_link_63c2ea _removeLinkStyling_63c2ea"
             href="/testing"
           >
             Testing
@@ -130,7 +124,7 @@ exports[`Layout > matches snapshot 1`] = `
             class="mantine-focus-auto mantine-active _removeLinkStyling_63c2ea m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
             data-size="lg"
             data-variant="subtle"
-            href="/"
+            href="/profile"
             style="--ai-size: var(--ai-size-lg); --ai-bg: transparent; --ai-hover: rgba(0, 0, 0, 0.12); --ai-color: light; --ai-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
           >
             <span

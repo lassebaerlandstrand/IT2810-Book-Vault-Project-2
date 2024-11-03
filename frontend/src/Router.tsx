@@ -6,6 +6,7 @@ import { BookList } from './pages/BookList.page';
 import { HomePage } from './pages/Home.page';
 import { ReviewsList } from './pages/ReviewsList.page';
 import Testing from './pages/Testing.page';
+import UserProfile from './pages/UserProfile.page';
 
 const router = createBrowserRouter(
   [
@@ -50,6 +51,15 @@ const router = createBrowserRouter(
             <>
               <ScrollRestoration />
               <Testing />
+            </>
+          ),
+        },
+        {
+          path: '/profile',
+          element: (
+            <>
+              <ScrollRestoration />
+              <UserProfile />
             </>
           ),
         },
