@@ -374,6 +374,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             classNames={{ trackContainer: styles.trackContainer }}
             min={earliestDate}
             max={latestDate}
+            minRange={10}
             step={yearSliderStepSize}
             marks={generateMarks(
               earliestDate,
@@ -408,6 +409,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             classNames={{ trackContainer: styles.trackContainer }}
             min={inversePageScale(leastPages)}
             max={inversePageScale(mostPages)}
+            minRange={3}
             step={pageSliderStepSize}
             marks={generateMarks(
               leastPages,
