@@ -1060,7 +1060,7 @@ firstLayerTranslations = {
 secondLayerTranslations = {
 'Action': 'Action/Adventure', 
 'Adventure': 'Action/Adventure', 
-'Alternative Medicine': 'Medicine', 
+'Alternative Medicine': 'Other', 
 'Art': 'Humanities', 
 "Children's Literature": 'Literature',
 'Comedy': 'Humor',
@@ -1069,7 +1069,7 @@ secondLayerTranslations = {
 'Education': 'Education',
 'Fantasy': 'Fantasy/Fiction',
 'Fiction': 'Fantasy/Fiction',
-'Games': 'Games',
+'Games': 'Other',
 'Historical': 'Historical',
 'Historical Fiction': 'Historical',
 'Historical Romance': 'Historical',
@@ -1099,8 +1099,6 @@ def map_genres(specific_genres):
 
 # TODO: This can be changed to broadGenres and we could modify the resolvers somehow to account for broudGenres and genres
 df['genres'] = df['genres'].apply(map_genres)
-
-print(df.iloc[0, :])
 
 # Save the DataFrame as a JSON list
 df.to_json('preprocessing/books.json', orient='records')
