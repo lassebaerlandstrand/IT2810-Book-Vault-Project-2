@@ -66,6 +66,38 @@ const renderMultiSelectOption = ({ option, count }: renderMultiSelectOptionProps
   );
 };
 
+const pageScale = (v: number) => 0.2 * v ** 3;
+const inversePageScale = (v: number) => (v / 0.2) ** (1 / 3);
+const pageSliderStepSize = 0.5;
+const yearSliderStepSize = 1;
+
+const generateMarks = (
+  minimum: number,
+  maximum: number,
+  step: number,
+  scaleFunc: (v: number) => number,
+  inverseScaleFunc: (v: number) => number
+) => {
+  const marks: { value: number; label: string }[] = [];
+
+  const minValue = Math.round(inverseScaleFunc(minimum) * 10) / 10;
+  const maxValue = Math.round(inverseScaleFunc(maximum) * 10) / 10;
+
+  const sliderSteps = 4;
+  for (let i = 0; i <= sliderSteps; i++) {
+    const sliderValue =
+      Math.round((i * (maxValue - minValue)) / (sliderSteps * step)) * step + minValue;
+    const pageCount = Math.round(scaleFunc(sliderValue));
+
+    marks.push({
+      value: sliderValue,
+      label: `${pageCount}`,
+    });
+  }
+
+  return marks;
+};
+
 const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigurationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { earliestDate, latestDate, loading: dateSpanLoading } = useDateSpan();
@@ -98,6 +130,15 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
   const [selectedMinRating, setSelectedMinRating] = useState<number | undefined>(initialMinRating);
   const [updates, setUpdates] = useState<Updates>({});
   const [shouldUpdateParams, setShouldUpdateParams] = useState(false);
+
+  const [yearSliderSelectedMin, setYearSliderSelectedMin] = useState(
+    selectedAfterDate.getFullYear()
+  );
+  const [yearSliderSelectedMax, setYearSliderSelectedMax] = useState(
+    selectedBeforeDate.getFullYear()
+  );
+  const [pageSliderSelectedMin, setPageSliderSelectedMin] = useState(selectedMinPages);
+  const [pageSliderSelectedMax, setPageSliderSelectedMax] = useState(selectedMaxPages);
 
   const {
     filterCount: filterCount,
@@ -284,15 +325,19 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           mt={20}
           name="Minimum rating"
           label="Minimum rating"
-          value={selectedMinRating?.toString() ?? ''}
+          value={selectedMinRating?.toString() ?? '0'}
           onChange={(rating) => {
             setSelectedMinRating(parseInt(rating, 10));
             handleParamsChange('minRating', rating.toString());
           }}
         >
-          {[1, 2, 3, 4, 5].map((rating) => (
+          {[0, 1, 2, 3, 4, 5].map((rating) => (
             <Radio
-              classNames={{ body: styles.radioBody, label: styles.cursorPointer, radio: styles.cursorPointer }}
+              classNames={{
+                body: styles.radioBody,
+                label: styles.cursorPointer,
+                radio: styles.cursorPointer,
+              }}
               radius="md"
               key={rating}
               checked={rating === selectedMinRating}
@@ -329,20 +374,20 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             classNames={{ trackContainer: styles.trackContainer }}
             min={earliestDate}
             max={latestDate}
-            step={1}
-            marks={[
-              { value: earliestDate, label: `${earliestDate}` },
-              {
-                value: Math.floor(earliestDate + (latestDate - earliestDate) / 3),
-                label: `${Math.floor(earliestDate + (latestDate - earliestDate) / 3)}`,
-              },
-              {
-                value: Math.floor(earliestDate + (2 * (latestDate - earliestDate)) / 3),
-                label: `${Math.floor(earliestDate + (2 * (latestDate - earliestDate)) / 3)}`,
-              },
-              { value: latestDate, label: `${latestDate}` },
-            ]}
+            step={yearSliderStepSize}
+            marks={generateMarks(
+              earliestDate,
+              latestDate,
+              yearSliderStepSize,
+              (v) => v,
+              (v) => v
+            )}
             defaultValue={[earliestDate, latestDate]}
+            value={[yearSliderSelectedMin, yearSliderSelectedMax]}
+            onChange={(value) => {
+              setYearSliderSelectedMin(value[0]);
+              setYearSliderSelectedMax(value[1]);
+            }}
             onChangeEnd={(value) => {
               setSelectedAfterDate(new Date(value[0], 0, 1));
               setSelectedBeforeDate(new Date(value[1], 11, 31));
@@ -359,28 +404,37 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           />
           <InputLabel mt={40}>Number of pages</InputLabel>
           <RangeSlider
+            scale={(v: number) => Math.round(pageScale(v))}
             classNames={{ trackContainer: styles.trackContainer }}
-            min={leastPages}
-            max={mostPages}
-            step={1}
-            marks={[
-              { value: leastPages, label: `${leastPages}` },
-              {
-                value: Math.floor(mostPages / 3),
-                label: Math.floor(mostPages / 3),
-              },
-              {
-                value: Math.floor((mostPages * 2) / 3),
-                label: Math.floor((mostPages * 2) / 3),
-              },
-              { value: mostPages, label: mostPages },
+            min={inversePageScale(leastPages)}
+            max={inversePageScale(mostPages)}
+            step={pageSliderStepSize}
+            marks={generateMarks(
+              leastPages,
+              mostPages,
+              pageSliderStepSize,
+              pageScale,
+              inversePageScale
+            )}
+            defaultValue={[
+              inversePageScale(pageSliderSelectedMin ?? leastPages),
+              inversePageScale(pageSliderSelectedMin ?? mostPages),
             ]}
-            defaultValue={[leastPages, mostPages]}
+            value={[
+              inversePageScale(pageSliderSelectedMin ?? leastPages),
+              inversePageScale(pageSliderSelectedMax ?? mostPages),
+            ]}
+            onChange={(value) => {
+              setPageSliderSelectedMin(Math.round(pageScale(value[0])));
+              setPageSliderSelectedMax(Math.round(pageScale(value[1])));
+            }}
             onChangeEnd={(value) => {
-              setSelectedMinPages(value[0]);
-              setSelectedMaxPages(value[1]);
-              handleParamsChange('minPages', value[0].toString());
-              handleParamsChange('maxPages', value[1].toString());
+              const scaledMinPages = Math.round(pageScale(value[0]));
+              const scaledMaxPages = Math.round(pageScale(value[1]));
+              setSelectedMinPages(scaledMinPages);
+              setSelectedMaxPages(scaledMaxPages);
+              handleParamsChange('minPages', scaledMinPages.toString());
+              handleParamsChange('maxPages', scaledMaxPages.toString());
             }}
           />
         </Box>
@@ -430,6 +484,10 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
                 minRating: DEFAULT_FILTERS.selectedMinRating ?? '',
               });
               setShouldUpdateParams(true);
+              setYearSliderSelectedMin(DEFAULT_FILTERS.selectedAfterDate.getFullYear());
+              setYearSliderSelectedMax(DEFAULT_FILTERS.selectedBeforeDate.getFullYear());
+              setPageSliderSelectedMin(DEFAULT_FILTERS.selectedMinPages);
+              setPageSliderSelectedMax(DEFAULT_FILTERS.selectedMaxPages);
             }}
           >
             Reset filters to default values
