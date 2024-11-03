@@ -2,7 +2,6 @@ import { GraphQLScalarType, Kind } from 'graphql';
 import db from './db/connection.js';
 import { Document } from 'mongodb';
 import { v4 as uuidv4 } from 'uuid';
-import { mongoCalculateAverageRatingAggregationPipeline } from './db/queries.js';
 
 export enum SortBy {
   Book = 'bookName',
@@ -115,7 +114,7 @@ interface MongoBookFilters {
   genres?: { $in: string[] };
   publisher?: { $in: string[] };
   pages?: { $gte?: number; $lte?: number };
-  averageRating?: { $gte?: number };
+  rating?: { $gte?: number };
 }
 
 const mapCounts = (counts: Document, keyName: string, valueName = 'count') =>
@@ -145,9 +144,7 @@ const filterBooks = async (input: FilterInput) => {
             input.genres.length === 0 ||
             input.genres.some((genre) => book.genres.includes(genre)),
           minRating:
-            excludeFilter === 'minRating' ||
-            !input.minRating ||
-            book.roundedAverageRating >= input.minRating,
+            excludeFilter === 'minRating' || !input.minRating || book.rating >= input.minRating,
           // Add any future filters here in the same pattern
         };
 
@@ -178,13 +175,11 @@ const buildPipelineWithoutSpecificFilters = ({
 }: FilterInput) => {
   const filters: MongoBookFilters = {};
 
-  if (search) {
-    const searchRegexSubString = new RegExp(search, 'i');
-    const searchRegexWholeWords = new RegExp(`\\b${search}\\b`, 'i');
-    filters.$or = [
-      { title: { $regex: searchRegexSubString } },
-      { description: { $regex: searchRegexWholeWords } },
-    ];
+  if (authors && authors.length > 0) {
+    filters.authors = { $in: authors };
+  }
+  if (publishers && publishers.length > 0) {
+    filters.publisher = { $in: publishers };
   }
   if (beforeDate && afterDate) {
     filters.publishDate = {
@@ -196,12 +191,6 @@ const buildPipelineWithoutSpecificFilters = ({
   } else if (afterDate) {
     filters.publishDate = { $gt: afterDate };
   }
-  if (authors && authors.length > 0) {
-    filters.authors = { $in: authors };
-  }
-  if (publishers && publishers.length > 0) {
-    filters.publisher = { $in: publishers };
-  }
   if (minPages && maxPages) {
     filters.pages = { $gte: minPages, $lte: maxPages };
   } else if (minPages) {
@@ -211,15 +200,6 @@ const buildPipelineWithoutSpecificFilters = ({
   }
 
   const pipeline: Document[] = [{ $match: filters }];
-
-  pipeline.push(
-    ...mongoCalculateAverageRatingAggregationPipeline,
-    {
-      $addFields: {
-        roundedAverageRating: { $round: ['$averageRating', 0] },
-      },
-    },
-  );
 
   if (sortInput) {
     const sortOrder = sortInput.sortOrder === SortOrder.Ascending ? 1 : -1;
@@ -241,6 +221,22 @@ const buildPipelineWithoutSpecificFilters = ({
         break;
     }
   }
+
+  if (search) {
+    const searchRegexSubString = new RegExp(search, 'i');
+    const searchRegexWholeWords = new RegExp(`\\b${search}\\b`, 'i');
+    filters.$or = [
+      { title: { $regex: searchRegexSubString } },
+      { description: { $regex: searchRegexWholeWords } },
+    ];
+  }
+
+  // pipeline.push(...mongoCalculateAverageRatingAggregationPipeline, {
+  //   $addFields: {
+  //     roundedAverageRating: { $round: ['$averageRating', 0] },
+  //     // roundedAverageRating: 4,
+  //   },
+  // });
 
   return pipeline;
 };
@@ -284,7 +280,9 @@ const resolvers = {
     },
 
     async filterCount(_, args: FilterCountInput) {
+      const time = performance.now();
       const { exclusionDictionaries } = await filterBooks(args.input ?? {});
+      console.log('Filter count took', performance.now() - time, 'ms');
       return {
         books: exclusionDictionaries.allExcluded ?? [],
         minRatingBooks: exclusionDictionaries.minRatingExcluded ?? [],
@@ -548,22 +546,23 @@ const resolvers = {
     numRatings: async (book: { ratingsByStars: { [x: number]: number } }) => {
       return Object.values(book.ratingsByStars).reduce((total, count) => total + count, 0);
     },
-    rating: async (book: { ratingsByStars: { [x: number]: number } }) => {
-      const numRatings = Object.values(book.ratingsByStars).reduce(
-        (total, count) => total + count,
-        0,
-      );
+    // rating: async (book: { averageRating: number }) => {
+    //   // const numRatings = Object.values(book.ratingsByStars).reduce(
+    //   //   (total, count) => total + count,
+    //   //   0,
+    //   // );
 
-      if (numRatings === 0) {
-        return 0;
-      }
+    //   // if (numRatings === 0) {
+    //   //   return 0;
+    //   // }
 
-      const weightedSum = Object.entries(book.ratingsByStars).reduce((sum, [key, count]) => {
-        return sum + parseInt(key, 10) * count;
-      }, 0);
+    //   // const weightedSum = Object.entries(book.ratingsByStars).reduce((sum, [key, count]) => {
+    //   //   return sum + parseInt(key, 10) * count;
+    //   // }, 0);
 
-      return weightedSum / numRatings;
-    },
+    //   // return weightedSum / numRatings;
+    //   return book.averageRating.toFixed(1);
+    // },
   },
 
   FilterCountResult: {
@@ -615,7 +614,7 @@ const resolvers = {
     ratings: async (filterCounts: { minRatingBooks: Document[] }) => {
       const ratingCounts = filterCounts.minRatingBooks.reduce((acc, book) => {
         Array.from({ length: 6 }, (_, i) => i).forEach((rating) => {
-          if (rating <= book.roundedAverageRating) acc[rating] = (acc[rating] || 0) + 1;
+          if (rating <= book.rating) acc[rating] = (acc[rating] || 0) + 1;
         });
         return acc;
       }, {});
@@ -686,12 +685,6 @@ const resolvers = {
         0,
       ) as number;
 
-      // I dont think it is possible for numRatings to be 0 after incrementation, but
-      // its a nice failsafe
-      if (numRatings === 0) {
-        return 0;
-      }
-
       const weightedSum = Object.entries(updatedBook.ratingsByStars).reduce(
         (sum, [key, count]: [string, number]) => {
           return sum + parseInt(key, 10) * count;
@@ -699,7 +692,17 @@ const resolvers = {
         0,
       );
 
-      return { rating: weightedSum / numRatings };
+      const newRating = numRatings > 0 ? weightedSum / numRatings : 0;
+      await db.collection('books').findOneAndUpdate(
+        { id: bookID },
+        {
+          $set: {
+            rating: newRating,
+          },
+        },
+      );
+
+      return { rating: updatedBook.rating };
     },
 
     async updateReview(_, { input }: { input: UpdateBookReviewMutationArgs }) {
@@ -742,17 +745,24 @@ const resolvers = {
           0,
         ) as number;
 
-        if (numRatings === 0) {
-          return 0;
-        }
-
         const weightedSum = Object.entries(updatedBook.ratingsByStars).reduce(
           (sum, [key, count]: [string, number]) => {
             return sum + parseInt(key, 10) * count;
           },
           0,
         );
-        return { rating: weightedSum / numRatings };
+
+        const newRating = numRatings > 0 ? weightedSum / numRatings : 0;
+        await db.collection('books').findOneAndUpdate(
+          { id: oldReview.value.bookID },
+          {
+            $set: {
+              rating: newRating,
+            },
+          },
+        );
+
+        return { rating: newRating };
       }
       return;
     },

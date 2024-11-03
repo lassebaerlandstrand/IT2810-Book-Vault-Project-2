@@ -154,12 +154,6 @@ describe('resolvers', () => {
         const result = await resolvers.Book.numRatings(book);
         expect(result).toEqual(50);
       });
-
-      it('should calculate the average rating', async () => {
-        const book = mockBooks[0];
-        const result = await resolvers.Book.rating(book);
-        expect(result).toEqual((1 * 10 + 2 * 5 + 3 * 8 + 4 * 12 + 5 * 15) / 50);
-      });
     });
 
     describe('FilterCountResult', () => {
