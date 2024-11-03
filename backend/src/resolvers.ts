@@ -614,7 +614,7 @@ const resolvers = {
 
     ratings: async (filterCounts: { minRatingBooks: Document[] }) => {
       const ratingCounts = filterCounts.minRatingBooks.reduce((acc, book) => {
-        Object.entries(book.ratingsByStars).forEach(([rating, count]) => {
+        Array.from({ length: 6 }, (_, i) => i).forEach((rating) => {
           if (rating <= book.roundedAverageRating) acc[rating] = (acc[rating] || 0) + 1;
         });
         return acc;
