@@ -117,64 +117,113 @@ interface MongoBookFilters {
   rating?: { $gte?: number };
 }
 
-const mapCounts = (counts: Document, keyName: string, valueName = 'count') =>
-  Object.entries(counts).map(([key, value]) => ({
-    [keyName]: key,
-    [valueName]: value,
-  }));
+const countWithExclusions = async (input: FilterInput, excludeField: keyof FilterInput | null) => {
+  const pipeline = buildPipelineWithoutSpecificFilters(input);
 
-const filterBooks = async (input: FilterInput) => {
-  const basePipeline: Document[] = buildPipelineWithoutSpecificFilters(input);
-  const baseBooks = await db.collection('books').aggregate(basePipeline).toArray();
+  // Exclude specific filters by modifying the pipeline
+  if (excludeField !== 'genres' && input.genres && input.genres.length > 0) {
+    pipeline.push({ $match: { genres: { $in: input.genres } } });
+  }
+  if (excludeField !== 'authors' && input.authors && input.authors.length > 0) {
+    pipeline.push({ $match: { authors: { $in: input.authors } } });
+  }
+  if (excludeField !== 'publishers' && input.publishers && input.publishers.length > 0) {
+    pipeline.push({ $match: { publisher: { $in: input.publishers } } });
+  }
+  if (excludeField !== 'minRating' && input.minRating) {
+    pipeline.push({ $match: { rating: { $gte: input.minRating } } });
+  }
 
-  const exclusionDictionaries: {
-    genresExcluded?: Document[];
-    minRatingExcluded?: Document[];
-    authorsExcluded?: Document[];
-    publishersExcluded?: Document[];
-    allExcluded?: Document[];
-    // Add other exclusions as needed
-  } = {};
+  if (excludeField === null) {
+    const allCount = await db.collection('books').countDocuments(pipeline[0].$match);
+    return [{ all: allCount }];
+  }
 
-  const applyExclusionFilter = (excludeFilter: null | keyof FilterInput) => {
-    if (!exclusionDictionaries[`${excludeFilter ?? 'all'}Excluded`]) {
-      exclusionDictionaries[`${excludeFilter ?? 'all'}Excluded`] = baseBooks.filter((book) => {
-        const meetsCriteria = {
-          genres:
-            excludeFilter === 'genres' ||
-            !input.genres ||
-            input.genres.length === 0 ||
-            input.genres.some((genre) => book.genres.includes(genre)),
-          minRating:
-            excludeFilter === 'minRating' || !input.minRating || book.rating >= input.minRating,
-          authors:
-            excludeFilter === 'authors' ||
-            !input.authors ||
-            input.authors.length === 0 ||
-            input.authors.some((author) => book.authors.includes(author)),
-          publisher:
-            excludeFilter === 'publishers' ||
-            !input.publishers ||
-            input.publishers.length === 0 ||
-            input.publishers.includes(book.publisher),
-          // Add any future filters here in the same pattern
-        };
+  if (excludeField === 'minRating') {
+    pipeline.push(
+      {
+        $facet: {
+          '0': [{ $match: { rating: { $gte: 0 } } }, { $count: 'count' }],
+          '1': [{ $match: { rating: { $gte: 1 } } }, { $count: 'count' }],
+          '2': [{ $match: { rating: { $gte: 2 } } }, { $count: 'count' }],
+          '3': [{ $match: { rating: { $gte: 3 } } }, { $count: 'count' }],
+          '4': [{ $match: { rating: { $gte: 4 } } }, { $count: 'count' }],
+          '5': [{ $match: { rating: { $gte: 5 } } }, { $count: 'count' }],
+        },
+      },
+      {
+        $project: {
+          ratings: {
+            $concatArrays: [
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '0' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$0.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '1' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$1.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '2' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$2.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '3' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$3.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '4' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$4.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '5' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$5.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      },
+      {
+        $unwind: '$ratings',
+      },
+      {
+        $replaceRoot: { newRoot: '$ratings' },
+      },
+    );
+  } else {
+    pipeline.push(
+      { $unwind: `$${excludeField}` },
+      { $group: { _id: `$${excludeField}`, count: { $sum: 1 } } },
+      { $project: { name: '$_id', count: 1, _id: 0 } },
+    );
+  }
 
-        return Object.values(meetsCriteria).every(Boolean);
-      });
-    }
-    return exclusionDictionaries[`${excludeFilter ?? 'all'}Excluded`];
-  };
-
-  applyExclusionFilter('genres');
-  applyExclusionFilter('authors');
-  applyExclusionFilter('publishers');
-  applyExclusionFilter('minRating');
-  applyExclusionFilter(null);
-
-  return {
-    exclusionDictionaries,
-  };
+  const counts = await db.collection('books').aggregate(pipeline).toArray();
+  return counts;
 };
 
 const buildPipelineWithoutSpecificFilters = ({
@@ -264,11 +313,27 @@ const resolvers = {
 
   Query: {
     async books(_, args: BooksQueryArgs) {
-      const filteredBooks = (await filterBooks(args.input ?? {})).exclusionDictionaries.allExcluded;
+      const pipeline = buildPipelineWithoutSpecificFilters(args.input ?? {});
 
-      const totalBooks = filteredBooks.length;
-      const skip = args.offset * args.limit;
-      const books = filteredBooks.slice(skip, skip + args.limit);
+      if (args.input.authors && args.input.authors.length > 0) {
+        pipeline.push({ $match: { authors: { $in: args.input.authors } } });
+      }
+      if (args.input.genres && args.input.genres.length > 0) {
+        pipeline.push({ $match: { genres: { $in: args.input.genres } } });
+      }
+      if (args.input.publishers && args.input.publishers.length > 0) {
+        pipeline.push({ $match: { publisher: { $in: args.input.publishers } } });
+      }
+      if (args.input.minRating) {
+        pipeline.push({ $match: { rating: { $gte: args.input.minRating } } });
+      }
+
+      const totalBooks = await db.collection('books').countDocuments(pipeline[0].$match);
+
+      pipeline.push({ $skip: args.offset * args.limit });
+      pipeline.push({ $limit: args.limit });
+
+      const books = await db.collection('books').aggregate(pipeline).toArray();
 
       return {
         books,
@@ -279,15 +344,17 @@ const resolvers = {
     },
 
     async filterCount(_, args: FilterCountInput) {
-      const time = performance.now();
-      const { exclusionDictionaries } = await filterBooks(args.input ?? {});
-      console.log('Filter count took', performance.now() - time, 'ms');
+      const input = args.input ?? {};
+      const genresCount = await countWithExclusions(input, 'genres');
+      const authorsCount = await countWithExclusions(input, 'authors');
+      const publishersCount = await countWithExclusions(input, 'publishers');
+      const minRatingCount = await countWithExclusions(input, 'minRating');
+
       return {
-        books: exclusionDictionaries.allExcluded ?? [],
-        minRatingBooks: exclusionDictionaries.minRatingExcluded ?? [],
-        genresBooks: exclusionDictionaries.genresExcluded ?? [],
-        authorsBooks: exclusionDictionaries.authorsExcluded ?? [],
-        publishersBooks: exclusionDictionaries.publishersExcluded ?? [],
+        ratings: minRatingCount,
+        genres: genresCount,
+        authors: authorsCount,
+        publishers: publishersCount,
       };
     },
 
@@ -546,63 +613,6 @@ const resolvers = {
     },
     numRatings: async (book: { ratingsByStars: { [x: number]: number } }) => {
       return Object.values(book.ratingsByStars).reduce((total, count) => total + count, 0);
-    },
-  },
-
-  FilterCountResult: {
-    authors: async (filterCounts: { authorsBooks: Document[] }) => {
-      const authorCounts = filterCounts.authorsBooks.reduce((acc, book) => {
-        book.authors.forEach((author: string) => {
-          acc[author] = (acc[author] || 0) + 1;
-        });
-        return acc;
-      }, {});
-      return mapCounts(authorCounts, 'name');
-    },
-
-    genres: async (filterCounts: { genresBooks: Document[] }) => {
-      const genreCounts = filterCounts.genresBooks.reduce((acc, book) => {
-        book.genres.forEach((genre) => {
-          acc[genre] = (acc[genre] || 0) + 1;
-        });
-        return acc;
-      }, {});
-      return mapCounts(genreCounts, 'name');
-    },
-
-    publishers: async (filterCounts: { publishersBooks: Document[] }) => {
-      const publisherCounts = filterCounts.publishersBooks.reduce((acc, book) => {
-        acc[book.publisher] = (acc[book.publisher] || 0) + 1;
-        return acc;
-      }, {});
-      return mapCounts(publisherCounts, 'name');
-    },
-
-    publishDates: async (filterCounts: { books: Document[] }) => {
-      const publishDateCounts = filterCounts.books.reduce((acc, book) => {
-        const year = book.publishDate.getFullYear();
-        acc[year] = (acc[year] || 0) + 1;
-        return acc;
-      }, {});
-      return mapCounts(publishDateCounts, 'year');
-    },
-
-    pages: async (filterCounts: { books: Document[] }) => {
-      const pageCounts = filterCounts.books.reduce((acc, book) => {
-        acc[book.pages] = (acc[book.pages] || 0) + 1;
-        return acc;
-      }, {});
-      return mapCounts(pageCounts, 'pages');
-    },
-
-    ratings: async (filterCounts: { minRatingBooks: Document[] }) => {
-      const ratingCounts = filterCounts.minRatingBooks.reduce((acc, book) => {
-        Array.from({ length: 6 }, (_, i) => i).forEach((rating) => {
-          if (rating <= book.rating) acc[rating] = (acc[rating] || 0) + 1;
-        });
-        return acc;
-      }, {});
-      return mapCounts(ratingCounts, 'rating');
     },
   },
 

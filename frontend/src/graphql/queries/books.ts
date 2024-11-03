@@ -111,14 +111,6 @@ export const GET_FILTER_COUNT = gql(`
         name
         count
       }
-      publishDates {
-        year
-        count
-      }
-      pages {
-        pages
-        count
-      }
       ratings {
         rating
         count

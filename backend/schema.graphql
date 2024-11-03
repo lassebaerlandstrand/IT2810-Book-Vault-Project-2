@@ -20,14 +20,7 @@ type FilterCountResult {
   authors: [FilterCount!]!
   genres: [FilterCount!]!
   publishers: [FilterCount!]!
-  publishDates: [PublishDateCount!]!
-  pages: [PagesCount!]!
   ratings: [RatingCount!]!
-}
-
-type PublishDateCount {
-  year: Int!
-  count: Int!
 }
 
 type RatingCount {
@@ -37,11 +30,6 @@ type RatingCount {
 
 type FilterCount {
   name: String!
-  count: Int!
-}
-
-type PagesCount {
-  pages: Int!
   count: Int!
 }
 

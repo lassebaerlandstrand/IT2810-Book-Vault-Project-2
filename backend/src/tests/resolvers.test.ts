@@ -3,28 +3,29 @@ import resolvers, { SortBy, SortOrder } from '../resolvers.js';
 import { Kind, ValueNode } from 'graphql';
 import db from '../db/connection.js';
 import { ObjectId } from 'mongodb';
+import { count } from 'console';
 
 vi.mock('./db/connection.js');
 
 const mockBooks = [
   {
     _id: new ObjectId(),
-    title: "Book 1",
-    authors: ["Author 1"],
-    genres: ["Fantasy", "Adventure"],
-    publisher: "Publisher 1",
-    publishDate: new Date("2022-01-01"),
+    title: 'Book 1',
+    authors: ['Author 1'],
+    genres: ['Fantasy', 'Adventure'],
+    publisher: 'Publisher 1',
+    publishDate: new Date('2022-01-01'),
     pages: 320,
     ratingsByStars: { 1: 10, 2: 5, 3: 8, 4: 12, 5: 15 },
     roundedAverageRating: 3,
   },
   {
     _id: new ObjectId(),
-    title: "Book 2",
-    authors: ["Author 2"],
-    genres: ["Sci-Fi"],
-    publisher: "Publisher 2",
-    publishDate: new Date("2020-06-15"),
+    title: 'Book 2',
+    authors: ['Author 2'],
+    genres: ['Sci-Fi'],
+    publisher: 'Publisher 2',
+    publishDate: new Date('2020-06-15'),
     pages: 280,
     ratingsByStars: { 1: 3, 2: 7, 3: 10, 4: 20, 5: 30 },
     roundedAverageRating: 4,
@@ -72,7 +73,10 @@ describe('resolvers', () => {
     describe('books', () => {
       it('should return books filtered by authors', async () => {
         db.collection = vi.fn().mockReturnValue({
-          aggregate: vi.fn().mockReturnValue({ toArray: vi.fn().mockResolvedValue([mockBooks[0]]) }),
+          aggregate: vi
+            .fn()
+            .mockReturnValue({ toArray: vi.fn().mockResolvedValue([mockBooks[0]]) }),
+          countDocuments: vi.fn().mockResolvedValue(1),
         });
 
         const args = { input: { authors: ['Author 1'] }, offset: 0, limit: 10 };
@@ -84,31 +88,21 @@ describe('resolvers', () => {
       it('should handle sorting by title in ascending order', async () => {
         db.collection = vi.fn().mockReturnValue({
           aggregate: vi.fn().mockReturnValue({
-            toArray: vi.fn().mockResolvedValue([mockBooks[0], mockBooks[1]])
+            toArray: vi.fn().mockResolvedValue([mockBooks[0], mockBooks[1]]),
           }),
+          countDocuments: vi.fn().mockResolvedValue(2),
         });
 
-        const args = { input: {}, sortInput: { sortBy: SortBy.Book, sortOrder: SortOrder.Ascending }, offset: 0, limit: 10 };
+        const args = {
+          input: {},
+          sortInput: { sortBy: SortBy.Book, sortOrder: SortOrder.Ascending },
+          offset: 0,
+          limit: 10,
+        };
         const result = await resolvers.Query.books(null, args);
 
-        expect(result.books[0].title).toBe("Book 1");
-        expect(result.books[1].title).toBe("Book 2");
-      });
-    });
-
-    describe('filterCount', () => {
-      it('should return filtered book counts by genre', async () => {
-        db.collection = vi.fn().mockReturnValue({
-          aggregate: vi.fn().mockReturnValue({
-            toArray: vi.fn().mockResolvedValue([mockBooks[0]]),
-          }),
-        });
-
-        const args = { input: { genres: ['Fantasy'] } };
-        const result = await resolvers.Query.filterCount(null, args);
-
-        expect(result.genresBooks.length).toBe(1);
-        expect(result.genresBooks[0].genres).toContain('Fantasy');
+        expect(result.books[0].title).toBe('Book 1');
+        expect(result.books[1].title).toBe('Book 2');
       });
     });
 
@@ -117,9 +111,9 @@ describe('resolvers', () => {
         db.collection = vi.fn().mockReturnValue({
           find: vi.fn().mockReturnValue({
             sort: vi.fn().mockReturnValue({
-              limit: vi.fn().mockReturnValue({ next: vi.fn().mockResolvedValue(mockBooks[0]) })
-            })
-          })
+              limit: vi.fn().mockReturnValue({ next: vi.fn().mockResolvedValue(mockBooks[0]) }),
+            }),
+          }),
         });
 
         const result = await resolvers.Query.dateSpan();
@@ -135,9 +129,9 @@ describe('resolvers', () => {
         db.collection = vi.fn().mockReturnValue({
           find: vi.fn().mockReturnValue({
             sort: vi.fn().mockReturnValue({
-              limit: vi.fn().mockReturnValue({ next: vi.fn().mockResolvedValue(mockBooks[0]) })
-            })
-          })
+              limit: vi.fn().mockReturnValue({ next: vi.fn().mockResolvedValue(mockBooks[0]) }),
+            }),
+          }),
         });
 
         const result = await resolvers.Query.pageSpan();
@@ -153,45 +147,6 @@ describe('resolvers', () => {
         const book = mockBooks[0];
         const result = await resolvers.Book.numRatings(book);
         expect(result).toEqual(50);
-      });
-    });
-
-    describe('FilterCountResult', () => {
-      const mockFilterCounts = {
-        books: mockBooks,
-        genresBooks: mockBooks,
-        minRatingBooks: mockBooks,
-        authorsBooks: mockBooks,
-      };
-
-      it('should count the occurrences of authors', async () => {
-        const result = await resolvers.FilterCountResult.authors(mockFilterCounts);
-        expect(result).toContainEqual({ name: 'Author 1', count: 1 });
-      });
-
-      it('should count the occurrences of genres', async () => {
-        const result = await resolvers.FilterCountResult.genres(mockFilterCounts);
-        expect(result).toContainEqual({ name: 'Fantasy', count: 1 });
-      });
-
-      it('should count the occurrences of publish dates by year', async () => {
-        const result = await resolvers.FilterCountResult.publishDates(mockFilterCounts);
-        expect(result).toContainEqual({ year: '2020', count: 1 });
-        expect(result).toContainEqual({ year: '2022', count: 1 });
-      });
-
-      it('should count the occurrences of pages', async () => {
-        const result = await resolvers.FilterCountResult.pages(mockFilterCounts);
-        expect(result).toContainEqual({ pages: '280', count: 1 });
-        expect(result).toContainEqual({ pages: '320', count: 1 });
-      });
-
-      it('should count the occurrences of ratings', async () => {
-        const result = await resolvers.FilterCountResult.ratings(mockFilterCounts);
-        expect(result).toContainEqual({ rating: '4', count: 1 });
-        expect(result).toContainEqual({ rating: '3', count: 2 });
-        expect(result).toContainEqual({ rating: '2', count: 2 });
-        expect(result).toContainEqual({ rating: '1', count: 2 });
       });
     });
   });
