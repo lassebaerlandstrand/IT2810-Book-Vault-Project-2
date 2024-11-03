@@ -64,5 +64,14 @@ for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json', 'no
                         users.insert_one(user)
             case 'reviews.json':
                 reviews.insert_many(data)
+
+print("Creating indexes...")
+books.create_index([('authors', 1)])
+books.create_index([('genres', 1)])
+books.create_index([('publishers', 1)])
+books.create_index([('publishDate', 1)])
+books.create_index([('pages', 1)])
+books.create_index([('rating', 1)])
+
 client.close()
 print("Connections closed successfully")

@@ -81,6 +81,9 @@ df['ratingsByStars'] = df['ratingsByStars'].apply(literal_eval).apply(
     lambda x: {5-stars: int(reviews) for stars, reviews in enumerate(x)})
 df['setting'] = df['setting'].apply(literal_eval)
 
+# Calculate avgRating
+df['rating'] = df['ratingsByStars'].apply(lambda x: sum(stars * reviews for stars, reviews in x.items()) / sum(x.values()) if sum(x.values()) > 0 else 0)
+
 # Extract digits from pages and convert to int
 df['pages'] = pd.to_numeric(
     df['pages'].str.extract('(\d+)')[0], errors='coerce')
@@ -91,6 +94,9 @@ df['id'] = df.index
 
 # Remove weird genres
 df['genres'] = df['genres'].apply(lambda x: [genre for genre in x if isinstance(x, list) and genre not in ['Audiobook', 'Mira', "Hugo Awards", "Esp", "Apple", "Human Resources", "London Underground"]])
+
+# Remove books with no genres
+df = df[df['genres'].apply(lambda x: len(x) > 0)]
 
 firstLayerTranslations = {
  "Young Adult": "Fiction" ,
