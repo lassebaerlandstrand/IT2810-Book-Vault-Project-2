@@ -130,6 +130,8 @@ const filterBooks = async (input: FilterInput) => {
   const exclusionDictionaries: {
     genresExcluded?: Document[];
     minRatingExcluded?: Document[];
+    authorsExcluded?: Document[];
+    publishersExcluded?: Document[];
     allExcluded?: Document[];
     // Add other exclusions as needed
   } = {};
@@ -145,6 +147,16 @@ const filterBooks = async (input: FilterInput) => {
             input.genres.some((genre) => book.genres.includes(genre)),
           minRating:
             excludeFilter === 'minRating' || !input.minRating || book.rating >= input.minRating,
+          authors:
+            excludeFilter === 'authors' ||
+            !input.authors ||
+            input.authors.length === 0 ||
+            input.authors.some((author) => book.authors.includes(author)),
+          publisher:
+            excludeFilter === 'publishers' ||
+            !input.publishers ||
+            input.publishers.length === 0 ||
+            input.publishers.includes(book.publisher),
           // Add any future filters here in the same pattern
         };
 
@@ -155,6 +167,8 @@ const filterBooks = async (input: FilterInput) => {
   };
 
   applyExclusionFilter('genres');
+  applyExclusionFilter('authors');
+  applyExclusionFilter('publishers');
   applyExclusionFilter('minRating');
   applyExclusionFilter(null);
 
@@ -168,19 +182,11 @@ const buildPipelineWithoutSpecificFilters = ({
   sortInput,
   beforeDate,
   afterDate,
-  authors,
-  publishers,
   minPages,
   maxPages,
 }: FilterInput) => {
   const filters: MongoBookFilters = {};
 
-  if (authors && authors.length > 0) {
-    filters.authors = { $in: authors };
-  }
-  if (publishers && publishers.length > 0) {
-    filters.publisher = { $in: publishers };
-  }
   if (beforeDate && afterDate) {
     filters.publishDate = {
       $lt: beforeDate,
@@ -231,13 +237,6 @@ const buildPipelineWithoutSpecificFilters = ({
     ];
   }
 
-  // pipeline.push(...mongoCalculateAverageRatingAggregationPipeline, {
-  //   $addFields: {
-  //     roundedAverageRating: { $round: ['$averageRating', 0] },
-  //     // roundedAverageRating: 4,
-  //   },
-  // });
-
   return pipeline;
 };
 
@@ -287,6 +286,8 @@ const resolvers = {
         books: exclusionDictionaries.allExcluded ?? [],
         minRatingBooks: exclusionDictionaries.minRatingExcluded ?? [],
         genresBooks: exclusionDictionaries.genresExcluded ?? [],
+        authorsBooks: exclusionDictionaries.authorsExcluded ?? [],
+        publishersBooks: exclusionDictionaries.publishersExcluded ?? [],
       };
     },
 
@@ -546,28 +547,11 @@ const resolvers = {
     numRatings: async (book: { ratingsByStars: { [x: number]: number } }) => {
       return Object.values(book.ratingsByStars).reduce((total, count) => total + count, 0);
     },
-    // rating: async (book: { averageRating: number }) => {
-    //   // const numRatings = Object.values(book.ratingsByStars).reduce(
-    //   //   (total, count) => total + count,
-    //   //   0,
-    //   // );
-
-    //   // if (numRatings === 0) {
-    //   //   return 0;
-    //   // }
-
-    //   // const weightedSum = Object.entries(book.ratingsByStars).reduce((sum, [key, count]) => {
-    //   //   return sum + parseInt(key, 10) * count;
-    //   // }, 0);
-
-    //   // return weightedSum / numRatings;
-    //   return book.averageRating.toFixed(1);
-    // },
   },
 
   FilterCountResult: {
-    authors: async (filterCounts: { books: Document[] }) => {
-      const authorCounts = filterCounts.books.reduce((acc, book) => {
+    authors: async (filterCounts: { authorsBooks: Document[] }) => {
+      const authorCounts = filterCounts.authorsBooks.reduce((acc, book) => {
         book.authors.forEach((author: string) => {
           acc[author] = (acc[author] || 0) + 1;
         });
@@ -586,8 +570,8 @@ const resolvers = {
       return mapCounts(genreCounts, 'name');
     },
 
-    publishers: async (filterCounts: { books: Document[] }) => {
-      const publisherCounts = filterCounts.books.reduce((acc, book) => {
+    publishers: async (filterCounts: { publishersBooks: Document[] }) => {
+      const publisherCounts = filterCounts.publishersBooks.reduce((acc, book) => {
         acc[book.publisher] = (acc[book.publisher] || 0) + 1;
         return acc;
       }, {});

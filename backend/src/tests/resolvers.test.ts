@@ -161,6 +161,7 @@ describe('resolvers', () => {
         books: mockBooks,
         genresBooks: mockBooks,
         minRatingBooks: mockBooks,
+        authorsBooks: mockBooks,
       };
 
       it('should count the occurrences of authors', async () => {
