@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ApolloError } from '@apollo/client/errors';
 import { Box, Container, Text } from '@mantine/core';
 import { Stats } from '@/generated/graphql';
@@ -23,7 +24,12 @@ const getField = (
 };
 
 export const StatsGroup = () => {
-  const { stats, loading, error } = useStats();
+  const { stats, loading, error, refetch } = useStats();
+
+  // The data may have changed (e.g. num of reviews), therefore we need to refetch on initial load
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const data = [
     {

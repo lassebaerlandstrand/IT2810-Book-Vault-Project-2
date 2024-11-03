@@ -18,6 +18,7 @@ describe('StatsGroup component', () => {
       },
       loading: false,
       error: null,
+      refetch: vi.fn(),
     });
 
     const { asFragment } = render(<StatsGroup />);
@@ -29,6 +30,7 @@ describe('StatsGroup component', () => {
       stats: null,
       loading: true,
       error: null,
+      refetch: vi.fn(),
     });
 
     render(<StatsGroup />);
@@ -41,6 +43,7 @@ describe('StatsGroup component', () => {
       stats: null,
       loading: false,
       error: new Error('Error'),
+      refetch: vi.fn(),
     });
 
     render(<StatsGroup />);
@@ -57,6 +60,7 @@ describe('StatsGroup component', () => {
       },
       loading: false,
       error: null,
+      refetch: vi.fn(),
     });
 
     render(<StatsGroup />);
