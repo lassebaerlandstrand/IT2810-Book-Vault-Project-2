@@ -141,7 +141,7 @@ export type Query = {
   randomBook: Book;
   /** Retrieve statistics about the website */
   stats: Stats;
-  user: User;
+  user?: Maybe<User>;
 };
 
 
@@ -359,7 +359,7 @@ export type GetUserQueryVariables = Exact<{
 }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', user: { __typename?: 'User', UUID: string, name: string, at?: any | null, wantToRead?: Array<{ __typename?: 'Book', id: string } | null> | null, haveRead?: Array<{ __typename?: 'Book', id: string } | null> | null } };
+export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', UUID: string, name: string, at?: any | null, wantToRead?: Array<{ __typename?: 'Book', id: string } | null> | null, haveRead?: Array<{ __typename?: 'Book', id: string } | null> | null } | null };
 
 
 export const CreateReviewDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateReview"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateReviewInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createReview"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rating"}}]}}]}}]} as unknown as DocumentNode<CreateReviewMutation, CreateReviewMutationVariables>;
