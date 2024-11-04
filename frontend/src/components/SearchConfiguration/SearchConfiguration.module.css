@@ -1,11 +1,23 @@
-.innerLabel {
-  font-size: 0.65rem;
-
-  @media (min-width: $mantine-breakpoint-xxs) {
-    font-size: 0.875rem;
-  }
-}
-
 .multiSelect {
   margin-top: 1rem;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.trackContainer {
+  padding: 0rem 0.75rem;
+}
+
+.description {
+  margin-top: rem(8px);
+  color: var(--mantine-color-dimmed);
+  font-size: var(--mantine-font-size-xs);
+  width: rem(30px);
+}
+
+.radioBody {
+  display: flex;
+  align-items: center;
 }

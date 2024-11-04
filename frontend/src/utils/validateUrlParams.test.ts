@@ -5,26 +5,31 @@ import { getPaginationParams } from './pagination';
 import { isValidUrlParams } from './validateUrlParams';
 
 // Mock getFilterParams and getPaginationParams
-vi.mock('./filters', () => ({
-  getFilterParams: vi.fn(),
-  SortBy: {
-    Book: 'book',
-    Author: 'author',
-    Publisher: 'publisher',
-  },
-  SortOrder: {
-    Ascending: 'asc',
-    Descending: 'desc',
-  },
-}));
+vi.mock('./filters', async () => {
+  const actual = await vi.importActual('./filters'); // Get the actual implementation if needed
+  return {
+    ...actual,
+    getFilterParams: vi.fn(),
+    SortBy: {
+      Book: 'book',
+      Author: 'author',
+      Publisher: 'publisher',
+    },
+    SortOrder: {
+      Ascending: 'asc',
+      Descending: 'desc',
+    },
+  };
+});
 
-vi.mock('./pagination', () => ({
-  getPaginationParams: vi.fn(),
-  LIMIT_OPTIONS: ['10', '25', '50', '100'],
-  DEFAULT_PAGE: 1,
-  DEFAULT_LIMIT: 25,
-}));
-
+vi.mock('./pagination', async () => {
+  return {
+    getPaginationParams: vi.fn(),
+    LIMIT_OPTIONS: ['10', '25', '50', '100'],
+    DEFAULT_PAGE: 1,
+    DEFAULT_LIMIT: 25,
+  };
+});
 describe('isValidUrlParams', () => {
   it('returns true for valid filter and pagination params', () => {
     const searchParams = new URLSearchParams({
