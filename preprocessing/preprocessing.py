@@ -46,6 +46,9 @@ df.rename(columns={'author': 'authors'}, inplace=True)
 # Replace commas inside parentheses with a placeholder (e.g., ';')
 df['authors'] = df['authors'].str.replace(r'\(.*?\)', '', regex=True)
 
+# Replace "more…" with empty string
+df['authors'] = df['authors'].str.replace(r', more…', '', regex=True)
+
 # Create new DataFrames for authors, genres, publishers
 authors = pd.DataFrame(df['authors'].str.split(
     ',').explode().str.strip().unique(), columns=['name'])
