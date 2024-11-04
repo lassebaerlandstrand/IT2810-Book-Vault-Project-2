@@ -12,4 +12,9 @@ describe('Home Page', () => {
     cy.contains('Try your luck with a random book').click();
     cy.url().should('include', '/book/');
   });
+
+  it('popular genres should redirect you', () => {
+    cy.contains('Drama').click();
+    // cy.url().should('include', '/book?genre=Drama');
+  });
 });

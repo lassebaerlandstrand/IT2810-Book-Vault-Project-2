@@ -1,3 +1,5 @@
+// Routing and traversal
+
 describe('Application Routing and Components', () => {
   beforeEach(() => {
     cy.visit('/');
