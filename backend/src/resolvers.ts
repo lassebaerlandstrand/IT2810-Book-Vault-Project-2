@@ -117,7 +117,7 @@ interface MongoBookFilters {
   rating?: { $gte?: number };
 }
 
-const countWithExclusions = async (input: FilterInput, excludeField: keyof FilterInput | null) => {
+const countWithExclusions = async (input: FilterInput, excludeField: keyof FilterInput | null | 'publisher') => {
   const pipeline = buildPipelineWithoutSpecificFilters(input);
 
   // Exclude specific filters by modifying the pipeline
@@ -127,7 +127,7 @@ const countWithExclusions = async (input: FilterInput, excludeField: keyof Filte
   if (excludeField !== 'authors' && input.authors && input.authors.length > 0) {
     pipeline.push({ $match: { authors: { $in: input.authors } } });
   }
-  if (excludeField !== 'publishers' && input.publishers && input.publishers.length > 0) {
+  if (excludeField !== 'publisher' && input.publishers && input.publishers.length > 0) {
     pipeline.push({ $match: { publisher: { $in: input.publishers } } });
   }
   if (excludeField !== 'minRating' && input.minRating) {
@@ -135,8 +135,8 @@ const countWithExclusions = async (input: FilterInput, excludeField: keyof Filte
   }
 
   if (excludeField === null) {
-    const allCount = await db.collection('books').countDocuments(pipeline[0].$match);
-    return [{ all: allCount }];
+    pipeline.push({ $count: 'all' });
+    return await db.collection('books').aggregate(pipeline).toArray();
   }
 
   if (excludeField === 'minRating') {
@@ -219,6 +219,7 @@ const countWithExclusions = async (input: FilterInput, excludeField: keyof Filte
       { $unwind: `$${excludeField}` },
       { $group: { _id: `$${excludeField}`, count: { $sum: 1 } } },
       { $project: { name: '$_id', count: 1, _id: 0 } },
+      { $sort: { count: -1 } },
     );
   }
 
@@ -328,7 +329,7 @@ const resolvers = {
         pipeline.push({ $match: { rating: { $gte: args.input.minRating } } });
       }
 
-      const totalBooks = await db.collection('books').countDocuments(pipeline[0].$match);
+      const totalBooks = (await countWithExclusions(args.input ?? {}, null))[0]?.all || 0;
 
       pipeline.push({ $skip: args.offset * args.limit });
       pipeline.push({ $limit: args.limit });
@@ -347,7 +348,7 @@ const resolvers = {
       const input = args.input ?? {};
       const genresCount = await countWithExclusions(input, 'genres');
       const authorsCount = await countWithExclusions(input, 'authors');
-      const publishersCount = await countWithExclusions(input, 'publishers');
+      const publishersCount = await countWithExclusions(input, 'publisher');
       const minRatingCount = await countWithExclusions(input, 'minRating');
 
       return {
