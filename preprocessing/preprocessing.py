@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import uuid
 from ast import literal_eval
+from dateutil import parser
 
 # Set UUID namespace
 namespace = uuid.UUID('12345678123456781234567812345678')
@@ -16,8 +17,15 @@ df.drop(['price', 'likedPercent', 'firstPublishDate', 'edition',
 # Replace empty strings with NaN
 df.replace('', np.nan, inplace=True)
 
+# Function to parse dates using dateutil
+def parse_date(date_str):
+    try:
+        return pd.to_datetime(parser.parse(date_str), errors='coerce')
+    except (ValueError, TypeError):
+        return pd.NaT
+
 # Convert to datetime, coercing errors (invalid dates will become NaT)
-df['publishDate'] = pd.to_datetime(df['publishDate'], format='%m/%d/%y', errors='coerce')
+df['publishDate'] = df['publishDate'].apply(parse_date)
 
 # Correct invalid values in isbn and pages
 df['isbn'] = df['isbn'].replace('9999999999999', np.nan)
