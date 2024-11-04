@@ -13,8 +13,8 @@ describe('Home Page', () => {
     cy.url().should('include', '/book/');
   });
 
-  it('popular genres should redirect you', () => {
+  it('popular genres should redirect', () => {
     cy.contains('Drama').click();
-    // cy.url().should('include', '/book?genre=Drama');
+    // cy.url().should('include', '/book?genre=Drama'); // TODO
   });
 });

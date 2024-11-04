@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "http://localhost:5173/project2",
     "target": "es5",
     "lib": ["es5", "dom"],
     "types": ["cypress", "node"]
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "cypress.config.js"]
 }
