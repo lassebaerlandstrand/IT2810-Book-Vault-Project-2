@@ -132,7 +132,7 @@ type Query {
   "Retrieve a specific book based on id"
   book(id: String!): Book!
 
-  user(UUID: String!): User!
+  user(UUID: String!): User
 
   "Retrieve book reviews"
   bookReviews(
