@@ -335,8 +335,6 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
             <Radio
               classNames={{
                 body: styles.radioBody,
-                label: styles.cursorPointer,
-                radio: styles.cursorPointer,
               }}
               radius="md"
               key={rating}
