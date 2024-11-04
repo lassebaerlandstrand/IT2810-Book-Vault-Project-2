@@ -441,7 +441,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           />
         </Box>
         <InputLabel mt={40}>Genres</InputLabel>
-        <SimpleGrid cols={2} mt="xs" w="max-content">
+        <SimpleGrid cols={2} mt="xs">
           {genres.map((genre) => (
             <Checkbox
               key={genre.name}
