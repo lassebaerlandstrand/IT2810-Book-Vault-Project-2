@@ -108,7 +108,7 @@ export function BookList() {
       <Group justify="center" gap="sm" wrap="nowrap">
         <SearchContainer />
         {!isDesktop && (
-          <ActionIcon onClick={open} size="lg">
+          <ActionIcon onClick={open} size="lg" aria-label="Open search configuration">
             <IconAdjustments size="75%" />
           </ActionIcon>
         )}

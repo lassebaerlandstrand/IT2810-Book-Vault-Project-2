@@ -40,7 +40,7 @@ const ErrorUnexpectedError = ({ error }: { error: Error }) => {
     <Container className={styles.container}>
       <Container className={styles.content}>
         <Title className={styles.title}>Unexpected Application Error!</Title>
-        <Text c="dimmed" size="lg" ta="center" className={styles.description}>
+        <Text opacity={0.6} size="lg" ta="center" className={styles.description}>
           Something went wrong, please try again.
         </Text>
         <Center>
@@ -70,7 +70,7 @@ const ErrorUnexpectedError = ({ error }: { error: Error }) => {
 
 export const Error404 = ({
   title = 'Nothing to see here',
-  description = 'Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL.',
+  description = 'The page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL.',
   link = '/',
 }: ErrorPageProps) => {
   return (
@@ -78,7 +78,7 @@ export const Error404 = ({
       <Illustration404 className={styles.image} />
       <Container className={styles.content}>
         <Title className={styles.title}>{title}</Title>
-        <Text c="dimmed" size="lg" ta="center" className={styles.description}>
+        <Text opacity={0.6} size="lg" ta="center" className={styles.description}>
           {description}
         </Text>
         <Group justify="center">

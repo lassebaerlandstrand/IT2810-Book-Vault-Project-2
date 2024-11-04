@@ -59,6 +59,7 @@ export const theme = createTheme({
     'dark-blue': darkBlue,
     beige,
   },
+  primaryShade: 8,
   components: {
     Container: Container.extend({
       vars: (_, { size, fluid }) => ({
