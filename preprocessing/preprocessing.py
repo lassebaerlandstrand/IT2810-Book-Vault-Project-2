@@ -120,7 +120,7 @@ firstLayerTranslations = {
  "Romance": "Romance" ,
  "Paranormal Romance": "Romance" ,
  "Historical Romance": "Romance" ,
- "Adventure": "Action" ,
+ "Adventure": "Adventure" ,
  "Action": "Action" ,
  "Magic": "Fantasy" ,
  "Vampires": "Fantasy" ,
@@ -1072,8 +1072,8 @@ firstLayerTranslations = {
 }
 
 secondLayerTranslations = {
-'Action': 'Action/Adventure', 
-'Adventure': 'Action/Adventure', 
+'Action': 'Action', 
+'Adventure': 'Adventure', 
 'Alternative Medicine': 'Other', 
 'Art': 'Humanities', 
 "Children's Literature": 'Literature',
@@ -1103,7 +1103,7 @@ secondLayerTranslations = {
 'Religious Fiction': 'Fantasy/Fiction',
 'Romance': 'Drama',
 'Science Fiction': 'Science Fiction',
-'Sports': 'Sports',
+'Sports': 'Other',
 'Thriller': 'Drama'
 }
 

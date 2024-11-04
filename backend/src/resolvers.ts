@@ -117,7 +117,10 @@ interface MongoBookFilters {
   rating?: { $gte?: number };
 }
 
-const countWithExclusions = async (input: FilterInput, excludeField: keyof FilterInput | null | 'publisher') => {
+const countWithExclusions = async (
+  input: FilterInput,
+  excludeField: keyof FilterInput | null | 'publisher',
+) => {
   const pipeline = buildPipelineWithoutSpecificFilters(input);
 
   // Exclude specific filters by modifying the pipeline
