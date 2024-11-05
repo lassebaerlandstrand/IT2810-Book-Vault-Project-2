@@ -39,10 +39,35 @@ describe('Books Page', () => {
     cy.get("[title='Suzanne Collins']").should('be.visible');
   });
 
-  it('filtering by genre should work', () => {
-    // Filter by drama
-    cy.get('button').contains('Drama').click();
-    cy.url().should('include', 'genres=Drama');
-    cy.get('h4').contains('Drama');
+  it('filtering should work and display correct results', () => {
+    cy.get('button[aria-label="Open search configuration"]').click();
+
+    let numberOfResults;
+
+    // Wait for load
+    cy.get('.mantine-Radio-root')
+      .eq(5)
+      .find('.mantine-Radio-labelWrapper')
+      .should('not.have.attr', 'data-disabled');
+
+    // Get the number of results
+    cy.get('.mantine-Radio-root')
+      .eq(5)
+      .find('.mantine-Text-root')
+      .then(($p) => {
+        numberOfResults = $p.text();
+      });
+
+    // Click on the radio button
+    cy.get('.mantine-Radio-body').eq(5).click();
+
+    cy.get('.mantine-CloseButton-root').click();
+
+    // Check if the number of results is correct
+    cy.get('[data-testid="number-of-results"]')
+      .should('not.contain', 'Loading')
+      .should(($text) => {
+        expect($text.text()).to.equal(`${numberOfResults} results`);
+      });
   });
 });

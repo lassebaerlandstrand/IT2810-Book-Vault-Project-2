@@ -112,7 +112,11 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
       {!visible && !yourReviewLoading && !loadingUpdateReview ? (
         <Grid>
           <Grid.Col span="auto">
-            <Button variant="filled" onClick={toggleReviewDisplay}>
+            <Button
+              variant="filled"
+              onClick={toggleReviewDisplay}
+              aria-label={!yourReview ? 'Give Review' : 'Edit Review'}
+            >
               {!yourReview ? 'Give Review' : 'Edit Review'}
             </Button>
           </Grid.Col>
@@ -131,15 +135,15 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
           <Textarea value={text} onChange={(event) => setText(event.currentTarget.value)} />
 
           <Flex justify="Right" gap="lg">
-            <Button variant="filled" color="gray" onClick={cancel}>
+            <Button variant="filled" color="gray" onClick={cancel} aria-label="Cancel Review">
               Cancel
             </Button>
             {yourReview ? (
-              <Button variant="filled" onClick={update}>
+              <Button variant="filled" onClick={update} aria-label="Update Review">
                 Update Review
               </Button>
             ) : (
-              <Button variant="filled" onClick={submit}>
+              <Button variant="filled" onClick={submit} aria-label="Submit Review">
                 Submit Review
               </Button>
             )}

@@ -7,9 +7,11 @@ describe('Home Page', () => {
     cy.get('header').should('be.visible');
     cy.get('h1').contains('Welcome to');
 
-    cy.get(':nth-child(1) > ._count_1d49w_35').should('not.contain', '. . .').contains(/\d+/); // Number of books
-    cy.get(':nth-child(2) > ._count_1d49w_35').should('not.contain', '. . .').contains(/\d+/); // Number of authors
-    cy.get(':nth-child(3) > ._count_1d49w_35').should('not.contain', '. . .').contains(/\d+/); // Number of ratings
+    // Check stats group
+    cy.get('[aria-live="polite"]').should('have.length', 3);
+    cy.get('[aria-live="polite"]').eq(0).should('not.contain', '. . .').contains(/\d+/);
+    cy.get('[aria-live="polite"]').eq(1).should('not.contain', '. . .').contains(/\d+/);
+    cy.get('[aria-live="polite"]').eq(2).should('not.contain', '. . .').contains(/\d+/);
   });
 
   it('random book function should redirect', () => {

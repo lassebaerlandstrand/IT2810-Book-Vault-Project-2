@@ -24,7 +24,7 @@ const ReviewStack = ({ reviews, type }: ReviewProps) => {
 
   return (
     <>
-      <Grid my="xs" gutter="md">
+      <Grid my="xs" gutter="md" data-testid="review-stack">
         {reviews.map((review, index) => (
           <Grid.Col key={index} span={{ base: 12 }}>
             {type === 'bookReview' ? (
