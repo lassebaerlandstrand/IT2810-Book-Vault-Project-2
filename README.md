@@ -164,6 +164,39 @@ We have unit tests for most of our components. In these tests we check important
 
 We mock the API when we do tests in the frontend. This is mainly done through mocking our hooks as we mainly use hooks to query the API.
 
+### End-to-end tests &nbsp;<img src="media/CypressLogo.png" alt="Cypress Logo" width="25" />
+
+We are using Cypress to do end-to-end tests. This will test the application as a whole, with the frontend and backend connected. When running these tests you can either choose to run the backend locally or use the backend in the virtual machine. To change this you go to this [env-file](./frontend/.env) and change it to either
+
+- `VITE_GRAPHQL_ENDPOINT="http://localhost:3001/graphql"` for a local backend.
+- `VITE_GRAPHQL_ENDPOINT="http://it2810-05.idi.ntnu.no/graphql"` for the backend in the virtual machine.
+
+To run the tests you can run the following commands in **separate terminals**:
+
+```
+# Do this only if you want to run e2e tests on the local backend. If you want to run the tests on the backend in the virtual machine, skip this step.
+# Run the backend (in its own terminal)
+cd backend
+npm install
+npm run start
+```
+
+```
+# Run the frontend (in its own terminal)
+cd frontend
+npm install
+npm run dev
+```
+
+```
+# Run the e2e tests (in its own terminal)
+cd e2e
+npm install
+npm run cypress
+```
+
+After running `npm run cypress` a window should open. You then choose `E2E Testing` and the browser of your choice. You can run all tests by selecting `allTests.cy.ts` or run a single test by selecting the test you want to run.
+
 ## Tech stack
 
 ![Tech stack](/media/techstack.png)
