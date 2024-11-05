@@ -30,7 +30,7 @@ export const LogoIcon = (props: ImageProps) => {
 
 /** Returns the logo text as Vite SVG using svgr, faster to load compared to image. Is not highlightable */
 export const LogoText = (props: SVGProps<SVGSVGElement>) => {
-  return <BookVaultText {...props} />;
+  return <BookVaultText title="The Book Vault" {...props} />;
 };
 
 /** Return the logo text as an image. This is useful if you want the text to be highlightable */

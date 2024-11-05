@@ -45,6 +45,16 @@ const beige: MantineColorsTuple = [
   '#6a5f4a',
 ];
 
+export const resolver = () => ({
+  variables: {},
+  light: {
+    '--mantine-color-dimmed': 'var(--mantine-color-dark-3)',
+  },
+  dark: {
+    '--mantine-color-dimmed': 'var(--mantine-color-gray-6)',
+  },
+});
+
 export const theme = createTheme({
   fontFamily: `Poppins, ${DEFAULT_THEME.fontFamily}`,
   breakpoints: {
@@ -60,6 +70,7 @@ export const theme = createTheme({
     beige,
   },
   cursorType: 'pointer',
+  primaryShade: 8,
   components: {
     Container: Container.extend({
       vars: (_, { size, fluid }) => ({

@@ -17,6 +17,10 @@
   width: rem(30px);
 }
 
+.markLabel {
+  color: var(--mantine-color-dimmed);
+}
+
 .radioBody {
   display: flex;
   align-items: center;
