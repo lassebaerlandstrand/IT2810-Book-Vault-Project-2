@@ -11,7 +11,7 @@ type BookInfoProps = {
 const BookInfo = ({ book }: BookInfoProps) => {
   return (
     <Group justify="center" gap="lg">
-      <Container p="xs" className={styles.titleContainer}>
+      <Container p={0} className={styles.titleContainer}>
         <Text size="lg" fw={700} component="h1">
           {book.title}
         </Text>
@@ -31,7 +31,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
             sizes="xs"
             w="fit-content"
             maw="100%"
-            mah="100%"
+            h="100%"
             m="auto"
           />
         </Grid.Col>
@@ -46,7 +46,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
                 {book.genres.length > 3 ? '...' : null}
               </Text>
 
-              <Ratings book={book} />
+              <Ratings book={book} justify='center'/>
             </Container>
 
             <Spoiler maxHeight={250} hideLabel="Show less" showLabel="Show more">
