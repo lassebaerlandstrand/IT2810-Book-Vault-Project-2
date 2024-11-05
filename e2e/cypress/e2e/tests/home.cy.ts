@@ -9,7 +9,9 @@ describe('Home Page', () => {
   });
 
   it('random book function should redirect', () => {
+    cy.contains('Try your luck with a random book').should('not.have.attr', 'data-loading'); // Wait for the button to be enabled
     cy.contains('Try your luck with a random book').click();
+
     cy.url().should('include', '/book/');
   });
 
