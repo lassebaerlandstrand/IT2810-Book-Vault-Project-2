@@ -23,7 +23,7 @@ const Book = () => {
     );
   }
 
-  if (!bookId || !book ) {
+  if (!bookId || !book) {
     return (
       <Error404
         title="Not a valid book"

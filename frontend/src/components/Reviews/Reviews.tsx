@@ -24,7 +24,7 @@ const Reviews = ({ book }: ReviewProps) => {
             </Text>
           </Grid.Col>
           <Grid.Col span="auto">
-            <Ratings book={book} justify='right'/>
+            <Ratings book={book} justify="right" />
           </Grid.Col>
         </Grid>
 

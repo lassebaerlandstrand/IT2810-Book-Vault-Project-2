@@ -13,7 +13,7 @@ describe('Ratings component', () => {
   });
 
   it('renders the number of ratings correctly', () => {
-    render(<Ratings book={book}/>);
+    render(<Ratings book={book} />);
     const numRatingsElement = screen.getByText('(5 000 ratings)');
     expect(numRatingsElement).toBeInTheDocument();
   });

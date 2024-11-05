@@ -46,7 +46,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
                 {book.genres.length > 3 ? '...' : null}
               </Text>
 
-              <Ratings book={book} justify='center'/>
+              <Ratings book={book} justify="center" />
             </Container>
 
             <Spoiler maxHeight={250} hideLabel="Show less" showLabel="Show more">
