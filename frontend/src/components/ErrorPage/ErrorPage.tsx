@@ -40,7 +40,7 @@ const ErrorUnexpectedError = ({ error }: { error: Error }) => {
     <Container className={styles.container}>
       <Container className={styles.content}>
         <Title className={styles.title}>Unexpected Application Error!</Title>
-        <Text opacity={0.6} size="lg" ta="center" className={styles.description}>
+        <Text c="dimmed" size="lg" ta="center" className={styles.description}>
           Something went wrong, please try again.
         </Text>
         <Center>
@@ -78,7 +78,7 @@ export const Error404 = ({
       <Illustration404 className={styles.image} />
       <Container className={styles.content}>
         <Title className={styles.title}>{title}</Title>
-        <Text opacity={0.6} size="lg" ta="center" className={styles.description}>
+        <Text c="dimmed" size="lg" ta="center" className={styles.description}>
           {description}
         </Text>
         <Group justify="center">

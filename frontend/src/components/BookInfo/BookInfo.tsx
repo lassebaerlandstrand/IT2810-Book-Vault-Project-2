@@ -14,7 +14,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
         <Text size="lg" fw={700} component="h1">
           {book.title}
         </Text>
-        <Text size="md" opacity={0.6}>
+        <Text size="md" c="dimmed">
           {book.authors.length > 0 && book.authors[0].name}{' '}
           {book.authors.length > 1 ? 'et al.' : ''}
         </Text>
