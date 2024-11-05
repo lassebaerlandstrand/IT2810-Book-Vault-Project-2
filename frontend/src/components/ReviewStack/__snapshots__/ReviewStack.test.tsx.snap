@@ -19,6 +19,7 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
   </style>
   <div
     class="m_410352e9 mantine-Grid-root __m__-re1"
+    data-testid="review-stack"
     style="margin-block: var(--mantine-spacing-xs);"
   >
     <div
