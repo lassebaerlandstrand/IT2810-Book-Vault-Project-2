@@ -691,16 +691,18 @@ const resolvers = {
       );
 
       const newRating = numRatings > 0 ? weightedSum / numRatings : 0;
-      await db.collection('books').findOneAndUpdate(
+      const finishedBook = await db.collection('books').findOneAndUpdate(
         { id: bookID },
         {
           $set: {
             rating: newRating,
           },
         },
+        {
+          returnDocument: 'after',
+        },
       );
-
-      return { rating: updatedBook.rating };
+      return finishedBook.value;
     },
 
     async updateReview(_, { input }: { input: UpdateBookReviewMutationArgs }) {
@@ -751,16 +753,19 @@ const resolvers = {
         );
 
         const newRating = numRatings > 0 ? weightedSum / numRatings : 0;
-        await db.collection('books').findOneAndUpdate(
+        const finishedBook = await db.collection('books').findOneAndUpdate(
           { id: oldReview.value.bookID },
           {
             $set: {
               rating: newRating,
             },
           },
+          {
+            returnDocument: 'after',
+          },
         );
 
-        return { rating: newRating };
+        return finishedBook.value;
       }
       return;
     },

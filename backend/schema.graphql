@@ -130,10 +130,6 @@ type ReviewPagination {
   summary: ReviewSummary!
 }
 
-type updatedRating {
-  rating: Float!
-}
-
 type DateSpan {
   "Earliest publish date"
   earliest: Date!
@@ -222,9 +218,9 @@ input UpdateReviewInput {
 type Mutation {
   createUser: User!
 
-  createReview(input: CreateReviewInput!): updatedRating!
+  createReview(input: CreateReviewInput!): Book!
 
-  updateReview(input: UpdateReviewInput!): updatedRating
+  updateReview(input: UpdateReviewInput!): Book
 }
 
 enum SortOrder {

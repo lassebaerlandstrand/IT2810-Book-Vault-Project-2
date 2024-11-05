@@ -4,7 +4,7 @@ import { CREATE_REVIEW } from '@/graphql/mutations/reviews';
 
 export const makeReview = () => {
   // Return the mutation and its states (data, loading, error)
-  const [createReview, { data, loading, error }] = useMutation(CREATE_REVIEW, {
+  const [createReview, { loading, error }] = useMutation(CREATE_REVIEW, {
     update(cache) {
       // On update remove the bookReviews "focusUserUUID" queries from cache as
       // they are now stale
@@ -38,7 +38,6 @@ export const makeReview = () => {
 
   return {
     submitReview, // Function to trigger the mutation later
-    updatedRating: data?.createReview.rating || -1,
     loading,
     error,
   };

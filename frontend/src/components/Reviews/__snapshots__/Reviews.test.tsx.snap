@@ -23,10 +23,10 @@ exports[`Reviews Component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r17{--grid-gutter:var(--mantine-spacing-md);}
+        .__m__-r18{--grid-gutter:var(--mantine-spacing-md);}
       </style>
       <div
-        class="m_410352e9 mantine-Grid-root __m__-r17"
+        class="m_410352e9 mantine-Grid-root __m__-r18"
         style="--grid-justify: Space-between;"
       >
         <div
@@ -35,10 +35,10 @@ exports[`Reviews Component > matches snapshot 1`] = `
           <style
             data-mantine-styles="inline"
           >
-            .__m__-r19{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+            .__m__-r1a{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
           </style>
           <div
-            class="m_96bdd299 mantine-Grid-col __m__-r19"
+            class="m_96bdd299 mantine-Grid-col __m__-r1a"
           >
             <p
               class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -51,13 +51,13 @@ exports[`Reviews Component > matches snapshot 1`] = `
           <style
             data-mantine-styles="inline"
           >
-            .__m__-r1c{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+            .__m__-r1d{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
           </style>
           <div
-            class="m_96bdd299 mantine-Grid-col __m__-r1c"
+            class="m_96bdd299 mantine-Grid-col __m__-r1d"
           >
             <div
-              class="m_8bffd616 mantine-Flex-root __m__-r1e"
+              class="m_8bffd616 mantine-Flex-root __m__-r1f"
               style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: right;"
             >
               <div
@@ -330,6 +330,13 @@ exports[`Reviews Component > matches snapshot 1`] = `
                 style="font-weight: 500;"
               >
                 3.6
+              </p>
+              <p
+                class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                data-size="s"
+                style="--text-fz: var(--mantine-font-size-s); --text-lh: var(--mantine-line-height-s);"
+              >
+                (5000 ratings)
               </p>
             </div>
           </div>

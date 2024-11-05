@@ -1,6 +1,7 @@
-import { Container, Flex, Grid, Group, Image, Rating, Spoiler, Text } from '@mantine/core';
+import { Container, Flex, Grid, Group, Image, Spoiler, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
 import InfoGrid from '../InfoGrid/InfoGrid';
+import { Ratings } from '../Ratings/Ratings';
 import styles from './BookInfo.module.css';
 
 type BookInfoProps = {
@@ -45,10 +46,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
                 {book.genres.length > 3 ? '...' : null}
               </Text>
 
-              <Flex justify="center" align="center" gap={7} mt="xs">
-                <Rating value={Math.round(book.rating * 2) / 2} fractions={2} readOnly />
-                <Text fw={500}>{book.rating.toFixed(1)}</Text>
-              </Flex>
+              <Ratings book={book} />
             </Container>
 
             <Spoiler maxHeight={250} hideLabel="Show less" showLabel="Show more">
