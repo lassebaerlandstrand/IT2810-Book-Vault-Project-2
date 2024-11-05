@@ -57,7 +57,7 @@ type renderMultiSelectOptionProps = {
 
 const renderMultiSelectOption = ({ option, count }: renderMultiSelectOptionProps) => {
   return (
-    <Group wrap='nowrap' justify="space-between" className={styles.fullWidth}>
+    <Group wrap="nowrap" justify="space-between" className={styles.fullWidth}>
       <Text size="sm">{option.value}</Text>
       <Text size="xs" ta="right" c="dimmed" miw={30}>
         {getFormattedFilterCount(count)}

@@ -28,8 +28,12 @@ const SearchContainer = () => {
         }}
         onKeyDown={getHotkeyHandler([['Enter', () => performSearch(searchValue)]])}
         rightSection={
-          <ActionIcon aria-label='Perform search' onClick={() => performSearch(searchValue)} variant="filled">
-            <IconArrowRight size="80%" aria-label='Arrow pointing right'/>
+          <ActionIcon
+            aria-label="Perform search"
+            onClick={() => performSearch(searchValue)}
+            variant="filled"
+          >
+            <IconArrowRight size="80%" aria-label="Arrow pointing right" />
           </ActionIcon>
         }
       />
