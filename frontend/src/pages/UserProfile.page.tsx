@@ -31,7 +31,7 @@ export function ProfilePage() {
   return (
     <Container size="sm" my="xl">
       <Stack align="center">
-        <Avatar size={100} radius="xl" color="dark">
+        <Avatar size={100} radius="xl">
           {newName
             .split(' ')
             .map((n) => n[0])

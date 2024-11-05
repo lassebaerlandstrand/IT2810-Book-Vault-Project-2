@@ -59,7 +59,7 @@ const renderMultiSelectOption = ({ option, count }: renderMultiSelectOptionProps
   return (
     <Group wrap='nowrap' justify="space-between" className={styles.fullWidth}>
       <Text size="sm">{option.value}</Text>
-      <Text size="xs" ta="right" opacity={0.5} miw={30}>
+      <Text size="xs" ta="right" c="dimmed" miw={30}>
         {getFormattedFilterCount(count)}
       </Text>
     </Group>
@@ -345,10 +345,10 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
                 <Group wrap="nowrap" justify="space-between" className={styles.fullWidth}>
                   <Group wrap="nowrap">
                     {Array.from({ length: rating }, (_, i) => (
-                      <IconStarFilled key={i} color="gold" />
+                      <IconStarFilled key={i} color="orange" />
                     ))}
                     {Array.from({ length: 5 - rating }, (_, i) => (
-                      <IconStar key={5 + i} color="gold" />
+                      <IconStar key={5 + i} color="orange" />
                     ))}
                   </Group>
                   <Text className={styles.description}>
@@ -369,7 +369,9 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           />
           <InputLabel mt={20}>Year published</InputLabel>
           <RangeSlider
-            classNames={{ trackContainer: styles.trackContainer }}
+            classNames={{ trackContainer: styles.trackContainer, markLabel: styles.markLabel }}
+            thumbFromLabel="Thumb for earliest publish date"
+            thumbToLabel="Thumb for latest publish date"
             min={earliestDate}
             max={latestDate}
             minRange={10}
@@ -404,7 +406,9 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
           <InputLabel mt={40}>Number of pages</InputLabel>
           <RangeSlider
             scale={(v: number) => Math.round(pageScale(v))}
-            classNames={{ trackContainer: styles.trackContainer }}
+            classNames={{ trackContainer: styles.trackContainer, markLabel: styles.markLabel }}
+            thumbFromLabel="Thumb for least number of pages"
+            thumbToLabel="Thumb for most number of pages"
             min={inversePageScale(leastPages)}
             max={inversePageScale(mostPages)}
             minRange={3}
