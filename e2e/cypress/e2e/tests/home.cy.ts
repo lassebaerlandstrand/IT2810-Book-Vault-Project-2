@@ -6,6 +6,10 @@ describe('Home Page', () => {
   it('should display correct information', () => {
     cy.get('header').should('be.visible');
     cy.get('h1').contains('Welcome to');
+
+    cy.get(':nth-child(1) > ._count_1d49w_35').should('not.contain', '. . .').contains(/\d+/); // Number of books
+    cy.get(':nth-child(2) > ._count_1d49w_35').should('not.contain', '. . .').contains(/\d+/); // Number of authors
+    cy.get(':nth-child(3) > ._count_1d49w_35').should('not.contain', '. . .').contains(/\d+/); // Number of ratings
   });
 
   it('random book function should redirect', () => {
@@ -17,6 +21,6 @@ describe('Home Page', () => {
 
   it('popular genres should redirect', () => {
     cy.contains('Drama').click();
-    // cy.url().should('include', '/book?genre=Drama'); // TODO
+    cy.url().should('include', '/books?genres=Drama');
   });
 });
