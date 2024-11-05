@@ -21,15 +21,15 @@ const SearchContainer = () => {
     <Flex justify="center" my={10}>
       <TextInput
         placeholder="Search for books"
-        leftSection={<IconSearch />}
+        leftSection={<IconSearch aria-label="Search icon" />}
         value={searchValue}
         onInput={(event) => {
           setSearchValue((event.target as HTMLInputElement).value);
         }}
         onKeyDown={getHotkeyHandler([['Enter', () => performSearch(searchValue)]])}
         rightSection={
-          <ActionIcon onClick={() => performSearch(searchValue)} variant="filled">
-            <IconArrowRight size="80%" />
+          <ActionIcon aria-label='Perform search' onClick={() => performSearch(searchValue)} variant="filled">
+            <IconArrowRight size="80%" aria-label='Arrow pointing right'/>
           </ActionIcon>
         }
       />

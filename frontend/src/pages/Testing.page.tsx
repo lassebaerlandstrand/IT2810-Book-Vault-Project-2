@@ -25,7 +25,7 @@ const Testing = () => {
               User
             </Text>
             <Text size="lg">Username: {useUser().info.name}</Text>
-            <Button color="cyan" onClick={genNewUser}>
+            <Button autoContrast color="cyan.4" onClick={genNewUser}>
               New user
             </Button>
           </Stack>
@@ -38,7 +38,7 @@ const Testing = () => {
             </Text>
             <Text size="lg">Visit a book with many reviews</Text>
             <Link to="/book/2767052-the-hunger-games">
-              <Button className={styles.testButton} color="lime">
+              <Button autoContrast className={styles.testButton} color="lime.5">
                 Go to bookpage
               </Button>
             </Link>

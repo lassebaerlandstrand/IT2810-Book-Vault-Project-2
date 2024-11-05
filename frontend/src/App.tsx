@@ -5,11 +5,11 @@ import { MantineProvider } from '@mantine/core';
 import { UserProvider } from './contexts/UserContext';
 import { client } from './graphql/apolloClient';
 import { Router } from './Router';
-import { theme } from './theme';
+import { resolver, theme } from './theme';
 
 export default function App() {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} cssVariablesResolver={resolver}>
       <ApolloProvider client={client}>
         <UserProvider>
           <Router />
