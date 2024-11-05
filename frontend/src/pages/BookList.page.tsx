@@ -27,7 +27,18 @@ export function BookList() {
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
 
-  const { sortBy, sortOrder, genres, authors, publishers } = getFilterParams(searchParams);
+  const {
+    sortBy,
+    sortOrder,
+    genres,
+    authors,
+    publishers,
+    beforeDate,
+    afterDate,
+    minPages,
+    maxPages,
+    minRating,
+  } = getFilterParams(searchParams);
   const { page, limit } = getPaginationParams(searchParams);
   const { searchValue } = getSearchParams(searchParams);
 
@@ -50,9 +61,14 @@ export function BookList() {
     search: searchValue,
     sortBy,
     sortOrder,
+    beforeDate,
+    afterDate,
     authors,
     genres,
     publishers,
+    minPages,
+    maxPages,
+    minRating,
   });
 
   const formattedTotalBooks = totalBooks != null ? formatNumberWithSpaces(totalBooks) : '';
@@ -60,6 +76,10 @@ export function BookList() {
   useEffect(() => {
     close();
   }, [isDesktop]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
 
   if (!isValidUrlParams(searchParams)) {
     return (
@@ -122,9 +142,6 @@ export function BookList() {
       <Flex gap="lg" my="lg">
         {isDesktop && (
           <Container flex={0} px={0} className={styles.filterContainer}>
-            <Text component="h2" mt="xl" mb="md">
-              Configure your search
-            </Text>
             <SearchConfiguration
               genres={allGenres}
               authors={allAuthors}

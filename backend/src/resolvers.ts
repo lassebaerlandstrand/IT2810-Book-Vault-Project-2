@@ -3,13 +3,13 @@ import db from './db/connection.js';
 import { Document } from 'mongodb';
 import { v4 as uuidv4 } from 'uuid';
 
-enum SortBy {
+export enum SortBy {
   Book = 'bookName',
   Author = 'authorName',
   Publisher = 'publisherName',
 }
 
-enum SortOrder {
+export enum SortOrder {
   Ascending = 'asc',
   Descending = 'desc',
 }
@@ -19,16 +19,28 @@ interface SortInput {
   sortOrder: SortOrder;
 }
 
-interface BooksQueryArgs {
+interface FilterInput {
   search?: string;
-  limit?: number;
-  offset?: number;
   sortInput?: SortInput;
   beforeDate?: Date;
   afterDate?: Date;
   authors?: string[];
   genres?: string[];
   publishers?: string[];
+  minPages?: number;
+  maxPages?: number;
+  minRating?: number;
+}
+
+interface FilterCountInput {
+  input?: FilterInput;
+}
+
+interface BooksQueryArgs {
+  input?: FilterInput;
+  sortInput?: SortInput;
+  offset: number;
+  limit: number;
 }
 
 interface BookQueryArgs {
@@ -65,6 +77,222 @@ interface UpdateBookReviewMutationArgs {
   rating: number;
 }
 
+interface UserQueryArgs {
+  UUID: string;
+}
+
+interface BookReviewsQueryArgs {
+  bookID: string;
+  limit: number;
+  offset: number;
+  avoidUserUUID: string;
+  focusUserUUID: string;
+}
+
+interface SingleBookReviewQueryArgs {
+  bookID: string;
+  userUUID: string;
+}
+
+interface BookReviewMutationArgs {
+  userUUID: string;
+  bookID: string;
+  description: string;
+  rating: number;
+}
+
+interface UpdateBookReviewMutationArgs {
+  reviewUUID: string;
+  description: string;
+  rating: number;
+}
+
+interface MongoBookFilters {
+  $or?: { [key: string]: { $regex: RegExp } }[];
+  publishDate?: { $lt?: Date; $gt?: Date };
+  authors?: { $in: string[] };
+  genres?: { $in: string[] };
+  publisher?: { $in: string[] };
+  pages?: { $gte?: number; $lte?: number };
+  rating?: { $gte?: number };
+}
+
+const countWithExclusions = async (
+  input: FilterInput,
+  excludeField: keyof FilterInput | null | 'publisher',
+) => {
+  const pipeline = buildPipelineWithoutSpecificFilters(input);
+
+  // Exclude specific filters by modifying the pipeline
+  if (excludeField !== 'genres' && input.genres && input.genres.length > 0) {
+    pipeline.push({ $match: { genres: { $in: input.genres } } });
+  }
+  if (excludeField !== 'authors' && input.authors && input.authors.length > 0) {
+    pipeline.push({ $match: { authors: { $in: input.authors } } });
+  }
+  if (excludeField !== 'publisher' && input.publishers && input.publishers.length > 0) {
+    pipeline.push({ $match: { publisher: { $in: input.publishers } } });
+  }
+  if (excludeField !== 'minRating' && input.minRating) {
+    pipeline.push({ $match: { rating: { $gte: input.minRating } } });
+  }
+
+  if (excludeField === null) {
+    pipeline.push({ $count: 'all' });
+    return await db.collection('books').aggregate(pipeline).toArray();
+  }
+
+  if (excludeField === 'minRating') {
+    pipeline.push(
+      {
+        $facet: {
+          '0': [{ $match: { rating: { $gte: 0 } } }, { $count: 'count' }],
+          '1': [{ $match: { rating: { $gte: 1 } } }, { $count: 'count' }],
+          '2': [{ $match: { rating: { $gte: 2 } } }, { $count: 'count' }],
+          '3': [{ $match: { rating: { $gte: 3 } } }, { $count: 'count' }],
+          '4': [{ $match: { rating: { $gte: 4 } } }, { $count: 'count' }],
+          '5': [{ $match: { rating: { $gte: 5 } } }, { $count: 'count' }],
+        },
+      },
+      {
+        $project: {
+          ratings: {
+            $concatArrays: [
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '0' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$0.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '1' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$1.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '2' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$2.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '3' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$3.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '4' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$4.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+              [
+                {
+                  $mergeObjects: [
+                    { rating: '5' },
+                    { count: { $ifNull: [{ $arrayElemAt: ['$5.count', 0] }, 0] } },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      },
+      {
+        $unwind: '$ratings',
+      },
+      {
+        $replaceRoot: { newRoot: '$ratings' },
+      },
+    );
+  } else {
+    pipeline.push(
+      { $unwind: `$${excludeField}` },
+      { $group: { _id: `$${excludeField}`, count: { $sum: 1 } } },
+      { $project: { name: '$_id', count: 1, _id: 0 } },
+      { $sort: { count: -1 } },
+    );
+  }
+
+  const counts = await db.collection('books').aggregate(pipeline).toArray();
+  return counts;
+};
+
+const buildPipelineWithoutSpecificFilters = ({
+  search,
+  sortInput,
+  beforeDate,
+  afterDate,
+  minPages,
+  maxPages,
+}: FilterInput) => {
+  const filters: MongoBookFilters = {};
+
+  if (beforeDate && afterDate) {
+    filters.publishDate = {
+      $lt: beforeDate,
+      $gt: afterDate,
+    };
+  } else if (beforeDate) {
+    filters.publishDate = { $lt: beforeDate };
+  } else if (afterDate) {
+    filters.publishDate = { $gt: afterDate };
+  }
+  if (minPages && maxPages) {
+    filters.pages = { $gte: minPages, $lte: maxPages };
+  } else if (minPages) {
+    filters.pages = { $gte: minPages };
+  } else if (maxPages) {
+    filters.pages = { $lte: maxPages };
+  }
+
+  const pipeline: Document[] = [{ $match: filters }];
+
+  if (sortInput) {
+    const sortOrder = sortInput.sortOrder === SortOrder.Ascending ? 1 : -1;
+    switch (sortInput.sortBy) {
+      case SortBy.Book:
+        pipeline.push({
+          $sort: { title: sortOrder, _id: 1 },
+        });
+        break;
+      case SortBy.Author:
+        pipeline.push({
+          $sort: { 'authors.0': sortOrder, _id: 1 },
+        });
+        break;
+      case SortBy.Publisher:
+        pipeline.push({
+          $sort: { publisher: sortOrder, _id: 1 },
+        });
+        break;
+    }
+  }
+
+  if (search) {
+    const searchRegexSubString = new RegExp(search, 'i');
+    const searchRegexWholeWords = new RegExp(`\\b${search}\\b`, 'i');
+    filters.$or = [
+      { title: { $regex: searchRegexSubString } },
+      { description: { $regex: searchRegexWholeWords } },
+    ];
+  }
+
+  return pipeline;
+};
+
 const resolvers = {
   Date: new GraphQLScalarType({
     name: 'Date',
@@ -73,7 +301,7 @@ const resolvers = {
     parseValue(value: string | number) {
       return new Date(value);
     },
-    serialize(value: number) {
+    serialize(value: string) {
       return new Date(value);
     },
     parseLiteral(ast) {
@@ -88,105 +316,49 @@ const resolvers = {
   }),
 
   Query: {
-    async books(
-      _,
-      {
-        search,
-        limit = 10,
-        offset = 0,
-        sortInput,
-        beforeDate,
-        afterDate,
-        authors,
-        genres,
-        publishers,
-      }: BooksQueryArgs,
-    ) {
-      const collection = db.collection('books');
+    async books(_, args: BooksQueryArgs) {
+      const pipeline = buildPipelineWithoutSpecificFilters(args.input ?? {});
 
-      interface MongoBookFilters {
-        $or?: { [key: string]: { $regex: RegExp } }[];
-        publishDate?: { $lt?: number; $gt?: number };
-        authors?: { $in: string[] };
-        genres?: { $in: string[] };
-        publisher?: { $in: string[] };
+      if (args.input.authors && args.input.authors.length > 0) {
+        pipeline.push({ $match: { authors: { $in: args.input.authors } } });
+      }
+      if (args.input.genres && args.input.genres.length > 0) {
+        pipeline.push({ $match: { genres: { $in: args.input.genres } } });
+      }
+      if (args.input.publishers && args.input.publishers.length > 0) {
+        pipeline.push({ $match: { publisher: { $in: args.input.publishers } } });
+      }
+      if (args.input.minRating) {
+        pipeline.push({ $match: { rating: { $gte: args.input.minRating } } });
       }
 
-      const filters: MongoBookFilters = {};
-      if (search) {
-        // Does a case-insensitive search on the title and description fields
-        const searchRegexSubString = new RegExp(search, 'i');
-        const searchRegexWholeWords = new RegExp(`\\b${search}\\b`, 'i');
-        filters.$or = [
-          { title: { $regex: searchRegexSubString } },
-          { description: { $regex: searchRegexWholeWords } },
-        ];
-      }
-      if (beforeDate && afterDate) {
-        filters.publishDate = {
-          $lt: beforeDate.valueOf(),
-          $gt: afterDate.valueOf(),
-        };
-      } else if (beforeDate) {
-        filters.publishDate = { $lt: beforeDate.valueOf() };
-      } else if (afterDate) {
-        filters.publishDate = { $gt: afterDate.valueOf() };
-      }
-      if (authors && authors.length > 0) {
-        filters.authors = { $in: authors };
-      }
-      if (genres && genres.length > 0) {
-        filters.genres = { $in: genres };
-      }
-      if (publishers && publishers.length > 0) {
-        filters.publisher = { $in: publishers };
-      }
+      const totalBooks = (await countWithExclusions(args.input ?? {}, null))[0]?.all || 0;
 
-      const pipeline: Document[] = [];
-      pipeline.push({ $match: filters });
+      pipeline.push({ $skip: args.offset * args.limit });
+      pipeline.push({ $limit: args.limit });
 
-      if (sortInput) {
-        const sortOrder = sortInput.sortOrder == SortOrder.Ascending ? 1 : -1;
-        switch (sortInput.sortBy) {
-          case SortBy.Book:
-            pipeline.push({
-              $sort: { title: sortOrder, _id: 1 }, // Secondary sort by _id to ensure consistent ordering
-            });
-            break;
-          case SortBy.Author:
-            pipeline.push({
-              $sort: { 'authors.0': sortOrder, _id: 1 },
-            });
-            break;
-          case SortBy.Publisher:
-            pipeline.push({
-              $sort: { publisher: sortOrder, _id: 1 },
-            });
-            break;
-        }
-      }
-
-      const totalBooks = await collection.countDocuments(filters);
-      const totalPages = Math.ceil(totalBooks / limit);
-      const currentPage = Math.floor(offset / limit) + 1;
-      const isLastPage = currentPage >= totalPages;
-      const skip = offset * limit;
-
-      pipeline.push({ $skip: skip });
-      pipeline.push({ $limit: limit });
-
-      const books = await collection.aggregate(pipeline).toArray();
+      const books = await db.collection('books').aggregate(pipeline).toArray();
 
       return {
         books,
-        pagination: {
-          totalPages,
-          currentPage,
-          isLastPage,
-        },
         summary: {
           totalBooks,
         },
+      };
+    },
+
+    async filterCount(_, args: FilterCountInput) {
+      const input = args.input ?? {};
+      const genresCount = await countWithExclusions(input, 'genres');
+      const authorsCount = await countWithExclusions(input, 'authors');
+      const publishersCount = await countWithExclusions(input, 'publisher');
+      const minRatingCount = await countWithExclusions(input, 'minRating');
+
+      return {
+        ratings: minRatingCount,
+        genres: genresCount,
+        authors: authorsCount,
+        publishers: publishersCount,
       };
     },
 
@@ -368,6 +540,24 @@ const resolvers = {
       }));
     },
 
+    async dateSpan() {
+      const minDate = await db.collection('books').find().sort({ publishDate: 1 }).limit(1).next();
+      const maxDate = await db.collection('books').find().sort({ publishDate: -1 }).limit(1).next();
+      return {
+        earliest: minDate?.publishDate,
+        latest: maxDate?.publishDate,
+      };
+    },
+
+    async pageSpan() {
+      const minPages = await db.collection('books').find().sort({ pages: 1 }).limit(1).next();
+      const maxPages = await db.collection('books').find().sort({ pages: -1 }).limit(1).next();
+      return {
+        least: minPages?.pages,
+        most: maxPages?.pages,
+      };
+    },
+
     async stats() {
       return {}; // Uses the resolver in Stats, this makes it so if a field is not requested, then it is not calculated
     },
@@ -427,22 +617,6 @@ const resolvers = {
     },
     numRatings: async (book: { ratingsByStars: { [x: number]: number } }) => {
       return Object.values(book.ratingsByStars).reduce((total, count) => total + count, 0);
-    },
-    rating: async (book: { ratingsByStars: { [x: number]: number } }) => {
-      const numRatings = Object.values(book.ratingsByStars).reduce(
-        (total, count) => total + count,
-        0,
-      );
-
-      if (numRatings === 0) {
-        return 0;
-      }
-
-      const weightedSum = Object.entries(book.ratingsByStars).reduce((sum, [key, count]) => {
-        return sum + parseInt(key, 10) * count;
-      }, 0);
-
-      return weightedSum / numRatings;
     },
   },
 
@@ -509,12 +683,6 @@ const resolvers = {
         0,
       ) as number;
 
-      // I dont think it is possible for numRatings to be 0 after incrementation, but
-      // its a nice failsafe
-      if (numRatings === 0) {
-        return 0;
-      }
-
       const weightedSum = Object.entries(updatedBook.ratingsByStars).reduce(
         (sum, [key, count]: [string, number]) => {
           return sum + parseInt(key, 10) * count;
@@ -522,7 +690,17 @@ const resolvers = {
         0,
       );
 
-      return { rating: weightedSum / numRatings };
+      const newRating = numRatings > 0 ? weightedSum / numRatings : 0;
+      await db.collection('books').findOneAndUpdate(
+        { id: bookID },
+        {
+          $set: {
+            rating: newRating,
+          },
+        },
+      );
+
+      return { rating: updatedBook.rating };
     },
 
     async updateReview(_, { input }: { input: UpdateBookReviewMutationArgs }) {
@@ -565,17 +743,24 @@ const resolvers = {
           0,
         ) as number;
 
-        if (numRatings === 0) {
-          return 0;
-        }
-
         const weightedSum = Object.entries(updatedBook.ratingsByStars).reduce(
           (sum, [key, count]: [string, number]) => {
             return sum + parseInt(key, 10) * count;
           },
           0,
         );
-        return { rating: weightedSum / numRatings };
+
+        const newRating = numRatings > 0 ? weightedSum / numRatings : 0;
+        await db.collection('books').findOneAndUpdate(
+          { id: oldReview.value.bookID },
+          {
+            $set: {
+              rating: newRating,
+            },
+          },
+        );
+
+        return { rating: newRating };
       }
       return;
     },

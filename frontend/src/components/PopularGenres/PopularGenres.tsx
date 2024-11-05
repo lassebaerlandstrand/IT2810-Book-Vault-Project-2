@@ -54,32 +54,32 @@ const popularCategories = [
   {
     name: 'Drama',
     icon: <IconMasksTheater stroke={iconThickness} aria-label="Drama" />,
-    link: '/books?',
+    link: '/books?genres=Drama',
   },
   {
     name: 'Historical',
     icon: <IconHourglassEmpty stroke={iconThickness} aria-label="Historical" />,
-    link: '/books?',
+    link: '/books?genres=Historical',
   },
   {
     name: 'Geography',
     icon: <IconGlobe stroke={iconThickness} aria-label="Geography" />,
-    link: '/books?',
+    link: '/books?genres=Geography',
   },
   {
     name: 'Fantasy/Fiction',
     icon: <IconCrystalBall stroke={iconThickness} aria-label="Fantasy/Fiction" />,
-    link: '/books?',
+    link: '/books?genres=Fantasy/Fiction',
   },
   {
-    name: 'Action/Adventure',
-    icon: <IconCompass stroke={iconThickness} aria-label="Action/Adventure" />,
-    link: '/books?',
+    name: 'Adventure',
+    icon: <IconCompass stroke={iconThickness} aria-label="Adventure" />,
+    link: '/books?genres=Adventure',
   },
   {
     name: 'Literature',
     icon: <IconPencil stroke={iconThickness} aria-label="Literature" />,
-    link: '/books?',
+    link: '/books?genres=Literature',
   },
 ];
 
