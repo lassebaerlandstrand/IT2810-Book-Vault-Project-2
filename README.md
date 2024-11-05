@@ -20,7 +20,7 @@ Book Vault is a web-catalogue for books. On it you can browse books of different
 
 _TODO_
 
-You'll have the opportunity to keep track of books you have read, and which you want to read. You will also be able to keep track of your friends literary journeys by following them
+You'll have the opportunity to keep track of books you have read, and which you want to read.
 
 ## Folder structure
 

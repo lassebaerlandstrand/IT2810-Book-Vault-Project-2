@@ -25,7 +25,7 @@ describe('PopularGenres component', () => {
       'Historical',
       'Geography',
       'Fantasy/Fiction',
-      'Action/Adventure',
+      'Adventure',
       'Literature',
     ];
 
@@ -41,14 +41,13 @@ describe('PopularGenres component', () => {
       </MemoryRouter>
     );
 
-    // TODO: Update links
     const categories = [
-      { name: 'Drama', link: '/books' },
-      { name: 'Historical', link: '/books' },
-      { name: 'Geography', link: '/books' },
-      { name: 'Fantasy/Fiction', link: '/books' },
-      { name: 'Action/Adventure', link: '/books' },
-      { name: 'Literature', link: '/books' },
+      { name: 'Drama', link: '/books?genres=Drama' },
+      { name: 'Historical', link: '/books?genres=Historical' },
+      { name: 'Geography', link: '/books?genres=Geography' },
+      { name: 'Fantasy/Fiction', link: '/books?genres=Fantasy/Fiction' },
+      { name: 'Adventure', link: '/books?genres=Adventure' },
+      { name: 'Literature', link: '/books?genres=Literature' },
     ];
 
     categories.forEach((category) => {

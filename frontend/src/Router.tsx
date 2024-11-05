@@ -27,7 +27,11 @@ const router = createBrowserRouter(
           path: '/books',
           element: (
             <>
-              <ScrollRestoration />
+              <ScrollRestoration
+                getKey={(location, _) => {
+                  return location.pathname;
+                }}
+              />
               <BookList />
             </>
           ),

@@ -26,6 +26,7 @@ def parse_date(date_str):
 
 # Convert to datetime, coercing errors (invalid dates will become NaT)
 df['publishDate'] = df['publishDate'].apply(parse_date)
+df['publishDate'] = df['publishDate'].apply(lambda x: x - pd.DateOffset(years=100) if x.year > 2024 else x)
 
 # Correct invalid values in isbn and pages
 df['isbn'] = df['isbn'].replace('9999999999999', np.nan)
@@ -44,6 +45,9 @@ df.rename(columns={'author': 'authors'}, inplace=True)
 
 # Replace commas inside parentheses with a placeholder (e.g., ';')
 df['authors'] = df['authors'].str.replace(r'\(.*?\)', '', regex=True)
+
+# Replace "more…" with empty string
+df['authors'] = df['authors'].str.replace(r', more…', '', regex=True)
 
 # Create new DataFrames for authors, genres, publishers
 authors = pd.DataFrame(df['authors'].str.split(
@@ -88,6 +92,9 @@ df['ratingsByStars'] = df['ratingsByStars'].apply(literal_eval).apply(
     lambda x: {5-stars: int(reviews) for stars, reviews in enumerate(x)})
 df['setting'] = df['setting'].apply(literal_eval)
 
+# Calculate avgRating
+df['rating'] = df['ratingsByStars'].apply(lambda x: sum(stars * reviews for stars, reviews in x.items()) / sum(x.values()) if sum(x.values()) > 0 else 0)
+
 # Extract digits from pages and convert to int
 df['pages'] = pd.to_numeric(
     df['pages'].str.extract('(\d+)')[0], errors='coerce')
@@ -98,6 +105,9 @@ df['id'] = df.index
 
 # Remove weird genres
 df['genres'] = df['genres'].apply(lambda x: [genre for genre in x if isinstance(x, list) and genre not in ['Audiobook', 'Mira', "Hugo Awards", "Esp", "Apple", "Human Resources", "London Underground"]])
+
+# Remove books with no genres
+df = df[df['genres'].apply(lambda x: len(x) > 0)]
 
 firstLayerTranslations = {
  "Young Adult": "Fiction" ,
@@ -113,7 +123,7 @@ firstLayerTranslations = {
  "Romance": "Romance" ,
  "Paranormal Romance": "Romance" ,
  "Historical Romance": "Romance" ,
- "Adventure": "Action" ,
+ "Adventure": "Adventure" ,
  "Action": "Action" ,
  "Magic": "Fantasy" ,
  "Vampires": "Fantasy" ,
@@ -1065,9 +1075,9 @@ firstLayerTranslations = {
 }
 
 secondLayerTranslations = {
-'Action': 'Action/Adventure', 
-'Adventure': 'Action/Adventure', 
-'Alternative Medicine': 'Medicine', 
+'Action': 'Action', 
+'Adventure': 'Adventure', 
+'Alternative Medicine': 'Other', 
 'Art': 'Humanities', 
 "Children's Literature": 'Literature',
 'Comedy': 'Humor',
@@ -1076,7 +1086,7 @@ secondLayerTranslations = {
 'Education': 'Education',
 'Fantasy': 'Fantasy/Fiction',
 'Fiction': 'Fantasy/Fiction',
-'Games': 'Games',
+'Games': 'Other',
 'Historical': 'Historical',
 'Historical Fiction': 'Historical',
 'Historical Romance': 'Historical',
@@ -1096,7 +1106,7 @@ secondLayerTranslations = {
 'Religious Fiction': 'Fantasy/Fiction',
 'Romance': 'Drama',
 'Science Fiction': 'Science Fiction',
-'Sports': 'Sports',
+'Sports': 'Other',
 'Thriller': 'Drama'
 }
 
@@ -1104,10 +1114,8 @@ def map_genres(specific_genres):
     broader_genres = {secondLayerTranslations[firstLayerTranslations[genre]] for genre in specific_genres}
     return list(broader_genres)
 
-df['broadGenres'] = df['genres'].apply(map_genres)
-
-print("Example of a book:\n--------------------")
-print(df.iloc[0, :])
+# TODO: This can be changed to broadGenres and we could modify the resolvers somehow to account for broudGenres and genres
+df['genres'] = df['genres'].apply(map_genres)
 
 # Save the DataFrame as a JSON list
 df.to_json('preprocessing/books.json', orient='records')

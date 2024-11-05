@@ -59,6 +59,7 @@ export const theme = createTheme({
     'dark-blue': darkBlue,
     beige,
   },
+  cursorType: 'pointer',
   primaryShade: 8,
   components: {
     Container: Container.extend({
