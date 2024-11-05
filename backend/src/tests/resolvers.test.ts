@@ -3,7 +3,6 @@ import resolvers, { SortBy, SortOrder } from '../resolvers.js';
 import { Kind, ValueNode } from 'graphql';
 import db from '../db/connection.js';
 import { ObjectId } from 'mongodb';
-import { count } from 'console';
 
 vi.mock('./db/connection.js');
 
