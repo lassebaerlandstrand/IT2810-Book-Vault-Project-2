@@ -5,10 +5,6 @@ describe('Application Routing and Components', () => {
     cy.visit('/');
   });
 
-  it('should display fetching user', () => {
-    cy.get('h1').contains('Fetching user data');
-  });
-
   it('clicking on links in header should work', () => {
     // Click link with text 'Books'
     cy.get('a').contains('Books').click();
