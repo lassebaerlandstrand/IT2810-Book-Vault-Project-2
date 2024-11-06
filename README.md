@@ -173,7 +173,7 @@ The end-to-end tests will test the application as a whole, with the frontend and
 - `VITE_GRAPHQL_ENDPOINT="http://localhost:3001/graphql"` for a local backend.
 - `VITE_GRAPHQL_ENDPOINT="http://it2810-05.idi.ntnu.no/graphql"` for the backend in the virtual machine.
 
-It is best practice to run the E2E on either a test-database or a local database. Since we have not setup a test-database, it is preferred to run the tests on a local database. However, we know that can be a bit unpractiable to setup a local database if you don't already have MongoDB installed. Therefore we have made it possible to run the tests on the backend in the virtual machine, even though it is not best practice, but is more practical in this course. In a real-world scenario, we would have not done this.
+It is best practice to run the E2E on a local test database (or in this course we could use a test database on the VM). However, we know it can take some time to setup a local database if you don't already have MongoDB installed. Therefore we have made it possible to run the tests on the backend in the virtual machine. We have created a predefined test user which you will take control of, when running the E2E tests if you use the virutal machine. In a real-world scenario, we would have not done this and instead used a test database.
 
 To run the tests you can run the following commands in **separate terminals**:
 
