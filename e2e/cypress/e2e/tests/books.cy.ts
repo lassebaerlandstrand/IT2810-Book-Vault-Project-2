@@ -61,7 +61,7 @@ describe('Books Page', () => {
     // Click on the radio button
     cy.get('.mantine-Radio-body').eq(5).click();
 
-    cy.get('.mantine-CloseButton-root').click();
+    cy.get('.mantine-CloseButton-root.mantine-Drawer-close').click();
 
     // Check if the number of results is correct
     cy.get('[data-testid="number-of-results"]')
