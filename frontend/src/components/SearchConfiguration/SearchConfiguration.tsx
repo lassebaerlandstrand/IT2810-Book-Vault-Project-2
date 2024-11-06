@@ -57,7 +57,7 @@ type renderMultiSelectOptionProps = {
 
 const renderMultiSelectOption = ({ option, count }: renderMultiSelectOptionProps) => {
   return (
-    <Group wrap='nowrap' justify="space-between" className={styles.fullWidth}>
+    <Group wrap="nowrap" justify="space-between" className={styles.fullWidth}>
       <Text size="sm">{option.value}</Text>
       <Text size="xs" ta="right" c="dimmed" miw={30}>
         {getFormattedFilterCount(count)}
@@ -182,11 +182,13 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
   };
 
   const updateParameters = () => {
-    updateQueryParams(setSearchParams, 'page', DEFAULT_PAGE.toString());
-    Object.entries(updates).forEach(([key, value]) => {
-      updateQueryParams(setSearchParams, key, value);
-    });
-    setUpdates({});
+    if (Object.keys(updates).length !== 0) {
+      updateQueryParams(setSearchParams, 'page', DEFAULT_PAGE.toString());
+      Object.entries(updates).forEach(([key, value]) => {
+        updateQueryParams(setSearchParams, key, value);
+      });
+      setUpdates({});
+    }
   };
 
   const handleGenreChange = (genre: string, isChecked: boolean) => {

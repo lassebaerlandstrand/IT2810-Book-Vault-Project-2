@@ -19,6 +19,7 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
   </style>
   <div
     class="m_410352e9 mantine-Grid-root __m__-re1"
+    data-testid="profileReview-stack"
     style="margin-block: var(--mantine-spacing-xs);"
   >
     <div
@@ -33,6 +34,7 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
         class="m_96bdd299 mantine-Grid-col __m__-re3"
       >
         <a
+          aria-label="Go to the user who wrote the review"
           class="_link_8d4f85"
           href="/user/UUID1"
         >
@@ -438,6 +440,7 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
         class="m_96bdd299 mantine-Grid-col __m__-rfl"
       >
         <a
+          aria-label="Go to the user who wrote the review"
           class="_link_8d4f85"
           href="/user/UUID2"
         >
@@ -837,6 +840,7 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
         class="m_96bdd299 mantine-Grid-col __m__-rh7"
       >
         <a
+          aria-label="Go to the user who wrote the review"
           class="_link_8d4f85"
           href="/user/UUID3"
         >

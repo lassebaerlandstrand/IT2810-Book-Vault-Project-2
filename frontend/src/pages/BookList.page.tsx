@@ -135,7 +135,9 @@ export function BookList() {
       </Group>
 
       <Flex justify="space-between" align="flex-end" gap="md">
-        <Text>{booksLoading ? 'Loading...' : `${formattedTotalBooks} results`}</Text>
+        <Text data-testid="number-of-results">
+          {booksLoading ? 'Loading...' : `${formattedTotalBooks} results`}
+        </Text>
         <EntriesController />
       </Flex>
 

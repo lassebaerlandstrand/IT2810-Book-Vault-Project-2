@@ -14,6 +14,6 @@ try {
   console.log(`\n\nYou must set the ATLAS_URI environment variable in the .env file`);
 }
 
-let db = connection.db('bookvault');
+const db = connection.db('bookvault');
 
 export default db;
