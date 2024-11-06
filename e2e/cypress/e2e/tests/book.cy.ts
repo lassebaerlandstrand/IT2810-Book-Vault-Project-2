@@ -14,16 +14,23 @@ describe('Single Book Page', () => {
 
   it('reviews should work', () => {
     cy.get('.mantine-Text-root').contains('Reviews');
-    cy.get('button[aria-label="Give Review"]').click();
-    cy.get('textarea').type(
-      'This is a test review, performed by a e2e test. This review will be cancelled and not posted.',
-    );
-    cy.get('button[aria-label="Cancel Review"]').click(); // Cancel review, as we don't want to spam the database in case it is not run locally
+    cy.get('button[aria-label="Give Review"], button[aria-label="Edit Review"]').click();
+    cy.get('.mantine-Rating-input[aria-label="5"]').parent().click();
+    cy.get('textarea')
+      .clear()
+      .type(
+        "Forget dragons, I'm here for the hobbits, second breakfast, and questionable decisions.",
+      );
+    cy.get('button[aria-label="Submit Review"], button[aria-label="Update Review"]').click();
   });
 
   it('should be able to load more reviews', () => {
-    cy.get('[data-testid="review-stack"]').find('> * > .mantine-Grid-col').should('have.length', 3);
+    cy.get('[data-testid="profileReview-stack"]')
+      .find('> * > .mantine-Grid-col')
+      .should('have.length', 3);
     cy.get('button').contains('Load more').click();
-    cy.get('[data-testid="review-stack"]').find('> * > .mantine-Grid-col').should('have.length', 6);
+    cy.get('[data-testid="profileReview-stack"]')
+      .find('> * > .mantine-Grid-col')
+      .should('have.length', 6);
   });
 });

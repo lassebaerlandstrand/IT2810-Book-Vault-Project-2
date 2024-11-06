@@ -87,9 +87,13 @@ describe('Larger E2E tests', () => {
     cy.get('a[href*="/book/"]').contains('The Hunger Games').first().click();
 
     // Check the reviews
-    cy.get('[data-testid="review-stack"]').find('> * > .mantine-Grid-col').should('have.length', 3);
+    cy.get('[data-testid="profileReview-stack"]')
+      .find('> * > .mantine-Grid-col')
+      .should('have.length', 3);
     cy.get('button').contains('Load more').click();
-    cy.get('[data-testid="review-stack"]').find('> * > .mantine-Grid-col').should('have.length', 6);
+    cy.get('[data-testid="profileReview-stack"]')
+      .find('> * > .mantine-Grid-col')
+      .should('have.length', 6);
   });
 
   // This test assume that the test user has not written more than 3 reviews
