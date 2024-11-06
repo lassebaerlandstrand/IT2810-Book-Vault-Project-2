@@ -1,13 +1,13 @@
 describe('Single Book Page', () => {
   beforeEach(() => {
-    cy.visit('/book/2767052-the-hunger-games');
+    cy.visit('/book/3263607-the-fellowship-of-the-ring');
   });
 
   it('should display correct information', () => {
     cy.get('header').should('be.visible');
-    cy.get('h1').contains('The Hunger Games');
-    cy.get('.mantine-Text-root').contains('Suzanne Collins');
-    cy.get('.mantine-Text-root').contains('9780439023481');
+    cy.get('h1').contains('The Fellowship of the Ring').should('be.visible');
+    cy.get('.mantine-Text-root').contains('J.R.R. Tolkien').should('be.visible');
+    cy.get('.mantine-Text-root').contains('9780345015339').should('be.visible');
     cy.get('.mantine-Rating-root').should('be.visible');
     cy.get('.mantine-Spoiler-control').click();
   });

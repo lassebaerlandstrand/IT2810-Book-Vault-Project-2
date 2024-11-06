@@ -63,6 +63,8 @@ for file in ['authors.json', 'genres.json', 'publishers.json', 'books.json', 'no
                     if users.find_one({'UUID': user['UUID']}) is None:
                         users.insert_one(user)
             case 'reviews.json':
+                for review in data:
+                    review['at'] = datetime.strptime(review['at'], "%Y-%m-%dT%H:%M:%S.%fZ")
                 reviews.insert_many(data)
 
 print("Creating indexes...")
