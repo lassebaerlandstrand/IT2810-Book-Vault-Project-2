@@ -1,4 +1,5 @@
 import { Property } from 'csstype';
+import { abbreviateNumber } from 'js-abbreviation-number';
 import { Flex, MantineSize, Rating, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
 import { formatNumberWithSpaces } from '@/utils/formatting';
@@ -18,7 +19,7 @@ export const Ratings = ({ book, verbose = true, size = 'md', justify = 'left' }:
         {book.rating.toFixed(1)}
       </Text>
       <Text c="dimmed" size={size}>
-        ({formatNumberWithSpaces(book.numRatings)}
+        ({verbose ? formatNumberWithSpaces(book.numRatings) : abbreviateNumber(book.numRatings)}
         {verbose ? (book.numRatings === 1 ? ' rating' : ' ratings') : ''})
       </Text>
     </Flex>
