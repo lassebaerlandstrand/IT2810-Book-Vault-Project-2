@@ -182,11 +182,13 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
   };
 
   const updateParameters = () => {
-    updateQueryParams(setSearchParams, 'page', DEFAULT_PAGE.toString());
-    Object.entries(updates).forEach(([key, value]) => {
-      updateQueryParams(setSearchParams, key, value);
-    });
-    setUpdates({});
+    if (Object.keys(updates).length != 0) {
+      updateQueryParams(setSearchParams, 'page', DEFAULT_PAGE.toString());
+      Object.entries(updates).forEach(([key, value]) => {
+        updateQueryParams(setSearchParams, key, value);
+      });
+      setUpdates({});
+    }
   };
 
   const handleGenreChange = (genre: string, isChecked: boolean) => {
