@@ -7,6 +7,7 @@ describe('Larger E2E tests', () => {
 
   it('a user should be able to navigate the whole website just based on the header', () => {
     // Change color theme
+    cy.wait(200); // Wait for Mantine
     cy.get('[aria-label="Change color theme"]').click();
 
     // Click link with text 'Books'

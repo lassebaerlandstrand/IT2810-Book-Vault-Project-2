@@ -160,5 +160,14 @@
     },
     "wantToRead": [],
     "haveRead": []
+  },
+  {
+    "UUID": "2ad611c8-6d40-4f55-b131-bc2ab7938cb5",
+    "name": "Fishy Sloth",
+    "at": {
+      "$date": "2024-10-24T12:00:48.513Z"
+    },
+    "wantToRead": [],
+    "haveRead": []
   }
 ]
