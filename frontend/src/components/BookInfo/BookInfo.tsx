@@ -31,7 +31,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
             sizes="xs"
             w="fit-content"
             maw="100%"
-            h="100%"
+            mah="100%"
             m="auto"
           />
         </Grid.Col>

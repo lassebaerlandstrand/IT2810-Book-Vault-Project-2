@@ -20,7 +20,7 @@ const BookCard = ({ book }: BookCardProps) => {
             fit="contain"
             w="fit-content"
             maw="100%"
-            h="100%"
+            mah="100%"
             m="auto"
             key={book.id}
           />
