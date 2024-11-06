@@ -27,18 +27,22 @@
 import { getTestUserId } from '../utils/getTestUserId';
 
 // Overwrite the default `visit` command to set the localStorage to the test user
-Cypress.Commands.overwrite('visit', (originalFn, url, options = {}) => {
-  const defaultOptions = {
-    onBeforeLoad: (window) => {
-      window.localStorage.setItem('userID', getTestUserId());
+Cypress.Commands.overwrite(
+  'visit',
+  (originalFn: typeof cy.visit, url: string, options: Partial<Cypress.VisitOptions> = {}) => {
+    const defaultOptions: Partial<Cypress.VisitOptions> = {
+      onBeforeLoad: (window) => {
+        window.localStorage.setItem('userID', getTestUserId());
 
-      if (options.onBeforeLoad) {
-        options.onBeforeLoad(window);
-      }
-    },
-  };
+        if (options.onBeforeLoad) {
+          options.onBeforeLoad(window);
+        }
+      },
+    };
 
-  const mergedOptions = { ...options, ...defaultOptions };
+    const mergedOptions = { ...options, ...defaultOptions };
 
-  return originalFn(url, mergedOptions);
-});
+    // Call original with proper types
+    return originalFn(url, mergedOptions as Cypress.VisitOptions);
+  },
+);
