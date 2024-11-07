@@ -1,8 +1,7 @@
-import { Container, Flex, Grid, Group, Image, Spoiler, Text } from '@mantine/core';
+import { Flex, Grid, Group, Image, Spoiler, Stack, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
 import InfoGrid from '../InfoGrid/InfoGrid';
 import { Ratings } from '../Ratings/Ratings';
-import styles from './BookInfo.module.css';
 
 type BookInfoProps = {
   book: Book;
@@ -11,17 +10,8 @@ type BookInfoProps = {
 const BookInfo = ({ book }: BookInfoProps) => {
   return (
     <Group justify="center" gap="lg">
-      <Container p={0} className={styles.titleContainer}>
-        <Text size="lg" fw={700} component="h1">
-          {book.title}
-        </Text>
-        <Text size="md" c="dimmed">
-          {book.authors.length > 0 && book.authors[0].name}{' '}
-          {book.authors.length > 1 ? 'et al.' : ''}
-        </Text>
-      </Container>
       <Grid justify="left" align="top">
-        <Grid.Col span={{ xs: 12, sm: 4, md: 4, lg: 4, xl: 4 }} h={400}>
+        <Grid.Col span={{ xs: 12, sm: 4, md: 4, lg: 4, xl: 4 }} mah={400}>
           <Image
             src={book.coverImg}
             alt={`Cover image for ${book.title}`}
@@ -37,8 +27,15 @@ const BookInfo = ({ book }: BookInfoProps) => {
         </Grid.Col>
         <Grid.Col span="auto">
           <Flex gap="sm" justify="center" align="center" direction="row" wrap="wrap">
-            <Container p="xs" size="sm">
-              <Text>
+            <Stack align="center" gap={4}>
+              <Text size="lg" fw={700} component="h1">
+                {book.title}
+              </Text>
+              <Text size="md" c="dimmed">
+                {book.authors.length > 0 && book.authors[0].name}{' '}
+                {book.authors.length > 1 ? 'et al.' : ''}
+              </Text>
+              <Text ta="center">
                 {book.genres
                   .map((genre) => genre.name)
                   .slice(0, 3)
@@ -46,8 +43,8 @@ const BookInfo = ({ book }: BookInfoProps) => {
                 {book.genres.length > 3 ? '...' : null}
               </Text>
 
-              <Ratings book={book} justify="center" />
-            </Container>
+              <Ratings book={book} justify="center" mt={0} />
+            </Stack>
 
             <Spoiler maxHeight={250} hideLabel="Show less" showLabel="Show more">
               <Text>{book.description}</Text>
