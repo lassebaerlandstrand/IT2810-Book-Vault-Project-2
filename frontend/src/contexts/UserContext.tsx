@@ -25,8 +25,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       return oldUser;
     }
     const newUser = makeUser();
-    if (newUser.user) {
+    if (newUser.user && newUser.user.secret) {
       localStorage.setItem('userID', newUser.user.UUID);
+      localStorage.setItem('secret', newUser.user.secret);
     }
     return newUser;
   };

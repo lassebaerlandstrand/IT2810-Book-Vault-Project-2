@@ -12,6 +12,7 @@ export const CREATE_USER = gql(`
       haveRead {
         id
       }
+      secret
     }
   }
 `);

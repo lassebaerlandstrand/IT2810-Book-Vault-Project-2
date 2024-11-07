@@ -2,6 +2,7 @@ import { GraphQLScalarType, Kind } from 'graphql';
 import db from './db/connection.js';
 import { Document } from 'mongodb';
 import { v4 as uuidv4 } from 'uuid';
+import crypto from 'crypto';
 
 export enum SortBy {
   Book = 'bookName',
@@ -371,7 +372,9 @@ const resolvers = {
     },
 
     async user(_, { UUID }: UserQueryArgs) {
-      return await db.collection('users').findOne({ UUID: UUID });
+      return await db
+        .collection('users')
+        .findOne({ UUID: UUID }, { projection: { userSecret: 0 } });
     },
 
     async bookReviews(
@@ -403,7 +406,9 @@ const resolvers = {
         const finishedReviews = [];
         for (let i = 0; i < reviews.length; i++) {
           const review = reviews[i];
-          const user = await db.collection('users').findOne({ UUID: review.userUUID });
+          const user = await db
+            .collection('users')
+            .findOne({ UUID: review.userUUID }, { projection: { userSecret: 0 } });
 
           finishedReviews.push({
             UUID: review.UUID,
@@ -446,7 +451,9 @@ const resolvers = {
           ])
           .toArray();
 
-        const user = await db.collection('users').findOne({ UUID: focusUserUUID });
+        const user = await db
+          .collection('users')
+          .findOne({ UUID: focusUserUUID }, { projection: { userSecret: 0 } });
 
         const finishedReviews = [];
         for (let i = 0; i < reviews.length; i++) {
@@ -491,7 +498,9 @@ const resolvers = {
       const finishedReviews = [];
       for (let i = 0; i < reviews.length; i++) {
         const review = reviews[i];
-        const user = await db.collection('users').findOne({ UUID: review.userUUID });
+        const user = await db
+          .collection('users')
+          .findOne({ UUID: review.userUUID }, { projection: { userSecret: 0 } });
         const book = await db.collection('books').findOne({ id: review.bookID });
 
         finishedReviews.push({
@@ -624,6 +633,9 @@ const resolvers = {
     async createUser() {
       const collection = db.collection('users');
 
+      // The user needs a secret so that we can authenticate that its them since we dont have passwords
+      const secret = crypto.randomBytes(32).toString('hex');
+
       const randomAdjective = await db
         .collection('adjectives')
         .aggregate([{ $sample: { size: 1 } }])
@@ -642,6 +654,7 @@ const resolvers = {
         at: new Date(),
         wantToRead: [],
         haveRead: [],
+        secret: secret,
       };
 
       await collection.insertOne(newUser);

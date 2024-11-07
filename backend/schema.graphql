@@ -88,6 +88,7 @@ type User {
   at: Date
   wantToRead: [Book]
   haveRead: [Book]
+  secret: String
 }
 
 type Author {
@@ -216,7 +217,7 @@ input UpdateReviewInput {
 }
 
 type Mutation {
-  createUser: User!
+  createUser: User
 
   createReview(input: CreateReviewInput!): Book!
 
