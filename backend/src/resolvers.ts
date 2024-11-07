@@ -70,12 +70,14 @@ interface BookReviewMutationArgs {
   bookID: string;
   description: string;
   rating: number;
+  secret: string;
 }
 
 interface UpdateBookReviewMutationArgs {
   reviewUUID: string;
   description: string;
   rating: number;
+  secret: string;
 }
 
 interface UserQueryArgs {
@@ -93,19 +95,6 @@ interface BookReviewsQueryArgs {
 interface SingleBookReviewQueryArgs {
   bookID: string;
   userUUID: string;
-}
-
-interface BookReviewMutationArgs {
-  userUUID: string;
-  bookID: string;
-  description: string;
-  rating: number;
-}
-
-interface UpdateBookReviewMutationArgs {
-  reviewUUID: string;
-  description: string;
-  rating: number;
 }
 
 interface MongoBookFilters {
@@ -372,9 +361,7 @@ const resolvers = {
     },
 
     async user(_, { UUID }: UserQueryArgs) {
-      return await db
-        .collection('users')
-        .findOne({ UUID: UUID }, { projection: { userSecret: 0 } });
+      return await db.collection('users').findOne({ UUID: UUID }, { projection: { secret: 0 } });
     },
 
     async bookReviews(
@@ -408,7 +395,7 @@ const resolvers = {
           const review = reviews[i];
           const user = await db
             .collection('users')
-            .findOne({ UUID: review.userUUID }, { projection: { userSecret: 0 } });
+            .findOne({ UUID: review.userUUID }, { projection: { secret: 0 } });
 
           finishedReviews.push({
             UUID: review.UUID,
@@ -453,7 +440,7 @@ const resolvers = {
 
         const user = await db
           .collection('users')
-          .findOne({ UUID: focusUserUUID }, { projection: { userSecret: 0 } });
+          .findOne({ UUID: focusUserUUID }, { projection: { secret: 0 } });
 
         const finishedReviews = [];
         for (let i = 0; i < reviews.length; i++) {
@@ -500,7 +487,7 @@ const resolvers = {
         const review = reviews[i];
         const user = await db
           .collection('users')
-          .findOne({ UUID: review.userUUID }, { projection: { userSecret: 0 } });
+          .findOne({ UUID: review.userUUID }, { projection: { secret: 0 } });
         const book = await db.collection('books').findOne({ id: review.bookID });
 
         finishedReviews.push({

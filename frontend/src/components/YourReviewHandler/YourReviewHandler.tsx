@@ -17,6 +17,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
   const [text, setText] = useState('');
 
   const UUID: string = useUser().info.UUID;
+  const secret: string = useUser().secret;
 
   // Fetch your review of the book (if it exists)
   const { review: yourReview, refetch: refetchYourReview } = useYourBookReview({
@@ -52,6 +53,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       submitUpdate({
         reviewUUID: yourReview.UUID,
         description: text,
+        secret: secret,
         rating,
       });
     }
@@ -64,6 +66,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       userUUID: UUID,
       bookID: book.id,
       description: text,
+      secret: secret,
       rating,
     });
   };

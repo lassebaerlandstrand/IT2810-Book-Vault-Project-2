@@ -83,6 +83,7 @@ export type CreateReviewInput = {
   bookID: Scalars['String']['input'];
   description: Scalars['String']['input'];
   rating: Scalars['Float']['input'];
+  secret: Scalars['String']['input'];
   userUUID: Scalars['String']['input'];
 };
 
@@ -296,6 +297,7 @@ export type UpdateReviewInput = {
   description: Scalars['String']['input'];
   rating: Scalars['Float']['input'];
   reviewUUID: Scalars['String']['input'];
+  secret: Scalars['String']['input'];
 };
 
 export type User = {

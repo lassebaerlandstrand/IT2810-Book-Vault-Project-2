@@ -208,12 +208,14 @@ input CreateReviewInput {
   bookID: String!
   description: String!
   rating: Float!
+  secret: String!
 }
 
 input UpdateReviewInput {
   reviewUUID: String!
   description: String!
   rating: Float!
+  secret: String!
 }
 
 type Mutation {
