@@ -34,6 +34,7 @@ export const GET_BOOK = gql(`
       coverImg
       numRatings
       rating
+      ratingsByStars
       characters
       bookFormat
       pages

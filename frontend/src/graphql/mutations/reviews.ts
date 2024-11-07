@@ -6,6 +6,7 @@ export const CREATE_REVIEW = gql(`
       id
       rating
       numRatings
+      ratingsByStars
     }
   }
 `);
@@ -16,6 +17,7 @@ export const UPDATE_REVIEW = gql(`
       id
       rating
       numRatings
+      ratingsByStars
     }
   }
 `);
