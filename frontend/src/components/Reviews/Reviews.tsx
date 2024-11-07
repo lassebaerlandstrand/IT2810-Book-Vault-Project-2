@@ -15,7 +15,6 @@ type ReviewProps = {
 const Reviews = ({ book }: ReviewProps) => {
   // For scrolling to top when reaching bottom
   const topOfReviews = useRef<HTMLDivElement>(null);
-
   return (
     <Group justify="left" gap="lg" ref={topOfReviews}>
       <Stack gap="sm" w="100%">
@@ -38,6 +37,7 @@ const Reviews = ({ book }: ReviewProps) => {
           xAxisLabel="Ratings"
           barProps={{ radius: 10 }}
           series={[{ name: 'Ratings', color: 'orange.5' }]}
+          gridAxis="y"
         />
         <YourReviewHandler book={book} />
         <BookReviews bookId={book.id} top={topOfReviews} />
