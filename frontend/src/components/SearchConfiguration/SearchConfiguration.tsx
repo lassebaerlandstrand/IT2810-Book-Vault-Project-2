@@ -355,7 +355,9 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
                     ))}
                   </Group>
                   <Text className={styles.description}>
-                    {abbreviateNumber(filterCount?.ratings.find((r) => r.rating === rating)?.count ?? 0)}
+                    {abbreviateNumber(
+                      filterCount?.ratings.find((r) => r.rating === rating)?.count ?? 0
+                    )}
                   </Text>
                 </Group>
               }
@@ -452,9 +454,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
               label={genre.name}
               checked={selectedGenres.includes(genre.name)}
               description={
-                genresData?.[genre.name] != null
-                  ? abbreviateNumber(genresData[genre.name])
-                  : '0'
+                genresData?.[genre.name] != null ? abbreviateNumber(genresData[genre.name]) : '0'
               }
               onChange={(event) => handleGenreChange(genre.name, event.target.checked)}
               disabled={(genresData?.[genre.name] ?? 0) === 0}
