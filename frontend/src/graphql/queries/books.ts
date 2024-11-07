@@ -10,6 +10,7 @@ export const GET_BOOKS = gql(`
         title
         coverImg
         rating
+        numRatings
         authors {
           name
         }
@@ -32,6 +33,7 @@ export const GET_BOOK = gql(`
       isbn
       coverImg
       numRatings
+      rating
       characters
       bookFormat
       pages

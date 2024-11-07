@@ -45,7 +45,7 @@ const customRender = () => {
     <MockedProvider addTypename={false}>
       <MantineProvider theme={theme}>
         <MemoryRouter>
-          <YourReviewHandler book={dummyBook} updateAvgRating={vi.fn()} />
+          <YourReviewHandler book={dummyBook} />
         </MemoryRouter>
       </MantineProvider>
     </MockedProvider>

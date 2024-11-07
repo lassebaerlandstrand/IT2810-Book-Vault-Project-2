@@ -45,10 +45,3 @@ export const getFilterParams = (searchParams: URLSearchParams) => {
     minRating,
   };
 };
-
-export const getFormattedFilterCount = (count: number | undefined) => {
-  if (count === undefined) {
-    return '0';
-  }
-  return count >= 1000 ? `${(count / 1000).toFixed(1).replace(/\.0$/, '')}k` : `${count}`;
-};

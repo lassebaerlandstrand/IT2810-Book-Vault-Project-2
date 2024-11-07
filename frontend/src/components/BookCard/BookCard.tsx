@@ -1,9 +1,10 @@
 import { Card, Image, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
+import { Ratings } from '../Ratings/Ratings';
 import styles from './BookCard.module.css';
 
 type BookCardProps = {
-  book: Pick<Book, 'id' | 'title' | 'coverImg' | 'rating' | 'authors'>;
+  book: Pick<Book, 'id' | 'title' | 'coverImg' | 'rating' | 'authors' | 'numRatings'>;
 };
 
 const BookCard = ({ book }: BookCardProps) => {
@@ -24,7 +25,7 @@ const BookCard = ({ book }: BookCardProps) => {
             key={book.id}
           />
         </Card.Section>
-        <Card.Section mt="xs" h={50} className={styles.textSection}>
+        <Card.Section mt="xs" h={50}>
           <Text
             fw={600}
             component="h4"
@@ -36,13 +37,16 @@ const BookCard = ({ book }: BookCardProps) => {
           </Text>
           <Text
             size="xs"
-            lineClamp={2}
+            lineClamp={1}
             title={book.authors.map((author) => author.name).join(', ')}
             className={styles.bookAuthor}
           >
             {book.authors.length > 0 && book.authors[0].name}{' '}
             {book.authors.length > 1 ? 'et al.' : ''}
           </Text>
+        </Card.Section>
+        <Card.Section mt="xs" className={styles.ratingSection}>
+          <Ratings size="xs" book={book} verbose={false} />
         </Card.Section>
       </Card>
     </>

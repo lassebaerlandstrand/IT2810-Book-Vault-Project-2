@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { ApolloQueryResult, OperationVariables } from '@apollo/client';
 import { Button, Divider, Flex, Grid, Rating, Text, Textarea } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { Book } from '@/generated/graphql';
@@ -10,10 +9,9 @@ import ReviewStack from '../ReviewStack/ReviewStack';
 
 type ReviewProps = {
   book: Book;
-  updateAvgRating: (variables?: Partial<OperationVariables>) => Promise<ApolloQueryResult<any>>;
 };
 
-const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
+const YourReviewHandler = ({ book }: ReviewProps) => {
   const [visible, setVisible] = useState(false);
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
@@ -27,14 +25,10 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
   });
 
   // For submitting a review (NR = new review)
-  const { submitReview, updatedRating: updatedRatingNR, loading: yourReviewLoading } = makeReview();
+  const { submitReview, loading: yourReviewLoading } = makeReview();
 
   // For updating reviews (UR = updated review)
-  const {
-    submitUpdate,
-    updatedRating: updatedRatingUR,
-    loading: loadingUpdateReview,
-  } = updateReview();
+  const { submitUpdate, loading: loadingUpdateReview } = updateReview();
 
   // Toggle the review
   const toggleReviewDisplay = () => {
@@ -73,25 +67,6 @@ const YourReviewHandler = ({ book, updateAvgRating }: ReviewProps) => {
       rating,
     });
   };
-
-  // Update rating + refetch your rating
-  const updateRating = (updatedRating: number) => {
-    if (!updatedRating) {
-      return;
-    }
-    if (updatedRating !== -1) {
-      updateAvgRating();
-    }
-  };
-
-  // Refetch your review after either posting one or updating it
-  useEffect(() => {
-    updateRating(updatedRatingNR);
-  }, [updatedRatingNR]);
-
-  useEffect(() => {
-    updateRating(updatedRatingUR);
-  }, [updatedRatingUR]);
 
   useEffect(() => {
     if (!yourReviewLoading && !loadingUpdateReview) {

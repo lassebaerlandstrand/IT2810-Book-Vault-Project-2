@@ -7,6 +7,7 @@ import {
   IconStar,
   IconStarFilled,
 } from '@tabler/icons-react';
+import { abbreviateNumber } from 'js-abbreviation-number';
 import { useSearchParams } from 'react-router-dom';
 import {
   ActionIcon,
@@ -31,7 +32,7 @@ import { Author, Genre, Publisher, SortBy, SortOrder } from '@/generated/graphql
 import { useDateSpan } from '@/hooks/useDateSpan';
 import { useFilterCount } from '@/hooks/useFilterCount';
 import { usePageSpan } from '@/hooks/usePageSpan';
-import { DEFAULT_FILTERS, getFilterParams, getFormattedFilterCount } from '@/utils/filters';
+import { DEFAULT_FILTERS, getFilterParams } from '@/utils/filters';
 import { DEFAULT_PAGE } from '@/utils/pagination';
 import { updateQueryParams } from '@/utils/queryParams';
 import { getSearchParams } from '@/utils/search';
@@ -60,7 +61,7 @@ const renderMultiSelectOption = ({ option, count }: renderMultiSelectOptionProps
     <Group wrap="nowrap" justify="space-between" className={styles.fullWidth}>
       <Text size="sm">{option.value}</Text>
       <Text size="xs" ta="right" c="dimmed" miw={30}>
-        {getFormattedFilterCount(count)}
+        {abbreviateNumber(count ?? 0)}
       </Text>
     </Group>
   );
@@ -354,7 +355,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
                     ))}
                   </Group>
                   <Text className={styles.description}>
-                    {getFormattedFilterCount(
+                    {abbreviateNumber(
                       filterCount?.ratings.find((r) => r.rating === rating)?.count ?? 0
                     )}
                   </Text>
@@ -453,9 +454,7 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
               label={genre.name}
               checked={selectedGenres.includes(genre.name)}
               description={
-                genresData?.[genre.name] != null
-                  ? getFormattedFilterCount(genresData[genre.name])
-                  : '0'
+                genresData?.[genre.name] != null ? abbreviateNumber(genresData[genre.name]) : '0'
               }
               onChange={(event) => handleGenreChange(genre.name, event.target.checked)}
               disabled={(genresData?.[genre.name] ?? 0) === 0}

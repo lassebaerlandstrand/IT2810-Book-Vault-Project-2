@@ -8,7 +8,9 @@ import Loading from '../Loading/Loading';
 import styles from './BookCardGrid.module.css';
 
 type BookCardGridProps = {
-  books: Pick<Book, 'id' | 'title' | 'coverImg' | 'rating' | 'authors'>[] | undefined;
+  books:
+    | Pick<Book, 'id' | 'title' | 'coverImg' | 'rating' | 'authors' | 'numRatings'>[]
+    | undefined;
   loading: boolean;
   error: ApolloError | undefined;
 };
