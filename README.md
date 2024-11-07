@@ -164,6 +164,43 @@ We have unit tests for most of our components. In these tests we check important
 
 We mock the API when we do tests in the frontend. This is mainly done through mocking our hooks as we mainly use hooks to query the API.
 
+### End-to-end tests &nbsp;<img src="media/CypressLogo.png" alt="Cypress Logo" width="25" />
+
+We are using Cypress to do end-to-end tests. We have followed best practices and have created both small and large tests. The small tests are more focused, e.g. only checking if reviews are working, while the large tests are more comprehensive. We have aimed for 80% smaller feature-focused tests and 20% larger end-to-end tests, both simulate a user's interaction with the application.
+
+The end-to-end tests will test the application as a whole, with the frontend and backend connected. When running these tests you can either choose to run the backend locally or use the backend in the virtual machine. To change this you go to this [env-file](./frontend/.env) and change it to either
+
+- `VITE_GRAPHQL_ENDPOINT="http://localhost:3001/graphql"` for a local backend.
+- `VITE_GRAPHQL_ENDPOINT="http://it2810-05.idi.ntnu.no/graphql"` for the backend in the virtual machine.
+
+It is best practice to run the E2E on a local test database (or in this course we could use a test database on the VM). However, we know it can take some time to setup a local database if you don't already have MongoDB installed. Therefore we have made it possible to run the tests on the backend in the virtual machine. We have created a predefined test user which you will take control of, when running the E2E tests if you use the virutal machine. In a real-world scenario, we would have not done this and instead used a test database.
+
+To run the tests you can run the following commands in **separate terminals**:
+
+```
+# Do this only if you want to run e2e tests on the local backend. If you want to run the tests on the backend in the virtual machine, skip this step.
+# Run the backend (in its own terminal)
+cd backend
+npm install
+npm run start
+```
+
+```
+# Run the frontend (in its own terminal)
+cd frontend
+npm install
+npm run dev
+```
+
+```
+# Run the e2e tests (in its own terminal)
+cd e2e
+npm install
+npm run cypress
+```
+
+After running `npm run cypress` a window should open. You then choose `E2E Testing` and the browser of your choice. You can run all tests by selecting `allTests.cy.ts` or run a single test by selecting the test you want to run.
+
 ## Tech stack
 
 ![Tech stack](/media/techstack.png)

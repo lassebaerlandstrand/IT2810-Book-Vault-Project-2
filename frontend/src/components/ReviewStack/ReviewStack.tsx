@@ -24,15 +24,23 @@ const ReviewStack = ({ reviews, type }: ReviewProps) => {
 
   return (
     <>
-      <Grid my="xs" gutter="md">
+      <Grid my="xs" gutter="md" data-testid={`${type}-stack`}>
         {reviews.map((review, index) => (
           <Grid.Col key={index} span={{ base: 12 }}>
             {type === 'bookReview' ? (
-              <Link to={`/book/${review.book?.id}`} className={styles.link}>
+              <Link
+                to={`/book/${review.book?.id}`}
+                className={styles.link}
+                aria-label={`Go to the book ${review.book?.title}`}
+              >
                 <ReviewCard review={review} type={type} />
               </Link>
             ) : (
-              <Link to={`/user/${review.user?.UUID}`} className={styles.link}>
+              <Link
+                to={`/user/${review.user?.UUID}`}
+                className={styles.link}
+                aria-label="Go to the user who wrote the review"
+              >
                 <ReviewCard review={review} type={type} />
               </Link>
             )}

@@ -37,7 +37,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     return (
       <Flex justify="center" align="center" className={styles.centeredOnPage}>
         <Stack align="center">
-          <Text size="lg">Fetching user data</Text>
+          <Text size="lg" component="h1">
+            Fetching user data
+          </Text>
           <Loader />
         </Stack>
       </Flex>
