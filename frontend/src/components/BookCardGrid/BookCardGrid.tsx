@@ -27,22 +27,26 @@ const BookCardGrid = ({ books, loading, error, viewType = 'grid' }: BookCardGrid
 
   if (error || !books) {
     return (
-      <Group justify="center" align="center" className={styles.noResultWrapper}>
-        <IconBookOff />
-        <Text size="xl" fw={700} my="xl">
-          Error fetching books
-        </Text>
+      <Group justify="center" align="flex-start" className={styles.noResultWrapper}>
+        <Group align="center">
+          <IconBookOff />
+          <Text size="xl" fw={500} my="xl">
+            Error fetching books
+          </Text>
+        </Group>
       </Group>
     );
   }
 
   if (books.length === 0) {
     return (
-      <Group justify="center" align="center" className={styles.noResultWrapper}>
-        <IconBookOff />
-        <Text size="xl" fw={700} my="xl">
-          No books found
-        </Text>
+      <Group justify="center" align="flex-start" className={styles.noResultWrapper}>
+        <Group align="center">
+          <IconBookOff />
+          <Text size="xl" fw={500} my="xl">
+            No books found
+          </Text>
+        </Group>
       </Group>
     );
   }

@@ -1,4 +1,5 @@
 import { render, screen } from '@test-utils';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import { dummyBook } from '../../../test-utils/testVars';
 import InfoGrid from './InfoGrid';
 
@@ -30,6 +31,7 @@ describe('InfoGrid component', () => {
 
   it('matches snapshot', () => {
     const { asFragment } = render(<InfoGrid book={dummyBook} />);
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 });

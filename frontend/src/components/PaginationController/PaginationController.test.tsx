@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import * as reactRouterDom from 'react-router-dom'; // This was the only was to get spyOn to work with useSearchParams
+
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import PaginationController from './PaginationController';
 
 vi.mock('@/hooks/usePaginationParams', () => ({
@@ -56,11 +58,7 @@ describe('PaginationController', () => {
 
   it('matches snapshot', () => {
     const { asFragment } = render(<PaginationController totalBooks={75} />);
-    const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
-    attributesToRemove.forEach((element) => {
-      element.removeAttribute('id');
-      element.removeAttribute('aria-describedby');
-    });
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 });

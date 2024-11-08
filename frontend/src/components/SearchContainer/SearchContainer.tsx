@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { IconArrowRight, IconSearch } from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
-import { ActionIcon, Flex, TextInput } from '@mantine/core';
-import { getHotkeyHandler } from '@mantine/hooks';
+import { Flex, TextInput } from '@mantine/core';
+import { getHotkeyHandler, useDebouncedCallback } from '@mantine/hooks';
 import { DEFAULT_PAGE } from '@/utils/pagination';
 import { updateQueryParams } from '@/utils/queryParams';
 import { getSearchParams } from '@/utils/search';
+import styles from './SearchContainer.module.css';
 
 const SearchContainer = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -13,29 +14,32 @@ const SearchContainer = () => {
   const [searchValue, setSearchValue] = useState(initialSearchValue);
 
   const performSearch = (searchValue: string) => {
-    updateQueryParams(setSearchParams, 'page', DEFAULT_PAGE.toString());
-    updateQueryParams(setSearchParams, 'search', searchValue);
+    const oldSearchValue = getSearchParams(searchParams).searchValue;
+    if (oldSearchValue !== searchValue) {
+      updateQueryParams(setSearchParams, 'page', DEFAULT_PAGE.toString());
+      updateQueryParams(setSearchParams, 'search', searchValue);
+    }
+  };
+
+  const debouncedPerformSearch = useDebouncedCallback(async (searchValue: string) => {
+    performSearch(searchValue);
+  }, 500);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+    debouncedPerformSearch(event.target.value);
   };
 
   return (
-    <Flex justify="center" my={10}>
+    <Flex justify="center">
       <TextInput
         placeholder="Search for books"
         leftSection={<IconSearch aria-label="Search icon" />}
         value={searchValue}
-        onInput={(event) => {
-          setSearchValue((event.target as HTMLInputElement).value);
-        }}
+        onInput={handleChange}
         onKeyDown={getHotkeyHandler([['Enter', () => performSearch(searchValue)]])}
-        rightSection={
-          <ActionIcon
-            aria-label="Perform search"
-            onClick={() => performSearch(searchValue)}
-            variant="filled"
-          >
-            <IconArrowRight size="80%" aria-label="Arrow pointing right" />
-          </ActionIcon>
-        }
+        label="Search by title and description"
+        classNames={{ label: styles.label }}
       />
     </Flex>
   );

@@ -104,7 +104,7 @@ exports[`InfoGrid component > matches snapshot 1`] = `
           <p
             class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
           >
-            3/3/2003
+            3 March 2003
           </p>
         </div>
         <style

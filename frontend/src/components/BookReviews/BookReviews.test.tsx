@@ -5,6 +5,7 @@ import { MantineProvider } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { GET_BOOKS_REVIEWS } from '@/graphql/queries/reviews';
 import { theme } from '@/theme';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import { dummyBook } from '../../../test-utils/testVars';
 import BookReviews from './BookReviews';
 
@@ -98,16 +99,7 @@ describe('Reviews Component', () => {
   it('matches snapshot', () => {
     const { asFragment } = customRender();
 
-    const attributesToRemove = [
-      ...document.body.querySelectorAll('div [id^="mantine"]'),
-      ...document.body.querySelectorAll('div [for^="mantine"]'),
-    ]; // Because Mantine uses random ids which causes snapshots to fail
-    attributesToRemove.forEach((element) => {
-      element.removeAttribute('for');
-      element.removeAttribute('id');
-      element.removeAttribute('class');
-      element.removeAttribute('aria-describedby');
-    });
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 });
