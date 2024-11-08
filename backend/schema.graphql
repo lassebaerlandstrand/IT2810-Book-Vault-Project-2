@@ -74,6 +74,8 @@ type Book {
   rating: Float!
   "Total number of ratings."
   numRatings: Int!
+  "Number of ratings for each star level. The index corresponds to the number of stars. Index 0 is 1 star, index 1 is 2 stars, etc."
+  ratingsByStars: [Int!]!
   "Setting of the book. A list of locations/periods where the book takes place"
   setting: [String!]
   "URL for the cover image of the book"

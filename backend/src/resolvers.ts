@@ -618,6 +618,9 @@ const resolvers = {
     numRatings: async (book: { ratingsByStars: { [x: number]: number } }) => {
       return Object.values(book.ratingsByStars).reduce((total, count) => total + count, 0);
     },
+    ratingsByStars: async (book: { ratingsByStars: { [x: number]: number } }) => {
+      return Object.values(book.ratingsByStars);
+    },
   },
 
   Mutation: {
