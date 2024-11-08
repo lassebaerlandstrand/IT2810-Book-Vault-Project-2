@@ -7,6 +7,10 @@ type BookCardProps = {
   book: Pick<Book, 'id' | 'title' | 'coverImg' | 'rating' | 'authors' | 'numRatings'>;
 };
 
+/**
+ * Card component that displays basic book information including cover, title, author and rating.
+ * This component is used in the BookCardGrid component.
+ */
 const BookCard = ({ book }: BookCardProps) => {
   return (
     <>

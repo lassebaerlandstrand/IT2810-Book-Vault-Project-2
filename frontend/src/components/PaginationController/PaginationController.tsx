@@ -6,6 +6,9 @@ type PaginationControllerProps = {
   totalBooks?: number;
 };
 
+/**
+ * Controls pagination for book listings, updating URL parameters on page changes.
+ */
 const PaginationController = ({ totalBooks }: PaginationControllerProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { page, limit } = getPaginationParams(searchParams);

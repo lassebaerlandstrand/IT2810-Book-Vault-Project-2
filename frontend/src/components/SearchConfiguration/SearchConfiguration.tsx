@@ -98,6 +98,10 @@ const generateMarks = (
   return marks;
 };
 
+/**
+ * Advanced search configuration component with filters for sorting, publishers, authors,
+ * ratings, publication year, page count, and genres. Can be rendered inline or in a drawer.
+ */
 const SearchConfiguration = ({ useDrawer, opened, close }: SearchConfigurationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { earliestDate, latestDate, loading: dateSpanLoading } = useDateSpan();

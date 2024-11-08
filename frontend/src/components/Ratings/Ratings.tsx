@@ -12,6 +12,10 @@ interface RatingsProps {
   mt?: MantineSpacing;
 }
 
+/**
+ * Displays a book's rating with stars and the number of ratings.
+ * Supports verbose and abbreviated number formats.
+ */
 export const Ratings = ({
   book,
   verbose = true,

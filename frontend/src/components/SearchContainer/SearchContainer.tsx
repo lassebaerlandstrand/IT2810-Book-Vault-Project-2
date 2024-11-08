@@ -8,6 +8,10 @@ import { updateQueryParams } from '@/utils/queryParams';
 import { getSearchParams } from '@/utils/search';
 import styles from './SearchContainer.module.css';
 
+/**
+ * Provides a search input field with debounced search functionality.
+ * Changes the URL query parameter 'search' as the user types in the input field.
+ */
 const SearchContainer = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { searchValue: initialSearchValue } = getSearchParams(searchParams);

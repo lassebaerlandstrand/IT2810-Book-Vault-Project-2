@@ -15,6 +15,9 @@ type BookCardGridProps = {
   error: ApolloError | undefined;
 };
 
+/**
+ * Displays a grid of book cards.
+ */
 const BookCardGrid = ({ books, loading, error }: BookCardGridProps) => {
   if (loading) {
     return <Loading />;

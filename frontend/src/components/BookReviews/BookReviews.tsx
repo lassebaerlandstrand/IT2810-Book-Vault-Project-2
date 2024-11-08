@@ -11,6 +11,9 @@ type BookReviewsProps = {
   top: React.RefObject<HTMLDivElement>;
 };
 
+/**
+ * Displays and manages a paginated list of reviews for a specific book.
+ */
 const BookReviews = ({ bookId, top }: BookReviewsProps) => {
   const [page, setPage] = useState(0);
   const [isLastPage, setLastPage] = useState(true);

@@ -8,6 +8,8 @@ import { ReviewsList } from './pages/ReviewsList.page';
 import Testing from './pages/Testing.page';
 import UserProfile from './pages/UserProfile.page';
 
+// Create a browser router using React Router V6
+// The ScrollRestoration component is used to restore the scroll position when navigating between pages
 const router = createBrowserRouter(
   [
     {

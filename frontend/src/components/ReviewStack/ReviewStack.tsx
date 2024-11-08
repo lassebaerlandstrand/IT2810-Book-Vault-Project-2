@@ -10,6 +10,10 @@ type ReviewProps = {
   type: 'profileReview' | 'bookReview' | 'yourReview';
 };
 
+/**
+ * Renders a stack of review cards with different layouts based on the review type.
+ * Supports profile reviews, book reviews, and user reviews.
+ */
 const ReviewStack = ({ reviews, type }: ReviewProps) => {
   if (!reviews || reviews.length === 0) {
     return (

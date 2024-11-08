@@ -6,6 +6,9 @@ type ReviewProps = {
   review: ReviewType;
 };
 
+/**
+ * Displays a user's own review in a card format, showing rating, date, and review text.
+ */
 const YourReviewCard = ({ review }: ReviewProps) => {
   return (
     <Card p={30} radius="lg" className={styles.card} m="auto">
