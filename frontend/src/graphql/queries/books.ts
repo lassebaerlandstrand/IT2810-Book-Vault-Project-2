@@ -72,28 +72,9 @@ export const GET_BOOK_RATING = gql(`
   }
 `);
 
-// TODO: Update with only authors on books satisfying the filters
-export const GET_AUTHORS = gql(`
-  query GetAuthors {
-    authors {
-      name
-    }
-  }
-`);
-
-// TODO: Update with only genres on books satisfying the filters
 export const GET_GENRES = gql(`
   query GetGenres {
     genres {
-      name
-    }
-  }
-`);
-
-// TODO: Update with only genres on books satisfying the filters
-export const GET_PUBLISHERS = gql(`
-  query GetPublishers {
-    publishers {
       name
     }
   }
