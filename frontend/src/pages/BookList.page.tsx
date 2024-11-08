@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { IconAdjustments } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { IconAdjustments, IconLayoutGrid, IconList } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Container, Flex, Group, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
@@ -26,6 +26,7 @@ export function BookList() {
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
+  const [viewType, setViewType] = useState<'grid' | 'list'>('grid');
 
   const {
     sortBy,
@@ -138,7 +139,17 @@ export function BookList() {
         <Text data-testid="number-of-results">
           {booksLoading ? 'Loading...' : `${formattedTotalBooks} results`}
         </Text>
-        <EntriesController />
+        <Flex align="flex-end" gap="xs">
+          <EntriesController />
+          <ActionIcon
+            onClick={() => setViewType(viewType === 'grid' ? 'list' : 'grid')}
+            size="input-sm"
+            variant="default"
+            title="Toggle view"
+          >
+            {viewType === 'list' ? <IconList size="75%" /> : <IconLayoutGrid size="75%" />}
+          </ActionIcon>
+        </Flex>
       </Flex>
 
       <Flex gap="lg" my="lg">
@@ -153,7 +164,12 @@ export function BookList() {
           </Container>
         )}
         <Container flex={1} px={0}>
-          <BookCardGrid books={books} loading={booksLoading} error={booksError} />
+          <BookCardGrid
+            books={books}
+            loading={booksLoading}
+            error={booksError}
+            viewType={viewType}
+          />
         </Container>
       </Flex>
 

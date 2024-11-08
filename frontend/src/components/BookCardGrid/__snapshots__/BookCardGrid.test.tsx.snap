@@ -19,7 +19,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
   </style>
   <div
     class="m_410352e9 mantine-Grid-root __m__-r0"
-    style="margin-block: var(--mantine-spacing-xl);"
+    style="--grid-justify: center; display: inline-grid;"
   >
     <div
       class="m_dee7bd2f mantine-Grid-inner"
@@ -27,10 +27,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r2{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r2{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r2"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r2"
       >
         <a
           class="_link_7d2061"
@@ -367,10 +367,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r18{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r18{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r18{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r18{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r18{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r18{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r18"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r18"
       >
         <a
           class="_link_7d2061"
@@ -707,10 +707,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r2e{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r2e{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r2e{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r2e{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r2e{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r2e{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r2e"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r2e"
       >
         <a
           class="_link_7d2061"
@@ -1047,10 +1047,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r3k{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r3k{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r3k{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r3k{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r3k{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r3k{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r3k"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r3k"
       >
         <a
           class="_link_7d2061"
@@ -1387,10 +1387,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r4q{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r4q{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r4q{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r4q{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r4q{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r4q{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r4q"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r4q"
       >
         <a
           class="_link_7d2061"
@@ -1727,10 +1727,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r60{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r60{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r60{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r60{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r60{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r60{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r60"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r60"
       >
         <a
           class="_link_7d2061"
@@ -2067,10 +2067,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r76{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r76{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r76{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r76{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r76{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r76{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r76"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r76"
       >
         <a
           class="_link_7d2061"
@@ -2407,10 +2407,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r8c{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r8c{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r8c{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r8c{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r8c{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r8c{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r8c"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r8c"
       >
         <a
           class="_link_7d2061"
@@ -2747,10 +2747,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r9i{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r9i{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r9i{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r9i{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r9i{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r9i{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r9i"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r9i"
       >
         <a
           class="_link_7d2061"
@@ -3087,10 +3087,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-rao{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-rao{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-rao{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-rao{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-rao{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-rao{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-rao"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-rao"
       >
         <a
           class="_link_7d2061"
