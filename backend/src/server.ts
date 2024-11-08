@@ -10,10 +10,12 @@ import { resolve, dirname } from 'path';
 
 import { fileURLToPath } from 'url';
 
+// Use Express to create a new server
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(cors());

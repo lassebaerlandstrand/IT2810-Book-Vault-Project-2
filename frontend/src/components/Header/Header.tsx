@@ -29,6 +29,9 @@ const mainLinks = [
 // Links that should show on the mobile drop down, but has an alternate display style on desktop
 const mobileLinks = [{ link: '/profile', label: 'Profile' }];
 
+/**
+ * Main navigation header with responsive design, theme toggle, and navigation links.
+ */
 export function Header() {
   const [opened, { toggle, close }] = useDisclosure(false);
   const { setColorScheme } = useMantineColorScheme();

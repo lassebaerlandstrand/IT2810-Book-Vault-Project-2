@@ -4,10 +4,14 @@ import { AppShell, MantineStyleProp } from '@mantine/core';
 import { Header } from '../Header/Header';
 import styles from './Layout.module.css';
 
+/**
+ * Main application layout component that wraps the application with the header.
+ * Uses Mantine's AppShell.
+ */
 const Layout = () => {
   const { width } = useScrollbarSize();
 
-  // Reserve space for the scrollbar
+  // Reserve space for the scrollbar. This is to avoid jumping content when the scrollbar appears.
   const reserveScrollbarByReducingWidth: MantineStyleProp = {
     width: `calc(100vw - ${width}px)`,
   };

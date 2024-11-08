@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
-import { GET_BOOKS_REVIEWS } from '@/graphql/queries/reviews';
+import { GET_BOOK_REVIEWS } from '@/graphql/queries/reviews';
 import { theme } from '@/theme';
 import { removeMantineRandomAttributes } from '@/utils/tests';
 import { dummyBook } from '../../../test-utils/testVars';
@@ -23,7 +23,7 @@ const dummyUser = {
 const mocks = [
   {
     request: {
-      query: GET_BOOKS_REVIEWS,
+      query: GET_BOOK_REVIEWS,
       variables: {
         bookID: dummyBook.id,
         limit: 3,

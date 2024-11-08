@@ -12,6 +12,10 @@ type ReviewProps = {
   book: Book;
 };
 
+/**
+ * Comprehensive review section for a book, displaying ratings distribution chart,
+ * user's review interface, and all book reviews.
+ */
 const Reviews = ({ book }: ReviewProps) => {
   // For scrolling to top when reaching bottom
   const topOfReviews = useRef<HTMLDivElement>(null);

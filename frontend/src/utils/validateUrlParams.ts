@@ -26,6 +26,13 @@ const isValidPagination = (page: number, limit: number, LIMIT_OPTIONS: string[])
   return true;
 };
 
+/**
+ * Validates URL search parameters for filters and pagination.
+ * Ensures that the parameters are within expected ranges and formats.
+ *
+ * @param {URLSearchParams} searchParams - URL search parameters containing filter and pagination criteria
+ * @returns {boolean} True if all parameters are valid, false otherwise
+ */
 export const isValidUrlParams = (searchParams: URLSearchParams): boolean => {
   const { sortBy, sortOrder } = getFilterParams(searchParams);
   if (!isValidFilters(sortBy, sortOrder)) {

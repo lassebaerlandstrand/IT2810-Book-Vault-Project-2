@@ -9,6 +9,10 @@ type BookCardProps = {
   w?: Property.Width;
 };
 
+/**
+ * Card component that displays basic book information including cover, title, author and rating.
+ * This component is used in the BookCardGrid component.
+ */
 const BookCard = ({ book, w = '190' }: BookCardProps) => {
   return (
     <Card p={30} radius="lg" className={styles.card} m="auto" w={w}>

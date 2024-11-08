@@ -20,6 +20,9 @@ type BookCardGridProps = {
   viewType?: 'grid' | 'list';
 };
 
+/**
+ * Displays a grid of book cards.
+ */
 const BookCardGrid = ({ books, loading, error, viewType = 'grid' }: BookCardGridProps) => {
   if (loading) {
     return <Loading />;

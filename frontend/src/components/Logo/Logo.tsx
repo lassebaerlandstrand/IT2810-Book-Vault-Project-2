@@ -6,6 +6,7 @@ import BookVaultTextImage from '../../assets/BookVaultText.svg';
 import BookVaultText from '../../assets/BookVaultText.svg?react';
 import styles from './Logo.module.css';
 
+/** Returns the full logo with icon and text */
 export const LogoFull = (props: GroupProps) => {
   return (
     <>
@@ -22,6 +23,7 @@ export const LogoFull = (props: GroupProps) => {
   );
 };
 
+/** Returns the logo icon as a webp image, with a fallback to png */
 export const LogoIcon = (props: ImageProps) => {
   return (
     <Image src={BookVaultLogoWebP} alt="Book Logo Icon" fallbackSrc={BookVaultLogo} {...props} />

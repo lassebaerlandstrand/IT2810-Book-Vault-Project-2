@@ -23,6 +23,10 @@ const getField = (
   return formatNumberWithSpaces(stats[field]);
 };
 
+/**
+ * Displays key statistics about the book collection, including total books, authors, and ratings.
+ * Automatically refreshes data on component mount.
+ */
 export const StatsGroup = () => {
   const { stats, loading, error, refetch } = useStats();
 
