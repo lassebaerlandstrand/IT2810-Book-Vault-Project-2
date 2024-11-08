@@ -1,5 +1,5 @@
 import { MockedProvider } from '@apollo/client/testing';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import { theme } from '@/theme';
@@ -7,11 +7,11 @@ import { removeMantineRandomAttributes } from '@/utils/tests';
 import { dummyBook } from '../../../test-utils/testVars';
 import Reviews from './Reviews';
 
-vi.mock('recharts', async (importOriginal) => {
+vi.mock('@mantine/charts', async (importOriginal) => {
   const originalModule = (await importOriginal()) as Record<string, unknown>;
   return {
     ...originalModule,
-    ResponsiveContainer: ({ children }: { children: React.ReactNode }) => (
+    BarChart: ({ children }: { children: React.ReactNode }) => (
       <div style={{ width: '100%', height: '100%' }}>{children}</div>
     ),
   };
