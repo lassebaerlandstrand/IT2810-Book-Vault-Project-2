@@ -651,6 +651,12 @@ const resolvers = {
       return newUser; // Return the created user
     },
 
+    async updateUser(_, { input }: { input: { UUID: string; name: string } }) {
+      const { UUID, name } = input;
+      await db.collection('users').updateOne({ UUID: UUID }, { $set: { name: name } });
+      return await db.collection('users').findOne({ UUID: UUID });
+    },
+
     async createReview(_, { input }: { input: BookReviewMutationArgs }) {
       const { userUUID, bookID, description, rating } = input;
 

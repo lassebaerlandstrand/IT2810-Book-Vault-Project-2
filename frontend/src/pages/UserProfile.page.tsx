@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Button, Container, Input, Stack, Text, Title } from '@mantine/core';
+import { Avatar, Button, Container, Stack, Text, TextInput, Title } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { Review } from '@/generated/graphql';
+import { updateUser } from '@/hooks/updateUser';
 import { useYourBookReviews } from '@/hooks/useYourBookReviews';
 import ReviewStack from '../components/ReviewStack/ReviewStack';
 
 export function ProfilePage() {
-  const { info, setUser } = useUser();
+  const { info } = useUser();
   const [newName, setNewName] = useState(info.name || '');
   const [isEditing, setIsEditing] = useState(false);
+  const [inputError, setInputError] = useState('');
 
+  const { submitUpdate } = updateUser();
   const { reviews, loading, error } = useYourBookReviews({
     limit: 3,
     page: 1,
@@ -22,10 +25,17 @@ export function ProfilePage() {
   }, [info.name]);
 
   const handleNameChange = () => {
-    if (newName.trim()) {
-      setUser({ ...info, name: newName });
-      setIsEditing(false);
+    if (newName.length < 2) {
+      setInputError(`Name must be at least 2 characters. Current length: ${newName.length}`);
+      return;
     }
+    if (newName.length > 50) {
+      setInputError(`Name must be less than 50 characters. Current length: ${newName.length}`);
+      return;
+    }
+    submitUpdate({ name: newName, UUID: info.UUID });
+    setIsEditing(false);
+    setInputError('');
   };
 
   return (
@@ -43,12 +53,13 @@ export function ProfilePage() {
 
         {isEditing ? (
           <>
-            <Input
+            <TextInput
               value={newName}
               onChange={(event) => setNewName(event.target.value)}
               placeholder="Enter new name"
               autoFocus
               mb="md"
+              error={inputError}
             />
             <Button fullWidth radius="md" onClick={handleNameChange} mt="md">
               Save

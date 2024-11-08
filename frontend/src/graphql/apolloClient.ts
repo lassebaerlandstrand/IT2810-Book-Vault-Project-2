@@ -8,6 +8,9 @@ const client = new ApolloClient({
       Book: {
         keyFields: ['id'],
       },
+      User: {
+        keyFields: ['UUID'],
+      },
     },
   }),
 });

@@ -217,8 +217,15 @@ input UpdateReviewInput {
   rating: Float!
 }
 
+input UpdateUserInput {
+  UUID: String!
+  name: String
+}
+
 type Mutation {
   createUser: User!
+
+  updateUser(input: UpdateUserInput!): User!
 
   createReview(input: CreateReviewInput!): Book!
 
