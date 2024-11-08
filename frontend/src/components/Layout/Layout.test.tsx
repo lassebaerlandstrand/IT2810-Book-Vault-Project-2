@@ -1,5 +1,6 @@
 import { render } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import Layout from './Layout';
 
 describe('Layout', () => {
@@ -9,11 +10,7 @@ describe('Layout', () => {
         <Layout />
       </MemoryRouter>
     );
-    const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]');
-    attributesToRemove.forEach((element) => {
-      element.removeAttribute('id');
-      element.removeAttribute('aria-describedby');
-    });
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 });

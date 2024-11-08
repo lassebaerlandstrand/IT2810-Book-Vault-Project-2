@@ -1,5 +1,6 @@
 import { render, screen } from '@test-utils';
 import { useStats } from '@/hooks/useStats';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import { StatsGroup } from './StatsGroup';
 
 vi.mock('@/hooks/useStats');
@@ -22,6 +23,7 @@ describe('StatsGroup component', () => {
     });
 
     const { asFragment } = render(<StatsGroup />);
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 

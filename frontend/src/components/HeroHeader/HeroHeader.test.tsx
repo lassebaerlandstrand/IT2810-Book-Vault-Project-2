@@ -1,6 +1,7 @@
 import { render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import { useRandomBook } from '@/hooks/useRandomBook';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import { HeroHeader } from './HeroHeader';
 
 vi.mock('@/hooks/useRandomBook');
@@ -18,7 +19,7 @@ describe('HeroHeader component', () => {
         <HeroHeader />
       </MemoryRouter>
     );
-
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 

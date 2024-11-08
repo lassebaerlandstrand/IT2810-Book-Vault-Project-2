@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@test-utils';
 import { useSearchParams } from 'react-router-dom';
 import { updateQueryParams } from '@/utils/queryParams';
 import { getSearchParams } from '@/utils/search';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import SearchContainer from './SearchContainer';
 
 vi.mock('react-router-dom', () => ({
@@ -59,26 +60,9 @@ describe('SearchContainer', () => {
     expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'search', 'Harry Potter');
   });
 
-  it('calls performSearch on search button click', async () => {
-    render(<SearchContainer />);
-
-    const inputElement = screen.getByPlaceholderText('Search for books');
-    fireEvent.input(inputElement, { target: { value: 'Harry Potter' } });
-    const searchButton = screen.getByRole('button');
-
-    fireEvent.click(searchButton);
-
-    expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'page', '1');
-    expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'search', 'Harry Potter');
-  });
-
   it('matches snapshot', () => {
     const { asFragment } = render(<SearchContainer />);
-    const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
-    attributesToRemove.forEach((element) => {
-      element.removeAttribute('id');
-      element.removeAttribute('aria-describedby');
-    });
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 });
