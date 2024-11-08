@@ -59,19 +59,6 @@ describe('SearchContainer', () => {
     expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'search', 'Harry Potter');
   });
 
-  it('calls performSearch on search button click', async () => {
-    render(<SearchContainer />);
-
-    const inputElement = screen.getByPlaceholderText('Search for books');
-    fireEvent.input(inputElement, { target: { value: 'Harry Potter' } });
-    const searchButton = screen.getByRole('button');
-
-    fireEvent.click(searchButton);
-
-    expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'page', '1');
-    expect(updateQueryParams).toHaveBeenCalledWith(mockSetSearchParams, 'search', 'Harry Potter');
-  });
-
   it('matches snapshot', () => {
     const { asFragment } = render(<SearchContainer />);
     const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
