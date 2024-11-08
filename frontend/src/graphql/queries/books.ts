@@ -76,9 +76,9 @@ export const GET_BOOK_RATING = gql(`
   }
 `);
 
-/** Query to get all broad genres */
-export const GET_BROAD_GENRES = gql(`
-  query GetBroadGenres {
+/** Query to get all genres */
+export const GET_GENRES = gql(`
+  query GetGenres {
     genres {
       name
     }
