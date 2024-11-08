@@ -1,5 +1,9 @@
 import { SortBy, SortOrder } from '@/generated/graphql';
 
+/**
+ * Default filter configuration values.
+ * These defaults are used when no specific filter parameters are provided.
+ */
 export const DEFAULT_FILTERS = {
   sortBy: SortBy.BookName,
   sortOrder: SortOrder.Asc,
@@ -13,6 +17,13 @@ export const DEFAULT_FILTERS = {
   selectedMinRating: undefined,
 };
 
+/**
+ * Extracts filter parameters from URL search params with fallback to defaults.
+ *
+ * @param {URLSearchParams} searchParams - URL search parameters containing filter criteria
+ * @returns {Object} Filter parameters
+ *
+ */
 export const getFilterParams = (searchParams: URLSearchParams) => {
   const sortBy = (searchParams.get('sortBy') as SortBy) ?? DEFAULT_FILTERS.sortBy;
   const sortOrder = (searchParams.get('sortOrder') as SortOrder) ?? DEFAULT_FILTERS.sortOrder;

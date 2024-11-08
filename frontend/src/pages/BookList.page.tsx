@@ -21,12 +21,18 @@ import { getSearchParams } from '@/utils/search';
 import { isValidUrlParams } from '@/utils/validateUrlParams';
 import styles from './BookList.module.css';
 
+/**
+ * BookList component displays a list of books with filtering, sorting, and pagination.
+ * This component only considers the URL query parameters when determining the filters. 
+ * If another component want to affect the filters, it should change the URL query parameters.
+ */
 export function BookList() {
   const [searchParams] = useSearchParams();
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
 
+  // Extract filter, pagination, and search parameters from URL search params
   const {
     sortBy,
     sortOrder,
@@ -50,6 +56,7 @@ export function BookList() {
     error: errorPublishers,
   } = usePublishers();
 
+  // Fetch books based on filter, pagination, and search parameters
   const {
     books: books,
     totalBooks,
@@ -71,6 +78,7 @@ export function BookList() {
     minRating,
   });
 
+  // Format total number of books with spaces as thousand separators
   const formattedTotalBooks = totalBooks != null ? formatNumberWithSpaces(totalBooks) : '';
 
   useEffect(() => {

@@ -55,6 +55,7 @@ export const resolver = () => ({
   },
 });
 
+// Override the default theme with custom values
 export const theme = createTheme({
   fontFamily: `Poppins, ${DEFAULT_THEME.fontFamily}`,
   breakpoints: {
