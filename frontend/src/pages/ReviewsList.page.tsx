@@ -12,8 +12,7 @@ import { formatNumberWithSpaces } from '@/utils/formatting';
 import { getPaginationParams } from '@/utils/pagination';
 import { isValidUrlParams } from '@/utils/validateUrlParams';
 
-/**
- * ReviewsList component displays a paginated list of the user's book reviews.
+/*
  * The hierarchy of components is as follows:
  * - ReviewsList
  *     - ReviewStack
@@ -21,6 +20,10 @@ import { isValidUrlParams } from '@/utils/validateUrlParams';
  *            - YourReviewCard
  *            - ProfileReviewCard
  *            - BookReviewCard
+ */
+
+/**
+ * ReviewsList component displays a paginated list of the user's book reviews.
  */
 export function ReviewsList() {
   const [searchParams] = useSearchParams();
