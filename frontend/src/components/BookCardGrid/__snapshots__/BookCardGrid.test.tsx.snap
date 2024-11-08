@@ -27,7 +27,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r2{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-r2{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r2"
@@ -367,7 +367,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r18{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-r18{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r18"
@@ -707,7 +707,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r2e{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-r2e{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r2e"
@@ -1047,7 +1047,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r3k{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-r3k{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r3k"
@@ -1387,7 +1387,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r4q{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-r4q{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r4q"
@@ -1727,7 +1727,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r60{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-r60{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r60"
@@ -2067,7 +2067,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r76{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-r76{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r76"
@@ -2407,7 +2407,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r8c{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-r8c{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r8c"
@@ -2747,7 +2747,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r9i{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-r9i{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r9i"
@@ -3087,7 +3087,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-rao{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+        .__m__-rao{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
         class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-rao"
