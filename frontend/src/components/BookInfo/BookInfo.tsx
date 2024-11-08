@@ -7,6 +7,9 @@ type BookInfoProps = {
   book: Book;
 };
 
+/**
+ * Displays detailed information about a book including cover image, title, authors, and metadata.
+ */
 const BookInfo = ({ book }: BookInfoProps) => {
   return (
     <Group justify="center" gap="lg">

@@ -1,24 +1,32 @@
 import { useSearchParams } from 'react-router-dom';
-import { Container, Flex, Text, useMantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Container, Flex, Text } from '@mantine/core';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
-import LoadingCircle from '@/components/Loading/Loading';
+import LoadingBook from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import ReviewStack from '@/components/ReviewStack/ReviewStack';
 import { useUser } from '@/contexts/UserFunctions';
 import { Review } from '@/generated/graphql';
 import { useYourBookReviews } from '@/hooks/useYourBookReviews';
+import { formatNumberWithSpaces } from '@/utils/formatting';
 import { getPaginationParams } from '@/utils/pagination';
 import { isValidUrlParams } from '@/utils/validateUrlParams';
 
-const formatNumberWithSpaces = (number: string) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+/*
+ * The hierarchy of components is as follows:
+ * - ReviewsList
+ *     - ReviewStack
+ *        - ReviewCard
+ *            - YourReviewCard
+ *            - ProfileReviewCard
+ *            - BookReviewCard
+ */
 
+/**
+ * ReviewsList component displays a paginated list of the user's book reviews.
+ */
 export function ReviewsList() {
   const [searchParams] = useSearchParams();
-  const theme = useMantineTheme();
-  const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
-
   const { page, limit } = getPaginationParams(searchParams);
 
   const userUUID = useUser().info.UUID;
@@ -34,8 +42,7 @@ export function ReviewsList() {
     userUUID,
   });
 
-  const formattedTotalReviews =
-    totalReviews != null ? formatNumberWithSpaces(totalReviews.toString()) : '';
+  const formattedTotalReviews = totalReviews != null ? formatNumberWithSpaces(totalReviews) : '';
 
   if (!isValidUrlParams(searchParams)) {
     return (
@@ -57,8 +64,8 @@ export function ReviewsList() {
     );
   }
 
-  if (isDesktop == null || reviewsLoading) {
-    return <LoadingCircle />;
+  if (reviewsLoading) {
+    return <LoadingBook />;
   }
 
   return (

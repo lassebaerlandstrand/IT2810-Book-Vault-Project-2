@@ -7,6 +7,10 @@ import { updateUser } from '@/hooks/updateUser';
 import { useYourBookReviews } from '@/hooks/useYourBookReviews';
 import ReviewStack from '../components/ReviewStack/ReviewStack';
 
+/**
+ * ProfilePage component displays the user's profile information and allows editing the user's name.
+ * It also shows a list of the user's recent book reviews.
+ */
 export function ProfilePage() {
   const { info } = useUser();
   const [newName, setNewName] = useState(info.name || '');

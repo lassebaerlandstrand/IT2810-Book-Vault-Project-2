@@ -22,9 +22,7 @@ const documents = {
     "\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      numRatings\n      rating\n      ratingsByStars\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n": types.GetBookDocument,
     "\n  query GetRandomBook {\n    randomBook {\n      id\n    }\n  }\n": types.GetRandomBookDocument,
     "\n  query GetBookRating($bookId: String!) {\n    book(id: $bookId) {\n      id\n      rating\n    }\n  }\n": types.GetBookRatingDocument,
-    "\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n": types.GetAuthorsDocument,
     "\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n": types.GetGenresDocument,
-    "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n": types.GetPublishersDocument,
     "\n  query GetFilterCount($input: FilterInput) {\n    filterCount(input: $input) {\n      authors {\n        name\n        count\n      }\n      genres {\n        name\n        count\n      }\n      publishers {\n        name\n        count\n      }\n      ratings {\n        rating\n        count\n      }\n    }\n  }\n": types.GetFilterCountDocument,
     "\n  query GetDateSpan {\n    dateSpan {\n      earliest\n      latest\n    }\n  }\n": types.GetDateSpanDocument,
     "\n  query GetPageSpan {\n    pageSpan {\n      least\n      most\n    }\n  }\n": types.GetPageSpanDocument,
@@ -84,15 +82,7 @@ export function gql(source: "\n  query GetBookRating($bookId: String!) {\n    bo
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function gql(source: "\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

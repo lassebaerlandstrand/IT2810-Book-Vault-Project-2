@@ -6,6 +6,9 @@ type InfoGridProps = {
   book: Book;
 };
 
+/**
+ * Displays book information in a grid layout.
+ */
 const InfoGrid = ({ book }: InfoGridProps) => {
   const tableInfos = [
     { header: 'Title', description: book.title },

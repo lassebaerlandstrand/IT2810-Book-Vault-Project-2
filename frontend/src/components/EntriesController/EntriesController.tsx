@@ -3,6 +3,10 @@ import { Select } from '@mantine/core';
 import { getPaginationParams } from '@/utils/pagination';
 import styles from './EntriesController.module.css';
 
+/**
+ * Controls the number of entries displayed per page through a select input.
+ * Changes the URL query parameter 'limit' to the selected value.
+ */
 const EntriesController = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { limit, DEFAULT_LIMIT, LIMIT_OPTIONS } = getPaginationParams(searchParams);

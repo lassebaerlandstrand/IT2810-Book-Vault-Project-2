@@ -1,7 +1,15 @@
+// Default options which we fallback on
 export const DEFAULT_PAGE = 1;
 export const DEFAULT_LIMIT = 25;
 export const LIMIT_OPTIONS = ['10', '25', '50', '100'];
 
+/**
+ * Extracts pagination parameters from URL search params with fallback to defaults.
+ *
+ * @param {URLSearchParams} searchParams - URL search parameters containing page and limit
+ * @returns {Object} Pagination parameters and configuration options
+ *
+ */
 export const getPaginationParams = (searchParams: URLSearchParams) => {
   const page = Number(searchParams.get('page') ?? DEFAULT_PAGE);
   const limit = Number(searchParams.get('limit') ?? DEFAULT_LIMIT);

@@ -26,11 +26,13 @@ import {
   RangeSlider,
   Select,
   SimpleGrid,
+  Skeleton,
   Text,
 } from '@mantine/core';
-import { Author, Genre, Publisher, SortBy, SortOrder } from '@/generated/graphql';
+import { SortBy, SortOrder } from '@/generated/graphql';
 import { useDateSpan } from '@/hooks/useDateSpan';
 import { useFilterCount } from '@/hooks/useFilterCount';
+import { useGenres } from '@/hooks/useGenres';
 import { usePageSpan } from '@/hooks/usePageSpan';
 import { DEFAULT_FILTERS, getFilterParams } from '@/utils/filters';
 import { DEFAULT_PAGE } from '@/utils/pagination';
@@ -43,9 +45,6 @@ type Updates = {
 };
 
 type SearchConfigurationProps = {
-  genres: Genre[];
-  publishers: Publisher[];
-  authors: Author[];
   useDrawer: boolean;
   opened?: boolean;
   close?: () => void;
@@ -99,10 +98,15 @@ const generateMarks = (
   return marks;
 };
 
-const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigurationProps) => {
+/**
+ * Advanced search configuration component with filters for sorting, publishers, authors,
+ * ratings, publication year, page count, and genres. Can be rendered inline or in a drawer.
+ */
+const SearchConfiguration = ({ useDrawer, opened, close }: SearchConfigurationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { earliestDate, latestDate, loading: dateSpanLoading } = useDateSpan();
   const { leastPages, mostPages, loading: pageSpanLoading } = usePageSpan();
+  const { genres: genreOptions, loading: loadingGenres, error: errorGenres } = useGenres();
 
   const {
     sortBy: initialSortBy,
@@ -447,19 +451,34 @@ const SearchConfiguration = ({ genres, useDrawer, opened, close }: SearchConfigu
         </Box>
         <InputLabel mt={40}>Genres</InputLabel>
         <SimpleGrid cols={2} mt="xs">
-          {genres.map((genre) => (
-            <Checkbox
-              key={genre.name}
-              value={genre.name}
-              label={genre.name}
-              checked={selectedGenres.includes(genre.name)}
-              description={
-                genresData?.[genre.name] != null ? abbreviateNumber(genresData[genre.name]) : '0'
-              }
-              onChange={(event) => handleGenreChange(genre.name, event.target.checked)}
-              disabled={(genresData?.[genre.name] ?? 0) === 0}
-            />
-          ))}
+          {
+            // Show skeleton if genres are loading
+            // Show error message if genres failed to load
+            // Show genre checkboxes otherwise
+            loadingGenres ? (
+              Array(16)
+                .fill(0)
+                .map((_, i) => <Skeleton key={i} height={28} mb="sm" />)
+            ) : errorGenres || genreOptions == null ? (
+              <Text>Unable to load genre filters.</Text>
+            ) : (
+              genreOptions.map((genre) => (
+                <Checkbox
+                  key={genre.name}
+                  value={genre.name}
+                  label={genre.name}
+                  checked={selectedGenres.includes(genre.name)}
+                  description={
+                    genresData?.[genre.name] != null
+                      ? abbreviateNumber(genresData[genre.name])
+                      : '0'
+                  }
+                  onChange={(event) => handleGenreChange(genre.name, event.target.checked)}
+                  disabled={(genresData?.[genre.name] ?? 0) === 0}
+                />
+              ))
+            )
+          }
         </SimpleGrid>
         <Center mt={10}>
           <Button

@@ -49,7 +49,6 @@ const BookCategories = ({ categories, typeOfCategory }: BookCategoriesProps) => 
 
 const iconThickness = 1;
 
-// TODO: Update links after we have added main categories
 const popularCategories = [
   {
     name: 'Drama',
@@ -83,6 +82,9 @@ const popularCategories = [
   },
 ];
 
+/**
+ * Displays a horizontally scrollable list of popular book genres with icons and links.
+ */
 const PopularGenres = () => {
   return <BookCategories categories={popularCategories} typeOfCategory="Genres" />;
 };

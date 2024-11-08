@@ -20,6 +20,10 @@ type ErrorPageProps = {
   link?: string;
 };
 
+/**
+ * Error page component that handles different types of errors and displays appropriate messages.
+ * If the error is a 404, it will display a 404 error page with a message and a link to the home page.
+ */
 export function ErrorPage({ title, description, link }: ErrorPageProps) {
   const error = useRouteError();
 
@@ -30,6 +34,7 @@ export function ErrorPage({ title, description, link }: ErrorPageProps) {
   return <ErrorUnexpectedError error={error as Error} />;
 }
 
+/** Default error page. Displays error code and stack trace. */
 const ErrorUnexpectedError = ({ error }: { error: Error }) => {
   const [opened, { toggle }] = useDisclosure(true);
 
@@ -68,6 +73,10 @@ const ErrorUnexpectedError = ({ error }: { error: Error }) => {
   );
 };
 
+/**
+ * 404 error page component.
+ * You can customize the title, description, and link to redirect the user to a different page.
+ */
 export const Error404 = ({
   title = 'Nothing to see here',
   description = 'The page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL.',

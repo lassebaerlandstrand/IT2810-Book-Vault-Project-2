@@ -6,6 +6,9 @@ type ReviewProps = {
   review: ReviewType;
 };
 
+/**
+ * Displays a user's review with their avatar, name, rating, and review description.
+ */
 const ProfileReviewCard = ({ review }: ReviewProps) => {
   if (!review.user) {
     return <Text>Type of ReviewCard is set to profileReview, but user not set</Text>;
