@@ -6,6 +6,16 @@ import { theme } from '@/theme';
 import { dummyBook } from '../../../test-utils/testVars';
 import Reviews from './Reviews';
 
+vi.mock('recharts', async (importOriginal) => {
+  const originalModule = (await importOriginal()) as Record<string, unknown>;
+  return {
+    ...originalModule,
+    ResponsiveContainer: ({ children }: { children: React.ReactNode }) => (
+      <div style={{ width: '100%', height: '100%' }}>{children}</div>
+    ),
+  };
+});
+
 const customRender = () => {
   return render(
     <MockedProvider addTypename={false}>

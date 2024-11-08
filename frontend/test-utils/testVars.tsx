@@ -18,4 +18,5 @@ export const dummyBook: Book = {
   rating: 3.555,
   series: 'Title #1',
   numRatings: 5000,
+  ratingsByStars: [1, 5, 10, 7, 1],
 };
