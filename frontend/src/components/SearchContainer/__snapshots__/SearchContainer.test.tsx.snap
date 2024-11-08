@@ -19,10 +19,7 @@ exports[`SearchContainer > matches snapshot 1`] = `
     <div
       class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
     >
-      <label
-        class="_label_2ed2ca m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
-        for="mantine-s29zjeo6b"
-      >
+      <label>
         Search by title and description
       </label>
       <div
@@ -57,7 +54,6 @@ exports[`SearchContainer > matches snapshot 1`] = `
         </div>
         <input
           aria-invalid="false"
-          class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
           data-variant="default"
           placeholder="Search for books"
           value=""

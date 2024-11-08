@@ -2,6 +2,7 @@
 import { fireEvent, render, screen } from '@test-utils';
 import { isRouteErrorResponse, MemoryRouter, useRouteError } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import { ErrorPage } from './ErrorPage';
 
 vi.mock('react-router-dom', async () => {
@@ -82,11 +83,7 @@ describe('ErrorPage Component', () => {
         <ErrorPage />
       </MemoryRouter>
     );
-    const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]');
-    attributesToRemove.forEach((element) => {
-      element.removeAttribute('id');
-      element.removeAttribute('aria-describedby');
-    });
+    removeMantineRandomAttributes();
     // Delete element with data-testid="stackTrace" because it has random text content
     const stackTraceElement = document.body.querySelector('[data-testid="stackTrace"]');
     if (stackTraceElement) {

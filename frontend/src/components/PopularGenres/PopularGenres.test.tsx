@@ -1,5 +1,6 @@
 import { render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import PopularGenres from './PopularGenres';
 
 describe('PopularGenres component', () => {
@@ -9,7 +10,7 @@ describe('PopularGenres component', () => {
         <PopularGenres />
       </MemoryRouter>
     );
-
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 

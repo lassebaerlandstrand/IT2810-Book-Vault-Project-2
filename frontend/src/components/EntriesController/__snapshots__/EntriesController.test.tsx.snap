@@ -15,9 +15,7 @@ exports[`EntriesController > matches snapshot 1`] = `
   <div
     class="_select_5bf5c3 m_46b77525 mantine-InputWrapper-root mantine-Select-root"
   >
-    <label
-      class="m_8fdc1311 mantine-InputWrapper-label mantine-Select-label"
-    >
+    <label>
       Entries
     </label>
     <div
@@ -32,7 +30,6 @@ exports[`EntriesController > matches snapshot 1`] = `
         aria-invalid="false"
         aria-label="Number of entries"
         autocomplete="off"
-        class="m_8fb7ebe7 mantine-Input-input mantine-Select-input"
         data-testid="entries-select"
         data-variant="default"
         readonly=""

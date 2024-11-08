@@ -1,5 +1,6 @@
 import { render } from '@test-utils';
 import { describe, expect, it } from 'vitest';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import Loading from './Loading';
 
 describe('Loading', () => {
@@ -12,11 +13,7 @@ describe('Loading', () => {
 
   it('matches snapshot', () => {
     const { asFragment } = render(<Loading />);
-    const attributesToRemove = document.body.querySelectorAll('div [id^="mantine"]'); // Because Mantine uses random ids which causes snapshots to fail
-    attributesToRemove.forEach((element) => {
-      element.removeAttribute('id');
-      element.removeAttribute('aria-describedby');
-    });
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 });
