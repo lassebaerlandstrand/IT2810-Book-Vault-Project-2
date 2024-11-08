@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { Button, Flex } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { Review as ReviewType } from '@/generated/graphql';
-import { GET_BOOKS_REVIEWS } from '@/graphql/queries/reviews';
+import { GET_BOOK_REVIEWS } from '@/graphql/queries/reviews';
 import ReviewStack from '../ReviewStack/ReviewStack';
 
 type BookReviewsProps = {
@@ -18,7 +18,7 @@ const BookReviews = ({ bookId, top }: BookReviewsProps) => {
 
   const UUID: string = useUser().info.UUID;
 
-  const { loading: loadingDisplayReviews, fetchMore } = useQuery(GET_BOOKS_REVIEWS, {
+  const { loading: loadingDisplayReviews, fetchMore } = useQuery(GET_BOOK_REVIEWS, {
     variables: { bookID: bookId, limit: 3, offset: page, userUUID: UUID },
     onCompleted: (data) => {
       setDisplayReviews((old) => [...old, ...(data.bookReviews.reviews as ReviewType[])]);

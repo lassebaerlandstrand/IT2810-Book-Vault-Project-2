@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { GET_BOOKS_REVIEWS } from '@/graphql/queries/reviews';
+import { GET_BOOK_REVIEWS } from '@/graphql/queries/reviews';
 
 type UseBooksReviewsArgs = {
   bookID: string;
@@ -22,7 +22,7 @@ type UseBooksReviewsArgs = {
  * - refetch: Function to refetch the reviews
  */
 export const useBookReviews = ({ bookID, limit, page, userUUID }: UseBooksReviewsArgs) => {
-  const { data, loading, error, refetch } = useQuery(GET_BOOKS_REVIEWS, {
+  const { data, loading, error, refetch } = useQuery(GET_BOOK_REVIEWS, {
     variables: { bookID, limit, offset: page - 1, userUUID },
   });
 

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { GET_GENRES } from '@/graphql/queries/books';
+import { GET_BROAD_GENRES } from '@/graphql/queries/books';
 
 /**
  * Custom hook that fetches the list of broad genres from the server
@@ -9,7 +9,7 @@ import { GET_GENRES } from '@/graphql/queries/books';
  * - error: Any error that occurred during the query
  */
 export const useGenres = () => {
-  const { data, loading, error } = useQuery(GET_GENRES);
+  const { data, loading, error } = useQuery(GET_BROAD_GENRES);
 
   return {
     genres: data?.genres,
