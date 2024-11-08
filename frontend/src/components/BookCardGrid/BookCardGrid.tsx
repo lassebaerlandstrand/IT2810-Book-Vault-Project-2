@@ -67,7 +67,7 @@ const BookCardGrid = ({ books, loading, error, viewType = 'grid' }: BookCardGrid
     <>
       <Grid justify="center" display="inline-grid">
         {books.map((book) => (
-          <Grid.Col key={book.id} span="auto" className={styles.column}>
+          <Grid.Col key={book.id} span="content" className={styles.column}>
             <Link to={`/book/${book.id}`} className={styles.link}>
               <BookCard book={book} />
             </Link>
