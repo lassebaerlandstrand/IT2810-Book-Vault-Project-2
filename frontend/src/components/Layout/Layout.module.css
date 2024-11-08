@@ -3,3 +3,7 @@
   width: 100%;
   max-width: $mantine-breakpoint-lg;
 }
+
+.header {
+  z-index: 1000;
+}
