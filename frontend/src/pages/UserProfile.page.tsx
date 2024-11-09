@@ -49,6 +49,7 @@ export function ProfilePage() {
           {newName
             .split(' ')
             .map((n) => n[0])
+            .slice(0, 2)
             .join('')}
         </Avatar>
         <Text ta="center" size="lg" mt="sm">
