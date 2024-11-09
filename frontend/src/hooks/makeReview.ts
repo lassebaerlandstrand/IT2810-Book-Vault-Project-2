@@ -38,8 +38,8 @@ export const makeReview = () => {
 
   return {
     submitReview, // Function to trigger the mutation later
-    success: data?.createReview.success || undefined,
-    message: data?.createReview.message || undefined,
+    success: data?.createReview.success,
+    message: data?.createReview.message,
     loading,
     error,
   };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Button, Divider, Flex, Grid, Rating, Text, Textarea } from '@mantine/core';
-import { notifications } from '@mantine/notifications';
+import { IconCheck, IconX } from '@tabler/icons-react';
+import { Button, Divider, Flex, Grid, Notification, Rating, Text, Textarea } from '@mantine/core';
 import { useUser } from '@/contexts/UserFunctions';
 import { Book } from '@/generated/graphql';
 import { makeReview } from '@/hooks/makeReview';
@@ -12,11 +12,16 @@ type ReviewProps = {
   book: Book;
 };
 
+type Notice = {
+  message: string;
+  success: boolean;
+};
+
 const YourReviewHandler = ({ book }: ReviewProps) => {
   const [visible, setVisible] = useState(false);
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
-
+  const [notifications, setNotifications] = useState<Notice[]>([]);
   const UUID: string = useUser().info.UUID;
   const secret: string = useUser().secret;
 
@@ -89,11 +94,22 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
   }, [yourReviewLoading, loadingUpdateReview]);
 
   useEffect(() => {
-    notifications.show({
-      title: 'Default notification',
-      message: 'Do not forget to star Mantine on GitHub! 🌟',
-    });
-  });
+    if (!yourReviewLoading && createReviewMessage && typeof createReviewSuccess === 'boolean') {
+      setNotifications((prev) => [
+        ...prev,
+        { message: createReviewMessage, success: createReviewSuccess },
+      ]);
+    }
+  }, [createReviewMessage, createReviewSuccess, yourReviewLoading]);
+
+  useEffect(() => {
+    if (!loadingUpdateReview && updateReviewMessage && typeof updateReviewSuccess === 'boolean') {
+      setNotifications((prev) => [
+        ...prev,
+        { message: updateReviewMessage, success: updateReviewSuccess },
+      ]);
+    }
+  }, [loadingUpdateReview, updateReviewSuccess, yourReviewLoading]);
 
   // For updating reviews
   useEffect(() => {
@@ -102,6 +118,10 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       setText(yourReview.description);
     }
   }, [yourReview]);
+
+  const removeNotification = (index: number) => {
+    setNotifications((prevNotifications) => prevNotifications.filter((_, i) => i !== index));
+  };
 
   return (
     <>
@@ -166,8 +186,37 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
             ]}
             type="yourReview"
           />
-          <Divider size="xs" label="Other reviews" labelPosition="center" />
         </>
+      ) : (
+        <></>
+      )}
+
+      {notifications.map((notification, index) =>
+        notification.success ? (
+          <Notification
+            key={index}
+            title="Success!"
+            color="teal"
+            icon={<IconCheck />}
+            onClose={() => removeNotification(index)}
+          >
+            {notification.message}
+          </Notification>
+        ) : (
+          <Notification
+            key={index}
+            title="Error!"
+            color="red"
+            icon={<IconX />}
+            onClose={() => removeNotification(index)}
+          >
+            {notification.message}
+          </Notification>
+        )
+      )}
+
+      {!visible && yourReview ? (
+        <Divider size="xs" label="Other reviews" labelPosition="center" />
       ) : (
         <></>
       )}

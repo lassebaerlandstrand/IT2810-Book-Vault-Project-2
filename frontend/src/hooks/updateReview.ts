@@ -39,8 +39,8 @@ export const updateReview = () => {
 
   return {
     submitUpdate,
-    success: data?.updateReview.success || undefined,
-    message: data?.updateReview.message || undefined,
+    success: data?.updateReview.success,
+    message: data?.updateReview.message,
     loading,
     error,
   };
