@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { getTestUserId, getTestUserSecret } from '../utils/getTestUserId';
+import { getTestUserUUID, getTestUserSecret } from '../utils/getTestUserId';
 
 // Overwrite the default `visit` command to set the localStorage to the test user
 Cypress.Commands.overwrite(
@@ -32,7 +32,7 @@ Cypress.Commands.overwrite(
   (originalFn: typeof cy.visit, url: string, options: Partial<Cypress.VisitOptions> = {}) => {
     const defaultOptions: Partial<Cypress.VisitOptions> = {
       onBeforeLoad: (window) => {
-        window.localStorage.setItem('userID', getTestUserId());
+        window.localStorage.setItem('UUID', getTestUserUUID());
         window.localStorage.setItem('secret', getTestUserSecret());
 
         if (options.onBeforeLoad) {

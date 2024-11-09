@@ -18,7 +18,7 @@ interface UserContextProps {
  * Generates a new user by clearing localStorage and reloading the page
  */
 const genNewUser = () => {
-  localStorage.removeItem('userID');
+  localStorage.removeItem('UUID');
   localStorage.removeItem('secret');
   window.location.reload();
 };
@@ -31,7 +31,8 @@ export const UserContext = createContext<UserContextProps | undefined>(undefined
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   // Get a user from the database or create a new one if none exists
   const userFunction = () => {
-    const UUID = localStorage.getItem('userID');
+    const UUID = localStorage.getItem('UUID');
+
     if (UUID) {
       const data = useUserHook({ UUID });
 
@@ -43,7 +44,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     // Check that it was successfull
     if (newUser.user && newUser.user.secret) {
-      localStorage.setItem('userID', newUser.user.UUID);
+      localStorage.setItem('UUID', newUser.user.UUID);
       localStorage.setItem('secret', newUser.user.secret);
     }
 
@@ -63,6 +64,24 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
             Fetching user data
           </Text>
           <Loader />
+        </Stack>
+      </Flex>
+    );
+  }
+
+  if (!secret) {
+    return (
+      <Flex justify="center" align="center" className={styles.centeredOnPage}>
+        <Stack align="center">
+          <Text c="red" size="lg">
+            Missing credentials
+          </Text>
+          <Flex w="30rem">
+            <Text size="lg" ta="center">
+              You have missing credentials. Would you like to create a new user?
+            </Text>
+          </Flex>
+          <Button onClick={genNewUser}>New user</Button>
         </Stack>
       </Flex>
     );
@@ -89,26 +108,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           </Text>
           <Flex w="30rem">
             <Text size="lg" ta="center">
-              This error may be caused by the user your userId reference having been removed from
-              the database. Would you like to create a new user?
-            </Text>
-          </Flex>
-          <Button onClick={genNewUser}>New user</Button>
-        </Stack>
-      </Flex>
-    );
-  }
-
-  if (!secret) {
-    return (
-      <Flex justify="center" align="center" className={styles.centeredOnPage}>
-        <Stack align="center">
-          <Text c="red" size="lg">
-            Missing credentials
-          </Text>
-          <Flex w="30rem">
-            <Text size="lg" ta="center">
-              You have missing credentials. Would you like to create a new user?
+              This error may be caused by the user your UUID reference having been removed from the
+              database. Would you like to create a new user?
             </Text>
           </Flex>
           <Button onClick={genNewUser}>New user</Button>
