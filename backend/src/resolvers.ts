@@ -714,6 +714,12 @@ const resolvers = {
       return newUser; // Return the created user
     },
 
+    async updateUser(_, { input }: { input: { UUID: string; name: string } }) {
+      const { UUID, name } = input;
+      await db.collection('users').updateOne({ UUID: UUID }, { $set: { name: name } });
+      return await db.collection('users').findOne({ UUID: UUID });
+    },
+
     /**
      * Creates a new review for a book.
      *

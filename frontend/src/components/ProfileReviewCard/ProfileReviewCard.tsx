@@ -1,5 +1,6 @@
 import { Avatar, Card, Flex, Grid, Rating, Stack, Text } from '@mantine/core';
 import { Review as ReviewType } from '@/generated/graphql';
+import { formatAvatarAbbreviation } from '@/utils/formatting';
 import styles from './ProfileReviewCard.module.css';
 
 type ReviewProps = {
@@ -21,11 +22,7 @@ const ProfileReviewCard = ({ review }: ReviewProps) => {
           <Grid justify="flex-start">
             <Grid.Col span="content">
               <Avatar color="blue">
-                {review.user &&
-                  review.user.name
-                    .split(' ')
-                    .map((word) => word[0])
-                    .join('')}
+                {review.user && formatAvatarAbbreviation(review.user.name)}
               </Avatar>
             </Grid.Col>
             <Grid.Col span="content">

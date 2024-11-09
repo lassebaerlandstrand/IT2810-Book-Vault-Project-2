@@ -16,3 +16,12 @@ export const CREATE_USER = gql(`
     }
   }
 `);
+
+export const UPDATE_USER = gql(`
+  mutation UpdateUser($input: UpdateUserInput!) {
+    updateUser(input: $input) {
+      UUID
+      name
+    }
+  }
+`);
