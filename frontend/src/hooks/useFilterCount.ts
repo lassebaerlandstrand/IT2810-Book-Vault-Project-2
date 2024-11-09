@@ -15,6 +15,14 @@ type UseFilterCountArgs = {
   minRating?: number;
 };
 
+/**
+ * Custom hook that fetches counts for available filter options based on current filter selections.
+ * Used to show how many results each filter option would return if selected.
+ * @returns Object containing:
+ * - filterCount: Object containing counts for each filter option
+ * - loading: Boolean indicating if the query is in progress
+ * - error: Any error that occurred during the query
+ */
 export const useFilterCount = ({
   search,
   beforeDate,

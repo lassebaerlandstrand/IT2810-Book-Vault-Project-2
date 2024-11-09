@@ -8,6 +8,10 @@ type ReviewProps = {
   type: 'profileReview' | 'bookReview' | 'yourReview';
 };
 
+/**
+ * A component that renders different types of review cards based on the specified type.
+ * Supports profile reviews, book reviews, and user's own reviews.
+ */
 const ReviewCard = ({ review, type }: ReviewProps) => {
   if (type === 'yourReview') {
     return <YourReviewCard review={review} />;

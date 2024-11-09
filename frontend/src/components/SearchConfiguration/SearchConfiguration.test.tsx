@@ -1,9 +1,10 @@
 import { render, screen, userEvent, waitFor } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import { Mock, vi } from 'vitest';
-import { Author, Genre, Publisher } from '@/generated/graphql';
+import { Genre } from '@/generated/graphql';
 import { useDateSpan } from '@/hooks/useDateSpan';
 import { useFilterCount } from '@/hooks/useFilterCount';
+import { useGenres } from '@/hooks/useGenres';
 import { usePageSpan } from '@/hooks/usePageSpan';
 import { updateQueryParams } from '@/utils/queryParams';
 import SearchConfiguration from './SearchConfiguration';
@@ -13,11 +14,15 @@ vi.mock('@/hooks/useFilterCount');
 vi.mock('@/hooks/useDateSpan');
 vi.mock('@/hooks/usePageSpan');
 vi.mock('@/utils/queryParams');
+vi.mock('@/hooks/useGenres');
 
 // Mock data
-const mockGenres: Genre[] = [{ name: 'Fiction' }, { name: 'Non-Fiction' }];
-const mockPublishers: Publisher[] = [{ name: 'Penguin' }];
-const mockAuthors: Author[] = [{ name: 'John Doe' }];
+const mockGenres: Genre[] = [
+  { name: 'Fiction' },
+  { name: 'Non-Fiction' },
+  { name: 'Action' },
+  { name: 'Adventure' },
+];
 
 // Configure mocks
 beforeEach(() => {
@@ -50,6 +55,12 @@ beforeEach(() => {
   (updateQueryParams as Mock).mockImplementation((setSearchParams, key, value) => {
     setSearchParams({ [key]: value });
   });
+
+  (useGenres as Mock).mockReturnValue({
+    genres: mockGenres,
+    loading: false,
+    error: null,
+  });
 });
 
 afterEach(() => {
@@ -60,12 +71,7 @@ describe('SearchConfiguration', () => {
   it('renders search filters correctly', () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration
-          genres={mockGenres}
-          publishers={mockPublishers}
-          authors={mockAuthors}
-          useDrawer={false}
-        />
+        <SearchConfiguration useDrawer={false} />
       </MemoryRouter>
     );
 
@@ -79,12 +85,7 @@ describe('SearchConfiguration', () => {
   it('updates search params when changing filters', async () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration
-          genres={mockGenres}
-          publishers={mockPublishers}
-          authors={mockAuthors}
-          useDrawer={false}
-        />
+        <SearchConfiguration useDrawer={false} />
       </MemoryRouter>
     );
 
@@ -100,12 +101,7 @@ describe('SearchConfiguration', () => {
   it('resets filters to default values', async () => {
     render(
       <MemoryRouter>
-        <SearchConfiguration
-          genres={mockGenres}
-          publishers={mockPublishers}
-          authors={mockAuthors}
-          useDrawer={false}
-        />
+        <SearchConfiguration useDrawer={false} />
       </MemoryRouter>
     );
 
@@ -139,12 +135,7 @@ describe('SearchConfiguration', () => {
 
     render(
       <MemoryRouter>
-        <SearchConfiguration
-          genres={mockGenres}
-          publishers={mockPublishers}
-          authors={mockAuthors}
-          useDrawer={false}
-        />
+        <SearchConfiguration useDrawer={false} />
       </MemoryRouter>
     );
     const error = await waitFor(() => screen.getByText(/Error fetching filters/i));

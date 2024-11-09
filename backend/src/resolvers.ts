@@ -4,6 +4,8 @@ import { Document } from 'mongodb';
 import { v4 as uuidv4 } from 'uuid';
 import crypto from 'crypto';
 
+// Define interfaces and enums
+
 export enum SortBy {
   Book = 'bookName',
   Author = 'authorName',
@@ -107,6 +109,24 @@ interface MongoBookFilters {
   rating?: { $gte?: number };
 }
 
+/**
+ * Counts documents in the 'books' collection with optional exclusions.
+ *
+ * This function builds an aggregation pipeline to count documents in the 'books' collection
+ * based on the provided filters. It allows excluding specific filters from the count.
+ *
+ * @param {FilterInput} input - The filter criteria for counting documents.
+ * @param {keyof FilterInput | null | 'publisher'} excludeField - The field to exclude from the filter criteria.
+ * @returns {Promise<Array>} A promise that resolves to an array of count results.
+ *
+ * The function performs the following steps:
+ * 1. Builds an initial pipeline without specific filters.
+ * 2. Adds filters to the pipeline based on the input, excluding the specified field.
+ * 3. If no field is excluded, counts all documents.
+ * 4. If 'minRating' is excluded, counts documents for each rating from 0 to 5.
+ * 5. If another field is excluded, groups and counts documents by that field.
+ * 6. Executes the aggregation pipeline and returns the count results.
+ */
 const countWithExclusions = async (
   input: FilterInput,
   excludeField: keyof FilterInput | null | 'publisher',
@@ -220,6 +240,21 @@ const countWithExclusions = async (
   return counts;
 };
 
+/**
+ * Builds an aggregation pipeline without specific filters.
+ *
+ * This function constructs a MongoDB aggregation pipeline based on the provided filter criteria.
+ * It handles date ranges, page ranges, sorting, and search functionality.
+ *
+ * @param {FilterInput} input - The filter criteria for building the pipeline.
+ * @returns {Array<Document>} An array representing the MongoDB aggregation pipeline.
+ *
+ * The function performs the following steps:
+ * 1. Initializes filters based on date and page ranges.
+ * 2. Adds sorting to the pipeline based on the sort input.
+ * 3. Adds search functionality using regular expressions.
+ * 4. Returns the constructed pipeline.
+ */
 const buildPipelineWithoutSpecificFilters = ({
   search,
   sortInput,
@@ -283,6 +318,10 @@ const buildPipelineWithoutSpecificFilters = ({
   return pipeline;
 };
 
+/**
+ * GraphQL resolvers for handling various queries and mutations.
+ * The resolvers handle data fetching, aggregation, and transformation logic.
+ */
 const resolvers = {
   Date: new GraphQLScalarType({
     name: 'Date',
@@ -306,6 +345,7 @@ const resolvers = {
   }),
 
   Query: {
+    /** Fetches all books matching filters, with sorting and pagination */
     async books(_, args: BooksQueryArgs) {
       const pipeline = buildPipelineWithoutSpecificFilters(args.input ?? {});
 
@@ -337,6 +377,7 @@ const resolvers = {
       };
     },
 
+    /** Fetches counts for available filter options based on current filter selections */
     async filterCount(_, args: FilterCountInput) {
       const input = args.input ?? {};
       const genresCount = await countWithExclusions(input, 'genres');
@@ -352,18 +393,22 @@ const resolvers = {
       };
     },
 
+    /** Fetches all authors in the database */
     async authors() {
       return (await db.collection('books').distinct('authors')).map((author) => ({ name: author }));
     },
 
+    /** Fetches a specific book based on the ID */
     async book(_, { id }: BookQueryArgs) {
       return await db.collection('books').findOne({ id: id });
     },
 
+    /** Fetches a specific user based on the UUID */
     async user(_, { UUID }: UserQueryArgs) {
       return await db.collection('users').findOne({ UUID: UUID }, { projection: { secret: 0 } });
     },
 
+    /** Fetches all reviews for a book. This is paginated and sorted desceding based on when the review was created.  */
     async bookReviews(
       _,
       { bookID, limit, offset, avoidUserUUID, focusUserUUID }: BookReviewsQueryArgs,
@@ -513,6 +558,7 @@ const resolvers = {
       };
     },
 
+    /** Fetches a specific review */
     async bookReview(_, { bookID, userUUID }: SingleBookReviewQueryArgs) {
       const review = await db.collection('reviews').findOne({ bookID: bookID, userUUID: userUUID });
 
@@ -524,18 +570,21 @@ const resolvers = {
       };
     },
 
+    /** Fetches all genres in the database */
     async genres() {
       return (await db.collection('books').distinct('genres')).map((genre) => ({
         name: genre,
       }));
     },
 
+    /** Fetches all publishers in the database */
     async publishers() {
       return (await db.collection('books').distinct('publisher')).map((publisher) => ({
         name: publisher,
       }));
     },
 
+    /** Fetches the earliest and latest publish dates of all books */
     async dateSpan() {
       const minDate = await db.collection('books').find().sort({ publishDate: 1 }).limit(1).next();
       const maxDate = await db.collection('books').find().sort({ publishDate: -1 }).limit(1).next();
@@ -545,6 +594,7 @@ const resolvers = {
       };
     },
 
+    /** Fetches the least and most pages of all books */
     async pageSpan() {
       const minPages = await db.collection('books').find().sort({ pages: 1 }).limit(1).next();
       const maxPages = await db.collection('books').find().sort({ pages: -1 }).limit(1).next();
@@ -554,10 +604,12 @@ const resolvers = {
       };
     },
 
+    /** Fetches the total number of books, authors, and ratings */
     async stats() {
       return {}; // Uses the resolver in Stats, this makes it so if a field is not requested, then it is not calculated
     },
 
+    /** Fetches a random book */
     async randomBook() {
       const randomBook = await db
         .collection('books')
@@ -567,6 +619,9 @@ const resolvers = {
     },
   },
 
+  /** Resolver for Stats. By doing this only the requested fields are calculated
+   * (if we defined a function all would be calculated but only the requested would be returned, which is more inefficient)
+   */
   Stats: {
     totalBooks: async () => {
       return await db.collection('books').countDocuments();
@@ -601,6 +656,7 @@ const resolvers = {
     },
   },
 
+  /** Resolver for Book */
   Book: {
     authors: async (book: { authors: string[] }) => {
       return book.authors.map((author) => ({ name: author }));
@@ -614,9 +670,19 @@ const resolvers = {
     numRatings: async (book: { ratingsByStars: { [x: number]: number } }) => {
       return Object.values(book.ratingsByStars).reduce((total, count) => total + count, 0);
     },
+    ratingsByStars: async (book: { ratingsByStars: { [x: number]: number } }) => {
+      return Object.values(book.ratingsByStars);
+    },
   },
 
   Mutation: {
+    /**
+     * Creates a new user with a randomly generated name.
+     *
+     * This function generates a random name by combining a random adjective and a random noun
+     * from the respective collections. It then creates a new user with this name, a unique UUID,
+     * and initializes empty lists for 'wantToRead' and 'haveRead' books.
+     */
     async createUser() {
       const collection = db.collection('users');
 
@@ -648,10 +714,16 @@ const resolvers = {
       return newUser; // Return the created user
     },
 
+    /**
+     * Creates a new review for a book.
+     *
+     * This function inserts a new review into the 'reviews' collection and updates the book's rating.
+     * It calculates the new average rating for the book based on the updated ratings by stars.
+     */
     async createReview(_, { input }: { input: BookReviewMutationArgs }) {
       const { userUUID, bookID, description, rating, secret } = input;
 
-      const user = await db.collection('users').findOne({ userUUID, secret });
+      const user = await db.collection('users').findOne({ UUID: userUUID, secret: secret });
 
       if (!user) {
         return { success: false, message: 'Wrong credentials!' };
@@ -712,6 +784,12 @@ const resolvers = {
       return { book: finishedBook.value, success: true, message: 'Review successfully created!' };
     },
 
+    /**
+     * Updates an existing review for a book.
+     *
+     * This function updates the description and rating of a review in the 'reviews' collection.
+     * It also updates the book's rating by incrementing the new rating and decrementing the old one.
+     */
     async updateReview(_, { input }: { input: UpdateBookReviewMutationArgs }) {
       const { reviewUUID, description, rating, secret } = input;
 

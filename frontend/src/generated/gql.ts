@@ -14,16 +14,14 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
-    "\n  mutation CreateReview($input: CreateReviewInput!) {\n    createReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n      }\n      success\n      message\n    }\n  }\n": types.CreateReviewDocument,
-    "\n  mutation UpdateReview($input: UpdateReviewInput!) {\n    updateReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n      }\n      success\n      message\n    }\n  }\n": types.UpdateReviewDocument,
+    "\n  mutation CreateReview($input: CreateReviewInput!) {\n    createReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n        ratingsByStars\n      }\n      success\n      message\n    }\n  }\n": types.CreateReviewDocument,
+    "\n  mutation UpdateReview($input: UpdateReviewInput!) {\n    updateReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n        ratingsByStars\n      }\n      success\n      message\n    }\n  }\n": types.UpdateReviewDocument,
     "\n  mutation CreateUser {\n    createUser {\n      UUID\n      name\n      at\n      wantToRead {\n        id\n      }\n      haveRead {\n        id\n      }\n      secret\n    }\n  }\n": types.CreateUserDocument,
-    "\n  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {\n    books(limit: $limit, offset: $offset, input: $input) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        numRatings\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n": types.GetBooksDocument,
-    "\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      numRatings\n      rating\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n": types.GetBookDocument,
+    "\n  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {\n    books(limit: $limit, offset: $offset, input: $input) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        numRatings\n        description\n        genres {\n          name\n        }\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n": types.GetBooksDocument,
+    "\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      numRatings\n      rating\n      ratingsByStars\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n": types.GetBookDocument,
     "\n  query GetRandomBook {\n    randomBook {\n      id\n    }\n  }\n": types.GetRandomBookDocument,
     "\n  query GetBookRating($bookId: String!) {\n    book(id: $bookId) {\n      id\n      rating\n    }\n  }\n": types.GetBookRatingDocument,
-    "\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n": types.GetAuthorsDocument,
     "\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n": types.GetGenresDocument,
-    "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n": types.GetPublishersDocument,
     "\n  query GetFilterCount($input: FilterInput) {\n    filterCount(input: $input) {\n      authors {\n        name\n        count\n      }\n      genres {\n        name\n        count\n      }\n      publishers {\n        name\n        count\n      }\n      ratings {\n        rating\n        count\n      }\n    }\n  }\n": types.GetFilterCountDocument,
     "\n  query GetDateSpan {\n    dateSpan {\n      earliest\n      latest\n    }\n  }\n": types.GetDateSpanDocument,
     "\n  query GetPageSpan {\n    pageSpan {\n      least\n      most\n    }\n  }\n": types.GetPageSpanDocument,
@@ -51,11 +49,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  mutation CreateReview($input: CreateReviewInput!) {\n    createReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n      }\n      success\n      message\n    }\n  }\n"): (typeof documents)["\n  mutation CreateReview($input: CreateReviewInput!) {\n    createReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n      }\n      success\n      message\n    }\n  }\n"];
+export function gql(source: "\n  mutation CreateReview($input: CreateReviewInput!) {\n    createReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n        ratingsByStars\n      }\n      success\n      message\n    }\n  }\n"): (typeof documents)["\n  mutation CreateReview($input: CreateReviewInput!) {\n    createReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n        ratingsByStars\n      }\n      success\n      message\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  mutation UpdateReview($input: UpdateReviewInput!) {\n    updateReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n      }\n      success\n      message\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateReview($input: UpdateReviewInput!) {\n    updateReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n      }\n      success\n      message\n    }\n  }\n"];
+export function gql(source: "\n  mutation UpdateReview($input: UpdateReviewInput!) {\n    updateReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n        ratingsByStars\n      }\n      success\n      message\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateReview($input: UpdateReviewInput!) {\n    updateReview(input: $input) {\n      book {\n        id\n        rating\n        numRatings\n        ratingsByStars\n      }\n      success\n      message\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -63,11 +61,11 @@ export function gql(source: "\n  mutation CreateUser {\n    createUser {\n      
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {\n    books(limit: $limit, offset: $offset, input: $input) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        numRatings\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {\n    books(limit: $limit, offset: $offset, input: $input) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        numRatings\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n"];
+export function gql(source: "\n  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {\n    books(limit: $limit, offset: $offset, input: $input) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        numRatings\n        description\n        genres {\n          name\n        }\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetBooks($limit: Int, $offset: Int, $input: FilterInput) {\n    books(limit: $limit, offset: $offset, input: $input) {\n      books {\n        id\n        title\n        coverImg\n        rating\n        numRatings\n        description\n        genres {\n          name\n        }\n        authors {\n          name\n        }\n      }\n      summary {\n        totalBooks\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      numRatings\n      rating\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n"): (typeof documents)["\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      numRatings\n      rating\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n"];
+export function gql(source: "\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      numRatings\n      rating\n      ratingsByStars\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n"): (typeof documents)["\n  query GetBook($bookId: String!) {\n    book(id: $bookId) {\n      id\n      title\n      series\n      numberInSeries\n      language\n      isbn\n      coverImg\n      numRatings\n      rating\n      ratingsByStars\n      characters\n      bookFormat\n      pages\n      publishDate\n      awards\n      setting\n      publisher {\n        name\n      }\n      genres {\n        name\n      }\n      authors {\n        name\n      }\n      description\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -79,15 +77,7 @@ export function gql(source: "\n  query GetBookRating($bookId: String!) {\n    bo
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetAuthors {\n    authors {\n      name\n    }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function gql(source: "\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetGenres {\n    genres {\n      name\n    }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetPublishers {\n    publishers {\n      name\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

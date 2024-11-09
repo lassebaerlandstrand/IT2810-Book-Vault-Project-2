@@ -6,11 +6,22 @@ type InfoGridProps = {
   book: Book;
 };
 
+/**
+ * Displays book information in a grid layout.
+ */
 const InfoGrid = ({ book }: InfoGridProps) => {
   const tableInfos = [
     { header: 'Title', description: book.title },
     { header: 'Author', description: book.authors.map((author) => author.name).join(', ') },
     { header: 'Publisher', description: book.publisher.name },
+    {
+      header: 'Publish Date',
+      description: new Date(book.publishDate).toLocaleDateString('en-UK', {
+        month: 'long',
+        year: 'numeric',
+        day: 'numeric',
+      }),
+    },
     { header: 'Genres', description: book.genres.map((genre) => genre.name).join(', ') },
     { header: 'Rating', description: book.rating.toFixed(1) },
     { header: 'Pages', description: book.pages },

@@ -19,6 +19,10 @@ export const BookLoader: MantineLoaderComponent = forwardRef(({ style, ...others
   />
 ));
 
+/**
+ * Loading component which has custom styling which you can use directly.
+ * Displays a flipping book as a loader.
+ */
 const Loading = (props: LoaderProps) => {
   return (
     <Stack my={100} justify="center" align="center">

@@ -17,6 +17,10 @@ type Notice = {
   success: boolean;
 };
 
+/**
+ * Handles the creation, display, and updating of a user's review for a specific book.
+ * Provides interface for rating, writing, editing and submitting reviews.
+ */
 const YourReviewHandler = ({ book }: ReviewProps) => {
   const [visible, setVisible] = useState(false);
   const [rating, setRating] = useState(1);

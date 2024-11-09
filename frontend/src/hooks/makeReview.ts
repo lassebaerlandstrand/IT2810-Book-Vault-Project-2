@@ -2,6 +2,13 @@ import { useMutation } from '@apollo/client';
 import { CreateReviewInput } from '@/generated/graphql';
 import { CREATE_REVIEW } from '@/graphql/mutations/reviews';
 
+/**
+ * Custom hook that handles review creation functionality.
+ * @returns Object containing:
+ * - submitReview: Function to create a new review
+ * - loading: Boolean indicating if the mutation is in progress
+ * - error: Any error that occurred during the mutation
+ */
 export const makeReview = () => {
   // Return the mutation and its states (data, loading, error)
   const [createReview, { data, loading, error }] = useMutation(CREATE_REVIEW, {
@@ -21,7 +28,7 @@ export const makeReview = () => {
         }
       });
 
-      //Clean up
+      // Clean up
       cache.gc();
     },
   });

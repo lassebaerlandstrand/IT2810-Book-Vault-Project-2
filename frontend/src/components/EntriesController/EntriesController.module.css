@@ -3,7 +3,8 @@
   z-index: 90; /* 100 is the header */
 
   label {
-    font-size: 0.75rem;
+    font-size: var(--mantine-font-size-xs);
     font-weight: 400;
+    color: var(--mantine-color-dimmed);
   }
 }

@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { GET_RANDOM_BOOK } from '@/graphql/queries/books';
 
 /**
- * Hook that fetches a random book from the database.
+ * Custom hook that fetches a random book from the database
  * @returns Object containing:
  * - id: The ID of the random book
  * - loading: Boolean indicating if the query is in progress

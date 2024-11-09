@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { IconAdjustments } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { IconAdjustments, IconLayoutGrid, IconList } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Container, Flex, Group, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
@@ -10,10 +10,7 @@ import LoadingCircle from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
 import SearchConfiguration from '@/components/SearchConfiguration/SearchConfiguration';
 import SearchContainer from '@/components/SearchContainer/SearchContainer';
-import { useAuthors } from '@/hooks/useAuthors';
 import { useBooks } from '@/hooks/useBooks';
-import { useGenres } from '@/hooks/useGenres';
-import { usePublishers } from '@/hooks/usePublishers';
 import { getFilterParams } from '@/utils/filters';
 import { formatNumberWithSpaces } from '@/utils/formatting';
 import { getPaginationParams } from '@/utils/pagination';
@@ -21,12 +18,19 @@ import { getSearchParams } from '@/utils/search';
 import { isValidUrlParams } from '@/utils/validateUrlParams';
 import styles from './BookList.module.css';
 
+/**
+ * BookList component displays a list of books with filtering, sorting, and pagination.
+ * This component only considers the URL query parameters when determining the filters.
+ * If another component want to affect the filters, it should change the URL query parameters.
+ */
 export function BookList() {
   const [searchParams] = useSearchParams();
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
   const [opened, { open, close }] = useDisclosure(false);
+  const [viewType, setViewType] = useState<'grid' | 'list'>('grid');
 
+  // Extract filter, pagination, and search parameters from URL search params
   const {
     sortBy,
     sortOrder,
@@ -42,14 +46,7 @@ export function BookList() {
   const { page, limit } = getPaginationParams(searchParams);
   const { searchValue } = getSearchParams(searchParams);
 
-  const { genres: allGenres, loading: loadingGenres, error: errorGenres } = useGenres();
-  const { authors: allAuthors, loading: loadingAuthors, error: errorAuthors } = useAuthors();
-  const {
-    publishers: allPublishers,
-    loading: loadingPublishers,
-    error: errorPublishers,
-  } = usePublishers();
-
+  // Fetch books based on filter, pagination, and search parameters
   const {
     books: books,
     totalBooks,
@@ -71,6 +68,7 @@ export function BookList() {
     minRating,
   });
 
+  // Format total number of books with spaces as thousand separators
   const formattedTotalBooks = totalBooks != null ? formatNumberWithSpaces(totalBooks) : '';
 
   useEffect(() => {
@@ -91,44 +89,18 @@ export function BookList() {
     );
   }
 
-  if (isDesktop == null || loadingGenres || loadingAuthors || loadingPublishers) {
+  if (isDesktop == null) {
     return <LoadingCircle />;
-  }
-
-  if (
-    errorGenres ||
-    errorAuthors ||
-    errorPublishers ||
-    allGenres == null ||
-    allAuthors == null ||
-    allPublishers == null
-  ) {
-    return (
-      <Error404
-        title="Failed to load data"
-        description="We were unable to load the necessary data to display the page."
-        link="/"
-      />
-    );
   }
 
   return (
     <>
-      {!isDesktop && (
-        <SearchConfiguration
-          genres={allGenres}
-          authors={allAuthors}
-          publishers={allPublishers}
-          useDrawer
-          opened={opened}
-          close={close}
-        />
-      )}
+      {!isDesktop && <SearchConfiguration useDrawer opened={opened} close={close} />}
 
-      <Group justify="center" gap="sm" wrap="nowrap">
+      <Group justify="center" align="flex-end" gap="sm" wrap="nowrap" my="sm">
         <SearchContainer />
         {!isDesktop && (
-          <ActionIcon onClick={open} size="lg" aria-label="Open search configuration">
+          <ActionIcon onClick={open} size="lg" aria-label="Open search configuration" mb={1}>
             <IconAdjustments size="75%" />
           </ActionIcon>
         )}
@@ -138,22 +110,32 @@ export function BookList() {
         <Text data-testid="number-of-results">
           {booksLoading ? 'Loading...' : `${formattedTotalBooks} results`}
         </Text>
-        <EntriesController />
+        <Flex align="flex-end" gap="xs">
+          <EntriesController />
+          <ActionIcon
+            onClick={() => setViewType(viewType === 'grid' ? 'list' : 'grid')}
+            size="input-sm"
+            variant="default"
+            title="Toggle view"
+          >
+            {viewType === 'list' ? <IconList size="75%" /> : <IconLayoutGrid size="75%" />}
+          </ActionIcon>
+        </Flex>
       </Flex>
 
       <Flex gap="lg" my="lg">
         {isDesktop && (
           <Container flex={0} px={0} className={styles.filterContainer}>
-            <SearchConfiguration
-              genres={allGenres}
-              authors={allAuthors}
-              publishers={allPublishers}
-              useDrawer={false}
-            />
+            <SearchConfiguration useDrawer={false} />
           </Container>
         )}
         <Container flex={1} px={0}>
-          <BookCardGrid books={books} loading={booksLoading} error={booksError} />
+          <BookCardGrid
+            books={books}
+            loading={booksLoading}
+            error={booksError}
+            viewType={viewType}
+          />
         </Container>
       </Flex>
 

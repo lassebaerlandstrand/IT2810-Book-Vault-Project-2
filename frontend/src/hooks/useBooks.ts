@@ -19,6 +19,23 @@ type UseBooksArgs = {
   onCompleted?: () => void;
 };
 
+/**
+ * Custom hook that fetches books based on filter and pagination parameters.
+ * @param {number} limit - The number of books to fetch
+ * @param {number} page - The page number of books to fetch
+ * @param {string} search - The search query to filter books by
+ * @param {SortBy} sortBy - The field to sort books by
+ * @param {SortOrder} sortOrder - The order to sort books by
+ * @param {Date} beforeDate - The date to filter books before
+ * @param {Date} afterDate - The date to filter books after
+ * @param {string[]} authors - The authors to filter books by
+ * @param {string[]} genres - The genres to filter books by
+ * @param {string[]} publishers - The publishers to filter books by
+ * @param {number} minPages - The minimum number of pages to filter books by
+ * @param {number} maxPages - The maximum number of pages to filter books by
+ * @param {number} minRating - The minimum rating to filter books by
+ * @returns Object containing the books, total number of books, loading state, and error state
+ */
 export const useBooks = ({
   limit,
   page,

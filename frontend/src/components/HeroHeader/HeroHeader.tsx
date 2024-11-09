@@ -6,6 +6,9 @@ import ReadingBookWebP from '../../assets/ReadingBook.webp';
 import { LogoTextImage } from '../Logo/Logo';
 import styles from './HeroHeader.module.css';
 
+/**
+ * Landing page hero section with welcome message and random book suggestion.
+ */
 export const HeroHeader = () => {
   const { id, loading, error } = useRandomBook();
 

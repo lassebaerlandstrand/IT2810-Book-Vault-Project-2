@@ -6,6 +6,9 @@ type ReviewProps = {
   review: ReviewType;
 };
 
+/**
+ * Card component that displays a single book review with rating and description.
+ */
 const BookReviewCard = ({ review }: ReviewProps) => {
   if (!review.book) {
     return <Text>Type of ReviewCard is set to bookReview, but user not set</Text>;

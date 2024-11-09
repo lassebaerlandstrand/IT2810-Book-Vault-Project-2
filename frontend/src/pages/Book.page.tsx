@@ -6,6 +6,10 @@ import Loading from '@/components/Loading/Loading';
 import Reviews from '@/components/Reviews/Reviews';
 import { useBook } from '@/hooks/useBook';
 
+/**
+ * Book page component that displays detailed information about a specific book
+ * and its reviews.
+ */
 const Book = () => {
   const { bookId } = useParams<{ bookId: string }>();
   const { book, loading: loadingBook, error: errorBook } = useBook({ bookId });

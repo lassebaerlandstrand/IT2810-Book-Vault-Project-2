@@ -3,6 +3,9 @@ import { HeroHeader } from '@/components/HeroHeader/HeroHeader';
 import PopularGenres from '@/components/PopularGenres/PopularGenres';
 import { StatsGroup } from '@/components/StatsGroup/StatsGroup';
 
+/**
+ * HomePage component serves as the landing page of the application.
+ */
 export function HomePage() {
   return (
     <>

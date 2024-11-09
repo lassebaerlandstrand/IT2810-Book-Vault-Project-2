@@ -5,20 +5,31 @@ import { makeUser } from '@/hooks/makeUser';
 import { useUserHook } from '@/hooks/useUserHook';
 import styles from './userContext.module.css';
 
+/**
+ * Interface defining the shape of the UserContext value
+ */
 interface UserContextProps {
   info: User;
   secret: string;
   setUser: (user: User) => void;
 }
 
+/**
+ * Generates a new user by clearing localStorage and reloading the page
+ */
 const genNewUser = () => {
   localStorage.removeItem('userID');
+  localStorage.removeItem('secret');
   window.location.reload();
 };
 
 export const UserContext = createContext<UserContextProps | undefined>(undefined);
 
+/**
+ * Context Provider for the UserContext. This component fetches the user data from the database and makes it available to the rest of the app.
+ */
 export const UserProvider = ({ children }: { children: ReactNode }) => {
+  // Get a user from the database or create a new one if none exists
   const userFunction = () => {
     const UUID = localStorage.getItem('userID');
     if (UUID) {
@@ -43,6 +54,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const { user, loading, error } = userFunction();
   const secret = localStorage.getItem('secret');
+  console.log(secret);
 
   if (loading) {
     return (

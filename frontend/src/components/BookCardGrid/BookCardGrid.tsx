@@ -1,52 +1,76 @@
 import { ApolloError } from '@apollo/client';
 import { IconBookOff } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import { Grid, Group, Text } from '@mantine/core';
+import { Grid, Group, Stack, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
 import BookCard from '../BookCard/BookCard';
+import BookListViewCard from '../BookListViewCard/BookListViewCard';
 import Loading from '../Loading/Loading';
 import styles from './BookCardGrid.module.css';
 
 type BookCardGridProps = {
   books:
-    | Pick<Book, 'id' | 'title' | 'coverImg' | 'rating' | 'authors' | 'numRatings'>[]
+    | Pick<
+        Book,
+        'id' | 'title' | 'coverImg' | 'rating' | 'authors' | 'numRatings' | 'genres' | 'description'
+      >[]
     | undefined;
   loading: boolean;
   error: ApolloError | undefined;
+  viewType?: 'grid' | 'list';
 };
 
-const BookCardGrid = ({ books, loading, error }: BookCardGridProps) => {
+/**
+ * Displays a grid of book cards.
+ */
+const BookCardGrid = ({ books, loading, error, viewType = 'grid' }: BookCardGridProps) => {
   if (loading) {
     return <Loading />;
   }
 
   if (error || !books) {
     return (
-      <Group justify="center" align="center" className={styles.noResultWrapper}>
-        <IconBookOff />
-        <Text size="xl" fw={700} my="xl">
-          Error fetching books
-        </Text>
+      <Group justify="center" align="flex-start" className={styles.noResultWrapper}>
+        <Group align="center">
+          <IconBookOff />
+          <Text size="xl" fw={500} my="xl">
+            Error fetching books
+          </Text>
+        </Group>
       </Group>
     );
   }
 
   if (books.length === 0) {
     return (
-      <Group justify="center" align="center" className={styles.noResultWrapper}>
-        <IconBookOff />
-        <Text size="xl" fw={700} my="xl">
-          No books found
-        </Text>
+      <Group justify="center" align="flex-start" className={styles.noResultWrapper}>
+        <Group align="center">
+          <IconBookOff />
+          <Text size="xl" fw={500} my="xl">
+            No books found
+          </Text>
+        </Group>
       </Group>
+    );
+  }
+
+  if (viewType === 'list') {
+    return (
+      <Stack gap={20}>
+        {books.map((book) => (
+          <Link to={`/book/${book.id}`} className={styles.link} key={book.id}>
+            <BookListViewCard book={book} />
+          </Link>
+        ))}
+      </Stack>
     );
   }
 
   return (
     <>
-      <Grid my="xl" gutter="md">
+      <Grid justify="center" display="inline-grid">
         {books.map((book) => (
-          <Grid.Col key={book.id} span={{ base: 12, xxs: 6, xs: 4, sm: 3, md: 3 }}>
+          <Grid.Col key={book.id} span="content" className={styles.column}>
             <Link to={`/book/${book.id}`} className={styles.link}>
               <BookCard book={book} />
             </Link>

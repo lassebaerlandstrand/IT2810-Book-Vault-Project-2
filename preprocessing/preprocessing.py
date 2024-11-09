@@ -97,7 +97,7 @@ df['rating'] = df['ratingsByStars'].apply(lambda x: sum(stars * reviews for star
 
 # Extract digits from pages and convert to int
 df['pages'] = pd.to_numeric(
-    df['pages'].str.extract('(\d+)')[0], errors='coerce')
+    df['pages'].str.extract(r'(\d+)')[0], errors='coerce')
 
 # Set bookId as the index and add id column
 df.set_index('bookId', inplace=True)
@@ -1114,10 +1114,9 @@ def map_genres(specific_genres):
     broader_genres = {secondLayerTranslations[firstLayerTranslations[genre]] for genre in specific_genres}
     return list(broader_genres)
 
-# TODO: This can be changed to broadGenres and we could modify the resolvers somehow to account for broudGenres and genres
 df['genres'] = df['genres'].apply(map_genres)
 
 # Save the DataFrame as a JSON list
 df.to_json('preprocessing/books.json', orient='records')
 
-print("Success")
+print('\nPreprocessing done!')

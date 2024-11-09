@@ -1,6 +1,7 @@
 import { render } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import { Book } from '@/generated/graphql';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import { dummyBook } from '../../../test-utils/testVars';
 import BookCardGrid from './BookCardGrid';
 
@@ -16,6 +17,7 @@ describe('Bookcard component', () => {
         <BookCardGrid books={dummyBooks} loading={false} error={undefined} />
       </MemoryRouter>
     );
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 });

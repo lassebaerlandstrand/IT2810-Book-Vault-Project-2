@@ -1,10 +1,21 @@
 import { MockedProvider } from '@apollo/client/testing';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import { theme } from '@/theme';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import { dummyBook } from '../../../test-utils/testVars';
 import Reviews from './Reviews';
+
+vi.mock('@mantine/charts', async (importOriginal) => {
+  const originalModule = (await importOriginal()) as Record<string, unknown>;
+  return {
+    ...originalModule,
+    BarChart: ({ children }: { children: React.ReactNode }) => (
+      <div style={{ width: '100%', height: '100%' }}>{children}</div>
+    ),
+  };
+});
 
 const customRender = () => {
   return render(
@@ -45,16 +56,7 @@ describe('Reviews Component', () => {
   it('matches snapshot', () => {
     const { asFragment } = customRender();
 
-    const attributesToRemove = [
-      ...document.body.querySelectorAll('div [id^="mantine"]'),
-      ...document.body.querySelectorAll('div [for^="mantine"]'),
-    ]; // Because Mantine uses random ids which causes snapshots to fail
-    attributesToRemove.forEach((element) => {
-      element.removeAttribute('for');
-      element.removeAttribute('id');
-      element.removeAttribute('class');
-      element.removeAttribute('aria-describedby');
-    });
+    removeMantineRandomAttributes();
     expect(asFragment()).toMatchSnapshot();
   });
 });

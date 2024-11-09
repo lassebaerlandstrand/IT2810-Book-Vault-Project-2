@@ -19,10 +19,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
     <style
       data-mantine-styles="inline"
     >
-      .__m__-r2u{--grid-gutter:var(--mantine-spacing-md);}
+      .__m__-r32{--grid-gutter:var(--mantine-spacing-md);}
     </style>
     <div
-      class="m_410352e9 mantine-Grid-root __m__-r2u"
+      class="m_410352e9 mantine-Grid-root __m__-r32"
       style="--grid-justify: left; --grid-align: top;"
     >
       <div
@@ -31,10 +31,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
         <style
           data-mantine-styles="inline"
         >
-          .__m__-r30{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 30em){.__m__-r30{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}}@media(min-width: 48em){.__m__-r30{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 64em){.__m__-r30{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 75em){.__m__-r30{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 90em){.__m__-r30{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}
+          .__m__-r34{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 30em){.__m__-r34{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}}@media(min-width: 48em){.__m__-r34{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 64em){.__m__-r34{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 75em){.__m__-r34{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 90em){.__m__-r34{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}
         </style>
         <div
-          class="m_96bdd299 mantine-Grid-col __m__-r30"
+          class="m_96bdd299 mantine-Grid-col __m__-r34"
           style="max-height: calc(25rem * var(--mantine-scale));"
         >
           <img
@@ -48,13 +48,13 @@ exports[`BookInfo component > matches snapshot 1`] = `
         <style
           data-mantine-styles="inline"
         >
-          .__m__-r33{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+          .__m__-r37{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
         </style>
         <div
-          class="m_96bdd299 mantine-Grid-col __m__-r33"
+          class="m_96bdd299 mantine-Grid-col __m__-r37"
         >
           <div
-            class="m_8bffd616 mantine-Flex-root __m__-r35"
+            class="m_8bffd616 mantine-Flex-root __m__-r39"
             style="gap: var(--mantine-spacing-sm); align-items: center; justify-content: center; flex-wrap: wrap; flex-direction: row;"
           >
             <div
@@ -82,11 +82,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 A genre
               </p>
               <div
-                class="m_8bffd616 mantine-Flex-root __m__-r3b"
+                class="m_8bffd616 mantine-Flex-root __m__-r3f"
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 0rem;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="md"
                   style="--rating-size: var(--rating-size-md); --rating-color: var(--mantine-color-yellow-filled);"
                 >
@@ -94,7 +93,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                       style="--rating-item-z-index: 0;"
                     >
@@ -118,7 +116,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                       style="--rating-item-z-index: 0;"
                     >
@@ -142,7 +139,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                     >
                       <div
@@ -168,7 +164,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                       style="--rating-item-z-index: 0;"
                     >
@@ -192,7 +187,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                     >
                       <div
@@ -218,7 +212,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                       style="--rating-item-z-index: 0;"
                     >
@@ -242,7 +235,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                     >
                       <div
@@ -268,7 +260,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                       style="--rating-item-z-index: 2;"
                     >
@@ -292,7 +283,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                     >
                       <div
@@ -317,7 +307,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                       style="--rating-item-z-index: 0;"
                     >
@@ -340,7 +329,6 @@ exports[`BookInfo component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
                     >
                       <div
@@ -378,11 +366,8 @@ exports[`BookInfo component > matches snapshot 1`] = `
                 </p>
               </div>
             </div>
-            <div
-              class="m_559cce2d mantine-Spoiler-root"
-            >
+            <div>
               <div
-                class="m_b912df4e mantine-Spoiler-content"
                 data-reduce-motion="true"
                 role="region"
                 style="max-height: calc(15.625rem * var(--mantine-scale));"
@@ -405,10 +390,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
           <style
             data-mantine-styles="inline"
           >
-            .__m__-r4c{--grid-gutter:var(--mantine-spacing-md);}
+            .__m__-r4g{--grid-gutter:var(--mantine-spacing-md);}
           </style>
           <div
-            class="m_410352e9 mantine-Grid-root __m__-r4c"
+            class="m_410352e9 mantine-Grid-root __m__-r4g"
           >
             <div
               class="m_dee7bd2f mantine-Grid-inner"
@@ -416,10 +401,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r4e{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r4i{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r4e"
+                class="m_96bdd299 mantine-Grid-col __m__-r4i"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -436,10 +421,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r4i{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r4m{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r4i"
+                class="m_96bdd299 mantine-Grid-col __m__-r4m"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -456,10 +441,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r4m{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r4q{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r4m"
+                class="m_96bdd299 mantine-Grid-col __m__-r4q"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -476,10 +461,30 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r4q{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r4u{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r4q"
+                class="m_96bdd299 mantine-Grid-col __m__-r4u"
+              >
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                  style="font-weight: 700;"
+                >
+                  Publish Date
+                </p>
+                <p
+                  class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                >
+                  3 March 2003
+                </p>
+              </div>
+              <style
+                data-mantine-styles="inline"
+              >
+                .__m__-r52{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+              </style>
+              <div
+                class="m_96bdd299 mantine-Grid-col __m__-r52"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -496,10 +501,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r4u{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r56{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r4u"
+                class="m_96bdd299 mantine-Grid-col __m__-r56"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -516,10 +521,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r52{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r5a{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r52"
+                class="m_96bdd299 mantine-Grid-col __m__-r5a"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -536,10 +541,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r56{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r5e{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r56"
+                class="m_96bdd299 mantine-Grid-col __m__-r5e"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -556,10 +561,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r5a{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r5i{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r5a"
+                class="m_96bdd299 mantine-Grid-col __m__-r5i"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -576,10 +581,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r5e{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r5m{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r5e"
+                class="m_96bdd299 mantine-Grid-col __m__-r5m"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -596,10 +601,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r5i{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r5q{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r5i"
+                class="m_96bdd299 mantine-Grid-col __m__-r5q"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
@@ -616,10 +621,10 @@ exports[`BookInfo component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-r5m{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
+                .__m__-r5u{--col-flex-grow:1;--col-flex-basis:50%;--col-max-width:100%;}
               </style>
               <div
-                class="m_96bdd299 mantine-Grid-col __m__-r5m"
+                class="m_96bdd299 mantine-Grid-col __m__-r5u"
               >
                 <p
                   class="mantine-focus-auto m_b6d8b162 mantine-Text-root"

@@ -19,7 +19,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
   </style>
   <div
     class="m_410352e9 mantine-Grid-root __m__-r0"
-    style="margin-block: var(--mantine-spacing-xl);"
+    style="--grid-justify: center; display: inline-grid;"
   >
     <div
       class="m_dee7bd2f mantine-Grid-inner"
@@ -27,10 +27,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r2{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r2{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r2{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r2"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r2"
       >
         <a
           class="_link_7d2061"
@@ -81,18 +81,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-9hlp8evnl"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -115,9 +111,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -140,9 +134,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -167,9 +159,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -192,9 +182,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -219,9 +207,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -244,9 +230,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -271,9 +255,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -296,9 +278,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -322,9 +302,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -346,9 +324,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-9hlp8evnl-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -391,10 +367,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r18{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r18{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r18{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r18{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r18{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r18{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r18"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r18"
       >
         <a
           class="_link_7d2061"
@@ -445,18 +421,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-zc6hruxth"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -479,9 +451,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -504,9 +474,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -531,9 +499,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -556,9 +522,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -583,9 +547,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -608,9 +570,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -635,9 +595,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -660,9 +618,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -686,9 +642,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -710,9 +664,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-zc6hruxth-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -755,10 +707,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r2e{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r2e{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r2e{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r2e{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r2e{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r2e{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r2e"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r2e"
       >
         <a
           class="_link_7d2061"
@@ -809,18 +761,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-6xrk9uciw"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -843,9 +791,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -868,9 +814,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -895,9 +839,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -920,9 +862,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -947,9 +887,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -972,9 +910,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -999,9 +935,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -1024,9 +958,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1050,9 +982,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1074,9 +1004,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6xrk9uciw-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1119,10 +1047,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r3k{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r3k{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r3k{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r3k{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r3k{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r3k{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r3k"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r3k"
       >
         <a
           class="_link_7d2061"
@@ -1173,18 +1101,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-5mlkm1ju1"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1207,9 +1131,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1232,9 +1154,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1259,9 +1179,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1284,9 +1202,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1311,9 +1227,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1336,9 +1250,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1363,9 +1275,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -1388,9 +1298,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1414,9 +1322,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1438,9 +1344,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-5mlkm1ju1-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1483,10 +1387,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r4q{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r4q{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r4q{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r4q{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r4q{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r4q{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r4q"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r4q"
       >
         <a
           class="_link_7d2061"
@@ -1537,18 +1441,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-g03lgvadh"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1571,9 +1471,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1596,9 +1494,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1623,9 +1519,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1648,9 +1542,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1675,9 +1567,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1700,9 +1590,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1727,9 +1615,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -1752,9 +1638,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1778,9 +1662,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1802,9 +1684,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-g03lgvadh-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1847,10 +1727,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r60{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r60{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r60{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r60{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r60{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r60{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r60"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r60"
       >
         <a
           class="_link_7d2061"
@@ -1901,18 +1781,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-6lpf28fho"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1935,9 +1811,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -1960,9 +1834,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -1987,9 +1859,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2012,9 +1882,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2039,9 +1907,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2064,9 +1930,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2091,9 +1955,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -2116,9 +1978,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2142,9 +2002,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2166,9 +2024,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-6lpf28fho-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2211,10 +2067,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r76{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r76{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r76{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r76{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r76{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r76{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r76"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r76"
       >
         <a
           class="_link_7d2061"
@@ -2265,18 +2121,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-xqcvlnjqd"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2299,9 +2151,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2324,9 +2174,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2351,9 +2199,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2376,9 +2222,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2403,9 +2247,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2428,9 +2270,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2455,9 +2295,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -2480,9 +2318,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2506,9 +2342,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2530,9 +2364,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-xqcvlnjqd-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2575,10 +2407,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r8c{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r8c{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r8c{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r8c{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r8c{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r8c{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r8c"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r8c"
       >
         <a
           class="_link_7d2061"
@@ -2629,18 +2461,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-c00zuf1yf"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2663,9 +2491,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2688,9 +2514,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2715,9 +2539,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2740,9 +2562,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2767,9 +2587,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2792,9 +2610,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2819,9 +2635,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -2844,9 +2658,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2870,9 +2682,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -2894,9 +2704,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-c00zuf1yf-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -2939,10 +2747,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-r9i{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-r9i{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-r9i{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-r9i{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-r9i{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-r9i{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-r9i"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-r9i"
       >
         <a
           class="_link_7d2061"
@@ -2993,18 +2801,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-146w0g7ig"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3027,9 +2831,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3052,9 +2854,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -3079,9 +2879,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3104,9 +2902,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -3131,9 +2927,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3156,9 +2950,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -3183,9 +2975,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -3208,9 +2998,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -3234,9 +3022,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3258,9 +3044,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-146w0g7ig-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -3303,10 +3087,10 @@ exports[`Bookcard component > matches snapshot 1`] = `
       <style
         data-mantine-styles="inline"
       >
-        .__m__-rao{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}@media(min-width: 24em){.__m__-rao{--col-flex-grow:auto;--col-flex-basis:50%;--col-max-width:50%;}}@media(min-width: 30em){.__m__-rao{--col-flex-grow:auto;--col-flex-basis:33.333333333333336%;--col-max-width:33.333333333333336%;}}@media(min-width: 48em){.__m__-rao{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}@media(min-width: 64em){.__m__-rao{--col-flex-grow:auto;--col-flex-basis:25%;--col-max-width:25%;}}
+        .__m__-rao{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
       </style>
       <div
-        class="m_96bdd299 mantine-Grid-col __m__-rao"
+        class="m_96bdd299 mantine-Grid-col _column_7d2061 __m__-rao"
       >
         <a
           class="_link_7d2061"
@@ -3357,18 +3141,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
                 style="gap: calc(0.3125rem * var(--mantine-scale)); align-items: center; justify-content: left; flex-wrap: wrap;"
               >
                 <div
-                  class="m_f8d312f2 mantine-Rating-root"
                   data-size="xs"
-                  id="mantine-81b7t0b02"
                   style="--rating-size: var(--rating-size-xs); --rating-color: var(--mantine-color-yellow-filled);"
                 >
                   <div
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-0-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3391,9 +3171,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-0-1"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3416,9 +3194,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-0-2"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -3443,9 +3219,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-1-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3468,9 +3242,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-1-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -3495,9 +3267,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-2-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3520,9 +3290,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-2-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -3547,9 +3315,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-3-0"
                       style="--rating-item-z-index: 2;"
                     >
                       <div
@@ -3572,9 +3338,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-3-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"
@@ -3598,9 +3362,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                     class="m_61734bb7 mantine-Rating-symbolGroup"
                   >
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-4-0"
                       style="--rating-item-z-index: 0;"
                     >
                       <div
@@ -3622,9 +3384,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="m_21342ee4 mantine-Rating-label"
                       data-read-only="true"
-                      for="mantine-81b7t0b02-4-1"
                     >
                       <div
                         class="m_fae05d6a mantine-Rating-symbolBody"

@@ -6,6 +6,7 @@ import styles from './Testing.module.css';
 const Testing = () => {
   const genNewUser = () => {
     localStorage.removeItem('userID');
+    localStorage.removeItem('secret');
     window.location.reload();
   };
 
