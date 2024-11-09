@@ -54,7 +54,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const { user, loading, error } = userFunction();
   const secret = localStorage.getItem('secret');
-  console.log(secret);
 
   if (loading) {
     return (
@@ -121,7 +120,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const setUser = () => {};
 
   return (
-    <UserContext.Provider value={{ info: user as User, secret: secret, setUser }}>
+    <UserContext.Provider value={{ info: user as User, secret, setUser }}>
       {children}
     </UserContext.Provider>
   );

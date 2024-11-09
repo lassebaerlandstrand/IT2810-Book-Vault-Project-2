@@ -73,7 +73,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       submitUpdate({
         reviewUUID: yourReview.UUID,
         description: text,
-        secret: secret,
+        secret,
         rating,
       });
     }
@@ -86,7 +86,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       userUUID: UUID,
       bookID: book.id,
       description: text,
-      secret: secret,
+      secret,
       rating,
     });
   };
