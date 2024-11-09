@@ -5,6 +5,7 @@ import { useUser } from '@/contexts/UserFunctions';
 import { Review } from '@/generated/graphql';
 import { updateUser } from '@/hooks/updateUser';
 import { useYourBookReviews } from '@/hooks/useYourBookReviews';
+import { formatAvatarAbbreviation } from '@/utils/formatting';
 import ReviewStack from '../components/ReviewStack/ReviewStack';
 
 /**
@@ -30,11 +31,13 @@ export function ProfilePage() {
 
   const handleNameChange = () => {
     if (newName.length < 2) {
-      setInputError(`Name must be at least 2 characters. Current length: ${newName.length}`);
+      setInputError(`Name must be at least 2 characters, the current length is ${newName.length}`);
       return;
     }
     if (newName.length > 50) {
-      setInputError(`Name must be less than 50 characters. Current length: ${newName.length}`);
+      setInputError(
+        `Name must be less than 50 characters, the current length is ${newName.length}`
+      );
       return;
     }
     submitUpdate({ name: newName, UUID: info.UUID });
@@ -46,11 +49,7 @@ export function ProfilePage() {
     <Container size="sm" my="xl">
       <Stack align="center">
         <Avatar size={100} radius="xl">
-          {newName
-            .split(' ')
-            .map((n) => n[0])
-            .slice(0, 2)
-            .join('')}
+          {formatAvatarAbbreviation(newName)}
         </Avatar>
         <Text ta="center" size="lg" mt="sm">
           {info.name}
@@ -62,17 +61,19 @@ export function ProfilePage() {
               value={newName}
               onChange={(event) => setNewName(event.target.value)}
               placeholder="Enter new name"
+              label="Name"
               autoFocus
               mb="md"
               error={inputError}
+              w="75%"
             />
-            <Button fullWidth radius="md" onClick={handleNameChange} mt="md">
+            <Button w="75%" radius="md" onClick={handleNameChange} mt="md">
               Save
             </Button>
           </>
         ) : (
           <Button
-            fullWidth
+            w="75%"
             radius="md"
             size="md"
             variant="default"
