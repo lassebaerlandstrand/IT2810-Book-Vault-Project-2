@@ -649,7 +649,13 @@ const resolvers = {
     },
 
     async createReview(_, { input }: { input: BookReviewMutationArgs }) {
-      const { userUUID, bookID, description, rating } = input;
+      const { userUUID, bookID, description, rating, secret } = input;
+
+      const user = await db.collection('users').findOne({ userUUID, secret });
+
+      if (!user) {
+        return { success: false, message: 'Wrong credentials!' };
+      }
 
       const newReview = {
         UUID: uuidv4(),
@@ -702,12 +708,28 @@ const resolvers = {
           returnDocument: 'after',
         },
       );
-      return finishedBook.value;
+
+      return { book: finishedBook.value, success: true, message: 'Review successfully created!' };
     },
 
     async updateReview(_, { input }: { input: UpdateBookReviewMutationArgs }) {
-      const { reviewUUID, description, rating } = input;
+      const { reviewUUID, description, rating, secret } = input;
 
+      // Check that review exists
+      const review = await db.collection('reviews').findOne({ UUID: reviewUUID });
+
+      if (!review) {
+        return { success: false, message: 'Review does not exist!' };
+      }
+
+      // Check that secret matches user that created the review
+      const user = await db.collection('users').findOne({ UUID: review.userUUID, secret: secret });
+
+      if (!user) {
+        return { success: false, message: 'Wrong user credentials!' };
+      }
+
+      // Update review
       const oldReview = await db.collection('reviews').findOneAndUpdate(
         { UUID: reviewUUID },
         {
@@ -765,9 +787,9 @@ const resolvers = {
           },
         );
 
-        return finishedBook.value;
+        return { book: finishedBook.value, success: true, message: 'Review updated!' };
       }
-      return;
+      return { success: true, message: 'Review updated!' };
     },
   },
 };

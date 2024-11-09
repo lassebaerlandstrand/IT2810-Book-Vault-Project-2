@@ -218,12 +218,18 @@ input UpdateReviewInput {
   secret: String!
 }
 
+type reviewResponse {
+  book: Book
+  success: Boolean!
+  message: String!
+}
+
 type Mutation {
-  createUser: User
+  createUser: User!
 
-  createReview(input: CreateReviewInput!): Book!
+  createReview(input: CreateReviewInput!): reviewResponse!
 
-  updateReview(input: UpdateReviewInput!): Book
+  updateReview(input: UpdateReviewInput!): reviewResponse!
 }
 
 enum SortOrder {

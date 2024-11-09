@@ -1120,3 +1120,4 @@ df['genres'] = df['genres'].apply(map_genres)
 # Save the DataFrame as a JSON list
 df.to_json('preprocessing/books.json', orient='records')
 
+print("Success")

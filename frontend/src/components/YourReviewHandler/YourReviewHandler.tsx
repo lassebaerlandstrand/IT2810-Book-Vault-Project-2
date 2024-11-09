@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Divider, Flex, Grid, Rating, Text, Textarea } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { useUser } from '@/contexts/UserFunctions';
 import { Book } from '@/generated/graphql';
 import { makeReview } from '@/hooks/makeReview';
@@ -26,10 +27,20 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
   });
 
   // For submitting a review (NR = new review)
-  const { submitReview, loading: yourReviewLoading } = makeReview();
+  const {
+    submitReview,
+    success: createReviewSuccess,
+    message: createReviewMessage,
+    loading: yourReviewLoading,
+  } = makeReview();
 
   // For updating reviews (UR = updated review)
-  const { submitUpdate, loading: loadingUpdateReview } = updateReview();
+  const {
+    submitUpdate,
+    success: updateReviewSuccess,
+    message: updateReviewMessage,
+    loading: loadingUpdateReview,
+  } = updateReview();
 
   // Toggle the review
   const toggleReviewDisplay = () => {
@@ -76,6 +87,13 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       refetchYourReview();
     }
   }, [yourReviewLoading, loadingUpdateReview]);
+
+  useEffect(() => {
+    notifications.show({
+      title: 'Default notification',
+      message: 'Do not forget to star Mantine on GitHub! 🌟',
+    });
+  });
 
   // For updating reviews
   useEffect(() => {
