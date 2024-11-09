@@ -31,6 +31,7 @@ const dummyUser = {
   info: {
     name: 'You',
     UUID: 'UUID1',
+    secret: 'secret',
   },
 };
 
