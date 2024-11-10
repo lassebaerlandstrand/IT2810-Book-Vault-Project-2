@@ -44,8 +44,8 @@ export const updateReview = () => {
 
   return {
     submitUpdate,
-    success: data?.updateReview.success,
-    message: data?.updateReview.message,
+    success: data?.updateReview.success ?? !error,
+    message: data?.updateReview.message ?? (error && 'Error updating review. Try again later.'),
     loading,
     error,
   };

@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { getTestUserUUID, getTestUserSecret } from '../utils/getTestUserId';
+import { getTestUserUUID, getTestUserSecret } from '../utils/getTestUserCredentials';
 
 // Overwrite the default `visit` command to set the localStorage to the test user
 Cypress.Commands.overwrite(

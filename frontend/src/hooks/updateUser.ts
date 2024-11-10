@@ -17,8 +17,8 @@ export const updateUser = () => {
 
   return {
     submitUpdate,
-    success: data?.updateUser.success,
-    message: data?.updateUser.message,
+    success: data?.updateUser.success ?? !error,
+    message: data?.updateUser.message ?? (error && 'Error updating user. Try again later.'),
     loading,
     error,
   };

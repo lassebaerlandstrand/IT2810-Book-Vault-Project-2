@@ -45,8 +45,8 @@ export const makeReview = () => {
 
   return {
     submitReview, // Function to trigger the mutation later
-    success: data?.createReview.success,
-    message: data?.createReview.message,
+    success: data?.createReview.success ?? !error,
+    message: data?.createReview.message ?? (error && 'Error making review. Try again later.'),
     loading,
     error,
   };
