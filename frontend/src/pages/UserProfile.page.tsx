@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Button, Container, Stack, Text, TextInput, Title } from '@mantine/core';
+import { Avatar, Button, Container, Divider, Stack, Text, TextInput, Title } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { useUser } from '@/contexts/UserFunctions';
 import { Review } from '@/generated/graphql';
@@ -8,6 +8,7 @@ import { updateUser } from '@/hooks/updateUser';
 import { useYourBookReviews } from '@/hooks/useYourBookReviews';
 import { formatAvatarAbbreviation } from '@/utils/formatting';
 import ReviewStack from '../components/ReviewStack/ReviewStack';
+import styles from './UserProfile.module.css';
 
 /**
  * ProfilePage component displays the user's profile information and allows editing the user's name.
@@ -21,7 +22,7 @@ export function ProfilePage() {
   const [inputError, setInputError] = useState('');
 
   const { submitUpdate, success, message, loading: updateNameLoading } = updateUser();
-  const { reviews, loading, error } = useYourBookReviews({
+  const { reviews, totalReviews, loading, error } = useYourBookReviews({
     limit: 3,
     page: 1,
     userUUID: info.UUID,
@@ -98,6 +99,20 @@ export function ProfilePage() {
         )}
 
         <Title order={2} mt="lg">
+          Your library
+        </Title>
+
+        <Title order={3} mt="md" fw={500}>
+          Books you want to read
+        </Title>
+
+        <Title order={3} mt="md" fw={500}>
+          Books you have read
+        </Title>
+
+        <Divider />
+
+        <Title order={2} mt="lg">
           Your Reviews
         </Title>
         {loading ? (
@@ -109,9 +124,9 @@ export function ProfilePage() {
         ) : (
           <>
             <ReviewStack reviews={reviews as Review[]} type="bookReview" />
-            {reviews && reviews.length >= 3 && (
-              <Link to="/myReviews">
-                <Button fullWidth radius="md" variant="outline" mt="md">
+            {totalReviews && totalReviews > 3 && (
+              <Link to="/myReviews" className={styles.link}>
+                <Button fullWidth radius="md" mt="md">
                   View All Reviews
                 </Button>
               </Link>
