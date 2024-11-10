@@ -88,8 +88,8 @@ type User {
   UUID: ID!
   name: String!
   at: Date
-  wantToRead: [Book]
-  haveRead: [Book]
+  wantToRead: [Book!]
+  haveRead: [Book!]
   secret: String
 }
 
@@ -226,22 +226,32 @@ type reviewResponse {
   message: String!
 }
 
-type nameResponse {
+type updateUserResponse {
   user: User
   success: Boolean!
   message: String!
 }
 
-input UpdateUserInput {
+input UpdateUsernameInput {
   UUID: String!
   name: String
+  secret: String!
+}
+
+input UpdateUserLibraryInput {
+  UUID: String!
+  wantToRead: String
+  haveRead: String
+  removeFromLibrary: String
   secret: String!
 }
 
 type Mutation {
   createUser: User!
 
-  updateUser(input: UpdateUserInput!): nameResponse!
+  updateUserLibrary(input: UpdateUserLibraryInput!): updateUserResponse!
+
+  updateUser(input: UpdateUsernameInput!): updateUserResponse!
 
   createReview(input: CreateReviewInput!): reviewResponse!
 

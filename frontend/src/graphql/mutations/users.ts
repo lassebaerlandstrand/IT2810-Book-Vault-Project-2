@@ -19,11 +19,29 @@ export const CREATE_USER = gql(`
 `);
 
 export const UPDATE_USER = gql(`
-  mutation UpdateUser($input: UpdateUserInput!) {
+  mutation UpdateUser($input: UpdateUsernameInput!) {
     updateUser(input: $input) {
       user {
         UUID
         name
+      }
+      success
+      message
+    }
+  }
+`);
+
+export const UPDATE_USERLIBARY = gql(`
+  mutation UpdateUserLibrary($input: UpdateUserLibraryInput!) {
+    updateUserLibrary(input: $input) {
+      user {
+        UUID
+        wantToRead {
+          id
+        }
+        haveRead {
+          id
+        }
       }
       success
       message

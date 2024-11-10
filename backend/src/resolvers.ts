@@ -109,6 +109,15 @@ interface MongoBookFilters {
   rating?: { $gte?: number };
 }
 
+interface UserDocument {
+  UUID: string;
+  name: string;
+  at: Date;
+  secret: string;
+  wantToRead: string[];
+  haveRead: string[];
+}
+
 /**
  * Counts documents in the 'books' collection with optional exclusions.
  *
@@ -405,7 +414,21 @@ const resolvers = {
 
     /** Fetches a specific user based on the UUID */
     async user(_, { UUID }: UserQueryArgs) {
-      return await db.collection('users').findOne({ UUID: UUID }, { projection: { secret: 0 } });
+      const user = await db
+        .collection('users')
+        .findOne({ UUID: UUID }, { projection: { secret: 0 } });
+
+      const haveReadArray = await db
+        .collection('books')
+        .find({ id: { $in: user.haveRead } })
+        .toArray();
+
+      const wantToReadArray = await db
+        .collection('books')
+        .find({ id: { $in: user.wantToRead } })
+        .toArray();
+
+      return { ...user, wantToRead: wantToReadArray, haveRead: haveReadArray };
     },
 
     /** Fetches all reviews for a book. This is paginated and sorted desceding based on when the review was created.  */
@@ -733,6 +756,90 @@ const resolvers = {
         return { success: true, message: 'Name successfully updated!', user: updatedUser.value };
       }
       return { success: false, message: 'Wrong user credentials!' };
+    },
+
+    async updateUserLibrary(
+      _,
+      {
+        input,
+      }: {
+        input: {
+          UUID: string;
+          secret: string;
+          wantToRead: string;
+          haveRead: string;
+          removeFromLibrary: string;
+        };
+      },
+    ) {
+      const { UUID, secret, wantToRead, haveRead, removeFromLibrary } = input;
+
+      if (!wantToRead && !haveRead && !removeFromLibrary) {
+        return { success: true, message: 'Nothing successfully changed' };
+      }
+
+      if (wantToRead) {
+        const book = await db.collection('books').findOne({ id: wantToRead });
+        if (!book) {
+          return { success: false, message: 'wantToRead book doesnt exist!' };
+        }
+      }
+
+      if (haveRead) {
+        const book = await db.collection('books').findOne({ id: haveRead });
+        if (!book) {
+          return { success: false, message: 'haveRead book doesnt exist!' };
+        }
+      }
+
+      if (removeFromLibrary) {
+        const book = await db.collection('books').findOne({ id: removeFromLibrary });
+        if (!book) {
+          return { success: false, message: 'removeFromLibrary book doesnt exist!' };
+        }
+      }
+
+      // Couldnt do pull and push in the same operation ):
+      await db.collection<UserDocument>('users').findOneAndUpdate(
+        { UUID: UUID, secret: secret },
+        {
+          $pull: {
+            wantToRead: { $in: [haveRead, removeFromLibrary] },
+            haveRead: { $in: [wantToRead, removeFromLibrary] },
+          },
+        },
+      );
+
+      const updatedUser = await db.collection<UserDocument>('users').findOneAndUpdate(
+        { UUID: UUID, secret: secret },
+        {
+          $push: {
+            haveRead: haveRead,
+            wantToRead: wantToRead,
+          },
+        },
+        { returnDocument: 'after' },
+      );
+
+      if (!updatedUser.value) {
+        return { success: false, message: 'Wrong user credentials!' };
+      }
+
+      const haveReadArray = await db
+        .collection('books')
+        .find({ id: { $in: updatedUser.value.haveRead } })
+        .toArray();
+
+      const wantToReadArray = await db
+        .collection('books')
+        .find({ id: { $in: updatedUser.value.wantToRead } })
+        .toArray();
+
+      return {
+        success: true,
+        message: 'Library successfully updated!',
+        user: { ...updatedUser.value, wantToRead: wantToReadArray, haveRead: haveReadArray },
+      };
     },
 
     /**
