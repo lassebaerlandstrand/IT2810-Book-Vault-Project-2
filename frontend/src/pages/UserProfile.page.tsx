@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar, Button, Container, Stack, Text, TextInput, Title } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { useUser } from '@/contexts/UserFunctions';
 import { Review } from '@/generated/graphql';
 import { updateUser } from '@/hooks/updateUser';
@@ -27,6 +28,17 @@ export function ProfilePage() {
   });
 
   useEffect(() => {
+    if (!updateNameLoading && message && typeof success === 'boolean') {
+      notifications.show({
+        title: success ? 'Success!' : 'Error!',
+        message,
+        color: success ? 'blue' : 'red',
+        autoClose: 10000,
+      });
+    }
+  }, [message, success, updateNameLoading]);
+
+  useEffect(() => {
     setNewName(info.name || '');
   }, [info.name]);
 
@@ -41,7 +53,7 @@ export function ProfilePage() {
       );
       return;
     }
-    submitUpdate({ name: newName, UUID: info.UUID, secret: secret });
+    submitUpdate({ name: newName, UUID: info.UUID, secret });
     setIsEditing(false);
     setInputError('');
   };

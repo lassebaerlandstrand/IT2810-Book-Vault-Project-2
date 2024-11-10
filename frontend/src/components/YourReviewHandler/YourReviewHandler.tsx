@@ -12,11 +12,6 @@ type ReviewProps = {
   book: Book;
 };
 
-type Notice = {
-  message: string;
-  success: boolean;
-};
-
 /**
  * Handles the creation, display, and updating of a user's review for a specific book.
  * Provides interface for rating, writing, editing and submitting reviews.
@@ -116,7 +111,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
         autoClose: 10000,
       });
     }
-  }, [loadingUpdateReview, updateReviewSuccess, yourReviewLoading]);
+  }, [loadingUpdateReview, updateReviewMessage, updateReviewSuccess]);
 
   // For updating reviews
   useEffect(() => {
