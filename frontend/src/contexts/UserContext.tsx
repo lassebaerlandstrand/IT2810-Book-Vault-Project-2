@@ -10,6 +10,7 @@ import styles from './userContext.module.css';
  */
 interface UserContextProps {
   info: User;
+  secret: string;
   setUser: (user: User) => void;
 }
 
@@ -17,7 +18,8 @@ interface UserContextProps {
  * Generates a new user by clearing localStorage and reloading the page
  */
 const genNewUser = () => {
-  localStorage.removeItem('userID');
+  localStorage.removeItem('UUID');
+  localStorage.removeItem('secret');
   window.location.reload();
 };
 
@@ -29,19 +31,30 @@ export const UserContext = createContext<UserContextProps | undefined>(undefined
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   // Get a user from the database or create a new one if none exists
   const userFunction = () => {
-    const UUID = localStorage.getItem('userID');
+    const UUID = localStorage.getItem('UUID');
+
     if (UUID) {
-      const oldUser = useUserHook({ UUID });
-      return oldUser;
+      const data = useUserHook({ UUID });
+
+      // useUserHook returns user without secret
+      // so it has to be added to complete the user
+      return data;
     }
     const newUser = makeUser();
-    if (newUser.user) {
-      localStorage.setItem('userID', newUser.user.UUID);
+
+    // Check that it was successfull
+    if (newUser.user && newUser.user.secret) {
+      localStorage.setItem('UUID', newUser.user.UUID);
+      localStorage.setItem('secret', newUser.user.secret);
     }
+
+    // secret is returned for first time user,
+    // so we dont have to add it
     return newUser;
   };
 
   const { user, loading, error } = userFunction();
+  const secret = localStorage.getItem('secret');
 
   if (loading) {
     return (
@@ -51,6 +64,24 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
             Fetching user data
           </Text>
           <Loader />
+        </Stack>
+      </Flex>
+    );
+  }
+
+  if (!secret) {
+    return (
+      <Flex justify="center" align="center" className={styles.centeredOnPage}>
+        <Stack align="center">
+          <Text c="red" size="lg">
+            Missing credentials
+          </Text>
+          <Flex w="30rem">
+            <Text size="lg" ta="center">
+              You have missing credentials. Would you like to create a new user?
+            </Text>
+          </Flex>
+          <Button onClick={genNewUser}>New user</Button>
         </Stack>
       </Flex>
     );
@@ -77,8 +108,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           </Text>
           <Flex w="30rem">
             <Text size="lg" ta="center">
-              This error may be caused by the user your userId reference having been removed from
-              the database. Would you like to create a new user?
+              This error may be caused by the user your UUID reference having been removed from the
+              database. Would you like to create a new user?
             </Text>
           </Flex>
           <Button onClick={genNewUser}>New user</Button>
@@ -90,6 +121,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const setUser = () => {};
 
   return (
-    <UserContext.Provider value={{ info: user as User, setUser }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ info: user as User, secret, setUser }}>
+      {children}
+    </UserContext.Provider>
   );
 };

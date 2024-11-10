@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar, Button, Container, Stack, Text, TextInput, Title } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { useUser } from '@/contexts/UserFunctions';
 import { Review } from '@/generated/graphql';
 import { updateUser } from '@/hooks/updateUser';
@@ -13,17 +14,29 @@ import ReviewStack from '../components/ReviewStack/ReviewStack';
  * It also shows a list of the user's recent book reviews.
  */
 export function ProfilePage() {
-  const { info } = useUser();
+  const { info, secret } = useUser();
+
   const [newName, setNewName] = useState(info.name || '');
   const [isEditing, setIsEditing] = useState(false);
   const [inputError, setInputError] = useState('');
 
-  const { submitUpdate } = updateUser();
+  const { submitUpdate, success, message, loading: updateNameLoading } = updateUser();
   const { reviews, loading, error } = useYourBookReviews({
     limit: 3,
     page: 1,
     userUUID: info.UUID,
   });
+
+  useEffect(() => {
+    if (!updateNameLoading && message && typeof success === 'boolean') {
+      notifications.show({
+        title: success ? 'Success!' : 'Error!',
+        message,
+        color: success ? 'blue' : 'red',
+        autoClose: 10000,
+      });
+    }
+  }, [message, success, updateNameLoading]);
 
   useEffect(() => {
     setNewName(info.name || '');
@@ -40,7 +53,7 @@ export function ProfilePage() {
       );
       return;
     }
-    submitUpdate({ name: newName, UUID: info.UUID });
+    submitUpdate({ name: newName, UUID: info.UUID, secret });
     setIsEditing(false);
     setInputError('');
   };

@@ -10,7 +10,7 @@ import { UPDATE_REVIEW } from '@/graphql/mutations/reviews';
  * - error: Any error that occurred during the mutation
  */
 export const updateReview = () => {
-  const [update, { loading, error }] = useMutation(UPDATE_REVIEW, {
+  const [update, { data, loading, error }] = useMutation(UPDATE_REVIEW, {
     update(cache) {
       // On update remove the bookReviews "focusUserUUID" queries from cache as
       // they are now stale
@@ -44,6 +44,8 @@ export const updateReview = () => {
 
   return {
     submitUpdate,
+    success: data?.updateReview.success ?? !error,
+    message: data?.updateReview.message ?? (error && 'Error updating review. Try again later.'),
     loading,
     error,
   };

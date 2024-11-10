@@ -3,7 +3,7 @@ import { UpdateUserInput } from '@/generated/graphql';
 import { UPDATE_USER } from '@/graphql/mutations/users';
 
 export const updateUser = () => {
-  const [updateUser, { loading, error }] = useMutation(UPDATE_USER);
+  const [updateUser, { data, loading, error }] = useMutation(UPDATE_USER);
 
   const submitUpdate = async (input: UpdateUserInput) => {
     try {
@@ -17,6 +17,8 @@ export const updateUser = () => {
 
   return {
     submitUpdate,
+    success: data?.updateUser.success ?? !error,
+    message: data?.updateUser.message ?? (error && 'Error updating user. Try again later.'),
     loading,
     error,
   };

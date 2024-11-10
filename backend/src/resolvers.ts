@@ -2,6 +2,7 @@ import { GraphQLScalarType, Kind } from 'graphql';
 import db from './db/connection.js';
 import { Document } from 'mongodb';
 import { v4 as uuidv4 } from 'uuid';
+import crypto from 'crypto';
 
 // Define interfaces and enums
 
@@ -71,12 +72,14 @@ interface BookReviewMutationArgs {
   bookID: string;
   description: string;
   rating: number;
+  secret: string;
 }
 
 interface UpdateBookReviewMutationArgs {
   reviewUUID: string;
   description: string;
   rating: number;
+  secret: string;
 }
 
 interface UserQueryArgs {
@@ -94,19 +97,6 @@ interface BookReviewsQueryArgs {
 interface SingleBookReviewQueryArgs {
   bookID: string;
   userUUID: string;
-}
-
-interface BookReviewMutationArgs {
-  userUUID: string;
-  bookID: string;
-  description: string;
-  rating: number;
-}
-
-interface UpdateBookReviewMutationArgs {
-  reviewUUID: string;
-  description: string;
-  rating: number;
 }
 
 interface MongoBookFilters {
@@ -415,7 +405,7 @@ const resolvers = {
 
     /** Fetches a specific user based on the UUID */
     async user(_, { UUID }: UserQueryArgs) {
-      return await db.collection('users').findOne({ UUID: UUID });
+      return await db.collection('users').findOne({ UUID: UUID }, { projection: { secret: 0 } });
     },
 
     /** Fetches all reviews for a book. This is paginated and sorted desceding based on when the review was created.  */
@@ -436,7 +426,13 @@ const resolvers = {
         const reviews = await db
           .collection('reviews')
           .aggregate([
-            { $match: { bookID: bookID, userUUID: { $ne: avoidUserUUID } } },
+            {
+              $match: {
+                bookID: bookID,
+                userUUID: { $ne: avoidUserUUID },
+                description: { $ne: '' },
+              },
+            },
             { $sort: { at: -1 } },
             { $skip: skip },
             { $limit: limit },
@@ -448,7 +444,9 @@ const resolvers = {
         const finishedReviews = [];
         for (let i = 0; i < reviews.length; i++) {
           const review = reviews[i];
-          const user = await db.collection('users').findOne({ UUID: review.userUUID });
+          const user = await db
+            .collection('users')
+            .findOne({ UUID: review.userUUID }, { projection: { secret: 0 } });
 
           finishedReviews.push({
             UUID: review.UUID,
@@ -491,7 +489,9 @@ const resolvers = {
           ])
           .toArray();
 
-        const user = await db.collection('users').findOne({ UUID: focusUserUUID });
+        const user = await db
+          .collection('users')
+          .findOne({ UUID: focusUserUUID }, { projection: { secret: 0 } });
 
         const finishedReviews = [];
         for (let i = 0; i < reviews.length; i++) {
@@ -536,7 +536,9 @@ const resolvers = {
       const finishedReviews = [];
       for (let i = 0; i < reviews.length; i++) {
         const review = reviews[i];
-        const user = await db.collection('users').findOne({ UUID: review.userUUID });
+        const user = await db
+          .collection('users')
+          .findOne({ UUID: review.userUUID }, { projection: { secret: 0 } });
         const book = await db.collection('books').findOne({ id: review.bookID });
 
         finishedReviews.push({
@@ -690,6 +692,9 @@ const resolvers = {
     async createUser() {
       const collection = db.collection('users');
 
+      // The user needs a secret so that we can authenticate that its them since we dont have passwords
+      const secret = crypto.randomBytes(32).toString('hex');
+
       const randomAdjective = await db
         .collection('adjectives')
         .aggregate([{ $sample: { size: 1 } }])
@@ -708,16 +713,26 @@ const resolvers = {
         at: new Date(),
         wantToRead: [],
         haveRead: [],
+        secret: secret,
       };
 
       await collection.insertOne(newUser);
       return newUser; // Return the created user
     },
 
-    async updateUser(_, { input }: { input: { UUID: string; name: string } }) {
-      const { UUID, name } = input;
-      await db.collection('users').updateOne({ UUID: UUID }, { $set: { name: name } });
-      return await db.collection('users').findOne({ UUID: UUID });
+    async updateUser(_, { input }: { input: { UUID: string; secret: string; name: string } }) {
+      const { UUID, secret, name } = input;
+      const updatedUser = await db
+        .collection('users')
+        .findOneAndUpdate(
+          { UUID: UUID, secret: secret },
+          { $set: { name: name } },
+          { returnDocument: 'after' },
+        );
+      if (updatedUser.value) {
+        return { success: true, message: 'Name successfully updated!', user: updatedUser.value };
+      }
+      return { success: false, message: 'Wrong user credentials!' };
     },
 
     /**
@@ -727,7 +742,13 @@ const resolvers = {
      * It calculates the new average rating for the book based on the updated ratings by stars.
      */
     async createReview(_, { input }: { input: BookReviewMutationArgs }) {
-      const { userUUID, bookID, description, rating } = input;
+      const { userUUID, bookID, description, rating, secret } = input;
+
+      const user = await db.collection('users').findOne({ UUID: userUUID, secret: secret });
+
+      if (!user) {
+        return { success: false, message: 'Wrong credentials!' };
+      }
 
       const newReview = {
         UUID: uuidv4(),
@@ -780,7 +801,8 @@ const resolvers = {
           returnDocument: 'after',
         },
       );
-      return finishedBook.value;
+
+      return { book: finishedBook.value, success: true, message: 'Review successfully created!' };
     },
 
     /**
@@ -790,8 +812,23 @@ const resolvers = {
      * It also updates the book's rating by incrementing the new rating and decrementing the old one.
      */
     async updateReview(_, { input }: { input: UpdateBookReviewMutationArgs }) {
-      const { reviewUUID, description, rating } = input;
+      const { reviewUUID, description, rating, secret } = input;
 
+      // Check that review exists
+      const review = await db.collection('reviews').findOne({ UUID: reviewUUID });
+
+      if (!review) {
+        return { success: false, message: 'Review does not exist!' };
+      }
+
+      // Check that secret matches user that created the review
+      const user = await db.collection('users').findOne({ UUID: review.userUUID, secret: secret });
+
+      if (!user) {
+        return { success: false, message: 'Wrong user credentials!' };
+      }
+
+      // Update review
       const oldReview = await db.collection('reviews').findOneAndUpdate(
         { UUID: reviewUUID },
         {
@@ -849,9 +886,9 @@ const resolvers = {
           },
         );
 
-        return finishedBook.value;
+        return { book: finishedBook.value, success: true, message: 'Review updated!' };
       }
-      return;
+      return { success: true, message: 'Review updated!' };
     },
   },
 };

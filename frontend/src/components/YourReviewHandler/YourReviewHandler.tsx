@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Divider, Flex, Grid, Rating, Text, Textarea } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { useUser } from '@/contexts/UserFunctions';
 import { Book } from '@/generated/graphql';
 import { makeReview } from '@/hooks/makeReview';
@@ -19,8 +20,8 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
   const [visible, setVisible] = useState(false);
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
-
   const UUID: string = useUser().info.UUID;
+  const secret: string = useUser().secret;
 
   // Fetch your review of the book (if it exists)
   const { review: yourReview, refetch: refetchYourReview } = useYourBookReview({
@@ -29,10 +30,20 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
   });
 
   // For submitting a review (NR = new review)
-  const { submitReview, loading: yourReviewLoading } = makeReview();
+  const {
+    submitReview,
+    success: createReviewSuccess,
+    message: createReviewMessage,
+    loading: yourReviewLoading,
+  } = makeReview();
 
   // For updating reviews (UR = updated review)
-  const { submitUpdate, loading: loadingUpdateReview } = updateReview();
+  const {
+    submitUpdate,
+    success: updateReviewSuccess,
+    message: updateReviewMessage,
+    loading: loadingUpdateReview,
+  } = updateReview();
 
   // Toggle the review
   const toggleReviewDisplay = () => {
@@ -56,6 +67,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       submitUpdate({
         reviewUUID: yourReview.UUID,
         description: text,
+        secret,
         rating,
       });
     }
@@ -68,6 +80,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       userUUID: UUID,
       bookID: book.id,
       description: text,
+      secret,
       rating,
     });
   };
@@ -77,6 +90,28 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       refetchYourReview();
     }
   }, [yourReviewLoading, loadingUpdateReview]);
+
+  useEffect(() => {
+    if (!yourReviewLoading && createReviewMessage && typeof createReviewSuccess === 'boolean') {
+      notifications.show({
+        title: createReviewSuccess ? 'Success!' : 'Error!',
+        message: createReviewMessage,
+        color: createReviewSuccess ? 'blue' : 'red',
+        autoClose: 10000,
+      });
+    }
+  }, [createReviewMessage, createReviewSuccess, yourReviewLoading]);
+
+  useEffect(() => {
+    if (!loadingUpdateReview && updateReviewMessage && typeof updateReviewSuccess === 'boolean') {
+      notifications.show({
+        title: updateReviewSuccess ? 'Success!' : 'Error!',
+        message: updateReviewMessage,
+        color: updateReviewSuccess ? 'blue' : 'red',
+        autoClose: 10000,
+      });
+    }
+  }, [loadingUpdateReview, updateReviewMessage, updateReviewSuccess]);
 
   // For updating reviews
   useEffect(() => {
@@ -149,8 +184,13 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
             ]}
             type="yourReview"
           />
-          <Divider size="xs" label="Other reviews" labelPosition="center" />
         </>
+      ) : (
+        <></>
+      )}
+
+      {!visible && yourReview ? (
+        <Divider size="xs" label="Other reviews" labelPosition="center" />
       ) : (
         <></>
       )}

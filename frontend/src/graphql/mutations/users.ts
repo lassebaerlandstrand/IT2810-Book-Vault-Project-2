@@ -13,6 +13,7 @@ export const CREATE_USER = gql(`
       haveRead {
         id
       }
+      secret
     }
   }
 `);
@@ -20,8 +21,12 @@ export const CREATE_USER = gql(`
 export const UPDATE_USER = gql(`
   mutation UpdateUser($input: UpdateUserInput!) {
     updateUser(input: $input) {
-      UUID
-      name
+      user {
+        UUID
+        name
+      }
+      success
+      message
     }
   }
 `);

@@ -15,7 +15,7 @@ type UseUserArgs = {
  */
 export const useUserHook = ({ UUID }: UseUserArgs) => {
   if (!UUID) {
-    return { user: undefined, loading: false, error: undefined };
+    return { user: undefined, loading: false, error: undefined, refectch: undefined };
   }
 
   const { data, loading, error } = useQuery(GET_USER, {
