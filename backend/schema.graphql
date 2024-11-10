@@ -226,8 +226,22 @@ type reviewResponse {
   message: String!
 }
 
+type nameResponse {
+  user: User
+  success: Boolean!
+  message: String!
+}
+
+input UpdateUserInput {
+  UUID: String!
+  name: String
+  secret: String!
+}
+
 type Mutation {
   createUser: User!
+
+  updateUser(input: UpdateUserInput!): nameResponse!
 
   createReview(input: CreateReviewInput!): reviewResponse!
 

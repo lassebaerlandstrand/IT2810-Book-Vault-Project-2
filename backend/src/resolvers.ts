@@ -714,6 +714,21 @@ const resolvers = {
       return newUser; // Return the created user
     },
 
+    async updateUser(_, { input }: { input: { UUID: string; secret: string; name: string } }) {
+      const { UUID, secret, name } = input;
+      const updatedUser = await db
+        .collection('users')
+        .findOneAndUpdate(
+          { UUID: UUID, secret: secret },
+          { $set: { name: name } },
+          { returnDocument: 'after' },
+        );
+      if (updatedUser.value) {
+        return { success: true, message: 'Name successfully updated!', user: updatedUser.value };
+      }
+      return { success: false, message: 'Wrong user credentials!' };
+    },
+
     /**
      * Creates a new review for a book.
      *
