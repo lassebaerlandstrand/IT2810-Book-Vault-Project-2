@@ -591,12 +591,14 @@ const resolvers = {
     async bookReview(_, { bookID, userUUID }: SingleBookReviewQueryArgs) {
       const review = await db.collection('reviews').findOne({ bookID: bookID, userUUID: userUUID });
 
-      return {
-        UUID: review.UUID,
-        description: review.description,
-        rating: review.rating,
-        at: new Date(review.at),
-      };
+      if (review)
+        return {
+          UUID: review.UUID,
+          description: review.description,
+          rating: review.rating,
+          at: new Date(review.at),
+        };
+      return;
     },
 
     /** Fetches all genres in the database */
@@ -810,13 +812,18 @@ const resolvers = {
         },
       );
 
+      const updateFields: any = {};
+      if (haveRead) {
+        updateFields.haveRead = haveRead;
+      }
+      if (wantToRead) {
+        updateFields.wantToRead = wantToRead;
+      }
+
       const updatedUser = await db.collection<UserDocument>('users').findOneAndUpdate(
         { UUID: UUID, secret: secret },
         {
-          $push: {
-            haveRead: haveRead,
-            wantToRead: wantToRead,
-          },
+          $push: updateFields,
         },
         { returnDocument: 'after' },
       );
@@ -825,20 +832,9 @@ const resolvers = {
         return { success: false, message: 'Wrong user credentials!' };
       }
 
-      const haveReadArray = await db
-        .collection('books')
-        .find({ id: { $in: updatedUser.value.haveRead } })
-        .toArray();
-
-      const wantToReadArray = await db
-        .collection('books')
-        .find({ id: { $in: updatedUser.value.wantToRead } })
-        .toArray();
-
       return {
         success: true,
         message: 'Library successfully updated!',
-        user: { ...updatedUser.value, wantToRead: wantToReadArray, haveRead: haveReadArray },
       };
     },
 

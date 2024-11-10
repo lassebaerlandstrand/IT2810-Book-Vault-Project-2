@@ -33,7 +33,7 @@ export function ProfilePage() {
         title: success ? 'Success!' : 'Error!',
         message,
         color: success ? 'blue' : 'red',
-        autoClose: 10000,
+        autoClose: 5000,
       });
     }
   }, [message, success, updateNameLoading]);

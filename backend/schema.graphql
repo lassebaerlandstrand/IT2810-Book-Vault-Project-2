@@ -232,6 +232,11 @@ type updateUserResponse {
   message: String!
 }
 
+type updateUserlibraryResponse {
+  success: Boolean!
+  message: String!
+}
+
 input UpdateUsernameInput {
   UUID: String!
   name: String
@@ -249,7 +254,7 @@ input UpdateUserLibraryInput {
 type Mutation {
   createUser: User!
 
-  updateUserLibrary(input: UpdateUserLibraryInput!): updateUserResponse!
+  updateUserLibrary(input: UpdateUserLibraryInput!): updateUserlibraryResponse!
 
   updateUser(input: UpdateUsernameInput!): updateUserResponse!
 

@@ -34,9 +34,6 @@ export const UPDATE_USER = gql(`
 export const UPDATE_USERLIBARY = gql(`
   mutation UpdateUserLibrary($input: UpdateUserLibraryInput!) {
     updateUserLibrary(input: $input) {
-      user {
-        UUID
-      }
       success
       message
     }

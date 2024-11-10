@@ -38,7 +38,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
         title: success ? 'Success!' : 'Error!',
         message,
         color: success ? 'blue' : 'red',
-        autoClose: 10000,
+        autoClose: 5000,
       });
     }
   }, [message, success, loading]);

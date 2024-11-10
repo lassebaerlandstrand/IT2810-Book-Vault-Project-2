@@ -97,7 +97,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
         title: createReviewSuccess ? 'Success!' : 'Error!',
         message: createReviewMessage,
         color: createReviewSuccess ? 'blue' : 'red',
-        autoClose: 10000,
+        autoClose: 5000,
       });
     }
   }, [createReviewMessage, createReviewSuccess, yourReviewLoading]);
@@ -108,7 +108,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
         title: updateReviewSuccess ? 'Success!' : 'Error!',
         message: updateReviewMessage,
         color: updateReviewSuccess ? 'blue' : 'red',
-        autoClose: 10000,
+        autoClose: 5000,
       });
     }
   }, [loadingUpdateReview, updateReviewMessage, updateReviewSuccess]);
