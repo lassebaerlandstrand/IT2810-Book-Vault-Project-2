@@ -36,12 +36,6 @@ export const UPDATE_USERLIBARY = gql(`
     updateUserLibrary(input: $input) {
       user {
         UUID
-        wantToRead {
-          id
-        }
-        haveRead {
-          id
-        }
       }
       success
       message
