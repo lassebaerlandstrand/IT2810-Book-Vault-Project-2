@@ -39,7 +39,7 @@ const ReviewStack = ({ reviews, type }: ReviewProps) => {
               >
                 <ReviewCard review={review} type={type} />
               </Link>
-            ) : (
+            ) : type === 'profileReview' ? (
               <Link
                 to={`/user/${review.user?.UUID}`}
                 className={styles.link}
@@ -47,6 +47,8 @@ const ReviewStack = ({ reviews, type }: ReviewProps) => {
               >
                 <ReviewCard review={review} type={type} />
               </Link>
+            ) : (
+              <ReviewCard review={review} type={type} />
             )}
           </Grid.Col>
         ))}

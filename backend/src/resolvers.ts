@@ -426,7 +426,13 @@ const resolvers = {
         const reviews = await db
           .collection('reviews')
           .aggregate([
-            { $match: { bookID: bookID, userUUID: { $ne: avoidUserUUID } } },
+            {
+              $match: {
+                bookID: bookID,
+                userUUID: { $ne: avoidUserUUID },
+                description: { $ne: '' },
+              },
+            },
             { $sort: { at: -1 } },
             { $skip: skip },
             { $limit: limit },
