@@ -52,7 +52,7 @@ exports[`HeroHeader component > renders correctly 1`] = `
           aria-label="Go to a random book"
           class="mantine-focus-auto mantine-active _button_62bb53 m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
           data-testid="random-book-button"
-          href="/book/1"
+          href="/books/1"
           style="--button-color: var(--mantine-color-white);"
         >
           <span

@@ -1,6 +1,6 @@
 describe('Single Book Page', () => {
   beforeEach(() => {
-    cy.visit('/book/3263607-the-fellowship-of-the-ring');
+    cy.visit('/books/3263607-the-fellowship-of-the-ring');
   });
 
   it('should display correct information', () => {

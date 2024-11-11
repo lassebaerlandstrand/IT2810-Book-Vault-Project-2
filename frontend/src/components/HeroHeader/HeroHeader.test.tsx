@@ -49,7 +49,7 @@ describe('HeroHeader component', () => {
     );
 
     const button = screen.getByTestId('random-book-button');
-    expect(button).toHaveAttribute('href', '/book/1');
+    expect(button).toHaveAttribute('href', '/books/1');
   });
 
   it('links to the home page when no book ID is present', () => {

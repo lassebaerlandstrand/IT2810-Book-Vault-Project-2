@@ -39,7 +39,7 @@ const router = createBrowserRouter(
           ),
         },
         {
-          path: '/book/:bookId',
+          path: '/books/:bookId',
           element: (
             <>
               <ScrollRestoration />
