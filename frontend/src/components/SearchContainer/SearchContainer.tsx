@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IconSearch } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
-import { Flex, TextInput } from '@mantine/core';
+import { TextInput } from '@mantine/core';
 import { getHotkeyHandler, useDebouncedCallback } from '@mantine/hooks';
 import { DEFAULT_PAGE } from '@/utils/pagination';
 import { updateQueryParams } from '@/utils/queryParams';
@@ -35,17 +35,17 @@ const SearchContainer = () => {
   };
 
   return (
-    <Flex justify="center">
-      <TextInput
-        placeholder="Search for books"
-        leftSection={<IconSearch aria-label="Search icon" />}
-        value={searchValue}
-        onInput={handleChange}
-        onKeyDown={getHotkeyHandler([['Enter', () => performSearch(searchValue)]])}
-        label="Search by title and description"
-        classNames={{ label: styles.label }}
-      />
-    </Flex>
+    <TextInput
+      placeholder="Search for books"
+      leftSection={<IconSearch aria-label="Search icon" />}
+      value={searchValue}
+      onInput={handleChange}
+      onKeyDown={getHotkeyHandler([['Enter', () => performSearch(searchValue)]])}
+      label="Search by title and description"
+      classNames={{ label: styles.label }}
+      w="100%"
+      maw={450}
+    />
   );
 };
 
