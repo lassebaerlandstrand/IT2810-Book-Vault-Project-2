@@ -64,11 +64,14 @@ const BookInfo = ({ book }: BookInfoProps) => {
   const [where, setWhere] = useState(findPlaceInLibrary);
 
   useEffect(() => {
-    console.log(where);
     if (where !== findPlaceInLibrary()) {
-      if (where == 'wantToRead') submitUpdate({ UUID: info.UUID, secret, wantToRead: book.id });
-      else if (where == 'haveRead') submitUpdate({ UUID: info.UUID, secret, haveRead: book.id });
-      else submitUpdate({ UUID: info.UUID, secret, removeFromLibrary: book.id });
+      if (where === 'wantToRead') {
+        submitUpdate({ UUID: info.UUID, secret, wantToRead: book.id });
+      } else if (where === 'haveRead') {
+        submitUpdate({ UUID: info.UUID, secret, haveRead: book.id });
+      } else {
+        submitUpdate({ UUID: info.UUID, secret, removeFromLibrary: book.id });
+      }
     }
   }, [where]);
 

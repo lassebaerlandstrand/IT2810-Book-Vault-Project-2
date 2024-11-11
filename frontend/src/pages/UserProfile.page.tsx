@@ -156,7 +156,7 @@ export function ProfilePage() {
           books={wantToRead}
           loading={wantToReadLoading}
           error={wantToReadError}
-          viewType={'grid'}
+          viewType="grid"
         />
 
         {totalWantToRead && totalWantToRead > 3 && (
@@ -178,7 +178,7 @@ export function ProfilePage() {
           books={haveRead}
           loading={haveReadLoading}
           error={haveReadError}
-          viewType={'grid'}
+          viewType="grid"
         />
         {totalHaveRead && totalHaveRead > 3 && (
           <Link to="/haveRead" className={styles.link}>

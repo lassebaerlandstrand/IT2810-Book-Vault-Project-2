@@ -7,7 +7,6 @@ export const updateUserLibrary = () => {
 
   const submitUpdate = async (input: UpdateUserLibraryInput) => {
     try {
-      console.log('HERE AGAIn!');
       await UpdateUserLibrary({
         variables: { input },
         update: (cache, { data: mutationData }) => {
@@ -28,10 +27,10 @@ export const updateUserLibrary = () => {
                     args: {
                       input: {
                         haveReadListUserUUID: input.UUID,
-                        sortInput: { sortBy: sortBy, sortOrder: sortOrder },
+                        sortInput: { sortBy, sortOrder },
                       },
-                      limit: limit,
-                      offset: offset,
+                      limit,
+                      offset,
                     },
                   });
                 } else if (key.includes(`"wantToReadListUserUUID":"${input.UUID}"`)) {
@@ -41,10 +40,10 @@ export const updateUserLibrary = () => {
                     args: {
                       input: {
                         wantToReadListUserUUID: input.UUID,
-                        sortInput: { sortBy: sortBy, sortOrder: sortOrder },
+                        sortInput: { sortBy, sortOrder },
                       },
-                      limit: limit,
-                      offset: offset,
+                      limit,
+                      offset,
                     },
                   });
                 }

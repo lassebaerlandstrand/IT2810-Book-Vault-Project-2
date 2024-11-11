@@ -19,8 +19,8 @@ export function HaveReadList() {
   const userUUID = useUser().info.UUID;
 
   const { books, totalBooks, loading, error } = useBooks({
-    limit: limit,
-    page: page,
+    limit,
+    page,
     sortBy: SortBy.HaveRead,
     sortOrder: SortOrder.Desc,
     haveReadListUserUUID: userUUID,
@@ -65,7 +65,7 @@ export function HaveReadList() {
 
       <Flex gap="lg" my="lg">
         <Container flex={1} px={0}>
-          <BookCardGrid books={books} loading={loading} error={error} viewType={'grid'} />{' '}
+          <BookCardGrid books={books} loading={loading} error={error} viewType="grid" />{' '}
         </Container>
       </Flex>
 

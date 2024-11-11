@@ -3,7 +3,7 @@ import { ErrorPage } from './components/ErrorPage/ErrorPage';
 import Layout from './components/Layout/Layout';
 import Book from './pages/Book.page';
 import { BookList } from './pages/BookList.page';
-import { HaveReadList } from './pages/haveReadList.page';
+import { HaveReadList } from './pages/HaveReadList.page';
 import { HomePage } from './pages/Home.page';
 import { ReviewsList } from './pages/ReviewsList.page';
 import Testing from './pages/Testing.page';

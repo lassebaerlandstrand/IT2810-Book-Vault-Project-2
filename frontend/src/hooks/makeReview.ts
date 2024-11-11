@@ -25,8 +25,6 @@ export const makeReview = () => {
 
             Object.keys(allKeys).forEach((key) => {
               if (key.startsWith('bookReviews({"focusUserUUID"')) {
-                console.log(key);
-
                 const jsonString = key.replace('bookReviews(', '').replace(')', '');
                 const parsed = JSON.parse(jsonString);
                 const { limit, offset } = parsed;
@@ -36,8 +34,8 @@ export const makeReview = () => {
                   fieldName: 'bookReviews',
                   args: {
                     focusUserUUID: input.userUUID,
-                    limit: limit,
-                    offset: offset,
+                    limit,
+                    offset,
                   },
                 });
               }
