@@ -2,6 +2,7 @@ import { render, screen } from '@test-utils';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { Mock, vi } from 'vitest';
 import { useBook } from '@/hooks/useBook';
+import { removeMantineRandomAttributes } from '@/utils/tests';
 import { Breadcrumbs } from './Breadcrumbs';
 
 vi.mock('@/hooks/useBook', () => ({
@@ -45,5 +46,15 @@ describe('Breadcrumbs', () => {
     );
 
     expect(screen.getAllByText('/').length).toBe(2);
+  });
+
+  it('matches snapshot', () => {
+    const { asFragment } = render(
+      <MemoryRouter>
+        <Breadcrumbs />
+      </MemoryRouter>
+    );
+    removeMantineRandomAttributes();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
