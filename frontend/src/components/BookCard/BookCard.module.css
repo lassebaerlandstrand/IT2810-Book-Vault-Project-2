@@ -17,6 +17,7 @@
 
 .bookTitle {
   font-size: var(--mantine-font-size-md);
+  line-height: var(--mantine-line-height-sm);
 }
 
 .bookTitle,

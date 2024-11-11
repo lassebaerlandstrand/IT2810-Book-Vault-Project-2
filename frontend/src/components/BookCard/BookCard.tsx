@@ -1,5 +1,5 @@
 import { Property } from 'csstype';
-import { Card, Image, Text, Title } from '@mantine/core';
+import { Card, Image, Text } from '@mantine/core';
 import { Book } from '@/generated/graphql';
 import { Ratings } from '../Ratings/Ratings';
 import styles from './BookCard.module.css';
@@ -31,9 +31,9 @@ const BookCard = ({ book, w = '190' }: BookCardProps) => {
         />
       </Card.Section>
       <Card.Section mt="xs" h={50}>
-        <Title order={4} fw={600} lineClamp={2} title={book.title} className={styles.bookTitle}>
+        <Text fw={600} lineClamp={2} title={book.title} className={styles.bookTitle}>
           {book.title}
-        </Title>
+        </Text>
         <Text
           size="xs"
           lineClamp={1}
