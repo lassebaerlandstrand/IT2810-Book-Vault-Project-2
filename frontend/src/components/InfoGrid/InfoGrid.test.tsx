@@ -8,7 +8,6 @@ const tableInfos = [
   { header: 'Author', description: dummyBook.authors.map((author) => author.name).join(', ') },
   { header: 'Publisher', description: dummyBook.publisher.name },
   { header: 'Genres', description: dummyBook.genres.map((genre) => genre.name).join(', ') },
-  { header: 'Rating', description: dummyBook.rating.toFixed(1) },
   { header: 'Pages', description: dummyBook.pages },
   { header: 'Format', description: dummyBook.bookFormat },
   {

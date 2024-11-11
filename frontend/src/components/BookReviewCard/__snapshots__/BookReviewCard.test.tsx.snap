@@ -23,6 +23,7 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
     </style>
     <div
       class="m_410352e9 mantine-Grid-root __m__-r2"
+      style="--grid-align: center;"
     >
       <div
         class="m_dee7bd2f mantine-Grid-inner"
@@ -94,18 +95,18 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
               <style
                 data-mantine-styles="inline"
               >
-                .__m__-rg{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                .__m__-rg{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}
               </style>
               <div
                 class="m_96bdd299 mantine-Grid-col __m__-rg"
               >
                 <div
                   class="m_8bffd616 mantine-Flex-root __m__-ri"
-                  style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
+                  style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: left;"
                 >
                   <div
-                    data-size="sm"
-                    style="--rating-size: var(--rating-size-sm); --rating-color: var(--mantine-color-yellow-filled);"
+                    data-size="md"
+                    style="--rating-size: var(--rating-size-md); --rating-color: var(--mantine-color-yellow-filled);"
                   >
                     <div
                       class="m_61734bb7 mantine-Rating-symbolGroup"
@@ -367,7 +368,8 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
                   </div>
                   <p
                     class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                    style="font-weight: 500;"
+                    data-size="md"
+                    style="--text-fz: var(--mantine-font-size-md); --text-lh: var(--mantine-line-height-md);"
                   >
                     2.0
                   </p>

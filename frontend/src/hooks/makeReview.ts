@@ -11,35 +11,42 @@ import { CREATE_REVIEW } from '@/graphql/mutations/reviews';
  */
 export const makeReview = () => {
   // Return the mutation and its states (data, loading, error)
-  const [createReview, { data, loading, error }] = useMutation(CREATE_REVIEW, {
-    update(cache) {
-      // On update remove the bookReviews "focusUserUUID" queries from cache as
-      // they are now stale
-      const allKeys = cache.extract().ROOT_QUERY;
-
-      Object.keys(allKeys).forEach((key) => {
-        if (key.startsWith('bookReviews({"focusUserUUID"')) {
-          cache.evict({
-            id: cache.identify({
-              __typename: 'Query',
-              key,
-            }),
-          });
-        }
-      });
-
-      // Clean up
-      cache.gc();
-    },
-  });
+  const [createReview, { data, loading, error }] = useMutation(CREATE_REVIEW);
 
   const submitReview = async (input: CreateReviewInput) => {
     try {
       await createReview({
         variables: { input },
+        update: (cache, { data: mutationData }) => {
+          if (mutationData?.createReview.success) {
+            // On update remove the bookReviews "focusUserUUID" queries from cache as
+            // they are now stale
+            const allKeys = cache.extract().ROOT_QUERY;
+
+            Object.keys(allKeys).forEach((key) => {
+              if (key.startsWith('bookReviews({"focusUserUUID"')) {
+                const jsonString = key.replace('bookReviews(', '').replace(')', '');
+                const parsed = JSON.parse(jsonString);
+                const { limit, offset } = parsed;
+
+                cache.evict({
+                  id: 'ROOT_QUERY',
+                  fieldName: 'bookReviews',
+                  args: {
+                    focusUserUUID: input.userUUID,
+                    limit,
+                    offset,
+                  },
+                });
+              }
+            });
+
+            cache.gc();
+          }
+        },
       });
     } catch (e) {
-      console.error('Error during review creation:', e);
+      console.error('Error during update:', e);
     }
   };
 
