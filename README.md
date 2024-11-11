@@ -1,4 +1,4 @@
-# Book Vault
+# Book Vault 🗿
 
 <img src="media/LogoFull.png" alt="Book Vault Logo" width="300" />
 
@@ -14,7 +14,7 @@
 8. [Tech stack](#tech-stack)
 9. [How to contribute](#how-to-contribute)
 
-## Description
+## Description 📖
 
 Book Vault is a comprehensive web-based book catalogue, with over 37 thousands literary works. It is built with modern web technologies, offering an intuitive interface for discovering, tracking, and reviewing books. On it you can browse books of different genres, length, publishers and whatever else you would want to filter your selection by. You can leave reviews on books you have read, and view other peoples reviews to inform your next book pick. The application is designed to be accessible and sustainable, with a focus on user experience and performance.
 
@@ -36,7 +36,10 @@ Book Vault is a comprehensive web-based book catalogue, with over 37 thousands l
   - Efficient pagination for smooth browsing
   - Fast search and filtering capabilities
   - Dark mode for reduced eye strain
-- **Advanced Selection Options**: \
+- **Advanced Selection Options**:
+
+  - Debounced Search 🔍
+
   Sort books by:
 
   - Book title
@@ -52,11 +55,11 @@ Book Vault is a comprehensive web-based book catalogue, with over 37 thousands l
   - Number of pages
   - Genres
 
-## Folder structure
+## Folder structure 📂
 
 We are using a monorepo structure with both frontend and backend in the same repository.
 
-## How to run
+## How to run ⚙️
 
 ### Frontend
 
@@ -76,7 +79,7 @@ npm run dev
 
 The application is running on a VM at [http://it2810-05.idi.ntnu.no/project2](http://it2810-05.idi.ntnu.no/project2)
 
-## Pages
+## Pages 📃
 
 ### Home page
 
@@ -134,7 +137,7 @@ This page will only be available during development of the website. It can be us
 | :----------------------------------: |
 |           The testing page           |
 
-## Design
+## Design 🖌️
 
 ### Theme
 
@@ -148,33 +151,49 @@ Therefore, we experimented with several new themes, including a beige color sche
 
 We also support a light theme and a dark theme. The default theme is based on the user's system preferences, but the user can change the theme manually. Sine we support both themes, we have been careful to use colors that work well in both themes and adhere to WCAG guidelines.
 
-### Accessibility
-
-We have made an effort to make our application as accessible as possible.
-
-**Colors**
-
-We have high contrast between text and background to support people who struggle with varying degrees of colorblindness.
-
-**WAI-ARIA**
-
-Our UI library; Mantine library follows the Accessible Rich Internet Applications Suite (WAI-ARIA) accessibility guidelines. The standard
-
-> ["defines a way to make Web content and Web applications more accessible to people with disabilities. It especially helps with dynamic content and advanced user interface controls developed with HTML, JavaScript, and related technologies. Without WAI-ARIA certain functionality used in Web sites is not available to some users with disabilities, especially people who rely on screen readers and people who cannot use a mouse. WAI-ARIA addresses these accessibility challenges, for example, by defining ways for functionality to be provided to assistive technology."](https://www.w3.org/WAI/standards-guidelines/aria/) (w3.org, 2024)
-
-### Images
+### Images 🖼️
 
 The images used on this website were created using DALL-E 3 and Bing Image Creator. These tools generate images that are not subject to copyright restrictions and can be used freely. Since the generated images were not perfect, we utilized the GIMP image editor to adjust them to better fit our website's design. Additionally, to adhere to sustainable web design principles, we compressed the images using the WebP format, with PNG as a fallback for browsers that do not support WebP. The images for the book covers are from Goodreads, we also use [Placehold.co](https://placehold.co/200x300?text=Cover%20image%20for%20book) for fallbacks.
 
-## Sustainability
+### Universal Design 🌍
+
+### Accessibility ♿
+
+We have made an effort to make our application as accessible as possible.
+
+The Mantine UI library follows the Accessible Rich Internet Applications Suite (WAI-ARIA) accessibility guidelines. To further increase accessibility, we have added aria-attributes to the relevant components. We also follow the Web Content Accessibility Guidelines (WCAG) to ensure that our website is accessible to all users. The website should be usable to all people, regardless of their abilities (except complete blindness 🧑‍🦯🧑‍🦯‍➡️👨‍🦯👨‍🦯‍➡️👩‍🦯👩‍🦯).
+
+Examples on accessibility accommodations:
+
+- Sight impaired:
+  - Support for screen readers
+  - WCAG 2.1 compliant color contrast between text and background
+  - Scalable text
+  - Website is zoomable
+- Hearing:
+  - No sound is used to convey information
+- Motor impaired:
+  - Website is navigable with a keyboard
+  - Large clickable areas
+- Cognitive:
+  - Consistent and intuitive design
+  - Clear and concise language
+
+With the use of various developer tools, we have ensured that the website is accessible in various ways.
+
+**Colors** 🎨
+
+We have high contrast between text and background to support people who struggle with varying degrees of colorblindness. Mantine uses the [Open Color](https://yeun.github.io/open-color/) color palette, and have set it up such that colors are accessible. We have also made manual adjustments to the Mantine theme, as we found some edge cases where that was not the case. The colors are now WCAG compliant.
+
+## Sustainability 🌱
 
 **TODO: Add data and analytics from lighthouse once the application is done**
 
-## Dataset
+## Dataset 📚
 
 Read about how we got the dataset [here](./preprocessing/README.md).
 
-## Test coverage
+## Test coverage 🧪
 
 [_This part is partually copied from the first project_](https://git.ntnu.no/IT2810-H24/T05-Project-1/blob/main/README.md)
 
@@ -231,7 +250,7 @@ npm run cypress
 
 After running `npm run cypress` a window should open. You then choose `E2E Testing` and the browser of your choice. You can run all tests by selecting `allTests.cy.ts` or run a single test by selecting the test you want to run.
 
-## Tech stack
+## Tech stack 🛠️
 
 ![Tech stack](/media/techstack.png)
 
@@ -277,7 +296,7 @@ Mantine offers GitHub [templates](https://mantine.dev/getting-started/) for the 
 
 ![Mantine UI library logo](/media/mantine.png)
 
-## How to contribute
+## How to contribute 🤝
 
 Please read the [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) to learn how you can contribute to the project.
 

@@ -28,3 +28,7 @@ npm run start
 ```
 
 6. The server is now running on `http://localhost:<your port number>` and the API is available at `http://localhost:<your port number>/graphql`. You can use the [sandbox](https://studio.apollographql.com/sandbox/explorer) to test the API.
+
+## How to run on the VM
+
+TODO
