@@ -3,6 +3,7 @@ import { IconAdjustments, IconLayoutGrid, IconList } from '@tabler/icons-react';
 import { useSearchParams } from 'react-router-dom';
 import { ActionIcon, Container, Flex, Group, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
+import { FindYourNextBookAnimatedText } from '@/components/AnimatedText/AnimatedText';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
@@ -95,6 +96,8 @@ export function BookList() {
 
   return (
     <>
+      <FindYourNextBookAnimatedText />
+
       {!isDesktop && <SearchConfiguration useDrawer opened={opened} close={close} />}
 
       <Group justify="center" align="flex-end" gap="sm" wrap="nowrap" my="sm">
