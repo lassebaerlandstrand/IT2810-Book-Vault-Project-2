@@ -94,17 +94,18 @@ export const AnimatedText = ({ sequence, ariaLabel }: AnimatedTextProps) => {
   );
 };
 
+const waitTime = 5000;
 const findYourNextBookSequence = [
   'Find your next favorite action book',
-  3000,
+  waitTime,
   'Find your next favorite comic book',
-  3000,
+  waitTime,
   'Find your next favorite drama book',
-  3000,
+  waitTime,
   'Find your next favorite horror book',
-  3000,
+  waitTime,
   'Find your next favorite fantasy book',
-  3000,
+  waitTime,
 ];
 
 export const FindYourNextBookAnimatedText = () => {
