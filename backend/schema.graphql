@@ -158,6 +158,8 @@ input FilterInput {
   minPages: Int
   maxPages: Int
   minRating: Int
+  wantToReadListUserUUID: String
+  haveReadListUserUUID: String
 }
 
 type Query {

@@ -64,6 +64,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
   const [where, setWhere] = useState(findPlaceInLibrary);
 
   useEffect(() => {
+    console.log(where);
     if (where !== findPlaceInLibrary()) {
       if (where == 'wantToRead') submitUpdate({ UUID: info.UUID, secret, wantToRead: book.id });
       else if (where == 'haveRead') submitUpdate({ UUID: info.UUID, secret, haveRead: book.id });
@@ -75,7 +76,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
     if (!loading) {
       setWhere(findPlaceInLibrary);
     }
-  }, [loading]);
+  }, [info.haveRead, info.wantToRead]);
 
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);

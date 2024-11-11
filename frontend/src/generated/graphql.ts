@@ -117,12 +117,14 @@ export type FilterInput = {
   authors?: InputMaybe<Array<Scalars['String']['input']>>;
   beforeDate?: InputMaybe<Scalars['Date']['input']>;
   genres?: InputMaybe<Array<Scalars['String']['input']>>;
+  haveReadListUserUUID?: InputMaybe<Scalars['String']['input']>;
   maxPages?: InputMaybe<Scalars['Int']['input']>;
   minPages?: InputMaybe<Scalars['Int']['input']>;
   minRating?: InputMaybe<Scalars['Int']['input']>;
   publishers?: InputMaybe<Array<Scalars['String']['input']>>;
   search?: InputMaybe<Scalars['String']['input']>;
   sortInput?: InputMaybe<SortInput>;
+  wantToReadListUserUUID?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Genre = {

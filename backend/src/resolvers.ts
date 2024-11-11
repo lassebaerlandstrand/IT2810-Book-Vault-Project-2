@@ -33,6 +33,8 @@ interface FilterInput {
   minPages?: number;
   maxPages?: number;
   minRating?: number;
+  wantToReadListUserUUID?: string;
+  haveReadListUserUUID?: string;
 }
 
 interface FilterCountInput {
@@ -369,6 +371,23 @@ const resolvers = {
       }
       if (args.input.minRating) {
         pipeline.push({ $match: { rating: { $gte: args.input.minRating } } });
+      }
+
+      console.log(args.input.wantToReadListUserUUID, args.input.haveReadListUserUUID);
+
+      if (args.input.wantToReadListUserUUID) {
+        const matchingUser = await db
+          .collection('users')
+          .findOne({ UUID: args.input.wantToReadListUserUUID });
+        const wantToReadList = matchingUser ? matchingUser.wantToRead : [];
+        pipeline.push({ $match: { id: { $in: wantToReadList } } });
+      }
+      if (args.input.haveReadListUserUUID) {
+        const matchingUser = await db
+          .collection('users')
+          .findOne({ UUID: args.input.haveReadListUserUUID });
+        const haveReadList = matchingUser ? matchingUser.haveRead : [];
+        pipeline.push({ $match: { id: { $in: haveReadList } } });
       }
 
       const totalBooks = (await countWithExclusions(args.input ?? {}, null))[0]?.all || 0;

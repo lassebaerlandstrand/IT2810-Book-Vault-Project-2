@@ -7,16 +7,41 @@ export const updateUserLibrary = () => {
 
   const submitUpdate = async (input: UpdateUserLibraryInput) => {
     try {
-      const { data: mutationData } = await UpdateUserLibrary({
+      console.log('HERE AGAIn!');
+      await UpdateUserLibrary({
         variables: { input },
-      });
+        update: (cache, { data: mutationData }) => {
+          if (mutationData?.updateUserLibrary.success) {
+            cache.evict({
+              id: 'ROOT_QUERY',
+              fieldName: 'books',
+              args: {
+                input: {
+                  haveReadListUserUUID: input.UUID,
+                  sortInput: { sortBy: 'bookName', sortOrder: 'asc' },
+                },
+                limit: 3,
+                offset: 0,
+              },
+              broadcast: false,
+            });
 
-      // This minimises the data that is passed between back- and frontend by
-      // modifying cache "manually"
-      if (mutationData?.updateUserLibrary?.success) {
-        UpdateUserLibrary({
-          variables: { input },
-          update: (cache) => {
+            cache.evict({
+              id: 'ROOT_QUERY',
+              fieldName: 'books',
+              args: {
+                input: {
+                  wantToReadListUserUUID: input.UUID,
+                  sortInput: { sortBy: 'bookName', sortOrder: 'asc' },
+                },
+                limit: 3,
+                offset: 0,
+              },
+              broadcast: false,
+            });
+
+            cache.gc();
+
             cache.modify({
               id: cache.identify({ __typename: 'User', UUID: input.UUID }),
               fields: {
@@ -50,9 +75,9 @@ export const updateUserLibrary = () => {
                 },
               },
             });
-          },
-        });
-      }
+          }
+        },
+      });
     } catch (e) {
       console.error('Error during user update:', e);
     }
@@ -66,3 +91,22 @@ export const updateUserLibrary = () => {
     error,
   };
 };
+
+/*
+// Throw out old
+const allKeys = cache.extract().ROOT_QUERY;
+
+Object.keys(allKeys).forEach((key) => {
+  
+  
+  if (key.startsWith(`books({"input":{"haveReadListUserUUID":"${input.UUID}"`) || key.startsWith(`books({"input":{"wantToReadListUserUUID":"${input.UUID}"`)) {
+    cache.evict({
+      id: cache.identify({
+        __typename: 'Query',
+        key,
+      }),
+    });
+  }
+  
+});
+*/

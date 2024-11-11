@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar, Button, Container, Divider, Stack, Text, TextInput, Title } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
+import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import { useUser } from '@/contexts/UserFunctions';
-import { Review } from '@/generated/graphql';
+import { Review, SortBy, SortOrder } from '@/generated/graphql';
 import { updateUser } from '@/hooks/updateUser';
+import { useBooks } from '@/hooks/useBooks';
 import { useYourBookReviews } from '@/hooks/useYourBookReviews';
 import { formatAvatarAbbreviation } from '@/utils/formatting';
 import ReviewStack from '../components/ReviewStack/ReviewStack';
@@ -26,6 +28,32 @@ export function ProfilePage() {
     limit: 3,
     page: 1,
     userUUID: info.UUID,
+  });
+
+  const {
+    books: wantToRead,
+    totalBooks: totalWantToRead,
+    loading: wantToReadLoading,
+    error: wantToReadError,
+  } = useBooks({
+    limit: 3,
+    page: 1,
+    sortBy: SortBy.BookName,
+    sortOrder: SortOrder.Asc,
+    wantToReadListUserUUID: info.UUID,
+  });
+
+  const {
+    books: haveRead,
+    totalBooks: totalHaveRead,
+    loading: haveReadLoading,
+    error: haveReadError,
+  } = useBooks({
+    limit: 3,
+    page: 1,
+    sortBy: SortBy.BookName,
+    sortOrder: SortOrder.Asc,
+    haveReadListUserUUID: info.UUID,
   });
 
   useEffect(() => {
@@ -106,9 +134,23 @@ export function ProfilePage() {
           Books you want to read
         </Title>
 
+        <BookCardGrid
+          books={wantToRead}
+          loading={wantToReadLoading}
+          error={wantToReadError}
+          viewType={'grid'}
+        />
+
         <Title order={3} mt="md" fw={500}>
           Books you have read
         </Title>
+
+        <BookCardGrid
+          books={haveRead}
+          loading={haveReadLoading}
+          error={haveReadError}
+          viewType={'grid'}
+        />
 
         <Divider />
 
