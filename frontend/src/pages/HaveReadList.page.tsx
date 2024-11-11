@@ -1,48 +1,32 @@
 import { useSearchParams } from 'react-router-dom';
 import { Container, Flex, Text, Title } from '@mantine/core';
+import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
 import EntriesController from '@/components/EntriesController/EntriesController';
 import { Error404 } from '@/components/ErrorPage/ErrorPage';
 import LoadingBook from '@/components/Loading/Loading';
 import PaginationController from '@/components/PaginationController/PaginationController';
-import ReviewStack from '@/components/ReviewStack/ReviewStack';
 import { useUser } from '@/contexts/UserFunctions';
-import { Review } from '@/generated/graphql';
-import { useYourBookReviews } from '@/hooks/useYourBookReviews';
+import { SortBy, SortOrder } from '@/generated/graphql';
+import { useBooks } from '@/hooks/useBooks';
 import { formatNumberWithSpaces } from '@/utils/formatting';
 import { getPaginationParams } from '@/utils/pagination';
 import { isValidUrlParams } from '@/utils/validateUrlParams';
 
-/*
- * The hierarchy of components is as follows:
- * - ReviewsList
- *     - ReviewStack
- *        - ReviewCard
- *            - YourReviewCard
- *            - ProfileReviewCard
- *            - BookReviewCard
- */
-
-/**
- * ReviewsList component displays a paginated list of the user's book reviews.
- */
-export function ReviewsList() {
+export function HaveReadList() {
   const [searchParams] = useSearchParams();
   const { page, limit } = getPaginationParams(searchParams);
 
   const userUUID = useUser().info.UUID;
 
-  const {
-    reviews,
-    totalReviews,
-    loading: reviewsLoading,
-    error: reviewsError,
-  } = useYourBookReviews({
-    limit,
-    page,
-    userUUID,
+  const { books, totalBooks, loading, error } = useBooks({
+    limit: limit,
+    page: page,
+    sortBy: SortBy.HaveRead,
+    sortOrder: SortOrder.Desc,
+    haveReadListUserUUID: userUUID,
   });
 
-  const formattedTotalReviews = totalReviews != null ? formatNumberWithSpaces(totalReviews) : '';
+  const formattedTotal = totalBooks != null ? formatNumberWithSpaces(totalBooks) : '';
 
   if (!isValidUrlParams(searchParams)) {
     return (
@@ -54,38 +38,38 @@ export function ReviewsList() {
     );
   }
 
-  if (reviewsError) {
+  if (error) {
     return (
       <Error404
-        title="Error fetching reviews"
-        description="Something went wrong fetching reviews."
+        title="Error fetching books"
+        description="Something went wrong fetching books you have read."
         link="/books"
       />
     );
   }
 
-  if (reviewsLoading) {
+  if (loading) {
     return <LoadingBook />;
   }
 
   return (
     <>
       <Title order={1} mt="lg">
-        Your reviews
+        Books you have read
       </Title>
 
       <Flex justify="space-between" align="flex-end" gap="md">
-        <Text>{reviewsLoading ? 'Loading...' : `${formattedTotalReviews} results`}</Text>
+        <Text>{loading ? 'Loading...' : `${formattedTotal} results`}</Text>
         <EntriesController />
       </Flex>
 
       <Flex gap="lg" my="lg">
         <Container flex={1} px={0}>
-          <ReviewStack reviews={reviews as Review[]} type="bookReview" />
+          <BookCardGrid books={books} loading={loading} error={error} viewType={'grid'} />{' '}
         </Container>
       </Flex>
 
-      <PaginationController totalBooks={totalReviews} />
+      <PaginationController totalBooks={totalBooks} />
     </>
   );
 }

@@ -1,8 +1,20 @@
 import { useEffect, useState } from 'react';
+import { IconBook, IconBook2, IconBooks } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import { Avatar, Button, Container, Divider, Stack, Text, TextInput, Title } from '@mantine/core';
+import {
+  Avatar,
+  Button,
+  Container,
+  Group,
+  rem,
+  Stack,
+  Text,
+  TextInput,
+  Title,
+} from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
+import Loading from '@/components/Loading/Loading';
 import { useUser } from '@/contexts/UserFunctions';
 import { Review, SortBy, SortOrder } from '@/generated/graphql';
 import { updateUser } from '@/hooks/updateUser';
@@ -126,13 +138,19 @@ export function ProfilePage() {
           </Button>
         )}
 
-        <Title order={2} mt="lg">
-          Your library
-        </Title>
+        <Group align="center">
+          <IconBooks style={{ width: rem(32), height: rem(32) }} />
+          <Title order={2} my="xl">
+            Your library
+          </Title>
+        </Group>
 
-        <Title order={3} mt="md" fw={500}>
-          Books you want to read
-        </Title>
+        <Group align="center">
+          <IconBook style={{ width: rem(32), height: rem(32) }} />
+          <Title order={3} fw={500} my="xl">
+            Books you want to read
+          </Title>
+        </Group>
 
         <BookCardGrid
           books={wantToRead}
@@ -141,9 +159,20 @@ export function ProfilePage() {
           viewType={'grid'}
         />
 
-        <Title order={3} mt="md" fw={500}>
-          Books you have read
-        </Title>
+        {totalWantToRead && totalWantToRead > 3 && (
+          <Link to="/wantToRead" className={styles.link}>
+            <Button fullWidth radius="md" mt="md">
+              View all
+            </Button>
+          </Link>
+        )}
+
+        <Group align="center">
+          <IconBook2 style={{ width: rem(32), height: rem(32) }} />
+          <Title order={3} fw={500} my="xl">
+            Recently read books
+          </Title>
+        </Group>
 
         <BookCardGrid
           books={haveRead}
@@ -151,14 +180,19 @@ export function ProfilePage() {
           error={haveReadError}
           viewType={'grid'}
         />
-
-        <Divider />
+        {totalHaveRead && totalHaveRead > 3 && (
+          <Link to="/haveRead" className={styles.link}>
+            <Button fullWidth radius="md" mt="md">
+              View all
+            </Button>
+          </Link>
+        )}
 
         <Title order={2} mt="lg">
           Your Reviews
         </Title>
         {loading ? (
-          <Text ta="center">Loading reviews...</Text>
+          <Loading />
         ) : error ? (
           <Text ta="center" c="red">
             Error fetching reviews
@@ -169,7 +203,7 @@ export function ProfilePage() {
             {totalReviews && totalReviews > 3 && (
               <Link to="/myReviews" className={styles.link}>
                 <Button fullWidth radius="md" mt="md">
-                  View All Reviews
+                  View all
                 </Button>
               </Link>
             )}

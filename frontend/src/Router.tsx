@@ -3,10 +3,12 @@ import { ErrorPage } from './components/ErrorPage/ErrorPage';
 import Layout from './components/Layout/Layout';
 import Book from './pages/Book.page';
 import { BookList } from './pages/BookList.page';
+import { HaveReadList } from './pages/haveReadList.page';
 import { HomePage } from './pages/Home.page';
 import { ReviewsList } from './pages/ReviewsList.page';
 import Testing from './pages/Testing.page';
 import UserProfile from './pages/UserProfile.page';
+import { WantToReadList } from './pages/WantToReadList.page';
 
 // Create a browser router using React Router V6
 // The ScrollRestoration component is used to restore the scroll position when navigating between pages
@@ -71,6 +73,24 @@ const router = createBrowserRouter(
             <>
               <ScrollRestoration />
               <ReviewsList />
+            </>
+          ),
+        },
+        {
+          path: '/haveRead',
+          element: (
+            <>
+              <ScrollRestoration />
+              <HaveReadList />
+            </>
+          ),
+        },
+        {
+          path: '/wantToRead',
+          element: (
+            <>
+              <ScrollRestoration />
+              <WantToReadList />
             </>
           ),
         },
