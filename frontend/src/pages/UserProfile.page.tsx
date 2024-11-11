@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IconBook, IconBook2, IconBooks } from '@tabler/icons-react';
+import { IconBook, IconBook2, IconBooks, IconStars } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import {
   Avatar,
@@ -188,9 +188,13 @@ export function ProfilePage() {
           </Link>
         )}
 
-        <Title order={2} mt="lg">
-          Your Reviews
-        </Title>
+        <Group align="center">
+          <IconStars style={{ width: rem(32), height: rem(32) }} />
+          <Title order={2} my="xl">
+            Your reviews
+          </Title>
+        </Group>
+
         {loading ? (
           <Loading />
         ) : error ? (

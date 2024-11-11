@@ -43,7 +43,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
     success: updateReviewSuccess,
     message: updateReviewMessage,
     loading: loadingUpdateReview,
-  } = updateReview();
+  } = updateReview(UUID);
 
   // Toggle the review
   const toggleReviewDisplay = () => {
