@@ -11,7 +11,12 @@ const DynamicBookBreadcrumb = () => {
   return <Text lineClamp={1}>{book.book?.title}</Text>;
 };
 
-const routes = [{ path: '/books/:bookId', breadcrumb: DynamicBookBreadcrumb }];
+const routes = [
+  { path: '/books/:bookId', breadcrumb: DynamicBookBreadcrumb },
+  { path: '/profile/wantToRead', breadcrumb: 'Want to read' },
+  { path: '/profile/haveRead', breadcrumb: 'Have read' },
+  { path: '/profile/myReviews', breadcrumb: 'My reviews' },
+];
 
 export const Breadcrumbs = () => {
   const breadcrumbs = useBreadcrumbs(routes);
@@ -23,7 +28,7 @@ export const Breadcrumbs = () => {
   return (
     <Flex justify="left" w="100%" pb={20}>
       {breadcrumbs.map(({ match, breadcrumb }, index) => (
-        <>
+        <Flex key={index}>
           <NavLink to={match.pathname} className={styles.link}>
             {breadcrumb}
           </NavLink>
@@ -32,7 +37,7 @@ export const Breadcrumbs = () => {
               /
             </Text>
           )}
-        </>
+        </Flex>
       ))}
     </Flex>
   );

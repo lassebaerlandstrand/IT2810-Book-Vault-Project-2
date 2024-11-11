@@ -167,8 +167,8 @@ export function ProfilePage() {
           viewType="grid"
         />
 
-        {totalWantToRead && totalWantToRead > 3 && (
-          <Link to="/wantToRead" className={styles.link}>
+        {(totalWantToRead ?? 0) > 3 && (
+          <Link to="/profile/wantToRead" className={styles.link}>
             <Button fullWidth radius="md" mt="md">
               View all
             </Button>
@@ -195,8 +195,8 @@ export function ProfilePage() {
           error={haveReadError}
           viewType="grid"
         />
-        {totalHaveRead && totalHaveRead > 3 && (
-          <Link to="/haveRead" className={styles.link}>
+        {(totalHaveRead ?? 0) > 3 && (
+          <Link to="/profile/haveRead" className={styles.link}>
             <Button fullWidth radius="md" mt="md">
               View all
             </Button>
@@ -220,7 +220,7 @@ export function ProfilePage() {
           <>
             <ReviewStack reviews={reviews as Review[]} type="bookReview" />
             {totalReviews && totalReviews > 3 && (
-              <Link to="/myReviews" className={styles.link}>
+              <Link to="/profile/myReviews" className={styles.link}>
                 <Button fullWidth radius="md" mt="md">
                   View all
                 </Button>
