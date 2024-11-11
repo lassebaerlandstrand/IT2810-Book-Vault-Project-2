@@ -283,8 +283,12 @@ export enum SortBy {
   AuthorName = 'authorName',
   /** Sort by book name */
   BookName = 'bookName',
+  /** Sort by haveRead */
+  HaveRead = 'haveRead',
   /** Sort by publisher name */
-  PublisherName = 'publisherName'
+  PublisherName = 'publisherName',
+  /** Sort by wantToRead */
+  WantToRead = 'wantToRead'
 }
 
 export type SortInput = {

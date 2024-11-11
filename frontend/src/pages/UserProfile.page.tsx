@@ -38,8 +38,8 @@ export function ProfilePage() {
   } = useBooks({
     limit: 3,
     page: 1,
-    sortBy: SortBy.BookName,
-    sortOrder: SortOrder.Asc,
+    sortBy: SortBy.WantToRead,
+    sortOrder: SortOrder.Desc,
     wantToReadListUserUUID: info.UUID,
   });
 
@@ -51,8 +51,8 @@ export function ProfilePage() {
   } = useBooks({
     limit: 3,
     page: 1,
-    sortBy: SortBy.BookName,
-    sortOrder: SortOrder.Asc,
+    sortBy: SortBy.HaveRead,
+    sortOrder: SortOrder.Desc,
     haveReadListUserUUID: info.UUID,
   });
 

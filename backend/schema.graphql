@@ -279,6 +279,12 @@ enum SortBy {
   authorName
   "Sort by publisher name"
   publisherName
+
+  "Sort by wantToRead"
+  wantToRead
+
+  "Sort by haveRead"
+  haveRead
 }
 
 input SortInput {

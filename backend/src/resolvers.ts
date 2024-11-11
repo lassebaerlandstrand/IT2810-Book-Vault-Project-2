@@ -10,6 +10,8 @@ export enum SortBy {
   Book = 'bookName',
   Author = 'authorName',
   Publisher = 'publisherName',
+  wantToRead = 'wantToRead',
+  haveRead = 'haveRead',
 }
 
 export enum SortOrder {
@@ -273,6 +275,8 @@ const buildPipelineWithoutSpecificFilters = ({
   afterDate,
   minPages,
   maxPages,
+  wantToReadListUserUUID,
+  haveReadListUserUUID,
 }: FilterInput) => {
   const filters: MongoBookFilters = {};
 
@@ -313,6 +317,78 @@ const buildPipelineWithoutSpecificFilters = ({
         pipeline.push({
           $sort: { publisher: sortOrder, _id: 1 },
         });
+        break;
+      case SortBy.wantToRead:
+        pipeline.push(
+          ...[
+            {
+              $lookup: {
+                from: 'users',
+                pipeline: [
+                  { $match: { UUID: wantToReadListUserUUID } },
+                  { $project: { wantToRead: 1 } },
+                ],
+                as: 'userWantToRead',
+              },
+            },
+            {
+              $unwind: '$userWantToRead',
+            },
+            {
+              $addFields: {
+                orderIndex: { $indexOfArray: ['$userWantToRead.wantToRead', '$id'] },
+              },
+            },
+            {
+              $match: { orderIndex: { $ne: -1 } },
+            },
+            {
+              $sort: { orderIndex: sortOrder },
+            },
+            {
+              $project: {
+                userWantToRead: 0,
+                orderIndex: 0,
+              },
+            },
+          ],
+        );
+        break;
+      case SortBy.haveRead:
+        pipeline.push(
+          ...[
+            {
+              $lookup: {
+                from: 'users',
+                pipeline: [
+                  { $match: { UUID: haveReadListUserUUID } },
+                  { $project: { haveRead: 1 } },
+                ],
+                as: 'userHaveRead',
+              },
+            },
+            {
+              $unwind: '$userHaveRead',
+            },
+            {
+              $addFields: {
+                orderIndex: { $indexOfArray: ['$userHaveRead.haveRead', '$id'] },
+              },
+            },
+            {
+              $match: { orderIndex: { $ne: -1 } },
+            },
+            {
+              $sort: { orderIndex: sortOrder },
+            },
+            {
+              $project: {
+                userHaveRead: 0,
+                orderIndex: 0,
+              },
+            },
+          ],
+        );
         break;
     }
   }
@@ -373,16 +449,14 @@ const resolvers = {
         pipeline.push({ $match: { rating: { $gte: args.input.minRating } } });
       }
 
-      console.log(args.input.wantToReadListUserUUID, args.input.haveReadListUserUUID);
-
-      if (args.input.wantToReadListUserUUID) {
+      if (args.input.wantToReadListUserUUID && args.input.sortInput.sortBy !== 'wantToRead') {
         const matchingUser = await db
           .collection('users')
           .findOne({ UUID: args.input.wantToReadListUserUUID });
         const wantToReadList = matchingUser ? matchingUser.wantToRead : [];
         pipeline.push({ $match: { id: { $in: wantToReadList } } });
       }
-      if (args.input.haveReadListUserUUID) {
+      if (args.input.haveReadListUserUUID && args.input.sortInput.sortBy !== 'haveRead') {
         const matchingUser = await db
           .collection('users')
           .findOne({ UUID: args.input.haveReadListUserUUID });

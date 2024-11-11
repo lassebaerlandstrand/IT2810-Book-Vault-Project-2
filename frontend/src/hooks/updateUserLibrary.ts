@@ -12,35 +12,44 @@ export const updateUserLibrary = () => {
         variables: { input },
         update: (cache, { data: mutationData }) => {
           if (mutationData?.updateUserLibrary.success) {
-            cache.evict({
-              id: 'ROOT_QUERY',
-              fieldName: 'books',
-              args: {
-                input: {
-                  haveReadListUserUUID: input.UUID,
-                  sortInput: { sortBy: 'bookName', sortOrder: 'asc' },
-                },
-                limit: 3,
-                offset: 0,
-              },
-              broadcast: false,
-            });
+            const allKeys = cache.extract().ROOT_QUERY;
 
-            cache.evict({
-              id: 'ROOT_QUERY',
-              fieldName: 'books',
-              args: {
-                input: {
-                  wantToReadListUserUUID: input.UUID,
-                  sortInput: { sortBy: 'bookName', sortOrder: 'asc' },
-                },
-                limit: 3,
-                offset: 0,
-              },
-              broadcast: false,
-            });
+            Object.keys(allKeys).forEach((key) => {
+              if (key.startsWith('books(')) {
+                const jsonString = key.replace('books(', '').replace(')', '');
+                const parsed = JSON.parse(jsonString);
+                const { sortBy, sortOrder } = parsed.input.sortInput;
+                const { limit, offset } = parsed;
 
-            cache.gc();
+                if (key.includes(`"haveReadListUserUUID":"${input.UUID}"`)) {
+                  cache.evict({
+                    id: 'ROOT_QUERY',
+                    fieldName: 'books',
+                    args: {
+                      input: {
+                        haveReadListUserUUID: input.UUID,
+                        sortInput: { sortBy: sortBy, sortOrder: sortOrder },
+                      },
+                      limit: limit,
+                      offset: offset,
+                    },
+                  });
+                } else if (key.includes(`"wantToReadListUserUUID":"${input.UUID}"`)) {
+                  cache.evict({
+                    id: 'ROOT_QUERY',
+                    fieldName: 'books',
+                    args: {
+                      input: {
+                        wantToReadListUserUUID: input.UUID,
+                        sortInput: { sortBy: sortBy, sortOrder: sortOrder },
+                      },
+                      limit: limit,
+                      offset: offset,
+                    },
+                  });
+                }
+              }
+            });
 
             cache.modify({
               id: cache.identify({ __typename: 'User', UUID: input.UUID }),
