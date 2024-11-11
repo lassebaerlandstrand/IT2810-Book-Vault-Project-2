@@ -1,5 +1,7 @@
 # Book Vault
 
+<img src="media/LogoFull.png" alt="Book Vault Logo" width="300" />
+
 ## Table of Contents
 
 1. [Description](#description)
@@ -14,13 +16,41 @@
 
 ## Description
 
-_Done_
+Book Vault is a comprehensive web-based book catalogue, with over 37 thousands literary works. It is built with modern web technologies, offering an intuitive interface for discovering, tracking, and reviewing books. On it you can browse books of different genres, length, publishers and whatever else you would want to filter your selection by. You can leave reviews on books you have read, and view other peoples reviews to inform your next book pick. The application is designed to be accessible and sustainable, with a focus on user experience and performance.
 
-Book Vault is a web-catalogue for books. On it you can browse books of different genres, length, publishers and whatever else you would want to filter your selection by. You can leave reviews on books you have read, and view other peoples reviews to inform your next book pick.
+### Key Features
 
-_TODO_
+- **Extensive Catalog**: Browse through our collection of 37,000+ books.
+- **Community Engagement**:
+  - Rate books on a 5-star scale
+  - See the distribution of ratings for each book
+  - Write and share your own detailed reviews
+  - Read community reviews to discover new reads
+- **Personalization**:
+  - Create and manage your reading list
+  - Track books you've read
+  - See your own reviews
+- **User Experience**:
+  - Responsive design that works across all devices
+  - Minimalistic and modern interface providing an intuitive user experience
+  - Efficient pagination for smooth browsing
+  - Fast search and filtering capabilities
+  - Dark mode for reduced eye strain
+- **Advanced Selection Options**: \
+  Sort books by:
 
-You'll have the opportunity to keep track of books you have read, and which you want to read.
+  - Book title
+  - Author name
+  - Publisher name
+
+  Filter books by:
+
+  - Publishers
+  - Authors
+  - Average rating
+  - Year published
+  - Number of pages
+  - Genres
 
 ## Folder structure
 
@@ -62,7 +92,7 @@ On this page you can browse and filter books.
 
 | ![Booklist page](/media/bookbrowsing.png) |
 | :---------------------------------------: |
-|             The booklistpage              |
+|             The booklist page             |
 
 ### Book-info page
 
@@ -134,7 +164,7 @@ Our UI library; Mantine library follows the Accessible Rich Internet Application
 
 ### Images
 
-The images used on this website were created using DALL-E 3 and Bing Image Creator. These tools generate images that are not subject to copyright restrictions and can be used freely. Since the generated images were not perfect, we utilized the GIMP image editor to adjust them to better fit our website's design. Additionally, to adhere to sustainable web design principles, we compressed the images using the WebP format, with PNG as a fallback for browsers that do not support WebP.
+The images used on this website were created using DALL-E 3 and Bing Image Creator. These tools generate images that are not subject to copyright restrictions and can be used freely. Since the generated images were not perfect, we utilized the GIMP image editor to adjust them to better fit our website's design. Additionally, to adhere to sustainable web design principles, we compressed the images using the WebP format, with PNG as a fallback for browsers that do not support WebP. The images for the book covers are from Goodreads, we also use [Placehold.co](https://placehold.co/200x300?text=Cover%20image%20for%20book) for fallbacks.
 
 ## Sustainability
 
@@ -173,7 +203,7 @@ The end-to-end tests will test the application as a whole, with the frontend and
 - `VITE_GRAPHQL_ENDPOINT="http://localhost:3001/graphql"` for a local backend.
 - `VITE_GRAPHQL_ENDPOINT="http://it2810-05.idi.ntnu.no/graphql"` for the backend in the virtual machine.
 
-It is best practice to run the E2E on a local test database (or in this course we could use a test database on the VM). However, we know it can take some time to setup a local database if you don't already have MongoDB installed. Therefore we have made it possible to run the tests on the backend in the virtual machine. We have created a predefined test user which you will take control of, when running the E2E tests if you use the virutal machine. In a real-world scenario, we would have not done this and instead used a test database.
+It is best practice to run the E2E on a local test database (or in this course we could use a test database on the VM). However, we know it can take some time to setup a local database if you don't already have MongoDB installed. Therefore we have made it possible to run the tests on the backend in the virtual machine. We have created a predefined test user which you will take control of, when running the E2E tests if you use the virtual machine. In a real-world scenario, we would have not done this and instead used a local test database.
 
 To run the tests you can run the following commands in **separate terminals**:
 
@@ -205,6 +235,36 @@ After running `npm run cypress` a window should open. You then choose `E2E Testi
 
 ![Tech stack](/media/techstack.png)
 
+### Complete Tech Stack List
+
+- **Frontend**
+  - TypeScript
+  - React
+  - PostCSS
+  - Mantine
+  - Vite
+  - GraphQL/Apollo Client
+  - GraphQL Codegen
+- **Backend**
+  - TypeScript
+  - Express
+  - Node.js
+  - GraphQL/Apollo Server
+  - MongoDB
+- **Testing**
+  - Vitest
+  - Cypress
+  - React Testing Library
+- **Linting/Formatting**
+  - ESLint
+  - Prettier
+  - Stylelint
+- **Preprocessing**
+  - Python
+  - Pandas
+
+### Why we chose this tech stack
+
 We chose the MERN tech stack with Apollo Client to query the API in frontend. MERN stands for MongoDB, Express, React and Node. The framework of the application is Vite (with TypeScript + React).
 
 We chose MongoDB as our database and not a relational database because of MongoDBs horizontal scalability. We have almost 40 000 books, and almost no relations. Therefore it is more important that the database has the ability to scale well. This also means that relations have to be implemented in resolvers in the backend, as entities and relations in the database are just represented as documents.
@@ -213,13 +273,9 @@ Since we want our site to be sustainable we wanted caching in the frontend. This
 
 MongoDB with Express is often combined with either Angular og React. We chose React because we wanted to use the [Mantine UI library](https://mantine.dev/). We wanted to use this library because we wanted to support dark-mode for our application to be more sustainable. Components from this library has light- and darkmode versions, which allows us to support darkmode without too much effort.
 
+Mantine offers GitHub [templates](https://mantine.dev/getting-started/) for the project structure. This includes the setup with Vite, TypeScript, React, linting dependencies and testing dependencies. This makes it easier to get started with the project. We did however have to change some of the setup to fit our needs, e.g. we removed the Storybook dependency as this is not needed for our project.
+
 ![Mantine UI library logo](/media/mantine.png)
-
-**Other notable technologies**
-
-- We use Vitest with Jest for testing.
-
-- We used Pandas (a python library) to clean up our dataset.
 
 ## How to contribute
 

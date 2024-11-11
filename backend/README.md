@@ -14,7 +14,7 @@ npm install
 
 3. Run [`preprocessing.py`](../preprocessing/preprocessing.py) to preprocess the data. This will create json files in [`/preprocessing`](/preprocessing/) which you have to import to the MongoDB database. Import the files by running [`upload_json_to_mongo.py`](../preprocessing/upload_json_to_mongo.py). This assumes you have a database called "bookvault". If you have a different database name, you have to change the database name in the script.
 
-4. Create a `.env` file in [`/backend`](/backend/) with the following content:
+4. Modify the `.env` file in [`/backend`](/backend/.env) to your MongoDB URI:
 
 ```env
 ATLAS_URI=<your mongodb uri>
