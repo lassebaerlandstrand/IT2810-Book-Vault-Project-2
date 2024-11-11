@@ -129,45 +129,66 @@ const BookInfo = ({ book }: BookInfoProps) => {
         </Grid.Col>
 
         <Grid.Col span={12}>
-          <SegmentedControl
-            data-orientation={isDesktop ? 'horizontal' : 'vertical'}
-            fullWidth
-            value={where}
-            onChange={setWhere}
-            color="blue"
-            disabled={loading}
-            data={[
-              {
-                label: (
-                  <Center style={{ gap: 10 }} color="blue">
-                    <IconBookOff style={{ width: rem(16), height: rem(16) }} />
-                    <Text>{where === 'notInLibrary' ? 'Unmarked' : 'Unmark'}</Text>
-                  </Center>
-                ),
-                value: 'notInLibrary',
-              },
-              {
-                label: (
-                  <Center style={{ gap: 10 }} color="blue">
-                    <IconBook style={{ width: rem(16), height: rem(16) }} />
-                    <Text>
-                      {where === 'wantToRead' ? 'In reading list' : 'Add to reading list'}
-                    </Text>
-                  </Center>
-                ),
-                value: 'wantToRead',
-              },
-              {
-                label: (
-                  <Center style={{ gap: 10 }} color="blue">
-                    <IconBook2 style={{ width: rem(16), height: rem(16) }} />
-                    <Text>{where === 'haveRead' ? 'Have read' : 'Mark as read'}</Text>
-                  </Center>
-                ),
-                value: 'haveRead',
-              },
-            ]}
-          />
+          {isDesktop !== undefined && (
+            <SegmentedControl
+              data-orientation={isDesktop ? 'horizontal' : 'vertical'}
+              fullWidth
+              value={where}
+              onChange={setWhere}
+              color="blue"
+              disabled={loading}
+              data={[
+                {
+                  label: (
+                    <Center style={{ gap: 10 }} color="blue">
+                      <IconBookOff style={{ width: rem(16), height: rem(16) }} />
+                      <Text>{where === 'notInLibrary' ? 'Unmarked' : 'Unmark'}</Text>
+                    </Center>
+                  ),
+                  value: 'notInLibrary',
+                },
+                {
+                  label: (
+                    <Center style={{ gap: 10 }} color="blue">
+                      <IconBook style={{ width: rem(16), height: rem(16) }} />
+                      <Text>
+                        {where === 'wantToRead' ? 'In reading list' : 'Add to reading list'}
+                      </Text>
+                    </Center>
+                  ),
+                  value: 'wantToRead',
+                },
+                {
+                  label: (
+                    <Center style={{ gap: 10 }} color="blue">
+                      <IconBook2 style={{ width: rem(16), height: rem(16) }} />
+                      <Text>{where === 'haveRead' ? 'Have read' : 'Mark as read'}</Text>
+                    </Center>
+                  ),
+                  value: 'haveRead',
+                },
+              ]}
+            />
+          )}
+          {isDesktop === undefined && (
+            <SegmentedControl
+              data-orientation="horizontal"
+              fullWidth
+              value="loading"
+              disabled
+              data={[
+                {
+                  label: (
+                    <Center style={{ gap: 10 }} color="gray">
+                      <IconBookOff style={{ width: rem(16), height: rem(16) }} />
+                      <Text>Loading...</Text>
+                    </Center>
+                  ),
+                  value: 'loading',
+                },
+              ]}
+            />
+          )}
         </Grid.Col>
 
         <InfoGrid book={book} />
