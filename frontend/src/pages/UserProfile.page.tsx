@@ -5,6 +5,7 @@ import {
   Avatar,
   Button,
   Container,
+  Divider,
   Group,
   rem,
   Stack,
@@ -145,12 +146,19 @@ export function ProfilePage() {
           </Title>
         </Group>
 
-        <Group align="center">
-          <IconBook style={{ width: rem(32), height: rem(32) }} />
-          <Title order={3} fw={500} my="xl">
-            Books you want to read
-          </Title>
-        </Group>
+        <Divider
+          size="xs"
+          label={
+            <Group align="center">
+              <IconBook style={{ width: rem(32), height: rem(32) }} />
+              <Title order={3} fw={500} my="xl">
+                Books you want to read
+              </Title>
+            </Group>
+          }
+          labelPosition="center"
+          w="100%"
+        />
 
         <BookCardGrid
           books={wantToRead}
@@ -167,12 +175,19 @@ export function ProfilePage() {
           </Link>
         )}
 
-        <Group align="center">
-          <IconBook2 style={{ width: rem(32), height: rem(32) }} />
-          <Title order={3} fw={500} my="xl">
-            Recently read books
-          </Title>
-        </Group>
+        <Divider
+          size="xs"
+          label={
+            <Group align="center">
+              <IconBook2 style={{ width: rem(32), height: rem(32) }} />
+              <Title order={3} fw={500} my="xl">
+                Recently read books
+              </Title>
+            </Group>
+          }
+          labelPosition="center"
+          w="100%"
+        />
 
         <BookCardGrid
           books={haveRead}
