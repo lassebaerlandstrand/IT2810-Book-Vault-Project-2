@@ -8,8 +8,12 @@ describe('BookListViewCard', () => {
     render(<BookListViewCard book={dummyBook} />);
 
     expect(screen.getByText(dummyBook.title)).toBeInTheDocument();
-    expect(screen.getByText(dummyBook.authors.map((author) => author.name).join(', '))).toBeInTheDocument();
-    expect(screen.getByText(dummyBook.genres.map((genre) => genre.name).join(', '))).toBeInTheDocument();
+    expect(
+      screen.getByText(dummyBook.authors.map((author) => author.name).join(', '))
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(dummyBook.genres.map((genre) => genre.name).join(', '))
+    ).toBeInTheDocument();
     expect(screen.getByText(dummyBook.description)).toBeInTheDocument();
   });
 
