@@ -905,7 +905,7 @@ const resolvers = {
         },
       );
 
-      const updateFields: any = {};
+      const updateFields: { [key: string]: string } = {};
       if (haveRead) {
         updateFields.haveRead = haveRead;
       }
