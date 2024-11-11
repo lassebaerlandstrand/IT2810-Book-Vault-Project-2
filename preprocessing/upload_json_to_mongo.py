@@ -77,6 +77,7 @@ books.create_index([('rating', 1)])
 books.create_index([('title', 1), ('_id', 1)])
 books.create_index([('authors.0', 1), ('_id', 1)])
 books.create_index([('publisher', 1), ('_id', 1)])
+users.create_index([('UUID', 1)])
 
 client.close()
 print("Connections closed successfully")

@@ -88,8 +88,8 @@ type User {
   UUID: ID!
   name: String!
   at: Date
-  wantToRead: [Book]
-  haveRead: [Book]
+  wantToRead: [Book!]
+  haveRead: [Book!]
   secret: String
 }
 
@@ -158,6 +158,8 @@ input FilterInput {
   minPages: Int
   maxPages: Int
   minRating: Int
+  wantToReadListUserUUID: String
+  haveReadListUserUUID: String
 }
 
 type Query {
@@ -226,22 +228,37 @@ type reviewResponse {
   message: String!
 }
 
-type nameResponse {
+type updateUserResponse {
   user: User
   success: Boolean!
   message: String!
 }
 
-input UpdateUserInput {
+type updateUserlibraryResponse {
+  success: Boolean!
+  message: String!
+}
+
+input UpdateUsernameInput {
   UUID: String!
   name: String
+  secret: String!
+}
+
+input UpdateUserLibraryInput {
+  UUID: String!
+  wantToRead: String
+  haveRead: String
+  removeFromLibrary: String
   secret: String!
 }
 
 type Mutation {
   createUser: User!
 
-  updateUser(input: UpdateUserInput!): nameResponse!
+  updateUserLibrary(input: UpdateUserLibraryInput!): updateUserlibraryResponse!
+
+  updateUser(input: UpdateUsernameInput!): updateUserResponse!
 
   createReview(input: CreateReviewInput!): reviewResponse!
 
@@ -262,6 +279,12 @@ enum SortBy {
   authorName
   "Sort by publisher name"
   publisherName
+
+  "Sort by wantToRead"
+  wantToRead
+
+  "Sort by haveRead"
+  haveRead
 }
 
 input SortInput {

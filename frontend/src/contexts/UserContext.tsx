@@ -11,7 +11,6 @@ import styles from './userContext.module.css';
 interface UserContextProps {
   info: User;
   secret: string;
-  setUser: (user: User) => void;
 }
 
 /**
@@ -118,11 +117,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     );
   }
 
-  const setUser = () => {};
-
   return (
-    <UserContext.Provider value={{ info: user as User, secret, setUser }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={{ info: user as User, secret }}>{children}</UserContext.Provider>
   );
 };

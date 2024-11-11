@@ -39,14 +39,6 @@ const ReviewStack = ({ reviews, type }: ReviewProps) => {
               >
                 <ReviewCard review={review} type={type} />
               </Link>
-            ) : type === 'profileReview' ? (
-              <Link
-                to={`/user/${review.user?.UUID}`}
-                className={styles.link}
-                aria-label="Go to the user who wrote the review"
-              >
-                <ReviewCard review={review} type={type} />
-              </Link>
             ) : (
               <ReviewCard review={review} type={type} />
             )}

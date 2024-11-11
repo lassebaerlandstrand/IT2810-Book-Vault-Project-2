@@ -10,6 +10,8 @@ export enum SortBy {
   Book = 'bookName',
   Author = 'authorName',
   Publisher = 'publisherName',
+  wantToRead = 'wantToRead',
+  haveRead = 'haveRead',
 }
 
 export enum SortOrder {
@@ -33,6 +35,8 @@ interface FilterInput {
   minPages?: number;
   maxPages?: number;
   minRating?: number;
+  wantToReadListUserUUID?: string;
+  haveReadListUserUUID?: string;
 }
 
 interface FilterCountInput {
@@ -107,6 +111,15 @@ interface MongoBookFilters {
   publisher?: { $in: string[] };
   pages?: { $gte?: number; $lte?: number };
   rating?: { $gte?: number };
+}
+
+interface UserDocument {
+  UUID: string;
+  name: string;
+  at: Date;
+  secret: string;
+  wantToRead: string[];
+  haveRead: string[];
 }
 
 /**
@@ -262,6 +275,8 @@ const buildPipelineWithoutSpecificFilters = ({
   afterDate,
   minPages,
   maxPages,
+  wantToReadListUserUUID,
+  haveReadListUserUUID,
 }: FilterInput) => {
   const filters: MongoBookFilters = {};
 
@@ -302,6 +317,78 @@ const buildPipelineWithoutSpecificFilters = ({
         pipeline.push({
           $sort: { publisher: sortOrder, _id: 1 },
         });
+        break;
+      case SortBy.wantToRead:
+        pipeline.push(
+          ...[
+            {
+              $lookup: {
+                from: 'users',
+                pipeline: [
+                  { $match: { UUID: wantToReadListUserUUID } },
+                  { $project: { wantToRead: 1 } },
+                ],
+                as: 'userWantToRead',
+              },
+            },
+            {
+              $unwind: '$userWantToRead',
+            },
+            {
+              $addFields: {
+                orderIndex: { $indexOfArray: ['$userWantToRead.wantToRead', '$id'] },
+              },
+            },
+            {
+              $match: { orderIndex: { $ne: -1 } },
+            },
+            {
+              $sort: { orderIndex: sortOrder },
+            },
+            {
+              $project: {
+                userWantToRead: 0,
+                orderIndex: 0,
+              },
+            },
+          ],
+        );
+        break;
+      case SortBy.haveRead:
+        pipeline.push(
+          ...[
+            {
+              $lookup: {
+                from: 'users',
+                pipeline: [
+                  { $match: { UUID: haveReadListUserUUID } },
+                  { $project: { haveRead: 1 } },
+                ],
+                as: 'userHaveRead',
+              },
+            },
+            {
+              $unwind: '$userHaveRead',
+            },
+            {
+              $addFields: {
+                orderIndex: { $indexOfArray: ['$userHaveRead.haveRead', '$id'] },
+              },
+            },
+            {
+              $match: { orderIndex: { $ne: -1 } },
+            },
+            {
+              $sort: { orderIndex: sortOrder },
+            },
+            {
+              $project: {
+                userHaveRead: 0,
+                orderIndex: 0,
+              },
+            },
+          ],
+        );
         break;
     }
   }
@@ -362,6 +449,21 @@ const resolvers = {
         pipeline.push({ $match: { rating: { $gte: args.input.minRating } } });
       }
 
+      if (args.input.wantToReadListUserUUID && args.input.sortInput.sortBy !== 'wantToRead') {
+        const matchingUser = await db
+          .collection('users')
+          .findOne({ UUID: args.input.wantToReadListUserUUID });
+        const wantToReadList = matchingUser ? matchingUser.wantToRead : [];
+        pipeline.push({ $match: { id: { $in: wantToReadList } } });
+      }
+      if (args.input.haveReadListUserUUID && args.input.sortInput.sortBy !== 'haveRead') {
+        const matchingUser = await db
+          .collection('users')
+          .findOne({ UUID: args.input.haveReadListUserUUID });
+        const haveReadList = matchingUser ? matchingUser.haveRead : [];
+        pipeline.push({ $match: { id: { $in: haveReadList } } });
+      }
+
       const totalBooks = (await countWithExclusions(args.input ?? {}, null))[0]?.all || 0;
 
       pipeline.push({ $skip: args.offset * args.limit });
@@ -405,7 +507,21 @@ const resolvers = {
 
     /** Fetches a specific user based on the UUID */
     async user(_, { UUID }: UserQueryArgs) {
-      return await db.collection('users').findOne({ UUID: UUID }, { projection: { secret: 0 } });
+      const user = await db
+        .collection('users')
+        .findOne({ UUID: UUID }, { projection: { secret: 0 } });
+
+      const haveReadArray = await db
+        .collection('books')
+        .find({ id: { $in: user.haveRead } })
+        .toArray();
+
+      const wantToReadArray = await db
+        .collection('books')
+        .find({ id: { $in: user.wantToRead } })
+        .toArray();
+
+      return { ...user, wantToRead: wantToReadArray, haveRead: haveReadArray };
     },
 
     /** Fetches all reviews for a book. This is paginated and sorted desceding based on when the review was created.  */
@@ -568,12 +684,14 @@ const resolvers = {
     async bookReview(_, { bookID, userUUID }: SingleBookReviewQueryArgs) {
       const review = await db.collection('reviews').findOne({ bookID: bookID, userUUID: userUUID });
 
-      return {
-        UUID: review.UUID,
-        description: review.description,
-        rating: review.rating,
-        at: new Date(review.at),
-      };
+      if (review)
+        return {
+          UUID: review.UUID,
+          description: review.description,
+          rating: review.rating,
+          at: new Date(review.at),
+        };
+      return;
     },
 
     /** Fetches all genres in the database */
@@ -733,6 +851,84 @@ const resolvers = {
         return { success: true, message: 'Name successfully updated!', user: updatedUser.value };
       }
       return { success: false, message: 'Wrong user credentials!' };
+    },
+
+    async updateUserLibrary(
+      _,
+      {
+        input,
+      }: {
+        input: {
+          UUID: string;
+          secret: string;
+          wantToRead: string;
+          haveRead: string;
+          removeFromLibrary: string;
+        };
+      },
+    ) {
+      const { UUID, secret, wantToRead, haveRead, removeFromLibrary } = input;
+
+      if (!wantToRead && !haveRead && !removeFromLibrary) {
+        return { success: true, message: 'Nothing successfully changed' };
+      }
+
+      if (wantToRead) {
+        const book = await db.collection('books').findOne({ id: wantToRead });
+        if (!book) {
+          return { success: false, message: 'wantToRead book doesnt exist!' };
+        }
+      }
+
+      if (haveRead) {
+        const book = await db.collection('books').findOne({ id: haveRead });
+        if (!book) {
+          return { success: false, message: 'haveRead book doesnt exist!' };
+        }
+      }
+
+      if (removeFromLibrary) {
+        const book = await db.collection('books').findOne({ id: removeFromLibrary });
+        if (!book) {
+          return { success: false, message: 'removeFromLibrary book doesnt exist!' };
+        }
+      }
+
+      // Couldnt do pull and push in the same operation ):
+      await db.collection<UserDocument>('users').findOneAndUpdate(
+        { UUID: UUID, secret: secret },
+        {
+          $pull: {
+            wantToRead: { $in: [haveRead, removeFromLibrary] },
+            haveRead: { $in: [wantToRead, removeFromLibrary] },
+          },
+        },
+      );
+
+      const updateFields: any = {};
+      if (haveRead) {
+        updateFields.haveRead = haveRead;
+      }
+      if (wantToRead) {
+        updateFields.wantToRead = wantToRead;
+      }
+
+      const updatedUser = await db.collection<UserDocument>('users').findOneAndUpdate(
+        { UUID: UUID, secret: secret },
+        {
+          $push: updateFields,
+        },
+        { returnDocument: 'after' },
+      );
+
+      if (!updatedUser.value) {
+        return { success: false, message: 'Wrong user credentials!' };
+      }
+
+      return {
+        success: true,
+        message: 'Library successfully updated!',
+      };
     },
 
     /**

@@ -12,5 +12,6 @@ export const removeMantineRandomAttributes = () => {
     element.removeAttribute('id');
     element.removeAttribute('class');
     element.removeAttribute('aria-describedby');
+    element.removeAttribute('name');
   });
 };

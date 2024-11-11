@@ -16,7 +16,7 @@ const BookReviewCard = ({ review }: ReviewProps) => {
 
   return (
     <Card p={30} radius="lg" className={styles.card} m="auto">
-      <Grid>
+      <Grid align="center">
         <Grid.Col span="content" h={200} className={styles.img}>
           <Image
             src={review.book.coverImg}
@@ -43,10 +43,17 @@ const BookReviewCard = ({ review }: ReviewProps) => {
                 </Text>
               </Stack>
             </Grid.Col>
-            <Grid.Col span="content">
-              <Flex justify="center" align="center" gap={7} mt="xs">
-                <Rating value={review.rating} fractions={2} readOnly />
-                <Text fw={500}>{review.rating.toFixed(1)}</Text>
+            <Grid.Col span={12}>
+              <Flex justify="left" align="center" gap={7} mt="xs">
+                <Rating
+                  value={review.rating}
+                  fractions={2}
+                  readOnly
+                  size={review.description && review.description !== '' ? 'md' : 'xl'}
+                />
+                <Text size={review.description && review.description !== '' ? 'md' : 'xl'}>
+                  {review.rating.toFixed(1)}
+                </Text>
               </Flex>
             </Grid.Col>
             {review.description && review.description !== '' ? (

@@ -1,5 +1,23 @@
-import { Flex, Grid, Group, Image, Spoiler, Stack, Text } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { IconBook, IconBook2, IconBookOff } from '@tabler/icons-react';
+import {
+  Center,
+  Flex,
+  Grid,
+  Group,
+  Image,
+  rem,
+  SegmentedControl,
+  Spoiler,
+  Stack,
+  Text,
+  useMantineTheme,
+} from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
+import { notifications } from '@mantine/notifications';
+import { useUser } from '@/contexts/UserFunctions';
 import { Book } from '@/generated/graphql';
+import { updateUserLibrary } from '@/hooks/updateUserLibrary';
 import InfoGrid from '../InfoGrid/InfoGrid';
 import { Ratings } from '../Ratings/Ratings';
 
@@ -11,6 +29,61 @@ type BookInfoProps = {
  * Displays detailed information about a book including cover image, title, authors, and metadata.
  */
 const BookInfo = ({ book }: BookInfoProps) => {
+  const { submitUpdate, success, message, loading } = updateUserLibrary();
+  const { info, secret } = useUser();
+
+  useEffect(() => {
+    if (!loading && message && typeof success === 'boolean') {
+      notifications.show({
+        title: success ? 'Success!' : 'Error!',
+        message,
+        color: success ? 'blue' : 'red',
+        autoClose: 5000,
+      });
+    }
+  }, [message, success, loading]);
+
+  const findPlaceInLibrary = () => {
+    if (info.wantToRead && info.wantToRead.length > 0) {
+      const exists = info.wantToRead.some((item) => item.id === book.id);
+      if (exists) {
+        return 'wantToRead';
+      }
+    }
+
+    if (info.haveRead && info.haveRead.length > 0) {
+      const exists = info.haveRead.some((item) => item.id === book.id);
+      if (exists) {
+        return 'haveRead';
+      }
+    }
+
+    return 'notInLibrary';
+  };
+
+  const [where, setWhere] = useState(findPlaceInLibrary);
+
+  useEffect(() => {
+    if (where !== findPlaceInLibrary()) {
+      if (where === 'wantToRead') {
+        submitUpdate({ UUID: info.UUID, secret, wantToRead: book.id });
+      } else if (where === 'haveRead') {
+        submitUpdate({ UUID: info.UUID, secret, haveRead: book.id });
+      } else {
+        submitUpdate({ UUID: info.UUID, secret, removeFromLibrary: book.id });
+      }
+    }
+  }, [where]);
+
+  useEffect(() => {
+    if (!loading) {
+      setWhere(findPlaceInLibrary);
+    }
+  }, [info.haveRead, info.wantToRead]);
+
+  const theme = useMantineTheme();
+  const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
+
   return (
     <Group justify="center" gap="lg">
       <Grid justify="left" align="top">
@@ -53,6 +126,69 @@ const BookInfo = ({ book }: BookInfoProps) => {
               <Text>{book.description}</Text>
             </Spoiler>
           </Flex>
+        </Grid.Col>
+
+        <Grid.Col span={12}>
+          {isDesktop !== undefined && (
+            <SegmentedControl
+              data-orientation={isDesktop ? 'horizontal' : 'vertical'}
+              fullWidth
+              value={where}
+              onChange={setWhere}
+              color="blue"
+              disabled={loading}
+              data={[
+                {
+                  label: (
+                    <Center style={{ gap: 10 }} color="blue">
+                      <IconBookOff style={{ width: rem(16), height: rem(16) }} />
+                      <Text>{where === 'notInLibrary' ? 'Unmarked' : 'Unmark'}</Text>
+                    </Center>
+                  ),
+                  value: 'notInLibrary',
+                },
+                {
+                  label: (
+                    <Center style={{ gap: 10 }} color="blue">
+                      <IconBook style={{ width: rem(16), height: rem(16) }} />
+                      <Text>
+                        {where === 'wantToRead' ? 'In reading list' : 'Add to reading list'}
+                      </Text>
+                    </Center>
+                  ),
+                  value: 'wantToRead',
+                },
+                {
+                  label: (
+                    <Center style={{ gap: 10 }} color="blue">
+                      <IconBook2 style={{ width: rem(16), height: rem(16) }} />
+                      <Text>{where === 'haveRead' ? 'Have read' : 'Mark as read'}</Text>
+                    </Center>
+                  ),
+                  value: 'haveRead',
+                },
+              ]}
+            />
+          )}
+          {isDesktop === undefined && (
+            <SegmentedControl
+              data-orientation="horizontal"
+              fullWidth
+              value="loading"
+              disabled
+              data={[
+                {
+                  label: (
+                    <Center style={{ gap: 10 }} color="gray">
+                      <IconBookOff style={{ width: rem(16), height: rem(16) }} />
+                      <Text>Loading...</Text>
+                    </Center>
+                  ),
+                  value: 'loading',
+                },
+              ]}
+            />
+          )}
         </Grid.Col>
 
         <InfoGrid book={book} />
