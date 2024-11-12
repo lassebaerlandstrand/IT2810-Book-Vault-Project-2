@@ -33,7 +33,7 @@ const ReviewStack = ({ reviews, type }: ReviewProps) => {
           <Grid.Col key={index} span={{ base: 12 }}>
             {type === 'bookReview' ? (
               <Link
-                to={`/book/${review.book?.id}`}
+                to={`/books/${review.book?.id}`}
                 className={styles.link}
                 aria-label={`Go to the book ${review.book?.title}`}
               >

@@ -18,7 +18,7 @@ describe('Home Page', () => {
     cy.contains('Try your luck with a random book').should('not.have.attr', 'data-loading'); // Wait for the button to be enabled
     cy.contains('Try your luck with a random book').click();
 
-    cy.url().should('include', '/book/');
+    cy.url().should('include', '/books/');
   });
 
   it('popular genres should redirect', () => {

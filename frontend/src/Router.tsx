@@ -41,7 +41,7 @@ const router = createBrowserRouter(
           ),
         },
         {
-          path: '/book/:bookId',
+          path: '/books/:bookId',
           element: (
             <>
               <ScrollRestoration />
@@ -68,7 +68,7 @@ const router = createBrowserRouter(
           ),
         },
         {
-          path: '/myReviews',
+          path: '/profile/myReviews',
           element: (
             <>
               <ScrollRestoration />
@@ -77,7 +77,7 @@ const router = createBrowserRouter(
           ),
         },
         {
-          path: '/haveRead',
+          path: '/profile/haveRead',
           element: (
             <>
               <ScrollRestoration />
@@ -86,7 +86,7 @@ const router = createBrowserRouter(
           ),
         },
         {
-          path: '/wantToRead',
+          path: '/profile/wantToRead',
           element: (
             <>
               <ScrollRestoration />
