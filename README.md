@@ -70,7 +70,7 @@ TODO: Mention epic usernames
     - Year published
     - Number of pages
     - Genres
-  
+
   - See how many books are in each selection when applying filters and disallow filtering by attributes that would result in no books.
 
 ## Folder structure 📂
@@ -216,9 +216,7 @@ We also support a light theme and a dark theme. The default theme is based on th
 
 The images used on this website were created using DALL-E 3 and Bing Image Creator. These tools generate images that are not subject to copyright restrictions and can be used freely. Since the generated images were not perfect, we utilized the GIMP image editor to adjust them to better fit our website's design. Additionally, to adhere to sustainable web design principles, we compressed the images using the WebP format, with PNG as a fallback for browsers that do not support WebP. The images for the book covers are from Goodreads, we also use [Placehold.co](https://placehold.co/200x300?text=Cover%20image%20for%20book) for fallbacks.
 
-### Universal Design 🌍
-
-### Accessibility ♿
+### Accessibility and Universal Design 🌍
 
 TODO: Buttons are very intuitive
 
@@ -226,7 +224,7 @@ We have made an effort to make our application as accessible as possible.
 
 The Mantine UI library follows the Accessible Rich Internet Applications Suite (WAI-ARIA) accessibility guidelines. To further increase accessibility, we have added aria-attributes to the relevant components. We also follow the Web Content Accessibility Guidelines (WCAG) to ensure that our website is accessible to all users. The website should be usable to all people, regardless of their abilities.
 
-Examples on accessibility accommodations:
+We have prioritized universal design to ensure that our solution is usable for everyone, eliminating the need for separate or specialized solutions. Examples on accessibility accommodations:
 
 - Sight impaired:
   - Support for screen readers
@@ -242,7 +240,11 @@ Examples on accessibility accommodations:
   - Consistent and intuitive design
   - Clear and concise language
 
-With the use of various developer tools, we have ensured that the website is accessible in various ways.
+With the use of various developer tools, we have ensured that the website is accessible in various ways. An example of such a tool is Lighthouse. Here is the result from running an accessibility scan on our homepage.
+
+| ![Accessibility scan of homepage](/media/LighthouseAccessibility.png) |
+| :-------------------------------------------------------------------: |
+|                    Accessibility scan of homepage                     |
 
 **Colors** 🎨
 
@@ -250,9 +252,122 @@ We have high contrast between text and background to support people who struggle
 
 ## Sustainability 🌱
 
-TODO: We use debounce because you told us to >:c
+### Dark-mode
 
-**TODO: Add data and analytics from lighthouse once the application is done**
+We support dark-mode in our application to be more sustainable. The feature makes the application more sustainable for some screen types as it draws less power. Read more about how we implemented dark-mode in the [tech stack section.](#tech-stack-️)
+
+### Minimizing communication between backend and frontend
+
+We have made it a goal of the application to reduce the communication between front- and backend. This is done through caching the queries from the backend using Apollo-Client. This makes it so that we only need to fetch information from the backend once for each unique query, unless we know that something in the backend has changed.
+
+We only replace cached queries when we
+
+- know something has changed,
+- and we care about the change
+
+This is either done through instantly refetching a query, or evicting the cached query so that it will be refetched next time its information is needed.
+
+On the profile page we have a query for fetching your three most recently read books. After reading another book you add it to your list of read books. This means that the query for fetching your three most recently read books needs to be updated, but as it is only displayed on the profile-page we dont have to update it before the user actually visits that page. This means that instead of instantly refreshing the query, we just evict it, so that if and when you visit the profile page, the query will be refetched, not before.
+
+```javascript
+// From updateUserLibrary.ts
+
+// Evicts all queries that fetches read books (after updating the library)
+// so that next time they are needed, they will be fetched again
+
+Object.keys(allKeys).forEach((key) => {
+  if (key.startsWith('books(')) {
+
+    // As Apollo Client doesnt support wildcards in arguments for identifying queries,
+    // we have to filter through the cache like it was text looking for relevant
+    // queries to evict
+
+    const jsonString = key.replace('books(', '').replace(')', '');
+    const parsed = JSON.parse(jsonString);
+    const { sortBy, sortOrder } = parsed.input.sortInput;
+    const { limit, offset } = parsed;
+
+    if (key.includes(`"haveReadListUserUUID":"${input.UUID}"`)) {
+      cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: 'books',
+        args: {
+          input: {
+            haveReadListUserUUID: input.UUID,
+            sortInput: { sortBy, sortOrder },
+          },
+          limit,
+          offset,
+        },
+      });
+    }
+    ...
+  }})
+```
+
+We dont always need to refetch cached queries when information we are interrested in has changed. Sometimes we can manipulate the cache manually as we already have the relevant details in the frontend. An example of this in our application is the query that fetches user information. After adding/removing an item to/from either the "have read"-, or "want to read"-list, we need to update the lists stored in the cached user object. Say you move a book from your "want to read"- to your "have read"-list:
+
+```javascript
+// Before
+user {
+  UUID: "...",
+  name: "...",
+  wantToRead: [..., A_BOOK_YOU_HAVE_NOW_READ, ...], // <--- This needs to be updated
+  haveRead: [...],   // <--- This needs to be updated
+  at: "..."
+}
+```
+
+Then we manually manipulate the cache in the frontend, removing it from the wantToRead list, and moving it to the haveRead list. This is done conditionally, so that it only happens if the mutation (about moving the book into the haveRead list) sent to the backend was successfull. The result is that the book was moved from one cached list to another, all without the backend telling us what to do (by for example sending the 2 lists as a response to the mutation)
+
+```javascript
+// After
+user {
+  UUID: "...",
+  name: "...",
+  wantToRead: [...], // <--- This needs to be updated
+  haveRead: [..., A_BOOK_YOU_HAVE_NOW_READ],   // <--- This needs to be updated
+  at: "..."
+}
+```
+
+```javascript
+// Relevant code from updateUserLibrary.ts that updates the cache,
+// removing books that were moved into the unmarked category and haveRead category
+// from the wantToRead category, and adding books that were placed in the wantToRead category
+// into the wantToRead list
+
+cache.modify({
+    id: cache.identify({ __typename: 'User', UUID: input.UUID }),
+    fields: {
+      wantToRead(existing = [], { toReference, readField }) {
+        const filtered = existing.filter(
+          (bookRef: Reference) =>
+            readField('id', bookRef) !== input.haveRead &&
+            readField('id', bookRef) !== input.removeFromLibrary
+        );
+
+        if (input.wantToRead) {
+          const newBookRef = toReference({ __typename: 'Book', id: input.wantToRead });
+          return [...filtered, newBookRef];
+        }
+
+        return filtered;
+      },
+      ...
+      // Do the same for haveRead
+      ...
+    },
+});
+```
+
+### Minimizing data flow
+
+To further minimize data flow between back- and frontend, we minimize the dataflow whenever the queries are actually called. From front-to-backend this is done by not specifying null-arguments or parts of the queries that are not relevant. The same is done in the backend. We for example dont return authors that have 0 results under the current filter conditions.
+
+### Debounce
+
+A not so sustainable feature of our application is our debounced search. Debounced search fetches search results multiple times during the search. This is less sustainable than just fetching results from the database once when the user has finished typing out their search. Even though it reduces how sustainable the application is, we chose to implement it to increase user experience, as the user could potentially find the thing they are searching for before having spelled out their full search (saving time). We also did it to show competence as it was advertised on both the "Medstudentvurdering"-form and in lectures as a feature to make the application more advanced.
 
 ## Dataset 📚
 
@@ -272,7 +387,7 @@ TODO: Boast about creating and using tests throughout the project
 
 #### Unit tests
 
-We have unit tests for some of our resolvers. In these tests we check that the resolvers return the correct data, and that they handle errors correctly.
+We have unit tests for most of our resolvers; both queries and mutations, as well as type resolvers. In these tests we check that the resolvers return the correct data, call the correct mutation functions, and that they handle errors correctly.
 
 #### Mocking the database
 
@@ -328,6 +443,36 @@ npm run cypress
 ```
 
 After running `npm run cypress` a window should open. You then choose `E2E Testing` and the browser of your choice. You can run all tests by selecting `allTests.cy.ts` or run a single test by selecting the test you want to run.
+
+### Manual testing
+
+We have tested the application on the following browsers:
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+
+We have also tested the application on the following devices _(by emulating their resolutions using Google Devtools)_:
+
+- BlackBerry Z30
+- Blackberry PlayBook
+- iPhone SE
+- iPhone XR
+- iPhone 12 Pro
+- iPhone 14 Pro Max
+- Pixel 7
+- Samsung Galaxy S8+
+- Samsung Galaxy S20 Ultra
+- iPad Mini
+- iPad Air
+- iPad Pro
+- Surface Pro 7
+- Surface Duo
+- Galaxy Z Fold 5
+- Asus Zenbook Fold
+- Samsung Galaxy A51/71
+- Nest Hub
+- Nest Hub Max
 
 ## Tech stack 🛠️
 
