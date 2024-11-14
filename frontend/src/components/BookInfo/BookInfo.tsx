@@ -29,7 +29,7 @@ type BookInfoProps = {
  * Displays detailed information about a book including cover image, title, authors, and metadata.
  */
 const BookInfo = ({ book }: BookInfoProps) => {
-  const { submitUpdate, success, message, loading } = updateUserLibrary();
+  const { submitUpdate, success, message, loading, error } = updateUserLibrary();
   const { info, secret } = useUser();
 
   useEffect(() => {
@@ -62,6 +62,7 @@ const BookInfo = ({ book }: BookInfoProps) => {
   };
 
   const [where, setWhere] = useState(findPlaceInLibrary);
+  const [oldWhere, setOldWhere] = useState(findPlaceInLibrary);
 
   useEffect(() => {
     if (where !== findPlaceInLibrary()) {
@@ -78,8 +79,15 @@ const BookInfo = ({ book }: BookInfoProps) => {
   useEffect(() => {
     if (!loading) {
       setWhere(findPlaceInLibrary);
+      setOldWhere(findPlaceInLibrary);
     }
   }, [info.haveRead, info.wantToRead]);
+
+  useEffect(() => {
+    if (error) {
+      setWhere(oldWhere);
+    }
+  }, [error]);
 
   const theme = useMantineTheme();
   const isDesktop = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);

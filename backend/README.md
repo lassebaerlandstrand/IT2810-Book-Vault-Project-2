@@ -31,4 +31,12 @@ npm run start
 
 ## How to run on the VM
 
-TODO
+To run the backend on the VM, you can simply run the [`vmSetup.sh`](../vmSetup.sh) script on the VM. This will install the necessary dependencies and start the server.
+
+If you simply want to connect to the backend running on the VM, you can use the following URL:
+
+```url
+http://it2810-05.idi.ntnu.no/graphql/
+```
+
+PS: Remember to be connected to an NTNU network to access the VM.
