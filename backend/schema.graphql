@@ -86,7 +86,7 @@ type Book {
 
 type User {
   UUID: ID!
-  name: String!
+  name: String
   at: Date
   wantToRead: [Book!]
   haveRead: [Book!]
@@ -172,7 +172,7 @@ type Query {
   "Retrieve a specific book based on id"
   book(id: String!): Book!
 
-  user(UUID: String!): User
+  user(UUID: String!, secret: String!): User
 
   "Retrieve book reviews"
   bookReviews(

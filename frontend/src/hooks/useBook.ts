@@ -14,12 +14,9 @@ type UseBookArgs = {
  * - error: Any error that occurred during the query
  */
 export const useBook = ({ bookId }: UseBookArgs) => {
-  if (!bookId) {
-    return { book: undefined, loading: false, error: undefined };
-  }
-
   const { data, loading, error } = useQuery(GET_BOOK, {
-    variables: { bookId },
+    variables: bookId ? { bookId } : undefined, // Just to make TypeScript happy, the query is not executed if bookId is undefined
+    skip: !bookId,
   });
 
   return {

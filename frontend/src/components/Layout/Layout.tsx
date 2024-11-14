@@ -14,7 +14,7 @@ const Layout = () => {
 
   // Reserve space for the scrollbar. This is to avoid jumping content when the scrollbar appears.
   const reserveScrollbarByReducingWidth: MantineStyleProp = {
-    width: `calc(100vw - ${width}px)`,
+    width: `calc(100vw - ${width + 0.01}px)`, // 0.01 because Edge calculates wrong and adds a horizontal scrollbar (only happens on Edge)
   };
 
   // Cannot use this on AppShell, as we will get a horizontal scrollbar. We use this on the header else we would get an odd looking gap.

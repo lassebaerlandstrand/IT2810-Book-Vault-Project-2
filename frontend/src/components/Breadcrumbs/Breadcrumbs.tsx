@@ -26,7 +26,7 @@ export const Breadcrumbs = () => {
   }
 
   return (
-    <Flex justify="left" w="100%" pb={20}>
+    <Flex justify="left" w="100%" pb="xl">
       {breadcrumbs.map(({ match, breadcrumb }, index) => (
         <Flex key={index}>
           <NavLink to={match.pathname} className={styles.link}>
