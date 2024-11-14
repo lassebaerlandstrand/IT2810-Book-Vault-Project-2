@@ -1,6 +1,11 @@
 # Preprocessing the dataset
 
-## Why
+## Table of contents
+- [Introduction](#introduction-📖)
+- [The preprocessing](#the-preprocessing-🛠️)
+- [Building the MongoDB database](#building-the-mongodb-database-🏗️)
+
+## Introduction 📖
 
 As we wanted to make a book-site, we needed a book-dataset. For this dataset we had a few criterias about what information each entry should contain about each book. These were:
 
@@ -15,7 +20,7 @@ As we wanted to make a book-site, we needed a book-dataset. For this dataset we 
 
 The problem was that only one dataset satisfied all our criteria: [the "Best Books Ever Dataset" by Lorena Casanova Lozano and Sergio Costa Planells](https://zenodo.org/records/4265096). The dataset satisfied all the criteria, but had another problem: lots and lots of missing values. The solution: preprocessing of the data.
 
-## The preprocessing
+## The preprocessing 🛠️
 
 We chose to preprocess the data using pandas as it is ["a fast, powerful, flexible and easy to use open source data analysis and manipulation tool"](https://pandas.pydata.org/).
 
@@ -55,7 +60,7 @@ df.to_json('preprocessing/books.json', orient='records')
 
 In the end we ended up with a clean dataset with around 40 000 entries.
 
-## Building the MongoDB database
+## Building the MongoDB database 🏗️
 
 After having preprocessed the data into a neat format and storing it in a JSON file, we wanted to upload the data to a MongoDB database. We used the `pymongo` library to interact with the database.
 
