@@ -106,14 +106,18 @@ This page- like every other page, has a darkmode version that can be enabled by 
 
 On this page you can browse and filter books.
 
-You can currently
+You can search by title and description.
 
-- Filter by publisher
-- Filter by author
-- Filter by minimum rating
-- Filter by year published
-- Filter by number of pages
-- Filter by genre
+You can filter results by
+
+- Publisher
+- Author
+- Minimum rating
+- Year published
+- Number of pages
+- Genre
+
+After applying a filter you will get an updated account on the amount of results you currently have from your filter options, as well as accounts on how that number will change by further applying filters.
 
 You can also sort the results in either ascending or descending order by either the books name, the authors name, or by the publishers name.
 
@@ -125,17 +129,25 @@ You can also sort the results in either ascending or descending order by either 
 
 On this page you can view more info about a book, like average rating, description, genres, ...
 
-You can add the book to your library by adding it to either your "Want to read" list or "Have read" list.
-
-You can also leave a review of the book, as well as view other people's reviews.
-
 | ![Book info page](/media/Bookinfo.png) |
 | :------------------------------------: |
 |           The book-info page           |
 
+You can add the book to your library by adding it to either your _"Reading list"_ or "_Have read list_".
+
 |  ![Book not added to a list](/media/Unmarked.png)   |          ![Book marked as read](/media/Haveread.png)           |
 | :-------------------------------------------------: | :------------------------------------------------------------: |
 | A book that has not been added to any of your lists | A book that has been added to the lists of books you have read |
+
+You can also leave a review of the book, as well as view other people's reviews.
+
+|                       ![Before bad review](/media/BeforeBadReview.png)                       |
+| :------------------------------------------------------------------------------------------: |
+|               Before bad review. Notice how there are 40 038 "1-star" ratings                |
+|                        ![During bad review](/media/DuringReview.png)                         |
+|                                    Writing the bad review                                    |
+|                        ![After bad review](/media/AfterBadReview.png)                        |
+| After the bad review. Notice how there are now 40 039 "1-star" ratings, one more than before |
 
 ### Profile page
 
@@ -243,7 +255,7 @@ We use Vitest with Jest for testing.
 
 #### Unit tests
 
-We have unit tests for most of our resolvers. In these tests we check that the resolvers return the correct data, and that they handle errors correctly.
+We have unit tests for some of our resolvers. In these tests we check that the resolvers return the correct data, and that they handle errors correctly.
 
 #### Mocking the database
 
@@ -307,6 +319,7 @@ After running `npm run cypress` a window should open. You then choose `E2E Testi
 ### Complete Tech Stack List
 
 - **Frontend**
+
   - TypeScript
   - React
   - PostCSS
@@ -314,21 +327,29 @@ After running `npm run cypress` a window should open. You then choose `E2E Testi
   - Vite
   - GraphQL/Apollo Client
   - GraphQL Codegen
+
 - **Backend**
+
   - TypeScript
   - Express
   - Node.js
   - GraphQL/Apollo Server
   - MongoDB
+
 - **Testing**
+
   - Vitest
   - Cypress
   - React Testing Library
+
 - **Linting/Formatting**
+
   - ESLint
   - Prettier
   - Stylelint
+
 - **Preprocessing**
+
   - Python
   - Pandas
 
@@ -340,7 +361,7 @@ We chose MongoDB as our database and not a relational database because of MongoD
 
 Since we want our site to be sustainable we wanted caching in the frontend. This hinders fetching the same information from the database multiple times. This can very easily be done if you use Apollo Client to query the backends API, but then the API has to understand GraphQL. Express with ApolloServer allows us to build such an API.
 
-MongoDB with Express is often combined with either Angular og React. We chose React because we wanted to use the [Mantine UI library](https://mantine.dev/). We wanted to use this library because we wanted to support dark-mode for our application. Dark-mode can lead to reduced power draw on certain types of screens and thus be more sustainable. Components from Mantine has light- and darkmode versions, which allows us to support darkmode without too much effort.
+MongoDB with Express is often combined with either Angular or React. We chose React because we wanted to use the [Mantine UI library](https://mantine.dev/). We wanted to use this library because we wanted to support dark-mode for our application, something Mantine helps with by supplying both light- and dark-mode versions of components. Dark-mode can lead to reduced power draw on certain types of screens and thus be more sustainable.
 
 Mantine offers GitHub [templates](https://mantine.dev/getting-started/) for the project structure. This includes the setup with Vite, TypeScript, React, linting dependencies and testing dependencies. This makes it easier to get started with the project. We did however have to change some of the setup to fit our needs, e.g. we removed the Storybook dependency as this is not needed for our project.
 
@@ -351,3 +372,7 @@ Mantine offers GitHub [templates](https://mantine.dev/getting-started/) for the 
 Please read the [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) to learn how you can contribute to the project.
 
 [Go to top](#book-vault)
+
+## Use of AI
+
+AI has primaraly been used to assist us while coding. Both ChatGPT and Microsoft Copilot have been used for this purpose throughout the whole project. As stated earlier we have also used DALL-E 3 and Bing Image Creator to make the images for this application.
