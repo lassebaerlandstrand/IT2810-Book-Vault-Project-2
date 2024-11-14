@@ -106,7 +106,13 @@ The application is running on a VM at [http://it2810-05.idi.ntnu.no/project2](ht
 
 ## Pages 📃
 
-TODO: Show figma stuff
+### Figma sketches
+
+We first sketched out the pages in figma, and then roughly implemented them in the frontend based on the figma sketch. Here are 2 examples:
+
+| ![Figma vs implementation of booklist](/media/FigmaVsBookList.png) | ![Figma vs implementation of bookinfo](/media/FigmaVsBookInfo.png) |
+| :----------------------------------------------------------------: | :----------------------------------------------------------------: |
+|        Figma design of booklist-page vs. implemented design        |       Figma design of book-info-page vs. implemented design        |
 
 ### Home page
 
@@ -114,7 +120,7 @@ This is our home page. From this page you can navigate to all other pages, as we
 
 This page- like every other page, has a darkmode version that can be enabled by clicking the moon icon in the top right.
 
-| ![Homepage](/media/Homepage.png) | ![Daarkmode Homepage](/media/DarkmodeHomepage.png) |
+| ![Homepage](/media/homepage.png) | ![Daarkmode Homepage](/media/DarkmodeHomepage.png) |
 | :------------------------------: | :------------------------------------------------: |
 |          The home-page           |        The home-page with dark-mode enabled        |
 
@@ -141,11 +147,17 @@ You can also sort the results in either ascending or descending order by either 
 | :-----------------------------------: |
 |           The booklist page           |
 
+We have also implemented a list view of the books to display more information about each book.
+
+| ![List view of book page](/media/Listview.png.png) |
+| :------------------------------------------------: |
+|               List view of book page               |
+
 ### Book-info page
 
 On this page you can view more info about a book, like average rating, description, genres, ...
 
-| ![Book info page](/media/Bookinfo.png) |
+| ![Book info page](/media/bookinfo.png) |
 | :------------------------------------: |
 |           The book-info page           |
 
