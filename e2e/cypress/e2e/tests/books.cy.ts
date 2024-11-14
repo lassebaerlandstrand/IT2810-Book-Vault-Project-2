@@ -35,7 +35,7 @@ describe('Books Page', () => {
     cy.wait(1000); // If we search immediately, the initial queries will be cancelled, and cypress will still say it is waiting for the cancelled queries
     cy.get('input[placeholder="Search for books"]').type('The Hunger Games{enter}');
 
-    cy.get('h4').contains('The Hunger Games');
+    cy.get('p').contains('The Hunger Games');
     cy.get("[title='Suzanne Collins']").should('be.visible');
   });
 

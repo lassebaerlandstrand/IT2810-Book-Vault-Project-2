@@ -99,7 +99,7 @@ npm run dev
 
 [Click here to go to the tutorial on how to run the backend locally](/backend/README.md)
 
-## Virtual Machine
+### Virtual Machine
 
 The application is running on a VM at [http://it2810-05.idi.ntnu.no/project2](http://it2810-05.idi.ntnu.no/project2)
 
@@ -243,7 +243,7 @@ We have made an effort to make our application as accessible as possible.
 
 The Mantine UI library follows the Accessible Rich Internet Applications Suite (WAI-ARIA) accessibility guidelines. To further increase accessibility, we have added aria-attributes to the relevant components. We also follow the Web Content Accessibility Guidelines (WCAG) to ensure that our website is accessible to all users. The website should be usable to all people, regardless of their abilities.
 
-We have also strived to make it intuitive to interact with our application, putting a lot of focus into having intuitive buttons and a user-friendly layout and behavior. 
+We have also strived to make it intuitive to interact with our application, putting a lot of focus into having intuitive buttons and a user-friendly layout and behavior.
 
 We have prioritized universal design to ensure that our solution is usable for everyone, eliminating the need for separate or specialized solutions. Examples on accessibility accommodations:
 
@@ -261,11 +261,11 @@ We have prioritized universal design to ensure that our solution is usable for e
   - Consistent and intuitive design
   - Clear and concise language
 
-With the use of various developer tools, we have ensured that the website is accessible in various ways. An example of such a tool is Lighthouse. Here is the result from running an accessibility scan on our homepage.
+With the use of various developer tools, we have ensured that the website is accessible in various ways. An example of such a tool is Axe Devtools and Lighthouse. Below you can see screenshots of these tools running on our homepage. The results are the same for all pages in the application.
 
-| ![Accessibility scan of homepage](/media/LighthouseAccessibility.png) |
-| :-------------------------------------------------------------------: |
-|                    Accessibility scan of homepage                     |
+| ![Axe accessibility scan of homepage](/media/AxeDevtoolsAccessibility.png) | ![Lighthouse scan of homepage](/media/LighthouseAccessibility.png) |
+| :------------------------------------------------------------------------: | :----------------------------------------------------------------: |
+|                     Axe accessibility scan of homepage                     |                    Lighthouse scan of homepage                     |
 
 **Colors** 🎨
 
@@ -559,15 +559,17 @@ Mantine offers GitHub [templates](https://mantine.dev/getting-started/) for the 
 
 ## Reduced scope 🔍
 
-After the second deliverable one of the team members left the team, and this reduction in workforce meant we had to reduce the planned scope of the application.
+After the second deliverable one of the team members left the team, and this reduction in workforce meant we had to reduce the planned scope of the application. In addition to this, the time we had remaining near the end also meant that we had to prioritize the most important features.
 
-One of the planned features we had to scrap, was the ability to follow other users and see information about their reviews and what books they have in their reading lists. We also had to skip implementing other features, such as displaying books in the same series and adding more sort options.
+One of the planned features we had to scrap, was the ability to follow other users and see information about their reviews and what books they have in their reading lists. We also had to skip implementing other features, such as displaying books in the same series and adding loading with skeletons.
+
+In our Kanban board you can find the list of features we had to scrap (see Product Backlog tab). On each issue, we have added a comment with the reason for why it was deemed a lower priority than the implemented features. You can find the Kanban board [here](https://git.ntnu.no/orgs/IT2810-H24/projects/34).
 
 ## How to contribute 🤝
 
 Please read the [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) to learn how you can contribute to the project.
 
-## Use of AI
+## Use of AI 🤖
 
 Our use of AI is primarily limited to assisting us while coding. Both ChatGPT and Microsoft Copilot have been used for this purpose throughout the whole project. As stated earlier we have also used DALL-E 3 and Bing Image Creator to make the images for this application.
 
