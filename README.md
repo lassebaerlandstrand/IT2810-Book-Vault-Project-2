@@ -5,17 +5,16 @@
 ## Table of Contents
 
 1. [Description](#description-📖)
-2. [Folder structure](#folder-structure-📂)
-3. [How to run](#how-to-run-⚙️)
-4. [Pages](#pages-📃)
-5. [Design](#design-🖌️)
-6. [Sustainability](#sustainability-🌱)
-7. [Dataset](#dataset-📚)
-8. [Test coverage](#test-coverage-🧪)
-9. [Tech stack](#tech-stack-🛠️)
-10. [Reduced scope](#reduced-scope-🔍)
-11. [How to contribute](#how-to-contribute-🤝)
-12. [Use of AI](#use-of-ai-🤖)
+2. [How to run](#how-to-run-⚙️)
+3. [Pages](#pages-📃)
+4. [Design](#design-🖌️)
+5. [Sustainability](#sustainability-🌱)
+6. [Dataset](#dataset-📚)
+7. [Test coverage](#test-coverage-🧪)
+8. [Tech stack](#tech-stack-🛠️)
+9. [Reduced scope](#reduced-scope-🔍)
+10. [How to contribute](#how-to-contribute-🤝)
+11. [Use of AI](#use-of-ai-🤖)
 
 ## Description 📖
 
@@ -74,10 +73,6 @@ Book Vault is a comprehensive web-based book catalogue, with close to 40 thousan
 
   - See how many books are in each selection when applying filters and disallow filtering by attributes that would result in no books.
 
-## Folder structure 📂
-
-We are using a monorepo structure with both frontend and backend in the same repository.
-
 ## How to run ⚙️
 
 Before doing anything else, you have to clone the repository:
@@ -118,9 +113,9 @@ We first sketched out the pages in figma, and then roughly implemented them in t
 
 This is our home page. From this page you can navigate to all other pages, as well as view a random book, or view books in popular genres.
 
-This page- like every other page, has a darkmode version that can be enabled by clicking the moon icon in the top right.
+This page- like every other page, has a dark-mode version that can be enabled by clicking the moon icon in the top right.
 
-| ![Homepage](/media/homepage.png) | ![Daarkmode Homepage](/media/DarkmodeHomepage.png) |
+| ![Homepage](/media/homepage.png) | ![Dark-mode Homepage](/media/DarkmodeHomepage.png) |
 | :------------------------------: | :------------------------------------------------: |
 |          The home-page           |        The home-page with dark-mode enabled        |
 
@@ -149,7 +144,7 @@ You can also sort the results in either ascending or descending order by either 
 
 We have also implemented a list view of the books to display more information about each book.
 
-| ![List view of book page](/media/Listview.png.png) |
+| ![List view of book page](/media/Listview.png) |
 | :------------------------------------------------: |
 |               List view of book page               |
 
@@ -167,7 +162,7 @@ You can add the book to your library by adding it to either your _"Reading list"
 | :-------------------------------------------------: | :------------------------------------------------------------: |
 | A book that has not been added to any of your lists | A book that has been added to the lists of books you have read |
 
-You can also leave a review of the book, as well as view other people's reviews. A common response we got from the reviwers of our second delivery was that it wasnt clear enough that your review affected the average rating. We solved this by adding a rating-count next to the average rating, as well as a statistic of how many people gave each rating.
+You can also leave a review of the book, as well as view other people's reviews. A common response we got from the reviewers of our second delivery was that it wasn't clear enough that your review affected the average rating. We solved this by adding a rating-count next to the average rating, as well as a statistic of how many people gave each rating.
 
 |                       ![Before bad review](/media/BeforeBadReview.png)                       |
 | :------------------------------------------------------------------------------------------: |
@@ -203,7 +198,7 @@ On your profile page you can also change your name. Below you can see the name g
 
 Here you can view all the reviews you have left on books. The reviews will be shortened down if they are too long. To read the full reviews you can click on them and read them on their respective book-info pages.
 
-We were suprised when one of our reviewers thought that the possibility of creating a review without a review-description was a bug, and that we should limit the user to only be able to create reviews whenever a description has been filled out. To make it clearer that you are supposed to be able to create reviews consisting of only ratings we created distinct styles for these types of reviews. For example; on the reviews page, reviews without a review-description has bigger stars to compensate for the open space.
+We were surprised when one of our reviewers thought that the possibility of creating a review without a review-description was a bug, and that we should limit the user to only be able to create reviews whenever a description has been filled out. To make it clearer that you are supposed to be able to create reviews consisting of only ratings we created distinct styles for these types of reviews. For example; on the reviews page, reviews without a review-description has bigger stars to compensate for the open space.
 
 |                                                                 ![Reviews page with reviews](/media/ReviewPage.png)                                                                  |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -238,7 +233,7 @@ This page is only available through [adding /testing to the url when you are on 
 
 During the development of this website, we explored various themes to find the most suitable design. Initially, we adopted a dark blue theme inspired by our first logo. However, this theme did not integrate well with the overall aesthetic of the website, leading to a mix of inconsistent themes. Additionally, the original logo contained excessive detail, which we attempted to simplify, but the results were not convincing.
 
-Therefore, we experimented with several new themes, including a beige color scheme intended to evoke a book-like feel. Unfortunately, this theme did not align with the minimalistic design we aimed for and would require a lot of work to change Mantine's light theme and would go against adviced practices with Mantine. Ultimately, we selected a vibrant blue color that complements our minimalistic design approach. To add visual interest, we incorporated a gradient into the theme.
+Therefore, we experimented with several new themes, including a beige color scheme intended to evoke a book-like feel. Unfortunately, this theme did not align with the minimalistic design we aimed for and would require a lot of work to change Mantine's light theme and would go against advised practices with Mantine. Ultimately, we selected a vibrant blue color that complements our minimalistic design approach. To add visual interest, we incorporated a gradient into the theme.
 
 | <img src="media/OldBookVaultLogo.png" alt="Old logo" width="300" /> | <img src="media/BookVaultLogo.png" alt="New logo" width="300" /> |
 | :-----------------------------------------------------------------: | :--------------------------------------------------------------: |
@@ -301,7 +296,7 @@ We only replace cached queries when we
 
 This is either done through instantly refetching a query, or evicting the cached query so that it will be refetched next time its information is needed.
 
-On the profile page we have a query for fetching your three most recently read books. After reading another book you add it to your list of read books. This means that the query for fetching your three most recently read books needs to be updated, but as it is only displayed on the profile-page we dont have to update it before the user actually visits that page. This means that instead of instantly refetching the query, we just evict it, so that if and when you visit the profile page, the query will be refetched, not before.
+On the profile page we have a query for fetching your three most recently read books. After reading another book you add it to your list of read books. This means that the query for fetching your three most recently read books needs to be updated, but as it is only displayed on the profile-page we don't have to update it before the user actually visits that page. This means that instead of instantly refetching the query, we just evict it, so that if and when you visit the profile page, the query will be refetched, not before.
 
 ```javascript
 // From updateUserLibrary.ts
@@ -312,7 +307,7 @@ On the profile page we have a query for fetching your three most recently read b
 Object.keys(allKeys).forEach((key) => {
   if (key.startsWith('books(')) {
 
-    // As Apollo Client doesnt support wildcards in arguments for identifying queries,
+    // As Apollo Client doesn't support wildcards in arguments for identifying queries,
     // we have to filter through the cache like it was text looking for relevant
     // queries to evict
 
@@ -339,7 +334,7 @@ Object.keys(allKeys).forEach((key) => {
   }})
 ```
 
-We dont always need to refetch cached queries when information we are interrested in has changed. Sometimes we can manipulate the cache manually as we already have the relevant details in the frontend. An example of this in our application is the query that fetches user information. After adding/removing an item to/from either the "have read"-, or "want to read"-list, we need to update the lists stored in the cached user object. Say you move a book from your "want to read"- to your "have read"-list:
+We don't always need to refetch cached queries when information we are interested in has changed. Sometimes we can manipulate the cache manually as we already have the relevant details in the frontend. An example of this in our application is the query that fetches user information. After adding/removing an item to/from either the "have read"-, or "want to read"-list, we need to update the lists stored in the cached user object. Say you move a book from your "want to read"- to your "have read"-list:
 
 ```javascript
 // Before
@@ -352,7 +347,7 @@ user {
 }
 ```
 
-Then we manually manipulate the cache in the frontend, removing it from the wantToRead list, and moving it to the haveRead list. This is done conditionally, so that it only happens if the mutation (about moving the book into the haveRead list) sent to the backend was successfull. The result is that the book was moved from one cached list to another, all without the backend telling us what to do (by for example sending the 2 lists as a response to the mutation)
+Then we manually manipulate the cache in the frontend, removing it from the wantToRead list, and moving it to the haveRead list. This is done conditionally, so that it only happens if the mutation (about moving the book into the haveRead list) sent to the backend was successful. The result is that the book was moved from one cached list to another, all without the backend telling us what to do (by for example sending the 2 lists as a response to the mutation)
 
 ```javascript
 // After
