@@ -20,7 +20,7 @@ exports[`Layout > matches snapshot 1`] = `
   <div
     class="_background_0c8bf9 m_89ab340 mantine-AppShell-root"
     data-resizing="true"
-    style="--app-shell-transition-duration: 200ms; --app-shell-transition-timing-function: ease; width: calc(100vw - 0px);"
+    style="--app-shell-transition-duration: 200ms; --app-shell-transition-timing-function: ease; width: calc(100vw - 0.01px);"
   >
     <header
       class="m_3b16f56b mantine-AppShell-header right-scroll-bar-position _header_0c8bf9"
