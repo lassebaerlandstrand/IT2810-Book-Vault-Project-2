@@ -7,7 +7,6 @@ import {
   Container,
   Divider,
   Group,
-  rem,
   Stack,
   Text,
   TextInput,
@@ -101,7 +100,7 @@ export function ProfilePage() {
   };
 
   return (
-    <Container size="sm" my="xl">
+    <Container size="sm" my="xl" p={0}>
       <Stack align="center">
         <Avatar size={100} radius="xl">
           {formatAvatarAbbreviation(newName)}
@@ -140,7 +139,7 @@ export function ProfilePage() {
         )}
 
         <Group align="center">
-          <IconBooks style={{ width: rem(32), height: rem(32) }} />
+          <IconBooks className={styles.icon} />
           <Title order={2} my="xl">
             Your library
           </Title>
@@ -150,7 +149,7 @@ export function ProfilePage() {
           size="xs"
           label={
             <Group align="center">
-              <IconBook style={{ width: rem(32), height: rem(32) }} />
+              <IconBook className={`${styles.icon} ${styles.desktopIcon}`} />
               <Title order={3} fw={500} my="xl">
                 Books you want to read
               </Title>
@@ -179,7 +178,7 @@ export function ProfilePage() {
           size="xs"
           label={
             <Group align="center">
-              <IconBook2 style={{ width: rem(32), height: rem(32) }} />
+              <IconBook2 className={`${styles.icon} ${styles.desktopIcon}`} />
               <Title order={3} fw={500} my="xl">
                 Recently read books
               </Title>
@@ -204,7 +203,7 @@ export function ProfilePage() {
         )}
 
         <Group align="center">
-          <IconStars style={{ width: rem(32), height: rem(32) }} />
+          <IconStars className={styles.icon} />
           <Title order={2} my="xl">
             Your reviews
           </Title>
@@ -219,7 +218,7 @@ export function ProfilePage() {
         ) : (
           <>
             <ReviewStack reviews={reviews as Review[]} type="bookReview" />
-            {totalReviews && totalReviews > 3 && (
+            {(totalReviews ?? 0) > 3 && (
               <Link to="/profile/myReviews" className={styles.link}>
                 <Button fullWidth radius="md" mt="md">
                   View all
