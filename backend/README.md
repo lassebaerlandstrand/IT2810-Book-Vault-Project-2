@@ -57,6 +57,15 @@ cd /home/krisose/T05-Project-2
 sh vmSetup.sh
 ```
 
+> 💡 **Note** <br> Running [`vmSetup.sh`](../vmSetup.sh) will also do other things such as pulling from `main` and building the app. If you are only interested in running the backend, the relevant commands would be:
+> ```sh
+> cd /home/krisose/T05-Project-2/backend
+> npm install
+> pkill -f node
+> nohup npm start &
+> ```
+>
+
 If you simply want to connect to the backend running on the VM, you can use the following URL:
 
 ```url
