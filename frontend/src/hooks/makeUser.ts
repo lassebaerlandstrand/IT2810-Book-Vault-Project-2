@@ -11,18 +11,6 @@ import { CREATE_USER } from '@/graphql/mutations/users';
 export const makeUser = () => {
   const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
 
-  // useEffect(() => {
-  //   const createUserAsync = async () => {
-  //     try {
-  //       await createUser();
-  //     } catch (e) {
-  //       console.error('Error during user creation:', e);
-  //     }
-  //   };
-
-  //   createUserAsync();
-  // }, [createUser]);
-
   return {
     createUser,
     user: data?.createUser || null,
