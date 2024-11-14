@@ -261,11 +261,11 @@ We have prioritized universal design to ensure that our solution is usable for e
   - Consistent and intuitive design
   - Clear and concise language
 
-With the use of various developer tools, we have ensured that the website is accessible in various ways. An example of such a tool is Lighthouse. Here is the result from running an accessibility scan on our homepage.
+With the use of various developer tools, we have ensured that the website is accessible in various ways. An example of such a tool is Axe Devtools. Here is the result from running an accessibility scan on our homepage.
 
-| ![Accessibility scan of homepage](/media/LighthouseAccessibility.png) |
-| :-------------------------------------------------------------------: |
-|                    Accessibility scan of homepage                     |
+| ![Accessibility scan of homepage](/media/AxeDevtoolsAccessibility.png) |
+| :--------------------------------------------------------------------: |
+|                     Accessibility scan of homepage                     |
 
 **Colors** 🎨
 
@@ -559,15 +559,17 @@ Mantine offers GitHub [templates](https://mantine.dev/getting-started/) for the 
 
 ## Reduced scope 🔍
 
-After the second deliverable one of the team members left the team, and this reduction in workforce meant we had to reduce the planned scope of the application.
+After the second deliverable one of the team members left the team, and this reduction in workforce meant we had to reduce the planned scope of the application. In addition to this, the time we had remaining near the end also meant that we had to prioritize the most important features.
 
-One of the planned features we had to scrap, was the ability to follow other users and see information about their reviews and what books they have in their reading lists. We also had to skip implementing other features, such as displaying books in the same series and adding more sort options.
+One of the planned features we had to scrap, was the ability to follow other users and see information about their reviews and what books they have in their reading lists. We also had to skip implementing other features, such as displaying books in the same series and adding loading with skeletons.
+
+In our Kanban board you can find the list of features we had to scrap (see Product Backlog tab). On each issue, we have added a comment with the reason for why it was deemed a lower priority than the implemented features. You can find the Kanban board [here](https://git.ntnu.no/orgs/IT2810-H24/projects/34).
 
 ## How to contribute 🤝
 
 Please read the [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) to learn how you can contribute to the project.
 
-## Use of AI
+## Use of AI 🤖
 
 Our use of AI is primarily limited to assisting us while coding. Both ChatGPT and Microsoft Copilot have been used for this purpose throughout the whole project. As stated earlier we have also used DALL-E 3 and Bing Image Creator to make the images for this application.
 
