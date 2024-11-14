@@ -22,7 +22,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
   const [text, setText] = useState('');
   const UUID: string = useUser().info.UUID;
   const secret: string = useUser().secret;
-  const [toRefectYourReview, setToRefectYourReview] = useState(false);
+  const [toRefetchYourReview, setToRefetchYourReview] = useState(false);
 
   // Fetch your review of the book (if it exists)
   const { review: yourReview, refetch: refetchYourReview } = useYourBookReview({
@@ -72,7 +72,7 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
         rating,
       });
 
-      setToRefectYourReview(true);
+      setToRefetchYourReview(true);
     }
   };
 
@@ -87,14 +87,14 @@ const YourReviewHandler = ({ book }: ReviewProps) => {
       rating,
     });
 
-    setToRefectYourReview(true);
+    setToRefetchYourReview(true);
   };
 
   useEffect(() => {
-    if (toRefectYourReview && !yourReviewLoading && !loadingUpdateReview) {
+    if (toRefetchYourReview && !yourReviewLoading && !loadingUpdateReview) {
       refetchYourReview();
     }
-  }, [yourReviewLoading, loadingUpdateReview, toRefectYourReview]);
+  }, [yourReviewLoading, loadingUpdateReview, toRefetchYourReview]);
 
   useEffect(() => {
     if (!yourReviewLoading && createReviewMessage && typeof createReviewSuccess === 'boolean') {
