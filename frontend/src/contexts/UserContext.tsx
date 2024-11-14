@@ -36,14 +36,15 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (!UUID || !secret) {
       createUser()
-        .then((response: any) => {
-          const createdUser = response.data.createUser;
-          if (createdUser) {
+        .then((response) => {
+          const createdUser = response.data?.createUser;
+          if (createdUser?.UUID && createdUser.secret) {
             localStorage.setItem('UUID', createdUser.UUID);
             localStorage.setItem('secret', createdUser.secret);
           }
         })
-        .catch((e: any) => {
+        .catch((e: Error) => {
+          // Will also trigger errorCreateUser to be an error, because of how Apollo works
           console.error('Error during user creation:', e);
         });
     }
@@ -57,6 +58,18 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
             Fetching user data
           </Text>
           <Loader />
+        </Stack>
+      </Flex>
+    );
+  }
+
+  if (errorCreateUser) {
+    return (
+      <Flex justify="center" align="center" className={styles.centeredOnPage}>
+        <Stack align="center">
+          <Text c="red" size="lg">
+            Error creating new user
+          </Text>
         </Stack>
       </Flex>
     );
@@ -80,7 +93,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     );
   }
 
-  if (error || errorCreateUser) {
+  if (error) {
     return (
       <Flex justify="center" align="center" className={styles.centeredOnPage}>
         <Stack align="center">
