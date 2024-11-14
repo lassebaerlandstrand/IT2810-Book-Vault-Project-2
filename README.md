@@ -22,54 +22,54 @@ Book Vault is a comprehensive web-based book catalogue, with close to 40 thousan
 
 ### Key Features
 
-TODO: Mention secrets
-TODO: Mention epic usernames
-
 - **Extensive Catalog**: Browse through our collection of close to 40,000 books.
 
 - **Community Engagement**:
 
-  - Rate books on a 5-star scale
+  - Rate books on a 5-star scale ⭐
   - See the distribution of ratings for each book
-  - Write and share your own detailed reviews
-  - Read community reviews to discover new reads
+  - Write and share your own detailed reviews 📜
+    - These can be edited
+  - Read community reviews to discover new reads 📖
 
 - **Personalization**:
 
   - Automatically create a user for you
+    - The created user has a 🤸fun 🤸 username that consists of a random combination between a word from our "Nouns" database collection, and our "Adjectives" database collection.
+    - You can change your name if it is not to your liking
+    - Once the account is created, the user gets a UUID and a secret placed in their localstorage. These are used for authentication
   - Track books you've read and books you want to read by adding them to your library
-  - See your own reviews
-  - Change your name if it is not to your liking
+  - See your own reviews 📜
 
 - **User Experience**:
 
-  - Responsive design that works across all devices
+  - Responsive design that works across all devices 📱💻
   - Minimalistic and modern interface providing an intuitive user experience
   - Efficient pagination for smooth browsing
-  - Fast search and filtering capabilities
-  - Dark mode for reduced eye strain
+  - Fast search and filtering capabilities 🔍
+  - Dark mode for reduced eye strain 🌙
 
 - **Advanced Selection Options**:
 
   - Search:
 
-    - Search by titles and descriptions
+    - Search by titles and descriptions 📰
     - Debounced Search 🔍
 
   - Sort books by:
 
-    - Book title
-    - Author name
-    - Publisher name
+    - Book title 📙
+    - Author name 🧑‍🏫
+    - Publisher name 🏢
 
   - Filter books by:
 
-    - Publishers
-    - Authors
-    - Average rating
+    - Publishers 🏢
+    - Authors 🧑‍🏫
+    - Average rating ⭐
     - Year published
-    - Number of pages
-    - Genres
+    - Number of pages 📃
+    - Genres 🧙‍♂️
 
   - See how many books are in each selection when applying filters and disallow filtering by attributes that would result in no books.
 
@@ -150,7 +150,7 @@ You can add the book to your library by adding it to either your _"Reading list"
 | :-------------------------------------------------: | :------------------------------------------------------------: |
 | A book that has not been added to any of your lists | A book that has been added to the lists of books you have read |
 
-You can also leave a review of the book, as well as view other people's reviews.
+You can also leave a review of the book, as well as view other people's reviews. A common response we got from the reviwers of our second delivery was that it wasnt clear enough that your review affected the average rating. We solved this by adding a rating-count next to the average rating, as well as a statistic of how many people gave each rating.
 
 |                       ![Before bad review](/media/BeforeBadReview.png)                       |
 | :------------------------------------------------------------------------------------------: |
@@ -160,17 +160,23 @@ You can also leave a review of the book, as well as view other people's reviews.
 |                        ![After bad review](/media/AfterBadReview.png)                        |
 | After the bad review. Notice how there are now 40 039 "1-star" ratings, one more than before |
 
+You can also leave reviews without descriptions. These will just act as normal ratings, and will not show up to others as a review, but will be counted as a part of the rating statistics.
+
+| ![Descriptionless review](/media/Descriptionless.png) |
+| :---------------------------------------------------: |
+|             A review without description              |
+
 ### Profile page
 
 Here you can view your recent library activity; which books you want to read and which you have read. You can also view your most recent reviews.
 
-If you have more than three books marked as want to read, a "View all" button will show up, which takes you to the rest of the books you want to read. The same is true for the books you have read, and for your reviews.
+If you have more than three books marked as want to read, a "View all" button will show up, which takes you to the rest of the books you want to read on the ["Books you want to read"-page](#library-pages). The same is true for the books you have read, and for your reviews.
 
 | ![Profile page](/media/ProfilePage.png) |
 | :-------------------------------------: |
 |            The profile page             |
 
-On your profile page you can also change your name.
+On your profile page you can also change your name. Below you can see the name go from "Squooshy Volcano" to "The Great Guy".
 
 | ![Name change in progress](/media/NameChangeInProgress.png) | ![Name change done](/media/NameChangeDone.png) |
 | :---------------------------------------------------------: | :--------------------------------------------: |
@@ -178,15 +184,26 @@ On your profile page you can also change your name.
 
 ### Reviews page
 
-Here you can view all the reviews you have left on books. The reviews will however be shortened down if they are too long. To read the full reviews you have to click on them and read them on their respective book-info pages.
+Here you can view all the reviews you have left on books. The reviews will be shortened down if they are too long. To read the full reviews you can click on them and read them on their respective book-info pages.
 
-| ![Reviews page with reviews](/media/ReviewPage.png) |
-| :-------------------------------------------------: |
-|            The reviews page with reviews            |
+We were suprised when one of our reviewers thought that the possibility of creating a review without a review-description was a bug, and that we should limit the user to only be able to create reviews whenever a description has been filled out. To make it clearer that you are supposed to be able to create reviews consisting of only ratings we created distinct styles for these types of reviews. For example; on the reviews page, reviews without a review-description has bigger stars to compensate for the open space.
+
+|                                                                 ![Reviews page with reviews](/media/ReviewPage.png)                                                                  |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| The reviews page with reviews. Notice how the description is cut off for the review with a long review-description, and that the stars are larger on the book without a description. |
+
+### Library pages
+
+On the "want to read"-list page you can view all the books you have marked as "want to read".
+On the "have read"-list page you can view all the books you have marked as "have read".
+
+| ![Have read page](/media/HaveReadList.png) | ![Want to read page](/media/WantToReadList.png) |
+| :----------------------------------------: | :---------------------------------------------: |
+|        Page for books you have read        |         Page for books you want to read         |
 
 ### Testing page
 
-This page is only available through [adding /testing to the url when you are on the homepage or by clicking this link.](http://it2810-05.idi.ntnu.no/project2/testing) and is meant for our testers.
+This page is only available through [adding /testing to the url when you are on the homepage or by clicking this link](http://it2810-05.idi.ntnu.no/project2/testing). This page is meant for our testers.
 
 **Example test made easier by this page:**
 
@@ -267,7 +284,7 @@ We only replace cached queries when we
 
 This is either done through instantly refetching a query, or evicting the cached query so that it will be refetched next time its information is needed.
 
-On the profile page we have a query for fetching your three most recently read books. After reading another book you add it to your list of read books. This means that the query for fetching your three most recently read books needs to be updated, but as it is only displayed on the profile-page we dont have to update it before the user actually visits that page. This means that instead of instantly refreshing the query, we just evict it, so that if and when you visit the profile page, the query will be refetched, not before.
+On the profile page we have a query for fetching your three most recently read books. After reading another book you add it to your list of read books. This means that the query for fetching your three most recently read books needs to be updated, but as it is only displayed on the profile-page we dont have to update it before the user actually visits that page. This means that instead of instantly refetching the query, we just evict it, so that if and when you visit the profile page, the query will be refetched, not before.
 
 ```javascript
 // From updateUserLibrary.ts
@@ -325,8 +342,8 @@ Then we manually manipulate the cache in the frontend, removing it from the want
 user {
   UUID: "...",
   name: "...",
-  wantToRead: [...], // <--- This needs to be updated
-  haveRead: [..., A_BOOK_YOU_HAVE_NOW_READ],   // <--- This needs to be updated
+  wantToRead: [...],
+  haveRead: [..., A_BOOK_YOU_HAVE_NOW_READ],
   at: "..."
 }
 ```
