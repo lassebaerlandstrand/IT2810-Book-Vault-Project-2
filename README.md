@@ -258,7 +258,7 @@ We support dark-mode in our application to be more sustainable. The feature make
 
 ### Minimizing communication between backend and frontend
 
-We have made it a goal of the application to reduce the communication between front- and backend. This is done through caching the queries from the backend using Apollo-Client. This makes it so that we only need to fetch information from the backend once for each unique query, unless we know that something in the backend has changed.
+We have made it a goal of the application to reduce the communication between front- and backend. This is a sustainable practice as we take up less of the World Wide Webs resources. This is done through caching the queries from the backend using Apollo-Client. This makes it so that we only need to fetch information from the backend once for each unique query, unless we know that something in the backend has changed.
 
 We only replace cached queries when we
 
@@ -363,7 +363,7 @@ cache.modify({
 
 ### Minimizing data flow
 
-To further minimize data flow between back- and frontend, we minimize the dataflow whenever the queries are actually called. From front-to-backend this is done by not specifying null-arguments or parts of the queries that are not relevant. The same is done in the backend. We for example dont return authors that have 0 results under the current filter conditions.
+To further minimize data flow between back- and frontend, we minimize the amount of data sent between back- and frontend whenever the queries are actually called. From front-to-backend this is done by not specifying null-arguments or parts of the queries that are not relevant. The same is done in the backend. We for example dont return authors that have 0 results under the current filter conditions.
 
 ### Debounce
 
