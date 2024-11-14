@@ -22,9 +22,6 @@ Book Vault is a comprehensive web-based book catalogue, with close to 40 thousan
 
 ### Key Features
 
-TODO: Mention secrets
-TODO: Mention epic usernames
-
 - **Extensive Catalog**: Browse through our collection of close to 40,000 books.
 
 - **Community Engagement**:
@@ -36,10 +33,11 @@ TODO: Mention epic usernames
 
 - **Personalization**:
 
-  - Automatically create a user for you
+  - Automatically create a user for you with a randomized name
   - Track books you've read and books you want to read by adding them to your library
   - See your own reviews
   - Change your name if it is not to your liking
+  - Your account is kept safe with secrets
 
 - **User Experience**:
 
@@ -79,7 +77,11 @@ We are using a monorepo structure with both frontend and backend in the same rep
 
 ## How to run ⚙️
 
-TODO: Add instruction on how to clone the repo
+Before doing anything else, you have to clone the repository:
+
+```
+git clone https://git.ntnu.no/IT2810-H24/T05-Project-2.git
+```
 
 ### Frontend
 
@@ -217,8 +219,6 @@ We also support a light theme and a dark theme. The default theme is based on th
 The images used on this website were created using DALL-E 3 and Bing Image Creator. These tools generate images that are not subject to copyright restrictions and can be used freely. Since the generated images were not perfect, we utilized the GIMP image editor to adjust them to better fit our website's design. Additionally, to adhere to sustainable web design principles, we compressed the images using the WebP format, with PNG as a fallback for browsers that do not support WebP. The images for the book covers are from Goodreads, we also use [Placehold.co](https://placehold.co/200x300?text=Cover%20image%20for%20book) for fallbacks.
 
 ### Accessibility and Universal Design 🌍
-
-TODO: Buttons are very intuitive
 
 We have made an effort to make our application as accessible as possible.
 
@@ -363,7 +363,7 @@ cache.modify({
 
 ### Minimizing data flow
 
-To further minimize data flow between back- and frontend, we minimize the amount of data sent between back- and frontend whenever the queries are actually called. From front-to-backend this is done by not specifying null-arguments or parts of the queries that are not relevant. The same is done in the backend. We for example dont return authors that have 0 results under the current filter conditions.
+To further minimize data flow between back- and frontend, we minimize the amount of data sent between back- and frontend whenever the queries are actually called. From front-to-backend this is done by not specifying null-arguments or parts of the queries that are not relevant. The same is done in the backend. We for example don't return authors or publishers that have 0 results under the current filter conditions.
 
 ### Debounce
 
@@ -379,9 +379,11 @@ Read about how we got the dataset [here](./preprocessing/README.md).
 
 We use Vitest with Jest for testing.
 
-TODO: Boast about creating and using tests throughout the project
-
 ![Test logos](/media/vitestjest.png)
+
+### Testing during development
+
+While it may be tempting for some people to skip writing good tests throughout the development period, it was important for us that we always wrote new unit tests when we introduced new components. Our usage of snapshot tests has also been very helpful in identifying when unexpected changes were made. 
 
 ### Testing in the backend
 
@@ -536,14 +538,16 @@ Mantine offers GitHub [templates](https://mantine.dev/getting-started/) for the 
 
 ## Reduced scope 🔍
 
-TODO: Add a section on how we reduced the scope
+After the second deliverable one of the team members left the team, and this reduction in workforce meant we had to reduce the planned scope of the application.
+
+One of the planned features we had to scrap, was the ability to follow other users and see information about their reviews and what books they have in their reading lists. We also had to skip implementing other features, such as displaying books in the same series and adding more sort options.
 
 ## How to contribute 🤝
 
 Please read the [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) to learn how you can contribute to the project.
 
-[Go to top](#book-vault)
-
 ## Use of AI
 
-AI has primaraly been used to assist us while coding. Both ChatGPT and Microsoft Copilot have been used for this purpose throughout the whole project. As stated earlier we have also used DALL-E 3 and Bing Image Creator to make the images for this application.
+Our use of AI is primarily limited to assisting us while coding. Both ChatGPT and Microsoft Copilot have been used for this purpose throughout the whole project. As stated earlier we have also used DALL-E 3 and Bing Image Creator to make the images for this application.
+
+[Go to top](#book-vault)
