@@ -444,6 +444,14 @@ npm run cypress
 
 After running `npm run cypress` a window should open. You then choose `E2E Testing` and the browser of your choice. You can run all tests by selecting `allTests.cy.ts` or run a single test by selecting the test you want to run.
 
+Here is a video running all E2E tests:
+
+<video width="600" height="307" controls>
+  <source src="/media/CypressTests.mp4" type="video/mp4">
+</video>
+
+https://git.ntnu.no/IT2810-H24/T05-Project-2/assets/481/761d547b-f046-483d-baed-ed961a020cdf
+
 ### Manual testing
 
 We have tested the application on the following browsers:
