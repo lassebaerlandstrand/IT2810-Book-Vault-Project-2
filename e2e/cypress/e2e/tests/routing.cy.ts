@@ -31,15 +31,15 @@ describe('Larger E2E tests', () => {
     // Go to books
     cy.get('a').contains('Books').click();
 
-    // Click link where the href contains `/book/`
-    cy.get("a[href*='/book/']").first().click();
-    cy.url().should('include', '/book/');
+    // Click link where the href contains `/books/`
+    cy.get("a[href*='/books/']").first().click();
+    cy.url().should('include', '/books/');
     cy.get('p').contains('Reviews');
 
     // Click profile link
     cy.get("a[href*='/profile']").click();
     cy.url().should('include', '/profile');
-    cy.get('h2').contains('Your Reviews');
+    cy.get('h2').contains('Your reviews');
 
     // Click logo link
     cy.get("a[aria-label='Go to home page']").click();
@@ -85,7 +85,7 @@ describe('Larger E2E tests', () => {
     cy.get('.mantine-CloseButton-root.mantine-Drawer-close').click();
 
     // Select hunger games
-    cy.get('a[href*="/book/"]').contains('The Hunger Games').first().click();
+    cy.get('a[href*="/books/"]').contains('The Hunger Games').first().click();
 
     // Check the reviews
     cy.get('[data-testid="profileReview-stack"]')
@@ -108,7 +108,7 @@ describe('Larger E2E tests', () => {
 
     // Go to a specific book
     cy.get('input[placeholder="Search for books"]').type(`${bookTitle}{enter}`);
-    cy.get('a[href*="/book/"]').contains(bookTitle).first().click();
+    cy.get('a[href*="/books/"]').contains(bookTitle).first().click();
     cy.get('h1').contains(bookTitle).should('be.visible');
 
     // Start writing a review
@@ -127,7 +127,7 @@ describe('Larger E2E tests', () => {
     cy.get(`a[aria-label*="${bookTitle}"]`).click();
 
     // Check that we can go back to the original book
-    cy.url().should('include', '/book/');
+    cy.url().should('include', '/books/');
     cy.get('h1').contains(bookTitle).should('be.visible');
     cy.get('h4').contains('Your review').should('be.visible').scrollIntoView();
   });

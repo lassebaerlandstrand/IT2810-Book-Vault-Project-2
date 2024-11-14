@@ -16,6 +16,8 @@ type UseBooksArgs = {
   minPages?: number;
   maxPages?: number;
   minRating?: number;
+  wantToReadListUserUUID?: string;
+  haveReadListUserUUID?: string;
   onCompleted?: () => void;
 };
 
@@ -34,6 +36,8 @@ type UseBooksArgs = {
  * @param {number} minPages - The minimum number of pages to filter books by
  * @param {number} maxPages - The maximum number of pages to filter books by
  * @param {number} minRating - The minimum rating to filter books by
+ * @param {string} wantToReadListUserUUID - UUID of users wantToRead list you want to filter based on
+ * @param {string} haveReadListUserUUID - UUID of users haveRead list you want to filter based on
  * @returns Object containing the books, total number of books, loading state, and error state
  */
 export const useBooks = ({
@@ -50,6 +54,8 @@ export const useBooks = ({
   minPages,
   maxPages,
   minRating,
+  wantToReadListUserUUID,
+  haveReadListUserUUID,
 }: UseBooksArgs) => {
   const sortInput: SortInput = { sortBy, sortOrder };
   const filterInput = {
@@ -63,6 +69,8 @@ export const useBooks = ({
     minPages,
     maxPages,
     minRating,
+    wantToReadListUserUUID,
+    haveReadListUserUUID,
   };
 
   const { data, loading, error } = useQuery(GET_BOOKS, {

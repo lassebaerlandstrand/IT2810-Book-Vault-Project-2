@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`HeroHeader component > renders correctly 1`] = `
+exports[`AnimatedText component > matches snapshot 1`] = `
 <DocumentFragment>
   <style
     data-mantine-styles="true"
@@ -13,60 +13,18 @@ exports[`HeroHeader component > renders correctly 1`] = `
     @media (max-width: 29.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 30em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 63.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 64em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 89.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 90em) {.mantine-hidden-from-xl {display: none !important;}}@media (max-width: 23.99375em) {.mantine-visible-from-xxs {display: none !important;}}@media (min-width: 24em) {.mantine-hidden-from-xxs {display: none !important;}}
   </style>
   <div
-    class="_paperMain_62bb53 m_1b7284a3 mantine-Paper-root"
+    class=""
+    style="width: 100%; height: 0rem;"
   >
-    <div
-      class="_wrapper_62bb53 m_8bffd616 mantine-Flex-root __m__-r1"
+    <h1
+      aria-label="Find your next favorite book"
+      class="index-module_type__E-SaG"
+      style="font-weight: 600; display: block; margin: 0px; text-align: center;"
     >
-      <img
-        alt="Person reading a book"
-        class="_vectorImage_62bb53 m_9e117634 mantine-Image-root"
-        src="/project2/src/assets/ReadingBook.webp"
+      <span
+        aria-hidden="true"
       />
-      <div
-        class="_textContainer_62bb53 m_6d731127 mantine-Stack-root"
-        style="--stack-gap: var(--mantine-spacing-md); --stack-align: stretch; --stack-justify: flex-start;"
-      >
-        <div
-          class="_titleContainer_62bb53"
-        >
-          <h1
-            class="_title_62bb53 m_8a5d1357 mantine-Title-root"
-            data-order="1"
-            style="--title-fw: var(--mantine-h1-font-weight); --title-lh: var(--mantine-h1-line-height); --title-fz: var(--mantine-h1-font-size);"
-          >
-            Welcome to
-          </h1>
-          <img
-            alt="The Book Vault"
-            class="m_9e117634 mantine-Image-root"
-            src="/project2/src/assets/BookVaultText.svg"
-          />
-        </div>
-        <p
-          class="mantine-focus-auto _subTitle_62bb53 m_b6d8b162 mantine-Text-root"
-        >
-          Browse, review, and discover your next favorite book in our expansive catalog!
-        </p>
-        <a
-          aria-label="Go to a random book"
-          class="mantine-focus-auto mantine-active _button_62bb53 m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
-          data-testid="random-book-button"
-          href="/books/1"
-          style="--button-color: var(--mantine-color-white);"
-        >
-          <span
-            class="m_80f1301b mantine-Button-inner"
-          >
-            <span
-              class="m_811560b9 mantine-Button-label"
-            >
-              Try your luck with a random book
-            </span>
-          </span>
-        </a>
-      </div>
-    </div>
+    </h1>
   </div>
 </DocumentFragment>
 `;

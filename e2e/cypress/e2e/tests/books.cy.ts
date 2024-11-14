@@ -5,19 +5,19 @@ describe('Books Page', () => {
 
   it('should display correct information', () => {
     cy.get('header').should('be.visible');
-    cy.get("a[href*='/book/']").should('have.length.greaterThan', 0);
+    cy.get("a[href*='/books/']").should('have.length.greaterThan', 0);
   });
 
   it('changing the number of entries should work', () => {
     // Select 10 entries
     cy.get('[data-testid="entries-select"]').click();
     cy.get('.mantine-Select-options').contains('10').click();
-    cy.get("a[href*='/book/']").should('have.length', 10);
+    cy.get("a[href*='/books/']").should('have.length', 10);
 
     // Select 25 entries
     cy.get('[data-testid="entries-select"]').click();
     cy.get('.mantine-Select-options').contains('25').click();
-    cy.get("a[href*='/book/']").should('have.length', 25);
+    cy.get("a[href*='/books/']").should('have.length', 25);
   });
 
   it('pagination should work', () => {

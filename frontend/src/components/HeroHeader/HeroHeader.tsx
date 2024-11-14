@@ -37,7 +37,7 @@ export const HeroHeader = () => {
           {!error && (
             <Button
               component={Link}
-              to={id ? `/book/${id}` : '/'}
+              to={id ? `/books/${id}` : '/'}
               className={styles.button}
               loading={loading}
               aria-label="Go to a random book"

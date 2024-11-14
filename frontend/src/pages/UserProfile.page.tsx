@@ -1,13 +1,29 @@
 import { useEffect, useState } from 'react';
+import { IconBook, IconBook2, IconBooks, IconStars } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import { Avatar, Button, Container, Stack, Text, TextInput, Title } from '@mantine/core';
+import {
+  Avatar,
+  Button,
+  Container,
+  Divider,
+  Group,
+  rem,
+  Stack,
+  Text,
+  TextInput,
+  Title,
+} from '@mantine/core';
 import { notifications } from '@mantine/notifications';
+import BookCardGrid from '@/components/BookCardGrid/BookCardGrid';
+import Loading from '@/components/Loading/Loading';
 import { useUser } from '@/contexts/UserFunctions';
-import { Review } from '@/generated/graphql';
+import { Review, SortBy, SortOrder } from '@/generated/graphql';
 import { updateUser } from '@/hooks/updateUser';
+import { useBooks } from '@/hooks/useBooks';
 import { useYourBookReviews } from '@/hooks/useYourBookReviews';
 import { formatAvatarAbbreviation } from '@/utils/formatting';
 import ReviewStack from '../components/ReviewStack/ReviewStack';
+import styles from './UserProfile.module.css';
 
 /**
  * ProfilePage component displays the user's profile information and allows editing the user's name.
@@ -21,10 +37,36 @@ export function ProfilePage() {
   const [inputError, setInputError] = useState('');
 
   const { submitUpdate, success, message, loading: updateNameLoading } = updateUser();
-  const { reviews, loading, error } = useYourBookReviews({
+  const { reviews, totalReviews, loading, error } = useYourBookReviews({
     limit: 3,
     page: 1,
     userUUID: info.UUID,
+  });
+
+  const {
+    books: wantToRead,
+    totalBooks: totalWantToRead,
+    loading: wantToReadLoading,
+    error: wantToReadError,
+  } = useBooks({
+    limit: 3,
+    page: 1,
+    sortBy: SortBy.WantToRead,
+    sortOrder: SortOrder.Desc,
+    wantToReadListUserUUID: info.UUID,
+  });
+
+  const {
+    books: haveRead,
+    totalBooks: totalHaveRead,
+    loading: haveReadLoading,
+    error: haveReadError,
+  } = useBooks({
+    limit: 3,
+    page: 1,
+    sortBy: SortBy.HaveRead,
+    sortOrder: SortOrder.Desc,
+    haveReadListUserUUID: info.UUID,
   });
 
   useEffect(() => {
@@ -33,7 +75,7 @@ export function ProfilePage() {
         title: success ? 'Success!' : 'Error!',
         message,
         color: success ? 'blue' : 'red',
-        autoClose: 10000,
+        autoClose: 5000,
       });
     }
   }, [message, success, updateNameLoading]);
@@ -97,11 +139,79 @@ export function ProfilePage() {
           </Button>
         )}
 
-        <Title order={2} mt="lg">
-          Your Reviews
-        </Title>
+        <Group align="center">
+          <IconBooks style={{ width: rem(32), height: rem(32) }} />
+          <Title order={2} my="xl">
+            Your library
+          </Title>
+        </Group>
+
+        <Divider
+          size="xs"
+          label={
+            <Group align="center">
+              <IconBook style={{ width: rem(32), height: rem(32) }} />
+              <Title order={3} fw={500} my="xl">
+                Books you want to read
+              </Title>
+            </Group>
+          }
+          labelPosition="center"
+          w="100%"
+        />
+
+        <BookCardGrid
+          books={wantToRead}
+          loading={wantToReadLoading}
+          error={wantToReadError}
+          viewType="grid"
+        />
+
+        {(totalWantToRead ?? 0) > 3 && (
+          <Link to="/profile/wantToRead" className={styles.link}>
+            <Button fullWidth radius="md" mt="md">
+              View all
+            </Button>
+          </Link>
+        )}
+
+        <Divider
+          size="xs"
+          label={
+            <Group align="center">
+              <IconBook2 style={{ width: rem(32), height: rem(32) }} />
+              <Title order={3} fw={500} my="xl">
+                Recently read books
+              </Title>
+            </Group>
+          }
+          labelPosition="center"
+          w="100%"
+        />
+
+        <BookCardGrid
+          books={haveRead}
+          loading={haveReadLoading}
+          error={haveReadError}
+          viewType="grid"
+        />
+        {(totalHaveRead ?? 0) > 3 && (
+          <Link to="/profile/haveRead" className={styles.link}>
+            <Button fullWidth radius="md" mt="md">
+              View all
+            </Button>
+          </Link>
+        )}
+
+        <Group align="center">
+          <IconStars style={{ width: rem(32), height: rem(32) }} />
+          <Title order={2} my="xl">
+            Your reviews
+          </Title>
+        </Group>
+
         {loading ? (
-          <Text ta="center">Loading reviews...</Text>
+          <Loading />
         ) : error ? (
           <Text ta="center" c="red">
             Error fetching reviews
@@ -109,10 +219,10 @@ export function ProfilePage() {
         ) : (
           <>
             <ReviewStack reviews={reviews as Review[]} type="bookReview" />
-            {reviews && reviews.length >= 3 && (
-              <Link to="/myReviews">
-                <Button fullWidth radius="md" variant="outline" mt="md">
-                  View All Reviews
+            {totalReviews && totalReviews > 3 && (
+              <Link to="/profile/myReviews" className={styles.link}>
+                <Button fullWidth radius="md" mt="md">
+                  View all
                 </Button>
               </Link>
             )}

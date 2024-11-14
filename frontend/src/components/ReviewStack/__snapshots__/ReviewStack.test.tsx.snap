@@ -33,403 +33,397 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
       <div
         class="m_96bdd299 mantine-Grid-col __m__-re3"
       >
-        <a
-          aria-label="Go to the user who wrote the review"
-          class="_link_8d4f85"
-          href="/user/UUID1"
+        <div
+          class="_card_6175ac m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
+          style="--paper-radius: var(--mantine-radius-lg); margin: auto;"
         >
-          <div
-            class="_card_6175ac m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
-            style="--paper-radius: var(--mantine-radius-lg); margin: auto;"
+          <style
+            data-mantine-styles="inline"
           >
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-re6{--grid-gutter:var(--mantine-spacing-md);}
-            </style>
+            .__m__-re6{--grid-gutter:var(--mantine-spacing-md);}
+          </style>
+          <div
+            class="m_410352e9 mantine-Grid-root __m__-re6"
+          >
             <div
-              class="m_410352e9 mantine-Grid-root __m__-re6"
+              class="m_dee7bd2f mantine-Grid-inner"
             >
+              <style
+                data-mantine-styles="inline"
+              >
+                .__m__-re8{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+              </style>
               <div
-                class="m_dee7bd2f mantine-Grid-inner"
+                class="m_96bdd299 mantine-Grid-col __m__-re8"
               >
                 <style
                   data-mantine-styles="inline"
                 >
-                  .__m__-re8{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+                  .__m__-rea{--grid-gutter:var(--mantine-spacing-md);}
                 </style>
                 <div
-                  class="m_96bdd299 mantine-Grid-col __m__-re8"
+                  class="m_410352e9 mantine-Grid-root __m__-rea"
+                  style="--grid-justify: flex-start;"
                 >
-                  <style
-                    data-mantine-styles="inline"
-                  >
-                    .__m__-rea{--grid-gutter:var(--mantine-spacing-md);}
-                  </style>
                   <div
-                    class="m_410352e9 mantine-Grid-root __m__-rea"
-                    style="--grid-justify: flex-start;"
+                    class="m_dee7bd2f mantine-Grid-inner"
                   >
-                    <div
-                      class="m_dee7bd2f mantine-Grid-inner"
+                    <style
+                      data-mantine-styles="inline"
                     >
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rec{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
-                      </style>
+                      .__m__-rec{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rec"
+                    >
                       <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rec"
+                        class="m_f85678b6 mantine-Avatar-root"
+                        style="--avatar-bg: var(--mantine-color-blue-light); --avatar-color: var(--mantine-color-blue-light-color); --avatar-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
                       >
-                        <div
-                          class="m_f85678b6 mantine-Avatar-root"
-                          style="--avatar-bg: var(--mantine-color-blue-light); --avatar-color: var(--mantine-color-blue-light-color); --avatar-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
+                        <span
+                          class="m_104cd71f mantine-Avatar-placeholder"
                         >
-                          <span
-                            class="m_104cd71f mantine-Avatar-placeholder"
-                          >
-                            N
-                          </span>
-                        </div>
+                          N
+                        </span>
                       </div>
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-ref{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
-                      </style>
+                    </div>
+                    <style
+                      data-mantine-styles="inline"
+                    >
+                      .__m__-ref{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-ref"
+                    >
                       <div
-                        class="m_96bdd299 mantine-Grid-col __m__-ref"
+                        class="m_6d731127 mantine-Stack-root"
+                        style="--stack-gap: 0rem; --stack-align: stretch; --stack-justify: flex-start;"
                       >
-                        <div
-                          class="m_6d731127 mantine-Stack-root"
-                          style="--stack-gap: 0rem; --stack-align: stretch; --stack-justify: flex-start;"
+                        <h4
+                          class="mantine-focus-auto _bookTitle_6175ac m_b6d8b162 mantine-Text-root"
+                          data-line-clamp="true"
+                          style="--text-line-clamp: 2; font-weight: 600;"
                         >
-                          <h4
-                            class="mantine-focus-auto _bookTitle_6175ac m_b6d8b162 mantine-Text-root"
-                            data-line-clamp="true"
-                            style="--text-line-clamp: 2; font-weight: 600;"
-                          >
-                            Name1
-                          </h4>
-                          <p
-                            class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                            data-line-clamp="true"
-                            data-size="sm"
-                            style="--text-fz: var(--mantine-font-size-sm); --text-lh: var(--mantine-line-height-sm); --text-line-clamp: 2; font-weight: 500; font-style: italic;"
-                          >
-                            Mon Oct 30 2023
-                          </p>
-                        </div>
+                          Name1
+                        </h4>
+                        <p
+                          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                          data-line-clamp="true"
+                          data-size="sm"
+                          style="--text-fz: var(--mantine-font-size-sm); --text-lh: var(--mantine-line-height-sm); --text-line-clamp: 2; font-weight: 500; font-style: italic;"
+                        >
+                          Mon Oct 30 2023
+                        </p>
                       </div>
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rek{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
-                      </style>
+                    </div>
+                    <style
+                      data-mantine-styles="inline"
+                    >
+                      .__m__-rek{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rek"
+                    >
                       <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rek"
+                        class="m_8bffd616 mantine-Flex-root __m__-rem"
+                        style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
                       >
                         <div
-                          class="m_8bffd616 mantine-Flex-root __m__-rem"
-                          style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
+                          data-size="sm"
+                          style="--rating-size: var(--rating-size-sm); --rating-color: var(--mantine-color-yellow-filled);"
                         >
                           <div
-                            data-size="sm"
-                            style="--rating-size: var(--rating-size-sm); --rating-color: var(--mantine-color-yellow-filled);"
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
                           >
                             <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
                             >
                               <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
                               >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
                               </div>
                             </div>
                             <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
                             >
                               <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
                               >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
                               </div>
                             </div>
                             <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
+                              data-read-only="true"
                             >
                               <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
+                                class="m_fae05d6a mantine-Rating-symbolBody"
                               >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
-                            >
-                              <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
-                            >
-                              <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
                               </div>
                             </div>
                           </div>
-                          <p
-                            class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                            style="font-weight: 500;"
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
                           >
-                            5.0
-                          </p>
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
+                          >
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
+                          >
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
+                          >
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rfi{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}
-                      </style>
-                      <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rfi"
-                      >
                         <p
                           class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                          style="font-weight: 500;"
                         >
-                          Great book!
+                          5.0
                         </p>
                       </div>
+                    </div>
+                    <style
+                      data-mantine-styles="inline"
+                    >
+                      .__m__-rfi{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rfi"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                      >
+                        Great book!
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
       <style
         data-mantine-styles="inline"
@@ -439,397 +433,391 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
       <div
         class="m_96bdd299 mantine-Grid-col __m__-rfl"
       >
-        <a
-          aria-label="Go to the user who wrote the review"
-          class="_link_8d4f85"
-          href="/user/UUID2"
+        <div
+          class="_card_6175ac m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
+          style="--paper-radius: var(--mantine-radius-lg); margin: auto;"
         >
-          <div
-            class="_card_6175ac m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
-            style="--paper-radius: var(--mantine-radius-lg); margin: auto;"
+          <style
+            data-mantine-styles="inline"
           >
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-rfo{--grid-gutter:var(--mantine-spacing-md);}
-            </style>
+            .__m__-rfo{--grid-gutter:var(--mantine-spacing-md);}
+          </style>
+          <div
+            class="m_410352e9 mantine-Grid-root __m__-rfo"
+          >
             <div
-              class="m_410352e9 mantine-Grid-root __m__-rfo"
+              class="m_dee7bd2f mantine-Grid-inner"
             >
+              <style
+                data-mantine-styles="inline"
+              >
+                .__m__-rfq{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+              </style>
               <div
-                class="m_dee7bd2f mantine-Grid-inner"
+                class="m_96bdd299 mantine-Grid-col __m__-rfq"
               >
                 <style
                   data-mantine-styles="inline"
                 >
-                  .__m__-rfq{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+                  .__m__-rfs{--grid-gutter:var(--mantine-spacing-md);}
                 </style>
                 <div
-                  class="m_96bdd299 mantine-Grid-col __m__-rfq"
+                  class="m_410352e9 mantine-Grid-root __m__-rfs"
+                  style="--grid-justify: flex-start;"
                 >
-                  <style
-                    data-mantine-styles="inline"
-                  >
-                    .__m__-rfs{--grid-gutter:var(--mantine-spacing-md);}
-                  </style>
                   <div
-                    class="m_410352e9 mantine-Grid-root __m__-rfs"
-                    style="--grid-justify: flex-start;"
+                    class="m_dee7bd2f mantine-Grid-inner"
                   >
-                    <div
-                      class="m_dee7bd2f mantine-Grid-inner"
+                    <style
+                      data-mantine-styles="inline"
                     >
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rfu{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
-                      </style>
+                      .__m__-rfu{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rfu"
+                    >
                       <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rfu"
+                        class="m_f85678b6 mantine-Avatar-root"
+                        style="--avatar-bg: var(--mantine-color-blue-light); --avatar-color: var(--mantine-color-blue-light-color); --avatar-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
                       >
-                        <div
-                          class="m_f85678b6 mantine-Avatar-root"
-                          style="--avatar-bg: var(--mantine-color-blue-light); --avatar-color: var(--mantine-color-blue-light-color); --avatar-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
+                        <span
+                          class="m_104cd71f mantine-Avatar-placeholder"
                         >
-                          <span
-                            class="m_104cd71f mantine-Avatar-placeholder"
-                          >
-                            N
-                          </span>
-                        </div>
+                          N
+                        </span>
                       </div>
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rg1{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
-                      </style>
+                    </div>
+                    <style
+                      data-mantine-styles="inline"
+                    >
+                      .__m__-rg1{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rg1"
+                    >
                       <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rg1"
+                        class="m_6d731127 mantine-Stack-root"
+                        style="--stack-gap: 0rem; --stack-align: stretch; --stack-justify: flex-start;"
                       >
-                        <div
-                          class="m_6d731127 mantine-Stack-root"
-                          style="--stack-gap: 0rem; --stack-align: stretch; --stack-justify: flex-start;"
+                        <h4
+                          class="mantine-focus-auto _bookTitle_6175ac m_b6d8b162 mantine-Text-root"
+                          data-line-clamp="true"
+                          style="--text-line-clamp: 2; font-weight: 600;"
                         >
-                          <h4
-                            class="mantine-focus-auto _bookTitle_6175ac m_b6d8b162 mantine-Text-root"
-                            data-line-clamp="true"
-                            style="--text-line-clamp: 2; font-weight: 600;"
-                          >
-                            Name2
-                          </h4>
-                          <p
-                            class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                            data-line-clamp="true"
-                            data-size="sm"
-                            style="--text-fz: var(--mantine-font-size-sm); --text-lh: var(--mantine-line-height-sm); --text-line-clamp: 2; font-weight: 500; font-style: italic;"
-                          >
-                            Mon Oct 30 2023
-                          </p>
-                        </div>
+                          Name2
+                        </h4>
+                        <p
+                          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                          data-line-clamp="true"
+                          data-size="sm"
+                          style="--text-fz: var(--mantine-font-size-sm); --text-lh: var(--mantine-line-height-sm); --text-line-clamp: 2; font-weight: 500; font-style: italic;"
+                        >
+                          Mon Oct 30 2023
+                        </p>
                       </div>
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rg6{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
-                      </style>
+                    </div>
+                    <style
+                      data-mantine-styles="inline"
+                    >
+                      .__m__-rg6{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rg6"
+                    >
                       <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rg6"
+                        class="m_8bffd616 mantine-Flex-root __m__-rg8"
+                        style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
                       >
                         <div
-                          class="m_8bffd616 mantine-Flex-root __m__-rg8"
-                          style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
+                          data-size="sm"
+                          style="--rating-size: var(--rating-size-sm); --rating-color: var(--mantine-color-yellow-filled);"
                         >
                           <div
-                            data-size="sm"
-                            style="--rating-size: var(--rating-size-sm); --rating-color: var(--mantine-color-yellow-filled);"
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
                           >
                             <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
                             >
                               <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
                               >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
                               </div>
                             </div>
                             <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
                             >
                               <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
                               >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
                               </div>
                             </div>
                             <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
+                              data-read-only="true"
                             >
                               <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
+                                class="m_fae05d6a mantine-Rating-symbolBody"
                               >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
-                            >
-                              <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
-                            >
-                              <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
                               </div>
                             </div>
                           </div>
-                          <p
-                            class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                            style="font-weight: 500;"
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
                           >
-                            2.0
-                          </p>
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
+                          >
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
+                          >
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
+                          >
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rh4{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}
-                      </style>
-                      <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rh4"
-                      >
                         <p
                           class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                          style="font-weight: 500;"
                         >
-                          Hmmm!
+                          2.0
                         </p>
                       </div>
+                    </div>
+                    <style
+                      data-mantine-styles="inline"
+                    >
+                      .__m__-rh4{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rh4"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                      >
+                        Hmmm!
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
       <style
         data-mantine-styles="inline"
@@ -839,401 +827,395 @@ exports[`BookReviewCard Component > matches snapshot 1`] = `
       <div
         class="m_96bdd299 mantine-Grid-col __m__-rh7"
       >
-        <a
-          aria-label="Go to the user who wrote the review"
-          class="_link_8d4f85"
-          href="/user/UUID3"
+        <div
+          class="_card_6175ac m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
+          style="--paper-radius: var(--mantine-radius-lg); margin: auto;"
         >
-          <div
-            class="_card_6175ac m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
-            style="--paper-radius: var(--mantine-radius-lg); margin: auto;"
+          <style
+            data-mantine-styles="inline"
           >
-            <style
-              data-mantine-styles="inline"
-            >
-              .__m__-rha{--grid-gutter:var(--mantine-spacing-md);}
-            </style>
+            .__m__-rha{--grid-gutter:var(--mantine-spacing-md);}
+          </style>
+          <div
+            class="m_410352e9 mantine-Grid-root __m__-rha"
+          >
             <div
-              class="m_410352e9 mantine-Grid-root __m__-rha"
+              class="m_dee7bd2f mantine-Grid-inner"
             >
+              <style
+                data-mantine-styles="inline"
+              >
+                .__m__-rhc{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+              </style>
               <div
-                class="m_dee7bd2f mantine-Grid-inner"
+                class="m_96bdd299 mantine-Grid-col __m__-rhc"
               >
                 <style
                   data-mantine-styles="inline"
                 >
-                  .__m__-rhc{--col-flex-grow:1;--col-flex-basis:0rem;--col-max-width:100%;}
+                  .__m__-rhe{--grid-gutter:var(--mantine-spacing-md);}
                 </style>
                 <div
-                  class="m_96bdd299 mantine-Grid-col __m__-rhc"
+                  class="m_410352e9 mantine-Grid-root __m__-rhe"
+                  style="--grid-justify: flex-start;"
                 >
-                  <style
-                    data-mantine-styles="inline"
-                  >
-                    .__m__-rhe{--grid-gutter:var(--mantine-spacing-md);}
-                  </style>
                   <div
-                    class="m_410352e9 mantine-Grid-root __m__-rhe"
-                    style="--grid-justify: flex-start;"
+                    class="m_dee7bd2f mantine-Grid-inner"
                   >
-                    <div
-                      class="m_dee7bd2f mantine-Grid-inner"
+                    <style
+                      data-mantine-styles="inline"
                     >
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rhg{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
-                      </style>
+                      .__m__-rhg{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rhg"
+                    >
                       <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rhg"
+                        class="m_f85678b6 mantine-Avatar-root"
+                        style="--avatar-bg: var(--mantine-color-blue-light); --avatar-color: var(--mantine-color-blue-light-color); --avatar-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
                       >
-                        <div
-                          class="m_f85678b6 mantine-Avatar-root"
-                          style="--avatar-bg: var(--mantine-color-blue-light); --avatar-color: var(--mantine-color-blue-light-color); --avatar-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
+                        <span
+                          class="m_104cd71f mantine-Avatar-placeholder"
                         >
-                          <span
-                            class="m_104cd71f mantine-Avatar-placeholder"
-                          >
-                            N
-                          </span>
-                        </div>
+                          N
+                        </span>
                       </div>
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rhj{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
-                      </style>
+                    </div>
+                    <style
+                      data-mantine-styles="inline"
+                    >
+                      .__m__-rhj{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rhj"
+                    >
                       <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rhj"
+                        class="m_6d731127 mantine-Stack-root"
+                        style="--stack-gap: 0rem; --stack-align: stretch; --stack-justify: flex-start;"
                       >
-                        <div
-                          class="m_6d731127 mantine-Stack-root"
-                          style="--stack-gap: 0rem; --stack-align: stretch; --stack-justify: flex-start;"
+                        <h4
+                          class="mantine-focus-auto _bookTitle_6175ac m_b6d8b162 mantine-Text-root"
+                          data-line-clamp="true"
+                          style="--text-line-clamp: 2; font-weight: 600;"
                         >
-                          <h4
-                            class="mantine-focus-auto _bookTitle_6175ac m_b6d8b162 mantine-Text-root"
-                            data-line-clamp="true"
-                            style="--text-line-clamp: 2; font-weight: 600;"
-                          >
-                            Name3
-                          </h4>
-                          <p
-                            class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                            data-line-clamp="true"
-                            data-size="sm"
-                            style="--text-fz: var(--mantine-font-size-sm); --text-lh: var(--mantine-line-height-sm); --text-line-clamp: 2; font-weight: 500; font-style: italic;"
-                          >
-                            Mon Oct 30 2023
-                          </p>
-                        </div>
+                          Name3
+                        </h4>
+                        <p
+                          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                          data-line-clamp="true"
+                          data-size="sm"
+                          style="--text-fz: var(--mantine-font-size-sm); --text-lh: var(--mantine-line-height-sm); --text-line-clamp: 2; font-weight: 500; font-style: italic;"
+                        >
+                          Mon Oct 30 2023
+                        </p>
                       </div>
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rho{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
-                      </style>
+                    </div>
+                    <style
+                      data-mantine-styles="inline"
+                    >
+                      .__m__-rho{--col-flex-grow:auto;--col-flex-basis:auto;--col-width:auto;--col-max-width:unset;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rho"
+                    >
                       <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rho"
+                        class="m_8bffd616 mantine-Flex-root __m__-rhq"
+                        style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
                       >
                         <div
-                          class="m_8bffd616 mantine-Flex-root __m__-rhq"
-                          style="gap: calc(0.4375rem * var(--mantine-scale)); align-items: center; justify-content: center;"
+                          data-size="sm"
+                          style="--rating-size: var(--rating-size-sm); --rating-color: var(--mantine-color-yellow-filled);"
                         >
                           <div
-                            data-size="sm"
-                            style="--rating-size: var(--rating-size-sm); --rating-color: var(--mantine-color-yellow-filled);"
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
                           >
                             <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
                             >
                               <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
                               >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
                               </div>
                             </div>
                             <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
                             >
                               <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
                               >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
                               </div>
                             </div>
                             <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
+                              data-read-only="true"
                             >
                               <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
+                                class="m_fae05d6a mantine-Rating-symbolBody"
                               >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
-                            >
-                              <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    data-filled="true"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              class="m_61734bb7 mantine-Rating-symbolGroup"
-                            >
-                              <div
-                                data-read-only="true"
-                                style="--rating-item-z-index: 0;"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                  style="--rating-symbol-clip-path: inset(0 100% 0 0);"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
-                              </div>
-                              <div
-                                data-read-only="true"
-                              >
-                                <div
-                                  class="m_fae05d6a mantine-Rating-symbolBody"
-                                >
-                                  <svg
-                                    class="m_5662a89a mantine-Rating-starSymbol"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                    />
-                                  </svg>
-                                </div>
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
                               </div>
                             </div>
                           </div>
-                          <p
-                            class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
-                            style="font-weight: 500;"
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
                           >
-                            4.0
-                          </p>
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
+                          >
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
+                          >
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  data-filled="true"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="m_61734bb7 mantine-Rating-symbolGroup"
+                          >
+                            <div
+                              data-read-only="true"
+                              style="--rating-item-z-index: 0;"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                                style="--rating-symbol-clip-path: inset(0 100% 0 0);"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            <div
+                              data-read-only="true"
+                            >
+                              <div
+                                class="m_fae05d6a mantine-Rating-symbolBody"
+                              >
+                                <svg
+                                  class="m_5662a89a mantine-Rating-starSymbol"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <style
-                        data-mantine-styles="inline"
-                      >
-                        .__m__-rim{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}
-                      </style>
-                      <div
-                        class="m_96bdd299 mantine-Grid-col __m__-rim"
-                      >
                         <p
                           class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                          style="font-weight: 500;"
                         >
-                          So good!
+                          4.0
                         </p>
                       </div>
+                    </div>
+                    <style
+                      data-mantine-styles="inline"
+                    >
+                      .__m__-rim{--col-flex-grow:auto;--col-flex-basis:100%;--col-max-width:100%;}
+                    </style>
+                    <div
+                      class="m_96bdd299 mantine-Grid-col __m__-rim"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                      >
+                        So good!
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </div>

@@ -58,7 +58,7 @@ const BookCardGrid = ({ books, loading, error, viewType = 'grid' }: BookCardGrid
     return (
       <Stack gap={20}>
         {books.map((book) => (
-          <Link to={`/book/${book.id}`} className={styles.link} key={book.id}>
+          <Link to={`/books/${book.id}`} className={styles.link} key={book.id}>
             <BookListViewCard book={book} />
           </Link>
         ))}
@@ -71,7 +71,7 @@ const BookCardGrid = ({ books, loading, error, viewType = 'grid' }: BookCardGrid
       <Grid justify="center" display="inline-grid">
         {books.map((book) => (
           <Grid.Col key={book.id} span="content" className={styles.column}>
-            <Link to={`/book/${book.id}`} className={styles.link}>
+            <Link to={`/books/${book.id}`} className={styles.link}>
               <BookCard book={book} />
             </Link>
           </Grid.Col>

@@ -34,7 +34,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/1"
+          href="/books/1"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
@@ -374,7 +374,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/2"
+          href="/books/2"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
@@ -714,7 +714,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/3"
+          href="/books/3"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
@@ -1054,7 +1054,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/4"
+          href="/books/4"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
@@ -1394,7 +1394,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/5"
+          href="/books/5"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
@@ -1734,7 +1734,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/6"
+          href="/books/6"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
@@ -2074,7 +2074,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/7"
+          href="/books/7"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
@@ -2414,7 +2414,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/8"
+          href="/books/8"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
@@ -2754,7 +2754,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/9"
+          href="/books/9"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
@@ -3094,7 +3094,7 @@ exports[`Bookcard component > matches snapshot 1`] = `
       >
         <a
           class="_link_7d2061"
-          href="/book/10"
+          href="/books/10"
         >
           <div
             class="_card_0962fe m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"

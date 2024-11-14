@@ -38,7 +38,7 @@ const Testing = () => {
               For book reviews
             </Text>
             <Text size="lg">Visit a book with many reviews</Text>
-            <Link to="/book/2767052-the-hunger-games">
+            <Link to="/books/2767052-the-hunger-games">
               <Button autoContrast className={styles.testButton} color="lime.5">
                 Go to bookpage
               </Button>

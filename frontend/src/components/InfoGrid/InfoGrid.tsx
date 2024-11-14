@@ -23,7 +23,6 @@ const InfoGrid = ({ book }: InfoGridProps) => {
       }),
     },
     { header: 'Genres', description: book.genres.map((genre) => genre.name).join(', ') },
-    { header: 'Rating', description: book.rating.toFixed(1) },
     { header: 'Pages', description: book.pages },
     { header: 'Format', description: book.bookFormat },
     {
