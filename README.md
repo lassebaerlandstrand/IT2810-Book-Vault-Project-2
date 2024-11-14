@@ -446,10 +446,6 @@ After running `npm run cypress` a window should open. You then choose `E2E Testi
 
 Here is a video running all E2E tests:
 
-<video width="600" height="307" controls>
-  <source src="/media/CypressTests.mp4" type="video/mp4">
-</video>
-
 https://git.ntnu.no/IT2810-H24/T05-Project-2/assets/481/761d547b-f046-483d-baed-ed961a020cdf
 
 ### Manual testing
