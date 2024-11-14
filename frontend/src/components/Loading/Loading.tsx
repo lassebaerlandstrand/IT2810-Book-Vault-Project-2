@@ -16,6 +16,7 @@ export const BookLoader: MantineLoaderComponent = forwardRef(({ style, ...others
       stroke: 'var(--loader-color)',
       ...style,
     }}
+    alt="Loading"
   />
 ));
 
