@@ -13,13 +13,17 @@
 7. [Dataset](#dataset-📚)
 8. [Test coverage](#test-coverage-🧪)
 9. [Tech stack](#tech-stack-🛠️)
-10. [How to contribute](#how-to-contribute-🤝)
+10. [Reduced scope](#reduced-scope-🔍)
+11. [How to contribute](#how-to-contribute-🤝)
 
 ## Description 📖
 
 Book Vault is a comprehensive web-based book catalogue, with close to 40 thousand literary works. It is built with modern web technologies, offering an intuitive interface for discovering, tracking, and reviewing books. On it you can browse books of different genres, length, publishers and whatever else you would want to filter your selection by. You can leave reviews on books you have read, and view other people's reviews to make informed decisions about which books to read next. The application is designed to be accessible and sustainable, with a focus on user experience and performance.
 
 ### Key Features
+
+TODO: Mention secrets
+TODO: Mention epic usernames
 
 - **Extensive Catalog**: Browse through our collection of close to 40,000 books.
 
@@ -75,6 +79,8 @@ We are using a monorepo structure with both frontend and backend in the same rep
 
 ## How to run ⚙️
 
+TODO: Add instruction on how to clone the repo
+
 ### Frontend
 
 To start with the frontend, you need to run the following commands:
@@ -94,6 +100,8 @@ npm run dev
 The application is running on a VM at [http://it2810-05.idi.ntnu.no/project2](http://it2810-05.idi.ntnu.no/project2)
 
 ## Pages 📃
+
+TODO: Show figma stuff
 
 ### Home page
 
@@ -212,6 +220,8 @@ The images used on this website were created using DALL-E 3 and Bing Image Creat
 
 ### Accessibility ♿
 
+TODO: Buttons are very intuitive
+
 We have made an effort to make our application as accessible as possible.
 
 The Mantine UI library follows the Accessible Rich Internet Applications Suite (WAI-ARIA) accessibility guidelines. To further increase accessibility, we have added aria-attributes to the relevant components. We also follow the Web Content Accessibility Guidelines (WCAG) to ensure that our website is accessible to all users. The website should be usable to all people, regardless of their abilities.
@@ -240,6 +250,8 @@ We have high contrast between text and background to support people who struggle
 
 ## Sustainability 🌱
 
+TODO: We use debounce because you told us to >:c
+
 **TODO: Add data and analytics from lighthouse once the application is done**
 
 ## Dataset 📚
@@ -251,6 +263,8 @@ Read about how we got the dataset [here](./preprocessing/README.md).
 [_This part is partially copied from the first project_](https://git.ntnu.no/IT2810-H24/T05-Project-1/blob/main/README.md)
 
 We use Vitest with Jest for testing.
+
+TODO: Boast about creating and using tests throughout the project
 
 ![Test logos](/media/vitestjest.png)
 
@@ -354,6 +368,7 @@ After running `npm run cypress` a window should open. You then choose `E2E Testi
 - **Preprocessing**
 
   - Python
+  - PyMongo
   - Pandas
 
 ### Why we chose this tech stack
@@ -369,6 +384,10 @@ MongoDB with Express is often combined with either Angular or React. We chose Re
 Mantine offers GitHub [templates](https://mantine.dev/getting-started/) for the project structure. This includes the setup with Vite, TypeScript, React, linting dependencies and testing dependencies. This makes it easier to get started with the project. We did however have to change some of the setup to fit our needs, e.g. we removed the Storybook dependency as this is not needed for our project.
 
 ![Mantine UI library logo](/media/mantine.png)
+
+## Reduced scope 🔍
+
+TODO: Add a section on how we reduced the scope
 
 ## How to contribute 🤝
 

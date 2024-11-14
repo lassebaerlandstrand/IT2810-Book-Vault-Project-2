@@ -31,7 +31,7 @@ This is the backend of the project. It is a GraphQL server built with [Apollo Se
 
 ## How to run on the VM 🖥️
 
-> 💡 Note
+> 💡 **Note**
 > <br> Remember to be connected to an NTNU network to access the VM.
 
 To run the backend on the VM, you can simply run the [`vmSetup.sh`](../vmSetup.sh) script on the VM. This will install the necessary dependencies and start the server.
@@ -41,3 +41,8 @@ If you simply want to connect to the backend running on the VM, you can use the 
 ```url
 http://it2810-05.idi.ntnu.no/graphql/
 ```
+
+TODO: Document the API. Example queries. 
+
+TODO: How is data stored in MongoDB
+
