@@ -2,13 +2,13 @@
 
 This is the backend of the project. It is a GraphQL server built with [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [GraphQL](https://graphql.org/), [Express](https://expressjs.com/) and [MongoDB](https://www.mongodb.com/).
 
-## How to run
+## How to run ⚙️
 
 1. Install dependencies
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 2. Create a MongoDB database and get the connection URI. See the MongoDB Community Edition [installation guide](https://www.mongodb.com/docs/manual/administration/install-community/).
 
@@ -16,20 +16,23 @@ npm install
 
 4. Modify the `.env` file in [`/backend`](/backend/.env) to your MongoDB URI:
 
-```env
-ATLAS_URI=<your mongodb uri>
-PORT=<your port number>
-```
+   ```env
+   ATLAS_URI=<your mongodb uri>
+   PORT=<your port number>
+   ```
 
 5. Start the server
 
-```bash
-npm run start
-```
+   ```bash
+   npm run start
+   ```
 
 6. The server is now running on `http://localhost:<your port number>` and the API is available at `http://localhost:<your port number>/graphql`. You can use the [sandbox](https://studio.apollographql.com/sandbox/explorer) to test the API.
 
-## How to run on the VM
+## How to run on the VM 🖥️
+
+> 💡 Note
+> <br> Remember to be connected to an NTNU network to access the VM.
 
 To run the backend on the VM, you can simply run the [`vmSetup.sh`](../vmSetup.sh) script on the VM. This will install the necessary dependencies and start the server.
 
@@ -38,5 +41,3 @@ If you simply want to connect to the backend running on the VM, you can use the 
 ```url
 http://it2810-05.idi.ntnu.no/graphql/
 ```
-
-PS: Remember to be connected to an NTNU network to access the VM.

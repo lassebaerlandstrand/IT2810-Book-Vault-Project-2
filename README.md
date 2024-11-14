@@ -4,15 +4,16 @@
 
 ## Table of Contents
 
-1. [Description](#description)
-2. [Folder structure](#folder-structure)
-3. [How to run](#how-to-run)
-4. [Pages](#pages)
-5. [Design](#design)
-6. [Dataset](#dataset)
-7. [Testing](#testing)
-8. [Tech stack](#tech-stack)
-9. [How to contribute](#how-to-contribute)
+1. [Description](#description-📖)
+2. [Folder structure](#folder-structure-📂)
+3. [How to run](#how-to-run-⚙️)
+4. [Pages](#pages-📃)
+5. [Design](#design-🖌️)
+6. [Sustainability](#sustainability-🌱)
+7. [Dataset](#dataset-📚)
+8. [Test coverage](#test-coverage-🧪)
+9. [Tech stack](#tech-stack-🛠️)
+10. [How to contribute](#how-to-contribute-🤝)
 
 ## Description 📖
 
@@ -46,25 +47,27 @@ Book Vault is a comprehensive web-based book catalogue, with close to 40 thousan
 
 - **Advanced Selection Options**:
 
-  Search:
+  - Search:
 
-  - Search by titles and descriptions
-  - Debounced Search 🔍
+    - Search by titles and descriptions
+    - Debounced Search 🔍
 
-  Sort books by:
+  - Sort books by:
 
-  - Book title
-  - Author name
-  - Publisher name
+    - Book title
+    - Author name
+    - Publisher name
 
-  Filter books by:
+  - Filter books by:
 
-  - Publishers
-  - Authors
-  - Average rating
-  - Year published
-  - Number of pages
-  - Genres
+    - Publishers
+    - Authors
+    - Average rating
+    - Year published
+    - Number of pages
+    - Genres
+  
+  - See how many books are in each selection when applying filters and disallow filtering by attributes that would result in no books.
 
 ## Folder structure 📂
 
@@ -245,7 +248,7 @@ Read about how we got the dataset [here](./preprocessing/README.md).
 
 ## Test coverage 🧪
 
-[_This part is partually copied from the first project_](https://git.ntnu.no/IT2810-H24/T05-Project-1/blob/main/README.md)
+[_This part is partially copied from the first project_](https://git.ntnu.no/IT2810-H24/T05-Project-1/blob/main/README.md)
 
 We use Vitest with Jest for testing.
 
@@ -275,7 +278,7 @@ We have unit tests for most of our components. In these tests we check important
 
 We mock the API when we do tests in the frontend. This is mainly done through mocking our hooks as we mainly use hooks to query the API.
 
-#### End-to-end tests &nbsp;<img src="media/CypressLogo.png" alt="Cypress Logo" width="25" />
+### End-to-end tests &nbsp;<img src="media/CypressLogo.png" alt="Cypress Logo" width="25" />
 
 We are using Cypress to do end-to-end tests. We have followed best practices and have created both small and large tests. The small tests are more focused, e.g. only checking if reviews are working, while the large tests are more comprehensive. We have aimed for 80% smaller feature-focused tests and 20% larger end-to-end tests, both simulate a user's interaction with the application.
 
