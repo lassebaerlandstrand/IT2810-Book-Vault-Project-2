@@ -140,7 +140,7 @@ export function ProfilePage() {
 
         <Group align="center">
           <IconBooks className={styles.icon} />
-          <Title order={2} my="xl">
+          <Title order={1} my="xl" size="h2">
             Your library
           </Title>
         </Group>
@@ -150,7 +150,7 @@ export function ProfilePage() {
           label={
             <Group align="center">
               <IconBook className={`${styles.icon} ${styles.desktopIcon}`} />
-              <Title order={3} fw={500} my="xl">
+              <Title order={2} fw={500} my="xl" size="h3">
                 Books you want to read
               </Title>
             </Group>
@@ -179,7 +179,7 @@ export function ProfilePage() {
           label={
             <Group align="center">
               <IconBook2 className={`${styles.icon} ${styles.desktopIcon}`} />
-              <Title order={3} fw={500} my="xl">
+              <Title order={2} fw={500} my="xl" size="h3">
                 Recently read books
               </Title>
             </Group>
@@ -204,7 +204,7 @@ export function ProfilePage() {
 
         <Group align="center">
           <IconStars className={styles.icon} />
-          <Title order={2} my="xl">
+          <Title order={1} my="xl" size="h2">
             Your reviews
           </Title>
         </Group>
