@@ -243,7 +243,7 @@ We have made an effort to make our application as accessible as possible.
 
 The Mantine UI library follows the Accessible Rich Internet Applications Suite (WAI-ARIA) accessibility guidelines. To further increase accessibility, we have added aria-attributes to the relevant components. We also follow the Web Content Accessibility Guidelines (WCAG) to ensure that our website is accessible to all users. The website should be usable to all people, regardless of their abilities.
 
-We have also strived to make it intuitive to interact with our application, putting a lot of focus into having intuitive buttons and a user-friendly layout and behavior. 
+We have also strived to make it intuitive to interact with our application, putting a lot of focus into having intuitive buttons and a user-friendly layout and behavior.
 
 We have prioritized universal design to ensure that our solution is usable for everyone, eliminating the need for separate or specialized solutions. Examples on accessibility accommodations:
 
@@ -261,11 +261,11 @@ We have prioritized universal design to ensure that our solution is usable for e
   - Consistent and intuitive design
   - Clear and concise language
 
-With the use of various developer tools, we have ensured that the website is accessible in various ways. An example of such a tool is Axe Devtools. Here is the result from running an accessibility scan on our homepage.
+With the use of various developer tools, we have ensured that the website is accessible in various ways. An example of such a tool is Axe Devtools and Lighthouse. Below you can see screenshots of these tools running on our homepage. The results are the same for all pages in the application.
 
-| ![Accessibility scan of homepage](/media/AxeDevtoolsAccessibility.png) |
-| :--------------------------------------------------------------------: |
-|                     Accessibility scan of homepage                     |
+| ![Axe accessibility scan of homepage](/media/AxeDevtoolsAccessibility.png) | ![Lighthouse scan of homepage](/media/LighthouseAccessibility.png) |
+| :------------------------------------------------------------------------: | :----------------------------------------------------------------: |
+|                     Axe accessibility scan of homepage                     |                    Lighthouse scan of homepage                     |
 
 **Colors** 🎨
 
