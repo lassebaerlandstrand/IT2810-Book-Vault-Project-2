@@ -81,7 +81,7 @@ export const AnimatedText = ({ sequence, ariaLabel }: AnimatedTextProps) => {
   }
 
   return (
-    <Box ref={ref} w="100%" h={adjustedHeight} mt="md" mb="xl">
+    <Box ref={ref} w="100%" h={adjustedHeight} mt="sm" mb="xl">
       <TypeAnimation
         aria-label={ariaLabel}
         sequence={sequence}

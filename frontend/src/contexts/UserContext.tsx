@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useEffect } from 'react';
 import { Button, Flex, Loader, Stack, Text } from '@mantine/core';
 import { User } from '@/generated/graphql';
 import { makeUser } from '@/hooks/makeUser';
@@ -28,34 +28,29 @@ export const UserContext = createContext<UserContextProps | undefined>(undefined
  * Context Provider for the UserContext. This component fetches the user data from the database and makes it available to the rest of the app.
  */
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  // Get a user from the database or create a new one if none exists
-  const userFunction = () => {
-    const UUID = localStorage.getItem('UUID');
-
-    if (UUID) {
-      const data = useUserHook({ UUID });
-
-      // useUserHook returns user without secret
-      // so it has to be added to complete the user
-      return data;
-    }
-    const newUser = makeUser();
-
-    // Check that it was successfull
-    if (newUser.user && newUser.user.secret) {
-      localStorage.setItem('UUID', newUser.user.UUID);
-      localStorage.setItem('secret', newUser.user.secret);
-    }
-
-    // secret is returned for first time user,
-    // so we dont have to add it
-    return newUser;
-  };
-
-  const { user, loading, error } = userFunction();
+  const UUID = localStorage.getItem('UUID');
   const secret = localStorage.getItem('secret');
+  const { createUser, loading: loadingCreateUser, error: errorCreateUser } = makeUser();
+  const { user, loading, error } = useUserHook({ UUID, secret });
 
-  if (loading) {
+  useEffect(() => {
+    if (!UUID || !secret) {
+      createUser()
+        .then((response) => {
+          const createdUser = response.data?.createUser;
+          if (createdUser?.UUID && createdUser.secret) {
+            localStorage.setItem('UUID', createdUser.UUID);
+            localStorage.setItem('secret', createdUser.secret);
+          }
+        })
+        .catch((e: Error) => {
+          // Will also trigger errorCreateUser to be an error, because of how Apollo works
+          console.error('Error during user creation:', e);
+        });
+    }
+  }, [UUID, secret]);
+
+  if (loading || loadingCreateUser) {
     return (
       <Flex justify="center" align="center" className={styles.centeredOnPage}>
         <Stack align="center">
@@ -63,6 +58,18 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
             Fetching user data
           </Text>
           <Loader />
+        </Stack>
+      </Flex>
+    );
+  }
+
+  if (errorCreateUser) {
+    return (
+      <Flex justify="center" align="center" className={styles.centeredOnPage}>
+        <Stack align="center">
+          <Text c="red" size="lg">
+            Error creating new user
+          </Text>
         </Stack>
       </Flex>
     );
