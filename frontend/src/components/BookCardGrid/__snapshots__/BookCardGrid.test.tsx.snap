@@ -54,14 +54,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
@@ -394,14 +394,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
@@ -734,14 +734,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
@@ -1074,14 +1074,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
@@ -1414,14 +1414,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
@@ -1754,14 +1754,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
@@ -2094,14 +2094,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
@@ -2434,14 +2434,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
@@ -2774,14 +2774,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
@@ -3114,14 +3114,14 @@ exports[`Bookcard component > matches snapshot 1`] = `
             <div
               class="m_599a2148 mantine-Card-section"
             >
-              <h4
+              <p
                 class="mantine-focus-auto _bookTitle_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"
                 style="--text-line-clamp: 2; font-weight: 600;"
                 title="A title"
               >
                 A title
-              </h4>
+              </p>
               <p
                 class="mantine-focus-auto _bookAuthor_0962fe m_b6d8b162 mantine-Text-root"
                 data-line-clamp="true"

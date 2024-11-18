@@ -13,52 +13,48 @@ exports[`SearchContainer > matches snapshot 1`] = `
     @media (max-width: 29.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 30em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 63.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 64em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 89.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 90em) {.mantine-hidden-from-xl {display: none !important;}}@media (max-width: 23.99375em) {.mantine-visible-from-xxs {display: none !important;}}@media (min-width: 24em) {.mantine-hidden-from-xxs {display: none !important;}}
   </style>
   <div
-    class="m_8bffd616 mantine-Flex-root __m__-rl"
-    style="justify-content: center;"
+    class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
+    style="width: 100%; max-width: calc(28.125rem * var(--mantine-scale));"
   >
+    <label>
+      Search by title and description
+    </label>
     <div
-      class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
+      class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+      data-variant="default"
+      data-with-left-section="true"
     >
-      <label>
-        Search by title and description
-      </label>
       <div
-        class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
-        data-variant="default"
-        data-with-left-section="true"
+        class="m_82577fc2 mantine-Input-section mantine-TextInput-section"
+        data-position="left"
       >
-        <div
-          class="m_82577fc2 mantine-Input-section mantine-TextInput-section"
-          data-position="left"
+        <svg
+          aria-label="Search icon"
+          class="tabler-icon tabler-icon-search "
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            aria-label="Search icon"
-            class="tabler-icon tabler-icon-search "
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"
-            />
-            <path
-              d="M21 21l-6 -6"
-            />
-          </svg>
-        </div>
-        <input
-          aria-invalid="false"
-          data-variant="default"
-          placeholder="Search for books"
-          value=""
-        />
+          <path
+            d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"
+          />
+          <path
+            d="M21 21l-6 -6"
+          />
+        </svg>
       </div>
+      <input
+        aria-invalid="false"
+        data-variant="default"
+        placeholder="Search for books"
+        value=""
+      />
     </div>
   </div>
 </DocumentFragment>
