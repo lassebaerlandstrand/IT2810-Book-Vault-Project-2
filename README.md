@@ -4,17 +4,17 @@
 
 ## Table of Contents
 
-1. [Description](#description-📖)
-2. [How to run](#how-to-run-⚙️)
-3. [Pages](#pages-📃)
-4. [Design](#design-🖌️)
-5. [Sustainability](#sustainability-🌱)
-6. [Dataset](#dataset-📚)
-7. [Test coverage](#test-coverage-🧪)
-8. [Tech stack](#tech-stack-🛠️)
-9. [Reduced scope](#reduced-scope-🔍)
-10. [How to contribute](#how-to-contribute-🤝)
-11. [Use of AI](#use-of-ai-🤖)
+1. [Description](#description-)
+2. [How to run](#how-to-run-%EF%B8%8F)
+3. [Pages](#pages-)
+4. [Design](#design-%EF%B8%8F)
+5. [Sustainability](#sustainability-)
+6. [Dataset](#dataset-)
+7. [Test coverage](#test-coverage-)
+8. [Tech stack](#tech-stack-%EF%B8%8F)
+9. [Reduced scope](#reduced-scope-)
+10. [How to contribute](#how-to-contribute-)
+11. [Use of AI](#use-of-ai-)
 
 ## Description 📖
 
