@@ -13,6 +13,10 @@ export const updateUserLibrary = () => {
           if (mutationData?.updateUserLibrary.success) {
             const allKeys = cache.extract().ROOT_QUERY;
 
+            // As Apollo Client doesnt support wildcards in arguments for identifying queries,
+            // we have to filter through the cache like it was text looking for relevant
+            // queries to evict
+
             Object.keys(allKeys).forEach((key) => {
               if (key.startsWith('books(')) {
                 const jsonString = key.replace('books(', '').replace(')', '');

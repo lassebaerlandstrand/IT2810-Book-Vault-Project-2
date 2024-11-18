@@ -7,7 +7,6 @@ import {
   Container,
   Divider,
   Group,
-  rem,
   Stack,
   Text,
   TextInput,
@@ -101,7 +100,7 @@ export function ProfilePage() {
   };
 
   return (
-    <Container size="sm" my="xl">
+    <Container size="sm" my="xl" p={0}>
       <Stack align="center">
         <Avatar size={100} radius="xl">
           {formatAvatarAbbreviation(newName)}
@@ -140,8 +139,8 @@ export function ProfilePage() {
         )}
 
         <Group align="center">
-          <IconBooks style={{ width: rem(32), height: rem(32) }} />
-          <Title order={2} my="xl">
+          <IconBooks className={styles.icon} />
+          <Title order={1} my="xl" size="h2">
             Your library
           </Title>
         </Group>
@@ -150,8 +149,8 @@ export function ProfilePage() {
           size="xs"
           label={
             <Group align="center">
-              <IconBook style={{ width: rem(32), height: rem(32) }} />
-              <Title order={3} fw={500} my="xl">
+              <IconBook className={`${styles.icon} ${styles.desktopIcon}`} />
+              <Title order={2} fw={500} my="xl" size="h3">
                 Books you want to read
               </Title>
             </Group>
@@ -179,8 +178,8 @@ export function ProfilePage() {
           size="xs"
           label={
             <Group align="center">
-              <IconBook2 style={{ width: rem(32), height: rem(32) }} />
-              <Title order={3} fw={500} my="xl">
+              <IconBook2 className={`${styles.icon} ${styles.desktopIcon}`} />
+              <Title order={2} fw={500} my="xl" size="h3">
                 Recently read books
               </Title>
             </Group>
@@ -204,8 +203,8 @@ export function ProfilePage() {
         )}
 
         <Group align="center">
-          <IconStars style={{ width: rem(32), height: rem(32) }} />
-          <Title order={2} my="xl">
+          <IconStars className={styles.icon} />
+          <Title order={1} my="xl" size="h2">
             Your reviews
           </Title>
         </Group>
@@ -219,7 +218,7 @@ export function ProfilePage() {
         ) : (
           <>
             <ReviewStack reviews={reviews as Review[]} type="bookReview" />
-            {totalReviews && totalReviews > 3 && (
+            {(totalReviews ?? 0) > 3 && (
               <Link to="/profile/myReviews" className={styles.link}>
                 <Button fullWidth radius="md" mt="md">
                   View all

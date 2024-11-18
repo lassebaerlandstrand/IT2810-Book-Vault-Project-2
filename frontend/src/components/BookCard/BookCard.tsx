@@ -31,7 +31,7 @@ const BookCard = ({ book, w = '190' }: BookCardProps) => {
         />
       </Card.Section>
       <Card.Section mt="xs" h={50}>
-        <Text fw={600} component="h4" lineClamp={2} title={book.title} className={styles.bookTitle}>
+        <Text fw={600} lineClamp={2} title={book.title} className={styles.bookTitle}>
           {book.title}
         </Text>
         <Text

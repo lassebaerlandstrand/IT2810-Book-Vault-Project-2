@@ -80,12 +80,6 @@ exports[`Layout > matches snapshot 1`] = `
           >
             Books
           </a>
-          <a
-            class="_link_63c2ea _removeLinkStyling_63c2ea"
-            href="/testing"
-          >
-            Testing
-          </a>
         </div>
         <div
           class="_item_63c2ea _showOnlyOnDesktop_63c2ea m_4081bf90 mantine-Group-root"

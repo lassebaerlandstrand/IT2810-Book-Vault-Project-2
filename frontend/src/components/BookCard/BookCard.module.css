@@ -15,6 +15,11 @@
   color: var(--mantine-color-dark-1);
 }
 
+.bookTitle {
+  font-size: var(--mantine-font-size-md);
+  line-height: var(--mantine-line-height-sm);
+}
+
 .bookTitle,
 .bookAuthor {
   text-align: center;

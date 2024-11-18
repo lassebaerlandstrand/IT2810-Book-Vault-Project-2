@@ -39,7 +39,7 @@ describe('Larger E2E tests', () => {
     // Click profile link
     cy.get("a[href*='/profile']").click();
     cy.url().should('include', '/profile');
-    cy.get('h2').contains('Your reviews');
+    cy.get('h1').contains('Your reviews');
 
     // Click logo link
     cy.get("a[aria-label='Go to home page']").click();

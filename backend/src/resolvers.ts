@@ -512,6 +512,10 @@ const resolvers = {
         .collection('users')
         .findOne({ UUID: UUID, secret: secret }, { projection: { secret: 0 } });
 
+      if (!user) {
+        return;
+      }
+
       const haveReadArray = await db
         .collection('books')
         .find({ id: { $in: user.haveRead } })
