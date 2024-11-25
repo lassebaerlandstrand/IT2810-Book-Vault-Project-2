@@ -36,6 +36,7 @@ const BookCard = ({ book, w = '190' }: BookCardProps) => {
         </Text>
         <Text
           size="xs"
+          c="dimmed"
           lineClamp={1}
           title={book.authors.map((author) => author.name).join(', ')}
           className={styles.bookAuthor}
