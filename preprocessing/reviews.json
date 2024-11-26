@@ -214,5 +214,37 @@
     "at": "2024-09-25T12:00:50.518Z",
     "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
     "bookID": "388307._Slowly_Slowly_Slowly_said_the_Sloth"
+  },
+  {
+    "UUID": "2a982932-ca06-417b-b1de-d88fbb873cc1",
+    "description": "A heartfelt memoir offering a unique glimpse into the life and love shared with Stieg Larsson. Deeply moving and insightful.",
+    "rating": 5,
+    "at": "2024-11-26T10:00:00.000Z",
+    "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
+    "bookID": "10473353-there-are-things-i-want-you-to-know-about-stieg-larsson-and-me"
+  },
+  {
+    "UUID": "1a4c9ff5-d758-40c1-aea7-03ac2f03d5c6",
+    "description": "A gripping tale of perseverance in space—truly a testament to human ingenuity and bravery.",
+    "rating": 4,
+    "at": "2024-11-25T16:30:00.000Z",
+    "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
+    "bookID": "39907932--7"
+  },
+  {
+    "UUID": "c9cc1010-93f1-4a0e-b19e-c2ff805e9e53",
+    "description": "A witty, modern commentary on relationships and digital culture. Entertaining yet thought-provoking.",
+    "rating": 4,
+    "at": "2024-11-24T14:45:00.000Z",
+    "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
+    "bookID": "30968750-bae"
+  },
+  {
+    "UUID": "c5b819f9-073a-4b1c-8170-da419e089ac2",
+    "description": "Empowering and unapologetically bold, this book is a rallying cry for aspiring bosses everywhere.",
+    "rating": 5,
+    "at": "2024-11-23T08:15:00.000Z",
+    "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
+    "bookID": "18667945-girlboss"
   }
 ]
