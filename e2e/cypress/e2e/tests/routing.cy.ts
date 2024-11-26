@@ -50,6 +50,10 @@ describe('Larger E2E tests', () => {
     // Go to books
     cy.get('a').contains('Books').click();
 
+    // Change color theme
+    cy.wait(200); // Wait for Mantine
+    cy.get('[aria-label="Change color theme"]').click();
+
     // Filter the selection
     cy.get('button[aria-label="Open search configuration"]').click();
 

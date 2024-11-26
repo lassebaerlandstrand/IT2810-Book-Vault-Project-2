@@ -1,7 +1,7 @@
 // Default options which we fallback on
 export const DEFAULT_PAGE = 1;
-export const DEFAULT_LIMIT = 25;
-export const LIMIT_OPTIONS = ['10', '25', '50', '100'];
+export const DEFAULT_LIMIT = 24;
+export const LIMIT_OPTIONS = ['12', '24', '48', '96'];
 
 /**
  * Extracts pagination parameters from URL search params with fallback to defaults.
