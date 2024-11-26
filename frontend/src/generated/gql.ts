@@ -30,7 +30,7 @@ const documents = {
     "\n  query GetBooksReviews($bookID: String!, $limit: Int!, $offset: Int!, $userUUID: String!) {\n    bookReviews(bookID: $bookID, limit: $limit, offset: $offset, avoidUserUUID: $userUUID) {\n      reviews {\n        UUID\n        description\n        rating\n        at\n        user {\n          name\n          UUID\n        }\n      }\n      pagination \n      {\n        isLastPage\n      }\n    }\n  }\n": types.GetBooksReviewsDocument,
     "\n  query GetYourBookReview($bookID: String!, $userUUID: String!) {\n    bookReview(bookID: $bookID, userUUID: $userUUID) {\n      UUID\n      description\n      rating\n      at\n    }\n  }\n\n": types.GetYourBookReviewDocument,
     "\n  query GetYourBookReviews($limit: Int!, $offset: Int!, $userUUID: String!) {\n    bookReviews(limit: $limit, offset: $offset, focusUserUUID: $userUUID) {\n      reviews {\n        UUID\n        description\n        rating\n        at\n        book {\n          id\n          title\n          coverImg\n        }\n      }\n      pagination \n      {\n        totalPages\n        currentPage\n        isLastPage\n      }\n      summary \n      {\n        total\n      }\n    }\n  }\n\n": types.GetYourBookReviewsDocument,
-    "\n  query Query {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n": types.QueryDocument,
+    "\n  query GetStats {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n": types.GetStatsDocument,
     "\n  query GetUser($UUID: String!, $secret: String!) {\n    user(UUID: $UUID, secret: $secret) {\n      UUID\n      name\n      at\n      wantToRead {\n        id\n      }\n      haveRead {\n        id\n      }\n    }\n  }\n": types.GetUserDocument,
 };
 
@@ -115,7 +115,7 @@ export function gql(source: "\n  query GetYourBookReviews($limit: Int!, $offset:
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query Query {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n"): (typeof documents)["\n  query Query {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n"];
+export function gql(source: "\n  query GetStats {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n"): (typeof documents)["\n  query GetStats {\n    stats {\n      totalBooks\n      totalAuthors\n      totalRatings\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
