@@ -17,6 +17,7 @@ exports[`Loading > matches snapshot 1`] = `
     style="--stack-gap: var(--mantine-spacing-md); --stack-align: center; --stack-justify: center; margin-block: calc(6.25rem * var(--mantine-scale));"
   >
     <img
+      alt="Loading"
       class="_icon_55dd7a m_5ae2e3c mantine-Loader-root m_9e117634 mantine-Image-root"
       data-size="xxl"
       src="/project2/src/assets/BookLoader.gif"

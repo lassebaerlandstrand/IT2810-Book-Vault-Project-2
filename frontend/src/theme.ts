@@ -51,7 +51,7 @@ export const resolver = () => ({
     '--mantine-color-dimmed': 'var(--mantine-color-dark-3)',
   },
   dark: {
-    '--mantine-color-dimmed': 'var(--mantine-color-gray-6)',
+    '--mantine-color-dimmed': 'var(--mantine-color-gray-5)',
   },
 });
 

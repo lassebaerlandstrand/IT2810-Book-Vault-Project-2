@@ -88,6 +88,7 @@ interface UpdateBookReviewMutationArgs {
 
 interface UserQueryArgs {
   UUID: string;
+  secret: string;
 }
 
 interface BookReviewsQueryArgs {
@@ -506,10 +507,14 @@ const resolvers = {
     },
 
     /** Fetches a specific user based on the UUID */
-    async user(_, { UUID }: UserQueryArgs) {
+    async user(_, { UUID, secret }: UserQueryArgs) {
       const user = await db
         .collection('users')
-        .findOne({ UUID: UUID }, { projection: { secret: 0 } });
+        .findOne({ UUID: UUID, secret: secret }, { projection: { secret: 0 } });
+
+      if (!user) {
+        return;
+      }
 
       const haveReadArray = await db
         .collection('books')

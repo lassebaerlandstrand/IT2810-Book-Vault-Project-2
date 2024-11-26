@@ -9,15 +9,15 @@ describe('Books Page', () => {
   });
 
   it('changing the number of entries should work', () => {
-    // Select 10 entries
+    // Select 12 entries
     cy.get('[data-testid="entries-select"]').click();
-    cy.get('.mantine-Select-options').contains('10').click();
-    cy.get("a[href*='/books/']").should('have.length', 10);
+    cy.get('.mantine-Select-options').contains('12').click();
+    cy.get("a[href*='/books/']").should('have.length', 12);
 
-    // Select 25 entries
+    // Select 24 entries
     cy.get('[data-testid="entries-select"]').click();
-    cy.get('.mantine-Select-options').contains('25').click();
-    cy.get("a[href*='/books/']").should('have.length', 25);
+    cy.get('.mantine-Select-options').contains('24').click();
+    cy.get("a[href*='/books/']").should('have.length', 24);
   });
 
   it('pagination should work', () => {
@@ -35,7 +35,7 @@ describe('Books Page', () => {
     cy.wait(1000); // If we search immediately, the initial queries will be cancelled, and cypress will still say it is waiting for the cancelled queries
     cy.get('input[placeholder="Search for books"]').type('The Hunger Games{enter}');
 
-    cy.get('h4').contains('The Hunger Games');
+    cy.get('p').contains('The Hunger Games');
     cy.get("[title='Suzanne Collins']").should('be.visible');
   });
 

@@ -480,7 +480,7 @@ const SearchConfiguration = ({ useDrawer, opened, close }: SearchConfigurationPr
             )
           }
         </SimpleGrid>
-        <Center mt={10}>
+        <Center mt="lg">
           <Button
             leftSection={<IconRestore />}
             variant="default"

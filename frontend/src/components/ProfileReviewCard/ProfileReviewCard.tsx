@@ -22,7 +22,7 @@ const ProfileReviewCard = ({ review }: ReviewProps) => {
           <Grid justify="flex-start">
             <Grid.Col span="content">
               <Avatar color="blue">
-                {review.user && formatAvatarAbbreviation(review.user.name)}
+                {review.user.name && formatAvatarAbbreviation(review.user.name)}
               </Avatar>
             </Grid.Col>
             <Grid.Col span="content">

@@ -39,7 +39,7 @@ describe('Larger E2E tests', () => {
     // Click profile link
     cy.get("a[href*='/profile']").click();
     cy.url().should('include', '/profile');
-    cy.get('h2').contains('Your reviews');
+    cy.get('h1').contains('Your reviews');
 
     // Click logo link
     cy.get("a[aria-label='Go to home page']").click();
@@ -49,6 +49,10 @@ describe('Larger E2E tests', () => {
   it('a user should be able to user filters to find the Hunger Games book and see all reviews', () => {
     // Go to books
     cy.get('a').contains('Books').click();
+
+    // Change color theme
+    cy.wait(200); // Wait for Mantine
+    cy.get('[aria-label="Change color theme"]').click();
 
     // Filter the selection
     cy.get('button[aria-label="Open search configuration"]').click();
