@@ -111,7 +111,6 @@
     "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
     "bookID": "3263607-the-fellowship-of-the-ring"
   },
-
   {
     "UUID": "4d3acbd6-820b-412a-b836-a39b0b5feeab",
     "description": "An eye-opening and meticulously researched exploration of America's response to genocide.",
@@ -151,5 +150,69 @@
     "at": "2024-10-01T12:15:12.518Z",
     "userUUID": "fe041395-df6e-4c10-a193-8fc25630d25f",
     "bookID": "368731._A_Problem_from_Hell_"
+  },
+  {
+    "UUID": "7769433c-c8f1-4264-8070-7c480d1ed166",
+    "description": "A powerful and haunting exploration of history that everyone should read.",
+    "rating": 5,
+    "at": "2024-09-27T12:00:50.518Z",
+    "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
+    "bookID": "909011._Exterminate_All_the_Brutes_"
+  },
+  {
+    "UUID": "486a89fa-c3ce-4cd0-af84-d6186f39b9b1",
+    "description": "Eye-opening and deeply thought-provoking, but a bit heavy on academic language.",
+    "rating": 4,
+    "at": "2024-09-21T11:00:50.518Z",
+    "userUUID": "01b9552c-bd73-465e-ac73-99b1e465087d",
+    "bookID": "909011._Exterminate_All_the_Brutes_"
+  },
+  {
+    "UUID": "36e29d8e-e1d4-456c-8161-7ce8fbb3fd7c",
+    "description": "Important insights, though the narrative can feel fragmented at times",
+    "rating": 3,
+    "at": "2024-10-02T11:11:11.518Z",
+    "userUUID": "96ae7735-8f35-42b0-8560-1602cbdaad93",
+    "bookID": "909011._Exterminate_All_the_Brutes_"
+  },
+  {
+    "UUID": "c74b7ad3-6014-4dc8-85fa-8a00e82c622d",
+    "description": "Sven Lindqvist delivers a raw and essential perspective on colonial atrocities.",
+    "rating": 5,
+    "at": "2024-09-30T13:11:50.518Z",
+    "userUUID": "485c3374-b7fb-4418-826f-d195a16828cf",
+    "bookID": "909011._Exterminate_All_the_Brutes_"
+  },
+  {
+    "UUID": "d335fa7d-035d-4917-856f-6939eaf22cda",
+    "description": "Harlan Ellison's wit and creativity shine in this thought-provoking dystopian tale.",
+    "rating": 5,
+    "at": "2024-09-30T14:11:50.518Z",
+    "userUUID": "485c3374-b7fb-4418-826f-d195a16828cf",
+    "bookID": "90629._Repent_Harlequin_Said_the_Ticktockman"
+  },
+  {
+    "UUID": "45f9e373-6805-42eb-bafe-47ddfe2ccb12",
+    "description": "The story is engaging, though the nonlinear structure can be challenging to follow.",
+    "rating": 3,
+    "at": "2024-09-05T12:10:50.518Z",
+    "userUUID": "96ae7735-8f35-42b0-8560-1602cbdaad93",
+    "bookID": "90629._Repent_Harlequin_Said_the_Ticktockman"
+  },
+  {
+    "UUID": "6f357017-9bc1-43af-bd51-d2b3b5e9de0d",
+    "description": "Perfect for teaching children the value of patience and mindfulness.",
+    "rating": 5,
+    "at": "2024-10-21T12:00:55.588Z",
+    "userUUID": "01b9552c-bd73-465e-ac73-99b1e465087d",
+    "bookID": "388307._Slowly_Slowly_Slowly_said_the_Sloth"
+  },
+  {
+    "UUID": "1f8c2b35-a048-4b5f-b2dc-35d880e6ffc2",
+    "description": "This book is paws-itively slooooth-tastic! A delightful read that leaves you hanging for more!",
+    "rating": 4,
+    "at": "2024-09-25T12:00:50.518Z",
+    "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
+    "bookID": "388307._Slowly_Slowly_Slowly_said_the_Sloth"
   }
 ]
