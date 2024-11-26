@@ -4,7 +4,7 @@ import { gql } from '@/generated';
 
 /** Query to fetch overall statistics about books, authors and ratings */
 export const GET_STATS = gql(`
-  query Query {
+  query GetStats {
     stats {
       totalBooks
       totalAuthors
