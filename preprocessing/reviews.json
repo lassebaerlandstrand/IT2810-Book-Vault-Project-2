@@ -110,5 +110,46 @@
     "at": "2024-09-25T12:00:50.518Z",
     "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
     "bookID": "3263607-the-fellowship-of-the-ring"
+  },
+
+  {
+    "UUID": "4d3acbd6-820b-412a-b836-a39b0b5feeab",
+    "description": "An eye-opening and meticulously researched exploration of America's response to genocide.",
+    "rating": 5,
+    "at": "2024-09-27T12:00:50.518Z",
+    "userUUID": "0e339ac3-b7fb-4639-9d8e-700ac378b7e9",
+    "bookID": "368731._A_Problem_from_Hell_"
+  },
+  {
+    "UUID": "6f0fb9ae-fa99-4285-8420-0aa1d46620ef",
+    "description": "A compelling but deeply unsettling read; it left me questioning international accountability.",
+    "rating": 4,
+    "at": "2024-09-21T11:00:50.518Z",
+    "userUUID": "01b9552c-bd73-465e-ac73-99b1e465087d",
+    "bookID": "368731._A_Problem_from_Hell_"
+  },
+  {
+    "UUID": "d62e1c26-626a-4391-b5e0-e910522a6edd",
+    "description": "Insightful but dense; some sections felt overly detailed for the casual reader.",
+    "rating": 3,
+    "at": "2024-09-30T13:11:50.518Z",
+    "userUUID": "485c3374-b7fb-4418-826f-d195a16828cf",
+    "bookID": "368731._A_Problem_from_Hell_"
+  },
+  {
+    "UUID": "cb31bc56-f6dc-4c74-ae67-3e1b08a3f8d5",
+    "description": "A powerful call to action that challenges readers to confront uncomfortable truths.",
+    "rating": 5,
+    "at": "2024-10-02T11:11:11.518Z",
+    "userUUID": "96ae7735-8f35-42b0-8560-1602cbdaad93",
+    "bookID": "368731._A_Problem_from_Hell_"
+  },
+  {
+    "UUID": "d893bb91-3cf2-4bfb-8ee6-d29a9145ff8e",
+    "description": "Heartbreaking yet necessary; this book changed the way I view global justice.",
+    "rating": 4,
+    "at": "2024-10-01T12:15:12.518Z",
+    "userUUID": "fe041395-df6e-4c10-a193-8fc25630d25f",
+    "bookID": "368731._A_Problem_from_Hell_"
   }
 ]
