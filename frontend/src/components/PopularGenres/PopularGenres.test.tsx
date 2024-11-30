@@ -46,7 +46,7 @@ describe('PopularGenres component', () => {
       { name: 'Drama', link: '/books?genres=Drama' },
       { name: 'Historical', link: '/books?genres=Historical' },
       { name: 'Geography', link: '/books?genres=Geography' },
-      { name: 'Fantasy/Fiction', link: '/books?genres=Fantasy/Fiction' },
+      { name: 'Fantasy/Fiction', link: '/books?genres=Fantasy%2FFiction' },
       { name: 'Adventure', link: '/books?genres=Adventure' },
       { name: 'Literature', link: '/books?genres=Literature' },
     ];

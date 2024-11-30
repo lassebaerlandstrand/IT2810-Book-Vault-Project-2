@@ -173,7 +173,7 @@ exports[`PopularGenres component > renders correctly 1`] = `
             <a
               aria-label="Go to Fantasy/Fiction"
               class="_link_103628"
-              href="/books?genres=Fantasy/Fiction"
+              href="/books?genres=Fantasy%2FFiction"
             >
               <div
                 class="_categoryCard_103628 m_1b7284a3 mantine-Paper-root"
