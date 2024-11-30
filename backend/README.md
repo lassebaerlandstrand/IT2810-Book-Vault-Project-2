@@ -46,6 +46,8 @@ This is the backend of the project. It is a GraphQL server built with [Apollo Se
 
 6. The server is now running on `http://localhost:<your port number>` and the API is available at `http://localhost:<your port number>/graphql`. You can use the [sandbox](https://studio.apollographql.com/sandbox/explorer) to test the API.
 
+7. Connect the frontend to the backend by changing the [`.env`](../frontend/.env) file in frontend.
+
 ## How to run on the VM 🖥️
 
 > 💡 **Note** <br> Remember to be connected to an NTNU network to access the VM.
