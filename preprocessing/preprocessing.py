@@ -10,6 +10,8 @@ namespace = uuid.UUID('12345678123456781234567812345678')
 # Read original dataset
 df = pd.read_csv('preprocessing/dataset.csv')
 
+print("Removing invalid data...")
+
 # Drop columns with too many NaN values that are not needed
 df.drop(['price', 'likedPercent', 'firstPublishDate', 'edition',
         'rating', 'numRatings', 'bbeScore', 'bbeVotes'], axis=1, inplace=True)
@@ -34,6 +36,7 @@ df['pages'] = df['pages'].replace('0', np.nan)
 df['genres'] = df['genres'].replace('[]', np.nan)
 
 # Remove duplicate bookIds
+print("Removing duplicates...")
 df.drop_duplicates(subset='bookId', keep='first', inplace=True)
 
 # Drop rows with NaN values in the specified columns
@@ -50,6 +53,7 @@ df['authors'] = df['authors'].str.replace(r'\(.*?\)', '', regex=True)
 df['authors'] = df['authors'].str.replace(r', more…', '', regex=True)
 
 # Create new DataFrames for authors, genres, publishers
+print("Creating new DataFrames...")
 authors = pd.DataFrame(df['authors'].str.split(
     ',').explode().str.strip().unique(), columns=['name'])
 genres = pd.DataFrame(df['genres'].apply(
@@ -63,6 +67,7 @@ publishers = pd.DataFrame(
 # publishers['uuid'] = publishers['name'].apply(lambda x: uuid.uuid5(namespace, str(x)).hex)
 
 # Save the new DataFrames as JSON lists
+print("Saving new DataFrames as JSON lists...")
 authors.to_json('preprocessing/authors.json', orient='records')
 genres.to_json('preprocessing/genres.json', orient='records')
 publishers.to_json('preprocessing/publishers.json', orient='records')
@@ -77,6 +82,8 @@ publishers.to_json('preprocessing/publishers.json', orient='records')
 df['authors'] = df['authors'].str.split(',').apply(lambda x: [y.strip() for y in x])
 df['genres'] = df['genres'].apply(literal_eval).apply(lambda x: [y.strip() for y in x])
 df['publisher'] = df['publisher'].str.strip()
+
+print("Standardizing all data to the same format...")
 
 # Split the series field
 df = df[~df['series'].str.contains(r'#.*-', na=False)]
@@ -104,6 +111,7 @@ df.set_index('bookId', inplace=True)
 df['id'] = df.index
 
 # Remove weird genres
+print("Creating more broad genres...")
 df['genres'] = df['genres'].apply(lambda x: [genre for genre in x if isinstance(x, list) and genre not in ['Audiobook', 'Mira', "Hugo Awards", "Esp", "Apple", "Human Resources", "London Underground"]])
 
 # Remove books with no genres
@@ -1119,4 +1127,4 @@ df['genres'] = df['genres'].apply(map_genres)
 # Save the DataFrame as a JSON list
 df.to_json('preprocessing/books.json', orient='records')
 
-print('\nPreprocessing done!')
+print('Preprocessing done!')
