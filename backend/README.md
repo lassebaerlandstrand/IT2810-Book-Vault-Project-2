@@ -6,7 +6,7 @@
 - [How to run](#how-to-run-⚙️)
 - [How to run on the VM](#how-to-run-on-the-vm-🖥️)
 - [API Reference](#api-reference-📚)
-   - [Example query and response](#example-query-and-response)
+  - [Example query and response](#example-query-and-response)
 - [Storage in MongoDB](#storage-in-mongodb-📦)
   - [Indexes](#indexes)
   - [Performance](#performance)
@@ -29,22 +29,26 @@ This is the backend of the project. It is a GraphQL server built with [Apollo Se
 
 2. Create a MongoDB database and get the connection URI. See the MongoDB Community Edition [installation guide](https://www.mongodb.com/docs/manual/administration/install-community/).
 
-3. Run [`preprocessing.py`](../preprocessing/preprocessing.py) to preprocess the data. This will create json files in [`/preprocessing`](/preprocessing/) which you have to import to the MongoDB database. Import the files by running [`upload_json_to_mongo.py`](../preprocessing/upload_json_to_mongo.py). This assumes you have a database called "bookvault". If you have a different database name, you have to change the database name in the script.
+3. Run [`preprocessing.py`](../preprocessing/preprocessing.py) to preprocess the data. This will create json files in [`/preprocessing`](/preprocessing/) which you have to upload to the MongoDB database.
 
-4. Modify the `.env` file in [`/backend`](/backend/.env) to your MongoDB URI:
+4. Run [`upload_json_to_mongo.py`](../preprocessing/upload_json_to_mongo.py) to upload the json files to the MongoDB database. This assumes you have a database called "bookvault". If you have a different database name, you have to change the database name in the script.
+
+5. Modify the `.env` file in [`/backend`](/backend/.env) to your MongoDB URI:
 
    ```env
    ATLAS_URI=<your mongodb uri>
    PORT=<your port number>
    ```
 
-5. Start the server
+6. Start the server
 
    ```bash
    npm run start
    ```
 
-6. The server is now running on `http://localhost:<your port number>` and the API is available at `http://localhost:<your port number>/graphql`. You can use the [sandbox](https://studio.apollographql.com/sandbox/explorer) to test the API.
+7. The server is now running on `http://localhost:<your port number>` and the API is available at `http://localhost:<your port number>/graphql`. You can use the [sandbox](https://studio.apollographql.com/sandbox/explorer) to test the API.
+
+8. Connect the frontend to the backend by changing the [`.env`](../frontend/.env) file in frontend.
 
 ## How to run on the VM 🖥️
 

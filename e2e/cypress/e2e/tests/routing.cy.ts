@@ -126,6 +126,9 @@ describe('Larger E2E tests', () => {
     // Post review
     cy.get('button[aria-label="Submit Review"], button[aria-label="Update Review"]').click();
 
+    // Wait for the review to be posted and retrieved
+    cy.get('h4').contains('Your review').should('be.visible');
+
     // Find review on profile page
     cy.get('a[href*="/profile"]').click();
     cy.get(`a[aria-label*="${bookTitle}"]`).click();
